@@ -1,1177 +1,1068 @@
-# 智能报价 Agent Skill 设计说明书（V1）
+# 智能报价 Agent Skill 设计说明书（V2.2）
 
 ## 1. 文档目标
 
-本文档用于定义“服务贸易报价流程”中可抽离为 Agent Skills 的能力边界、输入输出、编排流程、规则依赖与实施方案，用于支持以下目标：
+本文档用于定义“服贸报价 Agent”的能力边界、Skill 划分、输入输出协议、模板约束、编排方式与实施建议，目标是将服贸部报价业务流程沉淀为一组**职责明确、可组合、可扩展、符合 Agent Skill 最佳实践**的技能体系。
 
-- 将人工报价经验沉淀为可复用的 Agent Skills
-- 基于**智能评估报告**自动生成报价草案
-- 结合**历史报价数据库**提供数据依据与相似案例参考
-- 支持**一份评估单对应多项服务**的组合报价场景
-- 输出可审核、可追溯、可逐步自动化的智能报价能力
+相较于前版，本版进一步明确：
+
+> **智能报价 Agent 的最终目标，是基于智能评估结果、历史报价数据和报价规则，生成符合固定报价模板结构的 `QuoteDocument JSON`。**
+
+本版重点解决以下问题：
+
+- 输出不再停留于抽象报价草案，而是直接面向固定报价模板
+- 报价单表头、明细列、表尾字段均有明确约束
+- 支持单方案报价与多方案报价
+- 支持折扣列
+- 支持金额、待定、按实际、代理安排等多种呈现状态
+- 支持方案级 summary 与表尾 footer summary 的分层表达
 
 ---
 
-## 2. 背景与现状
+## 2. 设计背景
 
-当前业务已具备以下基础能力：
+当前业务已经具备以下基础条件：
 
-### 2.1 智能评估系统
-输入需求单（包含服务类型、服务归口、设备信息等基础信息），输出智能评估报告。评估报告通常包含：
+### 2.1 已有智能评估 Agent
+目前已经有一个智能评估 Agent，能够生成评估单。评估单已包含服贸人员报价所需的大部分核心信息，例如：
 
 - 船舶基础信息
-- 多个需求项的服务评估结果
-- 各需求项的施工任务
-- 工种 / 职级 / 人数 / 单人工时
+- 服务项信息
+- 服务内容与施工任务
+- 工种、人数、工时
 - 风险提示
 - 工具 / 耗材 / 专用工具建议
-- 设备 / 备件需求
-- 审核重点与待确认事项
-- 汇总工时、人数等信息
+- 备件需求
+- 审核关注点
+- 待确认事项
 
-### 2.2 历史报价数据
-历史报价单数据已完成结构化入库，可用于：
+因此，智能报价 Agent 不需要再从原始询价邮件开始完整理解需求，而应以评估单作为主输入，聚焦于结构化报价生成。
 
-- 相似报价案例召回
+### 2.2 已有历史报价数据库
+目前已经有保存历史报价单结构化数据的数据库，可用于支持：
+
+- 相似历史报价检索
+- 历史价格区间参考
 - 常见报价项参考
-- 历史价格区间分析
-- 附加费用习惯分析
-- remark 模板建议
-- 成交 / 未成交经验沉淀
+- 常见附加费用参考
+- remark 模板参考
+- 成交 / 未成交经验参考
 
-### 2.3 业务规则来源
-报价规则来自现有培训手册与业务经验，主要包括：
+### 2.3 报价模板已具备稳定骨架
+当前报价单已经具备较稳定的模板结构，至少包括：
 
-- 备件、服务、服务+备件的处理方式
-- 轮机 / 电气 / 第三方的不同路径
-- 国内 / 新加坡 / 巴拿马等区域价目规则
-- 差旅食宿、进港费、报备费、管理费等附加费用规则
-- warranty、compensation、waiting、safety 等商务条款
-- 折扣期限与审核要求
+- 固定表头字段
+- 固定中间报价列
+- 固定表尾汇总区
+- 固定备注区
+- 固定服务支付条款区
 
----
-
-## 3. 产品定位
-
-本项目建议定位为：
-
-# 智能报价 Agent Skill Center
-
-其核心能力为：
-
-1. 接收智能评估报告  
-2. 解析并标准化评估数据  
-3. 检索历史报价数据库中的相似案例  
-4. 结合报价规则生成多服务组合报价草案  
-5. 自动标记待确认项、风险项、审核项  
-6. 输出报价明细、remark、审核建议和客户邮件草稿  
+这意味着报价 Agent 的输出必须与现有模板骨架对齐，而不是自由格式文本。
 
 ---
 
-## 4. 设计原则
+## 3. 核心诉求
 
-### 4.1 LLM 与规则引擎分工明确
-- **LLM 负责**：
-  - 解析评估报告
-  - 理解服务项与风险信息
-  - 生成报价说明、remark、邮件草稿
-  - 辅助识别漏项与异常
+本项目的核心诉求是：
 
-- **规则引擎负责**：
-  - 费率计算
-  - 系数加价
-  - 附加费计算
-  - 审批阈值
-  - 折扣权限
-  - 地区价目规则
-  - 共享费用合并逻辑
+> 将服贸人员的报价流程由 Agent 实现，并输出可直接映射到现有报价模板的标准结构化 `QuoteDocument JSON`。
 
-### 4.2 以评估单为主输入
-报价 Agent 的主输入不再直接依赖原始客户邮件，而是依赖：
+智能报价 Agent 需要完成以下工作：
 
-- 智能评估报告
-- 历史报价数据
-- 报价规则配置
-- 必要的人工确认信息
-
-### 4.3 支持多项服务联合报价
-一份评估报告可能包含多个需求项，必须支持：
-
-- 单项服务独立生成报价行
-- 整单共享费用识别与合并
-- 多项服务统一输出报价草案
-
-### 4.4 待确认项必须显式输出
-系统不能“假设完整”，必须明确指出：
-
-- 当前可报价部分
-- 需补充确认部分
-- 仅可作为备注或 exclusion 的部分
-
-### 4.5 人工审核不可省略
-初期设计中，智能报价系统输出的是：
-
-- **报价草案**
-- **审核建议**
-- **风险提示**
-
-而不是跳过人工直接对外发送。
+1. 接收智能评估 Agent 输出的评估单
+2. 标准化评估单中的报价相关信息
+3. 判断可报价项、待确认项与排除项
+4. 结合历史报价数据库进行参考与校验
+5. 生成符合模板约束的报价项结构
+6. 支持单方案或多方案报价
+7. 输出表尾 Summary、Remark 与 Service Payment Terms
+8. 最终输出 `QuoteDocument JSON`
 
 ---
 
-## 5. 总体架构
+## 4. 设计范围
 
-## 5.1 三层架构
+## 4.1 本期纳入范围
+本期智能报价 Agent 聚焦于“从评估单到报价文档 JSON”的核心能力，包括：
 
-### 第一层：需求理解层
-输入来源：
-- 客户询价邮件
-- 需求单
-- 手工录入信息
+- 评估单解析与标准化
+- 报价可行性判断
+- 历史报价参考
+- 报价项生成
+- 多方案组织
+- 表尾结果生成
+- 审核提示与追溯信息输出
+- 标准 `QuoteDocument JSON` 输出
 
-输出：
-- 结构化需求上下文
+## 4.2 本期不纳入范围
+以下内容不属于本期核心范围：
 
-> 注：此层不是本阶段核心，但保留扩展接口。
+- 从原始客户邮件直接生成完整报价
+- 自动对外发送客户邮件
+- 自动发起审批流
+- 自动调用采购系统实时询价
+- 自动输出最终 PDF / Word 文件
+- 成单后全链路自动跟单
 
-### 第二层：服务评估层
-输入：
-- 结构化需求
-
-输出：
-- 智能评估报告
-
-> 当前该层已有现成系统，不在本次重做范围内。
-
-### 第三层：智能报价层
-输入：
-- 智能评估报告
-- 历史报价数据库结果
-- 报价规则配置
-- 人工补充确认信息
-
-输出：
-- 报价草案
-- 报价明细
-- remark
-- 风险与审核提示
-- 客户邮件草稿
+这些能力可作为后续扩展，但不应混入本期 Skill 核心设计。
 
 ---
 
-## 6. 核心业务流程
+## 5. 设计原则
+
+## 5.1 Skill 数量适中，避免过度拆分
+Skill 设计应遵循“高内聚、低耦合”的原则。  
+若拆分过细，会导致：
+
+- 链路过长
+- 上下文传递复杂
+- 错误定位困难
+- 维护成本高
+
+因此，本方案采用**少量核心 Skill + 一个编排层**的结构。
+
+## 5.2 输出优先围绕模板，而不是围绕文本
+报价 Agent 的最终产物必须优先服务于：
+
+- 报价模板渲染
+- 内部审核
+- 前端展示
+- 导出为 Excel / Word / PDF
+- 数据归档和追溯
+
+因此输出模型必须优先是**结构化文档模型**，而不是自由文本。
+
+## 5.3 输入输出统一 JSON 化
+所有 Skill 之间统一使用 JSON 作为输入输出协议，以支持：
+
+- 日志记录
+- 数据持久化
+- 模板渲染
+- 调试测试
+- 前后端对接
+
+## 5.4 规则计算与语言生成分离
+### 适合规则引擎 / 程序计算的部分
+- 工时费计算
+- 系数加价
+- 附加费计算
+- 折扣计算
+- 汇总计算
+- 状态归类
+- 金额格式化
+
+### 适合 Agent / LLM 的部分
+- 评估单理解
+- 历史报价模式归纳
+- 待确认项识别
+- remark / exclusion / tbc 文案生成
+- 风险与审核提示生成
+
+## 5.5 骨架固定，内容动态
+`QuoteDocument` 的顶层结构、表头结构、明细列结构和表尾结构固定。  
+具体的：
+
+- quotation option 数量
+- section 数量
+- group 数量
+- line 数量
+- remark 条数
+
+则根据实际报价动态变化。
+
+## 5.6 不确定项必须显式输出
+系统不得在信息不完整时“默认补全”。  
+对于待确认、按实际、额外收费、客户侧提供等情况，必须结构化表达。
+
+---
+
+## 6. 总体架构
 
 ```text
-客户询价 / 需求单
+智能评估单
+  +
+历史报价数据库
+  +
+报价规则配置
+  +
+必要人工补充信息
     ↓
-智能评估系统
+智能报价 Agent
     ↓
-assessment_parse_skill
+QuoteDocument JSON
     ↓
-assessment_normalize_skill
+报价模板渲染器（HTML / Excel / Word / PDF）
     ↓
-quote_gap_check_skill
-    ↓
-historical_quote_retrieval_skill
-    ↓
-quote_line_generation_skill
-    ↓
-additional_cost_skill
-    ↓
-pricing_strategy_skill
-    ↓
-multi_service_quote_aggregation_skill
-    ↓
-remark_generate_skill
-    ↓
-quote_review_check_skill
-    ↓
-quote_document_generation_skill
-    ↓
-customer_email_reply_skill
+正式报价单
 ```
 
 ---
 
-## 7. 核心数据对象设计
+## 7. 固定报价模板约束
 
-## 7.1 AssessmentReport（评估报告对象）
+本项目必须遵循固定报价模板约束。
 
+---
+
+## 7.1 固定表头字段
+
+表头必须始终存在以下字段，即使值为空也必须保留：
+
+1. `Currency`
+2. `Vessel Name`
+3. `Date`
+4. `IMO No.`
+5. `Vessel Type`
+6. `Customer Name`
+7. `Service Port`
+8. `Attention`
+9. `WK Offer No.`
+10. `Your Ref No.`
+11. `Quotation Validity`
+12. `PO No.`
+13. `PIC of WinKong`
+
+### 推荐 JSON 结构
 ```json
 {
-  "vessel": {
-    "name": "",
-    "hull_no": "",
-    "shipyard": "",
-    "delivery_date": "",
+  "header": {
+    "currency": "",
+    "vessel_name": "",
+    "date": "",
+    "imo_no": "",
     "vessel_type": "",
-    "main_engine_model": "",
-    "running_hours": 0,
-    "drydock_window": [],
-    "region": ""
-  },
-  "service_items": [
-    {
-      "request_id": "",
-      "department": "",
-      "service_description": "",
-      "service_type": "",
-      "service_location": "",
-      "equipment_name": "",
-      "equipment_model": "",
-      "maker": "",
-      "quantity": 0,
-      "unit": "",
-      "remark": "",
-      "scope_detail": "",
-      "tasks": [
-        {
-          "content": "",
-          "trade": "",
-          "grade": "",
-          "headcount": 0,
-          "hours_per_person": 0
-        }
-      ],
-      "summary": {
-        "is_riding": false,
-        "total_hours": 0,
-        "total_people": 0
-      },
-      "tools": [],
-      "materials": [],
-      "special_tools": [],
-      "spare_parts_tbc": [],
-      "risks": [],
-      "review_focus": []
-    }
-  ],
-  "global_tbc_items": [],
-  "report_meta": {
-    "generated_at": "",
-    "version": ""
+    "customer_name": "",
+    "service_port": "",
+    "attention": "",
+    "wk_offer_no": "",
+    "your_ref_no": "",
+    "quotation_validity": "",
+    "po_no": "",
+    "pic_of_winkong": ""
   }
 }
 ```
 
 ---
 
-## 7.2 HistoricalQuoteMatch（历史报价匹配结果）
+## 7.2 固定中间报价列
+
+报价明细表固定包含以下列：
+
+1. `Item`
+2. `Description`
+3. `Unit Price`
+4. `Unit`
+5. `Q'ty`
+6. `Discount`
+7. `Amount`
+
+### 推荐 JSON 结构
+```json
+{
+  "table_schema": {
+    "columns": [
+      { "key": "item", "label": "Item" },
+      { "key": "description", "label": "Description" },
+      { "key": "unit_price", "label": "Unit Price" },
+      { "key": "unit", "label": "Unit" },
+      { "key": "qty", "label": "Q'ty" },
+      { "key": "discount", "label": "Discount" },
+      { "key": "amount", "label": "Amount" }
+    ]
+  }
+}
+```
+
+---
+
+## 7.3 固定表尾字段
+
+表尾必须包含以下三个区域：
+
+1. `Summary`
+2. `Remark`
+3. `Service Payment Terms`
+
+其中 `Summary` 中必须包含四个字段：
+
+- `Service Charge`
+- `Spare Parts Fee`
+- `Other`
+- `Total`
+
+### 推荐 JSON 结构
+```json
+{
+  "footer": {
+    "summary": {
+      "service_charge": {},
+      "spare_parts_fee": {},
+      "other": {},
+      "total": {}
+    },
+    "remark": {
+      "title": "Remark",
+      "items": []
+    },
+    "service_payment_terms": {
+      "title": "Service Payment Terms",
+      "content": ""
+    }
+  }
+}
+```
+
+---
+
+## 8. 输出模型：QuoteDocument
+
+## 8.1 顶层结构
 
 ```json
 {
-  "matched_quotes": [
-    {
-      "quote_id": "",
-      "similarity": 0.0,
-      "service_item": "",
-      "service_type": "",
-      "department": "",
-      "location": "",
-      "currency": "",
-      "service_amount": 0,
-      "parts_amount": 0,
-      "travel_amount": 0,
-      "other_amount": 0,
-      "remarks": [],
-      "won_or_lost": "",
-      "quote_date": ""
-    }
-  ],
-  "pricing_benchmark": {
-    "service_amount_min": 0,
-    "service_amount_median": 0,
-    "service_amount_max": 0
-  },
-  "common_additional_costs": [],
-  "common_remarks": [],
+  "document_type": "quotation",
+  "document_version": "1.1",
+  "header": {},
+  "table_schema": {},
+  "quotation_options": [],
+  "footer": {},
+  "review_result": {},
+  "trace": {}
+}
+```
+
+---
+
+## 8.2 顶层字段说明
+
+### `document_type`
+固定为 `quotation`。
+
+### `document_version`
+当前文档结构版本号。
+
+### `header`
+固定表头信息。
+
+### `table_schema`
+固定表格列定义。
+
+### `quotation_options`
+正文报价内容，支持单方案或多方案。
+
+### `footer`
+固定表尾结构，包含 Summary / Remark / Service Payment Terms。
+
+### `review_result`
+内部审核信息。
+
+### `trace`
+定价依据与追溯信息。
+
+---
+
+## 9. 多方案报价模型
+
+实际报价中可能存在：
+
+- 单方案报价
+- 多方案报价（如 Option A / Option B）
+
+因此，报价模型必须支持 `quotation_options`。
+
+---
+
+## 9.1 单方案报价
+若只有一个方案，则：
+
+- `quotation_options` 数组长度为 1
+- `footer.summary` 默认等于该方案 summary
+
+---
+
+## 9.2 多方案报价
+若存在多个方案，则：
+
+- 每个 option 必须有独立的 `summary`
+- `footer.summary` 不得简单将各方案金额相加
+- `footer.summary` 应按以下策略之一生成：
+  1. 取默认推荐方案 summary
+  2. 若尚未确定推荐方案，则显示 `Refer to selected option` / `Pending`
+
+---
+
+## 9.3 Option 结构
+
+```json
+{
+  "option_id": "",
+  "title": "",
+  "sections": [],
+  "summary": {},
+  "remarks": []
+}
+```
+
+### 字段说明
+- `option_id`：方案唯一标识
+- `title`：方案标题
+- `sections`：方案正文内容
+- `summary`：方案级汇总
+- `remarks`：方案专属备注
+
+---
+
+## 10. 文档正文结构
+
+正文采用分层结构：
+
+```text
+quotation_options
+  └─ sections
+      └─ groups
+          └─ lines
+```
+
+---
+
+## 10.1 Section
+Section 用于表达正文中的一级逻辑区域。
+
+```json
+{
+  "section_id": "",
+  "section_type": "service | spare_parts | other",
+  "title": "",
+  "groups": []
+}
+```
+
+---
+
+## 10.2 Group
+Group 用于表达 section 下的逻辑分组，例如：
+
+- 某个设备模块
+- 某个服务子项
+- 某个费用模块
+
+```json
+{
+  "group_id": "",
+  "group_no": "",
+  "title": "",
+  "description": "",
+  "lines": []
+}
+```
+
+### 注意
+当前版本**不建议引入 group summary**。  
+summary 仅保留在：
+
+- `quotation_options[].summary`
+- `footer.summary`
+
+---
+
+## 10.3 Line
+Line 是最核心的报价行结构，用于表达：
+
+- 收费项
+- 说明项
+- 条件项
+- 待定项
+- 额外收费项
+- 技术说明项
+
+### 推荐结构
+```json
+{
+  "line_id": "",
+  "item": "",
+  "line_no": "",
+  "line_type": "",
+  "description": "",
+  "pricing_mode": "",
+  "unit_price": null,
+  "unit_price_display": "",
+  "unit": "",
+  "qty": null,
+  "qty_display": "",
+  "discount": null,
+  "amount": null,
+  "amount_display": "",
+  "currency": "USD",
+  "status": "",
+  "basis": "",
+  "conditions": [],
+  "notes": []
+}
+```
+
+---
+
+## 11. Line 设计规范
+
+## 11.1 `line_type`
+用于表达该行的语义类型，建议支持：
+
+- `priced`
+- `included`
+- `pending`
+- `optional`
+- `conditional`
+- `extra`
+- `note`
+- `header`
+- `scope_note`
+- `technical_note`
+- `assumption_note`
+- `commercial_note`
+
+---
+
+## 11.2 `pricing_mode`
+用于表达该行的计价方式，建议支持：
+
+- `unit_price`
+- `lump_sum`
+- `included`
+- `pending`
+- `conditional`
+- `text_only`
+- `rate_only`
+- `rate_as_actual`
+
+---
+
+## 11.3 `status`
+用于表达该行当前收费状态，建议支持：
+
+- `chargeable`
+- `included`
+- `pending`
+- `if_needed`
+- `extra`
+- `as_actual`
+- `arranged_by_agent`
+- `by_owner`
+- `excluded`
+
+---
+
+## 11.4 `discount`
+由于模板中已固定存在 `Discount` 列，因此 line 结构中必须支持折扣字段。
+
+### 推荐结构
+```json
+{
+  "discount": {
+    "type": "percentage | amount",
+    "value": 10,
+    "display": "10%"
+  }
+}
+```
+
+### 约束
+- 无折扣时为 `null`
+- `amount` 字段表示折后金额或最终金额
+- 不得将折扣信息仅写在 description 中
+
+---
+
+## 11.5 金额与展示字段
+金额类字段建议同时保留：
+
+- 原始值字段
+- 展示值字段
+
+例如：
+
+```json
+{
+  "unit_price": 10000.0,
+  "unit_price_display": "10,000.00",
+  "amount": 9000.0,
+  "amount_display": "9,000.00"
+}
+```
+
+### 原则
+- 原始值字段用于计算、汇总、校验
+- 展示字段用于模板渲染
+- 金额展示统一为：
+  - 千分位
+  - 保留两位小数
+
+---
+
+## 12. Summary 设计规范
+
+Summary 需要支持的不仅是数值，还要支持待定、按实际、文本说明等状态。
+
+因此，summary 中每个字段不应简单使用 number，而应使用结构化对象。
+
+---
+
+## 12.1 Summary 字段
+固定包含：
+
+- `service_charge`
+- `spare_parts_fee`
+- `other`
+- `total`
+
+---
+
+## 12.2 SummaryValue 推荐结构
+```json
+{
+  "value_type": "amount | status | text",
+  "amount": null,
+  "display": "",
+  "currency": "USD",
+  "status": ""
+}
+```
+
+### 说明
+- `value_type = amount`：表示数值金额
+- `value_type = status`：表示 Pending / As actual 等状态
+- `value_type = text`：表示其他文本
+
+---
+
+## 12.3 双层 Summary 规则
+
+### 方案级 summary
+`quotation_options[].summary`  
+表示**某个方案自己的汇总结果**。
+
+### 表尾 summary
+`footer.summary`  
+表示**整份报价单固定模板中的最终表尾汇总区**。
+
+### 规则
+- 单方案时，`footer.summary` 默认等于唯一 option 的 summary
+- 多方案时，`footer.summary` 取默认推荐方案，或显示 `Refer to selected option` / `Pending`
+- 禁止将多个方案 summary 直接相加后写入 footer
+
+---
+
+## 13. Remark 与 Service Payment Terms
+
+## 13.1 Remark
+表尾必须有 `Remark` 区域。
+
+### 推荐结构
+```json
+{
+  "remark": {
+    "title": "Remark",
+    "items": [
+      {
+        "type": "",
+        "text": ""
+      }
+    ]
+  }
+}
+```
+
+### 建议 remark 类型
+- `warranty`
+- `compensation`
+- `commercial`
+- `cost_clause`
+- `tax`
+- `waiting`
+- `safety`
+- `exclusion`
+- `tbc`
+- `payment_term`
+
+---
+
+## 13.2 Service Payment Terms
+表尾必须有 `Service Payment Terms` 区域。
+
+### 推荐结构
+```json
+{
+  "service_payment_terms": {
+    "title": "Service Payment Terms",
+    "content": ""
+  }
+}
+```
+
+---
+
+## 14. 审核与追溯字段
+
+## 14.1 `review_result`
+用于内部审核，建议结构如下：
+
+```json
+{
+  "review_result": {
+    "review_flags": [],
+    "risk_flags": [],
+    "approval_level": ""
+  }
+}
+```
+
+### 字段说明
+- `review_flags`：审核提示
+- `risk_flags`：风险提示
+- `approval_level`：建议审批级别
+
+---
+
+## 14.2 `trace`
+用于记录定价依据和引用来源。
+
+```json
+{
+  "trace": {
+    "historical_references": [],
+    "pricing_basis": [],
+    "rule_versions": []
+  }
+}
+```
+
+---
+
+## 15. Skill 设计
+
+本方案建议使用 5 个核心 Skill + 1 个编排层。
+
+---
+
+## 15.1 `quote_request_prepare_skill`
+
+### 目标
+将智能评估单与补充上下文转换为统一报价请求对象。
+
+### 输入
+```json
+{
+  "assessment_report": {},
+  "customer_context": {},
+  "business_context": {}
+}
+```
+
+### 输出
+```json
+{
+  "quote_request": {},
+  "normalization_flags": [],
+  "missing_fields": []
+}
+```
+
+### 核心职责
+- 提取报价所需信息
+- 标准化服务项
+- 标准化服务场景
+- 标准化报价输入对象
+
+---
+
+## 15.2 `quote_feasibility_check_skill`
+
+### 目标
+判断哪些内容可以报价，哪些必须待确认。
+
+### 输入
+```json
+{
+  "quote_request": {}
+}
+```
+
+### 输出
+```json
+{
+  "can_quote": true,
+  "quote_scope": "full | partial | not_ready",
+  "quotable_items": [],
+  "tbc_items": [],
+  "exclusions": [],
+  "missing_fields": [],
+  "questions_for_user": [],
+  "review_flags": []
+}
+```
+
+### 核心职责
+- 判断可报价范围
+- 识别待确认项
+- 识别排除项
+- 形成审核提示
+
+---
+
+## 15.3 `historical_quote_reference_skill`
+
+### 目标
+从历史报价数据库检索相似案例，并形成报价参考摘要。
+
+### 输入
+```json
+{
+  "quote_request": {},
+  "quotable_items": []
+}
+```
+
+### 输出
+```json
+{
+  "matches": [],
+  "reference_summary": {},
   "confidence": 0.0
 }
 ```
 
+### 核心职责
+- 检索相似历史报价
+- 提供价格带参考
+- 提供常见报价项参考
+- 提供历史 remark 模式参考
+
 ---
 
-## 7.3 QuoteDraft（报价草案）
+## 15.4 `quote_pricing_skill`
 
+### 目标
+结合报价请求、可报价范围、历史参考与规则配置，生成正文报价结构与方案级 summary。
+
+### 输入
 ```json
 {
-  "quote_header": {
-    "quote_no": "",
-    "customer_name": "",
-    "vessel_name": "",
-    "currency": "USD",
-    "location": "",
-    "berth_or_anchorage": "",
-    "quote_basis_note": ""
-  },
-  "line_groups": [
-    {
-      "request_id": "",
-      "title": "",
-      "lines": [
-        {
-          "category": "service | parts | travel | lodging | port_fee | management_fee | other",
-          "description": "",
-          "qty": 0,
-          "unit": "",
-          "unit_price": 0,
-          "amount": 0,
-          "basis": "",
-          "is_shared_cost": false
-        }
-      ]
-    }
-  ],
-  "subtotals": {
-    "service_subtotal": 0,
-    "parts_subtotal": 0,
-    "shared_cost_subtotal": 0,
-    "grand_total": 0
-  },
-  "remarks": [],
-  "exclusions": [],
-  "tbc_items": [],
-  "review_flags": [],
-  "approval_level": "",
-  "email_draft": ""
+  "quote_request": {},
+  "feasibility_result": {},
+  "historical_reference": {},
+  "pricing_rules": {}
 }
 ```
-
----
-
-## 8. Skill 清单设计
-
-## 8.1 assessment_parse_skill
-
-### 目标
-将评估报告文本解析为结构化对象。
-
-### 输入
-- 智能评估报告原文（Markdown / 富文本 / JSON）
-
-### 输出
-- `AssessmentReport`
-
-### 关键职责
-- 抽取船舶基础信息
-- 识别每一个需求项
-- 提取任务级施工数据
-- 提取风险、工具、耗材、专用工具、备件需求
-- 提取全局待确认事项与汇总信息
-
-### 注意事项
-- 一份评估报告可包含多个服务项
-- 输出需保留 request_id 或生成稳定索引
-
----
-
-## 8.2 assessment_normalize_skill
-
-### 目标
-对评估报告中的数据进行标准化、一致性检查与报价优先级判断。
-
-### 输入
-- `AssessmentReport`
 
 ### 输出
 ```json
 {
-  "normalized_items": [],
-  "consistency_flags": [],
-  "pricing_use_recommendation": {
-    "use_task_level_data_first": true,
-    "require_manual_confirmation": false
-  }
+  "quotation_options": []
 }
 ```
 
-### 关键职责
-- 检查任务级 headcount 与 summary 总人数是否冲突
-- 检查任务级工时与汇总工时是否冲突
-- 标准化工种名称、职级名称
-- 标准化地点类型（港口 / 船厂 / 随航）
-- 判断后续报价优先使用哪层数据（任务级 / 汇总级）
+### 核心职责
+- 生成单方案或多方案报价结构
+- 输出 section / group / line
+- 输出 line 的状态、折扣与金额
+- 输出 option 级 summary
+- 对不同方案分别建模
 
-### 典型问题
-- 任务表显示 1+7 人，但汇总显示 2 人
-- “校验”服务描述实际更接近 overhaul
-- 是否航修与干坞场景冲突
+### 特别说明
+本 Skill 不只负责“计算金额”，还负责将报价结果映射为固定模板中间表格结构。
 
 ---
 
-## 8.3 quote_gap_check_skill
+## 15.5 `quote_review_output_skill`
 
 ### 目标
-识别当前评估数据下，哪些内容可直接报价，哪些必须待确认。
+生成最终 `QuoteDocument`，补齐 footer、remark、payment terms、review_result 与 trace。
 
 ### 输入
-- 标准化后的评估数据
-- 基础客户上下文
+```json
+{
+  "quote_request": {},
+  "feasibility_result": {},
+  "historical_reference": {},
+  "pricing_result": {}
+}
+```
 
 ### 输出
 ```json
 {
-  "quotable_now": true,
-  "quote_mode": "full | partial_with_tbc | not_ready",
-  "tbc_items": [],
-  "must_confirm_before_submission": [],
-  "recommended_customer_questions": []
+  "quote_document": {}
 }
 ```
 
-### 关键职责
-- 判断能否先报服务费
-- 判断备件是否需单独待确认
-- 判断专用工具、耗材、船厂管理费等是否缺依据
-- 判断币种、码头/锚地等商务信息是否缺失
+### 核心职责
+- 生成固定 header
+- 生成固定 table_schema
+- 生成 footer.summary
+- 生成 footer.remark
+- 生成 footer.service_payment_terms
+- 输出 review_result
+- 输出 trace
+
+### 特别说明
+在多方案场景下，本 Skill 必须负责确定 footer.summary 的生成策略。
 
 ---
 
-## 8.4 historical_quote_retrieval_skill
+## 15.6 `quote_orchestrator`
 
 ### 目标
-检索历史报价数据库中的相似案例。
+负责编排各 Skill 的执行顺序，输出最终报价文档。
 
-### 输入
-- 船型
-- 主机型号
-- 设备名称
-- 服务类型
-- 服务归口
-- 区域
-- 航修/厂修
-- 多服务组合信息
-
-### 输出
-- `HistoricalQuoteMatch`
-
-### 检索维度建议
-- 设备名称 / 型号
-- 服务描述 / 服务类型
-- 主机型号
-- 船舶类型
-- 作业区域
-- 地点类型
-- 是否多服务组合
-- 报价时间范围
-- 是否成交
-
-### 检索结果用途
-- 价格带参考
-- 常见 line items 参考
-- 附加费用参考
-- remark 参考
-- 异常低价 / 高价对比
-
----
-
-## 8.5 historical_pattern_summary_skill
-
-### 目标
-将多条相似历史报价归纳为对本次报价有帮助的模式摘要。
-
-### 输入
-- 历史相似报价列表
-
-### 输出
-```json
-{
-  "common_line_items": [],
-  "common_exclusions": [],
-  "common_remarks": [],
-  "usual_price_band": {},
-  "pricing_pattern_notes": []
-}
+### 推荐流程
+```text
+quote_request_prepare_skill
+  ↓
+quote_feasibility_check_skill
+  ↓
+historical_quote_reference_skill
+  ↓
+quote_pricing_skill
+  ↓
+quote_review_output_skill
 ```
 
-### 作用
-- 帮助报价 Agent 不只是“看列表”，而是“总结规律”
-- 形成可用于解释的定价依据
-
 ---
 
-## 8.6 quote_line_generation_skill
+## 16. 定价规则配置建议
 
-### 目标
-针对每个服务项生成服务类报价行。
+报价 Agent 不应把业务规则硬编码到 prompt 中。  
+建议将以下规则外置：
 
-### 输入
-- 标准化评估服务项
-- 历史报价模式摘要
-- 费率规则
+### 16.1 费率规则
+- 轮机主管费率
+- 轮机钳工 / 焊工费率
+- 电气主管费率
+- 电气助理费率
+- 海外费率表
 
-### 输出
-```json
-{
-  "quote_line_groups": [
-    {
-      "request_id": "",
-      "title": "",
-      "lines": []
-    }
-  ]
-}
-```
+### 16.2 系数规则
+- OEM 加价系数
+- 替代件加价系数
+- 运费系数
+- 供船费系数
+- 第三方加价系数
 
-### 关键职责
-- 将任务级工种、人数、工时映射为 labor charge
-- 按轮机 / 电气使用不同费率规则
-- 对每个需求项独立生成 line group
-- 标记依据来源：
-  - assessment_task
-  - assessment_summary
-  - historical_reference
-  - manual_rule
-
-### 典型映射规则
-- 轮机主管：55 USD/人/小时
-- 轮机钳工 / 焊工：35 USD/人/小时
-- 电气主管：60 USD/人/小时
-- 电气助理：40 USD/人/小时
-- 海外区域费率从价目表读取，不写死
-
----
-
-## 8.7 parts_pricing_skill
-
-### 目标
-对明确的备件项目生成备件报价行。
-
-### 输入
-- 备件底价 / 采购价
-- 备件归属
-- 是否 OEM
-- 是否替代件
-- 尺寸重量
-- 供船费依据
-- 历史备件报价参考
-
-### 输出
-```json
-{
-  "parts_lines": [],
-  "warnings": []
-}
-```
-
-### 规则
-- OEM 一般加价 1.15 ~ 1.35
-- 替代件一般约 1.5
-- 运费若不含，按预估再乘 1.3 ~ 1.5
-- 供船费按代理价乘 1.35 ~ 1.5
-
-### 注意
-若评估报告中备件为“待确认”，则不直接生成正式金额，可输出：
-- excluded
-- to be confirmed separately
-
----
-
-## 8.8 additional_cost_skill
-
-### 目标
-生成附加费用项。
-
-### 输入
-- 服务地点
-- 是否航修 / 厂修 / 随航
-- 区域
-- 人数
-- 天数 / 工时
-- 是否涉及动火 / 报备
-- 船厂 / 码头条件
-- 历史附加费参考
-
-### 输出
-```json
-{
-  "additional_lines": [],
-  "shared_cost_candidates": [],
-  "risk_notes": []
-}
-```
-
-### 费用范围
-- 交通费
-- 食宿费
+### 16.3 附加费用规则
+- 食宿
+- 交通
 - 进港费
-- 进厂 / 安全培训费
-- 海事报备费
 - 船厂管理费
-- 随航上下船费用
+- 海事报备费
+- 等待费
 
-### 典型规则
-- 交通：票价 * 1.3 ~ 1.35
-- 食宿：40 ~ 50 USD/人/天
-- 一天内航修一般无需收食宿
-- 自办码头进港费 100 ~ 200 USD
-- 代理办理按代理费 * 1.3 ~ 1.5
-- 厂修进厂按实际收费 * 1.15 ~ 1.3
-- 海事报备费 100 ~ 200 USD 或第三方报价基础调整
-
----
-
-## 8.9 multi_service_quote_aggregation_skill
-
-### 目标
-将多项服务报价合并为整单报价。
-
-### 输入
-- 各需求项的报价 line groups
-- 附加费用项
-- 共享费用候选项
-
-### 输出
-```json
-{
-  "merged_quote": {},
-  "deduped_shared_costs": [],
-  "allocation_notes": []
-}
-```
-
-### 关键职责
-- 识别共享成本：
-  - 交通
-  - 食宿
-  - 进港费
-  - 安全培训费
-  - 船厂管理费（视场景）
-- 避免重复收费
-- 保留服务项分项列示
-- 输出整单 subtotal 与 grand total
-
-### 业务原则
-- 同船、同地点、同时间窗口的多服务项通常共享一部分附加费
-- 服务费按项列示
-- 共享费用可单独列一组，避免客户理解歧义
-
----
-
-## 8.10 pricing_strategy_skill
-
-### 目标
-基于历史报价、风险、客户情况与业务策略，给出本次报价策略建议。
-
-### 输入
-- 当前成本估算
-- 历史价格区间
-- 风险等级
-- 紧急程度
-- 客户类型
-- 是否重要客户
-- 是否首单
-- 是否必须提高赢单概率
-
-### 输出
-```json
-{
-  "strategy": "conservative | standard | competitive | premium_risk",
-  "recommended_markup_adjustment": 1.0,
-  "discount_headroom": 0.0,
-  "reason": []
-}
-```
-
-### 作用
-- 决定报价更偏稳健还是更偏竞争
-- 给出是否留折扣空间的建议
-- 给出偏离历史中位数的原因解释
-
----
-
-## 8.11 remark_generate_skill
-
-### 目标
-自动生成报价 remark、exclusions 与 TBC 说明。
-
-### 输入
-- 报价草案
-- 风险信息
-- 待确认项
-- 业务规则模板
-
-### 输出
-```json
-{
-  "remarks": [],
-  "exclusions": [],
-  "tbc_statements": []
-}
-```
-
-### remark 来源
-- 备件 warranty
-- 服务 warranty（一般 6 个月）
-- 检查 / 排故无质保
-- compensation 条款
+### 16.4 商务条款模板
+- 质保
+- 赔偿期限
 - waiting 条款
 - safety 条款
-- 备件归属待确认说明
-- 基于当前信息报价的限制说明
-
-### 示例
-- Service warranty: 6 months from completion date.
-- Inspection and troubleshooting items are excluded from warranty.
-- Spare parts are excluded and shall be quoted separately upon final confirmation.
-- Waiting time caused by vessel delay shall be settled separately.
+- payment terms 模板
 
 ---
 
-## 8.12 quote_review_check_skill
+## 17. MVP 范围建议
 
-### 目标
-在人工审核前自动检查报价完整性与合规性。
+第一阶段优先落地以下能力：
 
-### 输入
-- 完整报价草案
+1. 接收评估单
+2. 生成统一报价请求对象
+3. 判断可报价范围
+4. 检索历史报价参考
+5. 输出单方案或多方案报价结构
+6. 输出固定 footer 结构
+7. 输出标准 `QuoteDocument JSON`
 
-### 输出
-```json
-{
-  "passed": true,
-  "review_flags": [],
-  "approval_level": "self | team_leader | manager | minister",
-  "risk_level": "low | medium | high"
-}
-```
+### MVP 纳入 Skill
+- `quote_request_prepare_skill`
+- `quote_feasibility_check_skill`
+- `historical_quote_reference_skill`
+- `quote_pricing_skill`
+- `quote_review_output_skill`
 
-### 检查项
-- 币种是否明确
-- 码头 / 锚地基准是否明确
-- 工作内容是否详细
-- 是否存在一句话报价
-- 是否缺 warranty
-- 是否缺 compensation
-- 是否缺 exclusions / TBC
-- 是否遗漏交通 / 食宿 / 港杂 / 管理费 / 报备费
-- 是否存在与评估报告冲突的数据
-- 是否明显偏离历史报价区间
-- 是否超出折扣权限
+### MVP 暂不纳入
+- 自动发客户邮件
+- 自动审批流
+- 自动导出正式文件
+- 自动成单跟单
 
 ---
 
-## 8.13 profit_guard_skill
-
-### 目标
-识别异常低利润报价。
-
-### 输入
-- 报价金额
-- 估算成本
-- 历史利润率参考
-- 服务人工收益率标准
-
-### 输出
-```json
-{
-  "margin_status": "healthy | low | abnormal",
-  "alerts": [],
-  "approval_required": false
-}
-```
-
-### 规则参考
-- 轮机 / 电气人工收益率可对照历史正常区间
-- 第三方施工若利润率 < 20%，视为异常提醒
-
----
-
-## 8.14 quote_document_generation_skill
-
-### 目标
-将结构化报价草案生成为标准报价单文档内容。
-
-### 输入
-- `QuoteDraft`
-
-### 输出
-- Markdown / HTML / PDF 模板渲染数据
-- line items
-- remarks
-- exclusions
-- subtotal / total
-
-### 要求
-- 支持分项展示多需求项
-- 支持共享费用单列
-- 支持后续导出为正式报价单格式
-
----
-
-## 8.15 customer_email_reply_skill
-
-### 目标
-生成客户邮件草稿。
-
-### 输入
-- 报价结果
-- 客户名称
-- 船舶名称
-- 当前阶段（收悉 / 补资料 / 发报价 / 跟进）
-
-### 输出
-```json
-{
-  "subject": "",
-  "body": ""
-}
-```
-
-### 邮件类型
-- 收悉处理中
-- 补资料
-- 正式发送报价
-- 报价后跟进
-- 说明部分项目待确认
-
----
-
-## 9. 评估单到报价单字段映射
-
-| 评估字段 | 报价用途 | 处理规则 |
-|---|---|---|
-| 业务归口 | 决定费率体系 | 轮机 / 电气使用不同费率 |
-| 服务描述 | 生成报价项标题 | 可结合历史案例优化描述 |
-| 服务类型 | 决定报价方式 | 校验 / 大修 / 检查 / 调试等 |
-| 服务地点 | 决定附加费用 | 港口 / 船厂 / 随航 |
-| 所属设备名称 | 相似报价检索 | 作为关键匹配字段 |
-| 设备型号 / 厂家 | 相似案例筛选 | 提高相似度精度 |
-| 任务-工种 | 生成 labor charge | 映射到费率表 |
-| 任务-人数 | 计算工时量 | 人数 × 单人工时 |
-| 任务-单人工时 | 计算人工费 | 优先使用任务级数据 |
-| 风险提示 | remark / 审核提示 | 高风险触发人工复核 |
-| 工具 / 耗材 / 专用工具 | 是否纳入报价 | 不明确时列入 TBC / exclusion |
-| 备件需求 | 备件报价或排除项 | 若未确认归属，先不正式计价 |
-| 是否航修 | 附加费判定 | 进港、报备、食宿等 |
-| 汇总工时 / 人数 | 二级参考 | 与任务级冲突时降级使用 |
-
----
-
-## 10. 多服务组合报价规则
-
-## 10.1 基本原则
-一份评估单可包含多个服务项，报价时需要：
-
-- 保持每项服务清晰分项
-- 对共享费用进行合并
-- 对待确认项统一管理
-- 对整单输出一个总金额
-
-## 10.2 建议展示结构
-### 第一部分：服务项报价
-- 服务项 1：HCU 系统大修
-- 服务项 2：MPC 系统检查
-- 服务项 3：其他
-
-### 第二部分：共享费用
-- Transportation
-- Accommodation
-- Port entry / Yard entry
-- Safety / filing related fees
-
-### 第三部分：备件
-- Included parts
-- Excluded parts
-- To be confirmed separately
-
-### 第四部分：remark / exclusions / TBC
-
-## 10.3 共享费用规则
-以下费用通常应考虑整单共享而非按项重复：
-
-- 交通
-- 食宿
-- 进港费
-- 安全培训费
-- 报备费
-- 船厂管理费（视收费方式）
-
-## 10.4 不共享费用
-以下费用通常按项计：
-
-- 各服务项人工费
-- 各服务项专属耗材
-- 各服务项专属备件
-- 某项特定测试 / 调试 / 校验费
-
----
-
-## 11. 报价规则配置建议
-
-## 11.1 费率规则
-```json
-{
-  "domestic_engine": {
-    "supervisor": 55,
-    "fitter_welder": 35
-  },
-  "domestic_electrical": {
-    "supervisor": 60,
-    "assistant": 40
-  }
-}
-```
-
-## 11.2 系数规则
-```json
-{
-  "oem_markup_range": [1.15, 1.35],
-  "alternative_markup_default": 1.5,
-  "freight_markup_range": [1.3, 1.5],
-  "delivery_markup_range": [1.35, 1.5],
-  "third_party_markup_range": [1.35, 1.5]
-}
-```
-
-## 11.3 食宿 / 附加费用规则
-```json
-{
-  "meal_hotel_per_day_range": [40, 50],
-  "self_handled_port_entry_range": [100, 200],
-  "maritime_filing_range": [100, 200]
-}
-```
-
-## 11.4 商务条款模板
-```json
-{
-  "service_warranty_months": 6,
-  "inspection_warranty": "none",
-  "max_compensation_multiple": 5,
-  "waiting_fee_range": [300, 500]
-}
-```
-
----
-
-## 12. 风险与审核机制
-
-## 12.1 风险分类
-### 业务风险
-- 施工范围不完整
-- 备件归属不明
-- 工时估算置信度低
-- 第三方价格不稳定
-
-### 商务风险
-- 币种缺失
-- 锚地 / 码头基准不明确
-- 报价过低
-- 等待条款未写明
-
-### 执行风险
-- 动火 / 受限空间审批
-- 船厂交叉作业
-- 船期窗口不稳定
-- 二次登轮可能性
-
-## 12.2 审核升级建议
-### 自审
-- 标准项目
-- 数据完整
-- 风险低
-- 金额处于常规区间
-
-### 带队师傅 / 组长审核
-- 工时估算存在低置信度
-- 多服务组合
-- 共享费用较复杂
-
-### 经理审核
-- 高金额
-- 高风险
-- 与历史价格偏差较大
-- 多个待确认项
-
-### 部长审核
-- 重大项目
-- 重要客户
-- 利润异常
-- 涉及重大赔偿风险
-
----
-
-## 13. 推荐状态机
-
-```text
-NEW_ASSESSMENT
-PARSED
-NORMALIZED
-WAITING_CONFIRMATION
-HISTORICAL_REFERENCED
-DRAFT_PRICED
-INTERNAL_REVIEW
-REVISE_REQUIRED
-READY_TO_SEND
-SENT_TO_CUSTOMER
-FOLLOWING_UP
-CONFIRMED
-HANDOFF_TO_ORDER
-CLOSED
-```
-
-### 状态说明
-- `NEW_ASSESSMENT`：收到评估报告
-- `PARSED`：已解析
-- `NORMALIZED`：已标准化并完成一致性检查
-- `WAITING_CONFIRMATION`：存在待确认项
-- `HISTORICAL_REFERENCED`：已完成历史案例召回
-- `DRAFT_PRICED`：已生成报价草案
-- `INTERNAL_REVIEW`：进入内部审核
-- `REVISE_REQUIRED`：需要修改
-- `READY_TO_SEND`：可对外发送
-- `SENT_TO_CUSTOMER`：已发客户
-- `FOLLOWING_UP`：待跟进
-- `CONFIRMED`：客户确认
-- `HANDOFF_TO_ORDER`：移交成单跟单
-- `CLOSED`：流程闭环
-
----
-
-## 14. MVP 范围建议
-
-## 14.1 第一阶段目标
-优先实现“从评估报告到报价草案”的核心能力。
-
-### 建议纳入 MVP 的 skills
-1. `assessment_parse_skill`
-2. `assessment_normalize_skill`
-3. `quote_gap_check_skill`
-4. `historical_quote_retrieval_skill`
-5. `quote_line_generation_skill`
-6. `additional_cost_skill`
-7. `multi_service_quote_aggregation_skill`
-8. `remark_generate_skill`
-9. `quote_review_check_skill`
-10. `customer_email_reply_skill`
-
-## 14.2 MVP 暂不做
-- 自动直连外部采购系统实时报价
-- 自动对外发送正式邮件
-- 自动审批流闭环
-- 全自动生成最终 PDF 并归档
-- 成单后全链路跟单自动化
-
----
-
-## 15. 实施建议
-
-## 15.1 先建统一中间层对象
-优先定义统一 JSON Schema，确保：
-
-- 评估系统输出可接入
-- 历史报价检索结果可接入
-- 各 skill 之间可解耦
-
-## 15.2 历史报价库优先做“召回 + 摘要”
-不要一开始就追求复杂推荐模型，先做：
-
-- 条件筛选
-- 相似度排序
-- Top N 摘要
-- 价格带统计
-
-## 15.3 规则配置外置
-费率、系数、remark 模板不要写死在 prompt 中，应存于：
-
-- 配置表
-- 数据库
-- 后台可维护规则中心
-
-## 15.4 保留人工确认节点
-对于以下情况，必须要求人工确认：
-- 多项服务组合复杂
-- 备件归属不明
-- 任务人数 / 汇总人数冲突
-- 高风险或高金额项目
-- 低置信度评估项较多
-
----
-
-## 16. 成功标准
+## 18. 成功标准
 
 若系统达到以下效果，可视为第一阶段成功：
 
-1. 能稳定解析一份包含多项服务的评估报告  
-2. 能基于评估单自动生成结构化报价草案  
-3. 能从历史报价库中召回相似案例并形成参考依据  
-4. 能识别待确认项并避免误报完整价格  
-5. 能输出清晰的 review flags 与 remark  
-6. 能将人工报价准备时间显著缩短  
-7. 能帮助新人按统一规则完成报价草案准备  
+1. 能稳定消费智能评估 Agent 的评估结果
+2. 能输出符合固定模板约束的 `QuoteDocument JSON`
+3. 能支持单方案和多方案报价
+4. 能清晰区分 chargeable / pending / if needed / extra / as actual 等状态
+5. 能支持折扣列
+6. 能生成固定表头、固定表尾和固定明细列
+7. 能生成审核提示和追溯信息
+8. 能将输出结果稳定渲染为现有报价单模板
 
 ---
 
-## 17. 后续演进方向
+## 19. 结论
 
-### 17.1 成交反馈闭环
-将以下数据回流数据库：
-- 最终报价
-- 客户议价结果
-- 成交 / 未成交
-- 未成交原因
-- 人工修改点
+本设计方案的核心不再是“生成一个抽象报价草案”，而是：
 
-### 17.2 报价策略优化
-基于历史反馈逐步优化：
-- 各服务项价格带
-- 不同客户的敏感费用项
-- 更有效的 remark 模板
-- 折扣与成交率关系
+- **以固定模板为骨架**
+- **以多方案与动态报价项为内容**
+- **以 JSON 为标准输出**
+- **以规则计算与 Agent 理解协同实现**
 
-### 17.3 全流程自动化
-未来可扩展到：
-- 报价审批流联动
-- 文档自动归档
-- 客户邮件自动发送
-- 客户确认后自动移交跟单系统
+在已有**智能评估 Agent**和**历史报价数据库**的基础上，推荐优先建设“评估单 → QuoteDocument JSON”这一段核心能力，并围绕固定模板逐步落地智能报价 Agent。
 
 ---
 
-## 18. 总结
-
-本设计方案的核心，不是简单将手册改写成 prompt，而是将“经验型报价流程”拆解为：
-
-- 可理解的输入对象
-- 可复用的 Agent Skills
-- 可配置的业务规则
-- 可追溯的审核机制
-- 可持续优化的数据闭环
-
-在已有**智能评估系统**与**历史报价数据库**基础上，推荐优先建设“评估单 → 报价草案”这一段核心能力，逐步实现服务贸易报价流程的标准化、半自动化与智能化。
-
----
 ## 附录 A：推荐 Skill 命名清单
 
-- `assessment_parse_skill`
-- `assessment_normalize_skill`
-- `quote_gap_check_skill`
-- `historical_quote_retrieval_skill`
-- `historical_pattern_summary_skill`
-- `quote_line_generation_skill`
-- `parts_pricing_skill`
-- `additional_cost_skill`
-- `multi_service_quote_aggregation_skill`
-- `pricing_strategy_skill`
-- `remark_generate_skill`
-- `quote_review_check_skill`
-- `profit_guard_skill`
-- `quote_document_generation_skill`
-- `customer_email_reply_skill`
+- `quote_request_prepare_skill`
+- `quote_feasibility_check_skill`
+- `historical_quote_reference_skill`
+- `quote_pricing_skill`
+- `quote_review_output_skill`
+- `quote_orchestrator`
 
 ---
 
-## 附录 B：推荐输出物
+## 附录 B：推荐最小输出物清单
 
 本系统建议至少输出以下结构化结果：
 
-1. 结构化评估数据
-2. 历史报价参考摘要
-3. 报价 line items
-4. 共享费用明细
-5. exclusions / TBC 项
-6. remark
-7. review flags
-8. 审核级别建议
-9. 客户邮件草稿
+1. `quote_request`
+2. `feasibility_result`
+3. `historical_reference`
+4. `quotation_options`
+5. `quote_document`
+6. `review_result`
+7. `trace`
+
+---
+
+## 附录 C：推荐实施顺序
+
+### 第一阶段
+- 定义 QuoteDocument JSON Schema
+- 定义固定模板字段与列约束
+- 接通评估单输入
+- 打通历史报价检索
+- 完成报价方案输出
+- 完成 footer 输出
+
+### 第二阶段
+- 增强价格解释能力
+- 增强折扣策略
+- 增强审核策略
+- 增加模板渲染器
+
+### 第三阶段
+- 接入审批流
+- 接入导出能力
+- 接入邮件发送
+- 接入成单跟单流程

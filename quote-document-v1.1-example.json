@@ -1,0 +1,1088 @@
+{
+  "document_type": "quotation",
+  "document_version": "1.1",
+  "header": {
+    "currency": "USD",
+    "vessel_name": "XXXX",
+    "date": "2025-10-31",
+    "imo_no": "XXXXXXX",
+    "vessel_type": "Tanker",
+    "customer_name": "XXXX",
+    "service_port": "Zhapu Port, China",
+    "attention": "XXX",
+    "wk_offer_no": "RH-2025-00XXXX",
+    "your_ref_no": "",
+    "quotation_validity": "30 days",
+    "po_no": "",
+    "pic_of_winkong": "Jessica"
+  },
+  "table_schema": {
+    "columns": [
+      {
+        "key": "item",
+        "label": "Item"
+      },
+      {
+        "key": "description",
+        "label": "Description"
+      },
+      {
+        "key": "unit_price",
+        "label": "Unit Price"
+      },
+      {
+        "key": "unit",
+        "label": "Unit"
+      },
+      {
+        "key": "qty",
+        "label": "Q'ty"
+      },
+      {
+        "key": "discount",
+        "label": "Discount"
+      },
+      {
+        "key": "amount",
+        "label": "Amount"
+      }
+    ]
+  },
+  "quotation_options": [
+    {
+      "option_id": "option_a",
+      "title": "Option A Voyage repair",
+      "sections": [
+        {
+          "section_id": "option_a_main",
+          "section_type": "service",
+          "title": "Voyage repair service",
+          "groups": [
+            {
+              "group_id": "a_group_1",
+              "group_no": "1",
+              "title": "AE-1 crankshaft trueness checks in place",
+              "description": "",
+              "lines": [
+                {
+                  "line_id": "a-1",
+                  "item": "1",
+                  "line_no": "1",
+                  "line_type": "priced",
+                  "description": "AE-1 crankshaft trueness checks in place Working time abt 15 hours",
+                  "pricing_mode": "unit_price",
+                  "unit_price": 3500.0,
+                  "unit_price_display": "3,500.00",
+                  "unit": "Unit",
+                  "qty": 1,
+                  "qty_display": "1",
+                  "discount": null,
+                  "amount": 3500.0,
+                  "amount_display": "3,500.00",
+                  "currency": "USD",
+                  "status": "chargeable",
+                  "basis": "Service quotation based on estimated scope and working hours",
+                  "conditions": [],
+                  "notes": []
+                },
+                {
+                  "line_id": "a-1-note-maker",
+                  "item": "",
+                  "line_no": "",
+                  "line_type": "technical_note",
+                  "description": "Maker: ZJMD-Man B&W 7L23/30H",
+                  "pricing_mode": "text_only",
+                  "unit_price": null,
+                  "unit_price_display": "",
+                  "unit": "",
+                  "qty": null,
+                  "qty_display": "",
+                  "discount": null,
+                  "amount": null,
+                  "amount_display": "",
+                  "currency": "USD",
+                  "status": "chargeable",
+                  "basis": "",
+                  "conditions": [],
+                  "notes": []
+                },
+                {
+                  "line_id": "a-1-note-scope-title",
+                  "item": "",
+                  "line_no": "",
+                  "line_type": "scope_note",
+                  "description": "Work scope:",
+                  "pricing_mode": "text_only",
+                  "unit_price": null,
+                  "unit_price_display": "",
+                  "unit": "",
+                  "qty": null,
+                  "qty_display": "",
+                  "discount": null,
+                  "amount": null,
+                  "amount_display": "",
+                  "currency": "USD",
+                  "status": "chargeable",
+                  "basis": "",
+                  "conditions": [],
+                  "notes": []
+                },
+                {
+                  "line_id": "a-1-note-scope-1",
+                  "item": "",
+                  "line_no": "",
+                  "line_type": "scope_note",
+                  "description": "1) Crankshaft defection check",
+                  "pricing_mode": "text_only",
+                  "unit_price": null,
+                  "unit_price_display": "",
+                  "unit": "",
+                  "qty": null,
+                  "qty_display": "",
+                  "discount": null,
+                  "amount": null,
+                  "amount_display": "",
+                  "currency": "USD",
+                  "status": "chargeable",
+                  "basis": "Included in item 1 scope",
+                  "conditions": [],
+                  "notes": []
+                },
+                {
+                  "line_id": "a-1-note-scope-2",
+                  "item": "",
+                  "line_no": "",
+                  "line_type": "scope_note",
+                  "description": "2) 2pcs M/B lower bearing remove, bearing shell condition check, and crankshaft run-out check by magnetic gauge",
+                  "pricing_mode": "text_only",
+                  "unit_price": null,
+                  "unit_price_display": "",
+                  "unit": "",
+                  "qty": null,
+                  "qty_display": "",
+                  "discount": null,
+                  "amount": null,
+                  "amount_display": "",
+                  "currency": "USD",
+                  "status": "chargeable",
+                  "basis": "Included in item 1 scope",
+                  "conditions": [],
+                  "notes": []
+                },
+                {
+                  "line_id": "a-1-note-extra",
+                  "item": "",
+                  "line_no": "",
+                  "line_type": "commercial_note",
+                  "description": "Other Repair/Spares if needed to be charged extra",
+                  "pricing_mode": "text_only",
+                  "unit_price": null,
+                  "unit_price_display": "",
+                  "unit": "",
+                  "qty": null,
+                  "qty_display": "",
+                  "discount": null,
+                  "amount": null,
+                  "amount_display": "",
+                  "currency": "USD",
+                  "status": "extra",
+                  "basis": "Additional work/spares outside quoted scope",
+                  "conditions": [
+                    "Only applicable if additional repair or spare parts are required"
+                  ],
+                  "notes": []
+                }
+              ]
+            },
+            {
+              "group_id": "a_group_2",
+              "group_no": "2",
+              "title": "AE resilient mountings renewal",
+              "description": "",
+              "lines": [
+                {
+                  "line_id": "a-2-option1-title",
+                  "item": "",
+                  "line_no": "",
+                  "line_type": "header",
+                  "description": "Option1",
+                  "pricing_mode": "text_only",
+                  "unit_price": null,
+                  "unit_price_display": "",
+                  "unit": "",
+                  "qty": null,
+                  "qty_display": "",
+                  "discount": null,
+                  "amount": null,
+                  "amount_display": "",
+                  "currency": "USD",
+                  "status": "chargeable",
+                  "basis": "",
+                  "conditions": [],
+                  "notes": []
+                },
+                {
+                  "line_id": "a-2",
+                  "item": "2",
+                  "line_no": "2",
+                  "line_type": "priced",
+                  "description": "AE resilient mountings renewal Approximately 3 days per unit",
+                  "pricing_mode": "unit_price",
+                  "unit_price": 2800.0,
+                  "unit_price_display": "2,800.00",
+                  "unit": "Unit",
+                  "qty": 3,
+                  "qty_display": "3",
+                  "discount": {
+                    "type": "percentage",
+                    "value": 5,
+                    "display": "5%"
+                  },
+                  "amount": 7980.0,
+                  "amount_display": "7,980.00",
+                  "currency": "USD",
+                  "status": "chargeable",
+                  "basis": "Option1 pricing with 5% discount on multi-unit job",
+                  "conditions": [],
+                  "notes": []
+                },
+                {
+                  "line_id": "a-2-note-1",
+                  "item": "",
+                  "line_no": "",
+                  "line_type": "scope_note",
+                  "description": "Spares supply by shipside",
+                  "pricing_mode": "text_only",
+                  "unit_price": null,
+                  "unit_price_display": "",
+                  "unit": "",
+                  "qty": null,
+                  "qty_display": "",
+                  "discount": null,
+                  "amount": null,
+                  "amount_display": "",
+                  "currency": "USD",
+                  "status": "by_owner",
+                  "basis": "Spare parts supplied by vessel side",
+                  "conditions": [],
+                  "notes": []
+                },
+                {
+                  "line_id": "a-2-note-2",
+                  "item": "",
+                  "line_no": "",
+                  "line_type": "assumption_note",
+                  "description": "Approximately 7.5 days if done unit by unit.",
+                  "pricing_mode": "text_only",
+                  "unit_price": null,
+                  "unit_price_display": "",
+                  "unit": "",
+                  "qty": null,
+                  "qty_display": "",
+                  "discount": null,
+                  "amount": null,
+                  "amount_display": "",
+                  "currency": "USD",
+                  "status": "chargeable",
+                  "basis": "Estimated execution duration",
+                  "conditions": [],
+                  "notes": []
+                },
+                {
+                  "line_id": "a-2-note-3",
+                  "item": "",
+                  "line_no": "",
+                  "line_type": "assumption_note",
+                  "description": "48 hours of stationary required after replacement before adjustments.",
+                  "pricing_mode": "text_only",
+                  "unit_price": null,
+                  "unit_price_display": "",
+                  "unit": "",
+                  "qty": null,
+                  "qty_display": "",
+                  "discount": null,
+                  "amount": null,
+                  "amount_display": "",
+                  "currency": "USD",
+                  "status": "chargeable",
+                  "basis": "Execution assumption",
+                  "conditions": [],
+                  "notes": []
+                },
+                {
+                  "line_id": "a-2-option2-title",
+                  "item": "",
+                  "line_no": "",
+                  "line_type": "header",
+                  "description": "Option2",
+                  "pricing_mode": "text_only",
+                  "unit_price": null,
+                  "unit_price_display": "",
+                  "unit": "",
+                  "qty": null,
+                  "qty_display": "",
+                  "discount": null,
+                  "amount": null,
+                  "amount_display": "",
+                  "currency": "USD",
+                  "status": "chargeable",
+                  "basis": "",
+                  "conditions": [],
+                  "notes": []
+                },
+                {
+                  "line_id": "a-2-1",
+                  "item": "2.1",
+                  "line_no": "2.1",
+                  "line_type": "priced",
+                  "description": "If 2 units can be worked on simultaneously Approximately 5 days",
+                  "pricing_mode": "unit_price",
+                  "unit_price": 2500.0,
+                  "unit_price_display": "2,500.00",
+                  "unit": "Unit",
+                  "qty": 3,
+                  "qty_display": "3",
+                  "discount": {
+                    "type": "percentage",
+                    "value": 0,
+                    "display": "0%"
+                  },
+                  "amount": 7500.0,
+                  "amount_display": "7,500.00",
+                  "currency": "USD",
+                  "status": "chargeable",
+                  "basis": "Alternative execution option if 2 units can be handled simultaneously",
+                  "conditions": [
+                    "Applicable only if two units can be worked on simultaneously"
+                  ],
+                  "notes": [],
+                  "relation": {
+                    "type": "alternative_to",
+                    "target_line_id": "a-2"
+                  }
+                },
+                {
+                  "line_id": "a-2-1-note-1",
+                  "item": "",
+                  "line_no": "",
+                  "line_type": "scope_note",
+                  "description": "Spares supply by shipside",
+                  "pricing_mode": "text_only",
+                  "unit_price": null,
+                  "unit_price_display": "",
+                  "unit": "",
+                  "qty": null,
+                  "qty_display": "",
+                  "discount": null,
+                  "amount": null,
+                  "amount_display": "",
+                  "currency": "USD",
+                  "status": "by_owner",
+                  "basis": "Spare parts supplied by vessel side",
+                  "conditions": [],
+                  "notes": []
+                },
+                {
+                  "line_id": "a-2-1-note-2",
+                  "item": "",
+                  "line_no": "",
+                  "line_type": "assumption_note",
+                  "description": "48 hours of stationary required after replacement before adjustments.",
+                  "pricing_mode": "text_only",
+                  "unit_price": null,
+                  "unit_price_display": "",
+                  "unit": "",
+                  "qty": null,
+                  "qty_display": "",
+                  "discount": null,
+                  "amount": null,
+                  "amount_display": "",
+                  "currency": "USD",
+                  "status": "chargeable",
+                  "basis": "Execution assumption",
+                  "conditions": [],
+                  "notes": []
+                }
+              ]
+            },
+            {
+              "group_id": "a_group_3",
+              "group_no": "3-7",
+              "title": "Additional local costs",
+              "description": "",
+              "lines": [
+                {
+                  "line_id": "a-3",
+                  "item": "3",
+                  "line_no": "3",
+                  "line_type": "conditional",
+                  "description": "Local Waiting time charge",
+                  "pricing_mode": "rate_only",
+                  "unit_price": 180.0,
+                  "unit_price_display": "180.00",
+                  "unit": "P*Day",
+                  "qty": null,
+                  "qty_display": "3*N",
+                  "discount": null,
+                  "amount": null,
+                  "amount_display": "If needed",
+                  "currency": "USD",
+                  "status": "if_needed",
+                  "basis": "Waiting time rate",
+                  "conditions": [
+                    "Less than one day counts as one day, based on 10 hours per day."
+                  ],
+                  "notes": [
+                    "If needed"
+                  ]
+                },
+                {
+                  "line_id": "a-4",
+                  "item": "4",
+                  "line_no": "4",
+                  "line_type": "conditional",
+                  "description": "Local accommodation",
+                  "pricing_mode": "rate_only",
+                  "unit_price": 120.0,
+                  "unit_price_display": "120.00",
+                  "unit": "P*Day",
+                  "qty": null,
+                  "qty_display": "3*N",
+                  "discount": null,
+                  "amount": null,
+                  "amount_display": "If needed",
+                  "currency": "USD",
+                  "status": "if_needed",
+                  "basis": "Accommodation rate",
+                  "conditions": [],
+                  "notes": [
+                    "If needed"
+                  ]
+                },
+                {
+                  "line_id": "a-5",
+                  "item": "5",
+                  "line_no": "5",
+                  "line_type": "priced",
+                  "description": "Transportation",
+                  "pricing_mode": "unit_price",
+                  "unit_price": 450.0,
+                  "unit_price_display": "450.00",
+                  "unit": "RD",
+                  "qty": 1,
+                  "qty_display": "1",
+                  "discount": null,
+                  "amount": 450.0,
+                  "amount_display": "450.00",
+                  "currency": "USD",
+                  "status": "chargeable",
+                  "basis": "Based on one round trip",
+                  "conditions": [],
+                  "notes": []
+                },
+                {
+                  "line_id": "a-5-note-1",
+                  "item": "",
+                  "line_no": "",
+                  "line_type": "pending",
+                  "description": "Based on one round trip. If a second boarding is required will charge extra",
+                  "pricing_mode": "pending",
+                  "unit_price": 450.0,
+                  "unit_price_display": "450.00",
+                  "unit": "RD",
+                  "qty": null,
+                  "qty_display": "N",
+                  "discount": null,
+                  "amount": null,
+                  "amount_display": "Pending",
+                  "currency": "USD",
+                  "status": "pending",
+                  "basis": "Second boarding transportation cost",
+                  "conditions": [
+                    "Applicable only if a second boarding is required"
+                  ],
+                  "notes": [
+                    "Pending"
+                  ]
+                },
+                {
+                  "line_id": "a-6",
+                  "item": "6",
+                  "line_no": "6",
+                  "line_type": "pending",
+                  "description": "Meal",
+                  "pricing_mode": "pending",
+                  "unit_price": 35.0,
+                  "unit_price_display": "35.00",
+                  "unit": "P*Day",
+                  "qty": null,
+                  "qty_display": "3*N",
+                  "discount": null,
+                  "amount": null,
+                  "amount_display": "Pending",
+                  "currency": "USD",
+                  "status": "pending",
+                  "basis": "Meal estimate pending actual duration",
+                  "conditions": [],
+                  "notes": []
+                },
+                {
+                  "line_id": "a-7",
+                  "item": "7",
+                  "line_no": "7",
+                  "line_type": "extra",
+                  "description": "Port entrance fee / Other cost if needed to be charged extra",
+                  "pricing_mode": "conditional",
+                  "unit_price": null,
+                  "unit_price_display": "",
+                  "unit": "",
+                  "qty": null,
+                  "qty_display": "",
+                  "discount": null,
+                  "amount": null,
+                  "amount_display": "Extra",
+                  "currency": "USD",
+                  "status": "extra",
+                  "basis": "Charged as actual if incurred",
+                  "conditions": [
+                    "Applicable only if port entrance fee or other extra costs are incurred"
+                  ],
+                  "notes": [
+                    "Extra"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "summary": {
+        "service_charge": {
+          "value_type": "amount",
+          "amount": 15430.0,
+          "display": "15,430.00",
+          "currency": "USD",
+          "status": "chargeable"
+        },
+        "spare_parts_fee": {
+          "value_type": "amount",
+          "amount": 0.0,
+          "display": "0.00",
+          "currency": "USD",
+          "status": "chargeable"
+        },
+        "other": {
+          "value_type": "amount",
+          "amount": 450.0,
+          "display": "450.00",
+          "currency": "USD",
+          "status": "chargeable"
+        },
+        "total": {
+          "value_type": "amount",
+          "amount": 15880.0,
+          "display": "15,880.00",
+          "currency": "USD",
+          "status": "chargeable"
+        }
+      },
+      "remarks": [
+        {
+          "type": "commercial",
+          "text": "Other Repair/Spares if needed to be charged extra"
+        }
+      ]
+    },
+    {
+      "option_id": "option_b",
+      "title": "Option B Sailing repair From Singapore to China (Port TBD)",
+      "sections": [
+        {
+          "section_id": "option_b_main",
+          "section_type": "service",
+          "title": "Sailing repair service",
+          "groups": [
+            {
+              "group_id": "b_group_0",
+              "group_no": "",
+              "title": "Scope overview",
+              "description": "",
+              "lines": [
+                {
+                  "line_id": "b-note-1",
+                  "item": "",
+                  "line_no": "",
+                  "line_type": "scope_note",
+                  "description": "AE-1 crankshaft trueness checks in place",
+                  "pricing_mode": "text_only",
+                  "unit_price": null,
+                  "unit_price_display": "",
+                  "unit": "",
+                  "qty": null,
+                  "qty_display": "",
+                  "discount": null,
+                  "amount": null,
+                  "amount_display": "",
+                  "currency": "USD",
+                  "status": "chargeable",
+                  "basis": "Included scope overview",
+                  "conditions": [],
+                  "notes": []
+                },
+                {
+                  "line_id": "b-note-2",
+                  "item": "",
+                  "line_no": "",
+                  "line_type": "scope_note",
+                  "description": "AE resilient mountings renewal",
+                  "pricing_mode": "text_only",
+                  "unit_price": null,
+                  "unit_price_display": "",
+                  "unit": "",
+                  "qty": null,
+                  "qty_display": "",
+                  "discount": null,
+                  "amount": null,
+                  "amount_display": "",
+                  "currency": "USD",
+                  "status": "chargeable",
+                  "basis": "Included scope overview",
+                  "conditions": [],
+                  "notes": []
+                },
+                {
+                  "line_id": "b-note-3",
+                  "item": "",
+                  "line_no": "",
+                  "line_type": "assumption_note",
+                  "description": "Working time need abt 12 days (Estimated only, will charge as actual)",
+                  "pricing_mode": "text_only",
+                  "unit_price": null,
+                  "unit_price_display": "",
+                  "unit": "",
+                  "qty": null,
+                  "qty_display": "",
+                  "discount": null,
+                  "amount": null,
+                  "amount_display": "",
+                  "currency": "USD",
+                  "status": "as_actual",
+                  "basis": "Estimated duration only",
+                  "conditions": [],
+                  "notes": [
+                    "Will charge as actual"
+                  ]
+                },
+                {
+                  "line_id": "b-note-4",
+                  "item": "",
+                  "line_no": "",
+                  "line_type": "commercial_note",
+                  "description": "Other Repair/Spares if needed to be charged extra",
+                  "pricing_mode": "text_only",
+                  "unit_price": null,
+                  "unit_price_display": "",
+                  "unit": "",
+                  "qty": null,
+                  "qty_display": "",
+                  "discount": null,
+                  "amount": null,
+                  "amount_display": "",
+                  "currency": "USD",
+                  "status": "extra",
+                  "basis": "Additional scope outside quotation",
+                  "conditions": [],
+                  "notes": []
+                }
+              ]
+            },
+            {
+              "group_id": "b_group_1",
+              "group_no": "1",
+              "title": "Work hour charge rate (08:00~18:00)",
+              "description": "",
+              "lines": [
+                {
+                  "line_id": "b-1-1",
+                  "item": "",
+                  "line_no": "",
+                  "line_type": "pending",
+                  "description": "1). One senior engineer",
+                  "pricing_mode": "rate_as_actual",
+                  "unit_price": 480.0,
+                  "unit_price_display": "480.00",
+                  "unit": "Munday",
+                  "qty": null,
+                  "qty_display": "N",
+                  "discount": null,
+                  "amount": null,
+                  "amount_display": "Pending",
+                  "currency": "USD",
+                  "status": "pending",
+                  "basis": "Daily rate for senior engineer",
+                  "conditions": [],
+                  "notes": []
+                },
+                {
+                  "line_id": "b-1-2",
+                  "item": "",
+                  "line_no": "",
+                  "line_type": "pending",
+                  "description": "2). One technician",
+                  "pricing_mode": "rate_as_actual",
+                  "unit_price": 320.0,
+                  "unit_price_display": "320.00",
+                  "unit": "Munday",
+                  "qty": null,
+                  "qty_display": "N",
+                  "discount": null,
+                  "amount": null,
+                  "amount_display": "Pending",
+                  "currency": "USD",
+                  "status": "pending",
+                  "basis": "Daily rate for technician",
+                  "conditions": [],
+                  "notes": []
+                }
+              ]
+            },
+            {
+              "group_id": "b_group_2",
+              "group_no": "2",
+              "title": "Overtime charge rate",
+              "description": "Weekdays 1800-0800 & Weekend & Holiday 0000-2400",
+              "lines": [
+                {
+                  "line_id": "b-2-1",
+                  "item": "",
+                  "line_no": "",
+                  "line_type": "pending",
+                  "description": "1). One senior engineer",
+                  "pricing_mode": "rate_as_actual",
+                  "unit_price": 75.0,
+                  "unit_price_display": "75.00",
+                  "unit": "Man/hr",
+                  "qty": null,
+                  "qty_display": "N",
+                  "discount": null,
+                  "amount": null,
+                  "amount_display": "Pending",
+                  "currency": "USD",
+                  "status": "pending",
+                  "basis": "Overtime hourly rate for senior engineer",
+                  "conditions": [],
+                  "notes": []
+                },
+                {
+                  "line_id": "b-2-2",
+                  "item": "",
+                  "line_no": "",
+                  "line_type": "pending",
+                  "description": "2). One technician",
+                  "pricing_mode": "rate_as_actual",
+                  "unit_price": 55.0,
+                  "unit_price_display": "55.00",
+                  "unit": "Man/hr",
+                  "qty": null,
+                  "qty_display": "N",
+                  "discount": null,
+                  "amount": null,
+                  "amount_display": "Pending",
+                  "currency": "USD",
+                  "status": "pending",
+                  "basis": "Overtime hourly rate for technician",
+                  "conditions": [],
+                  "notes": []
+                }
+              ]
+            },
+            {
+              "group_id": "b_group_3",
+              "group_no": "3",
+              "title": "Travelling & Waiting time charge rate",
+              "description": "",
+              "lines": [
+                {
+                  "line_id": "b-3-1",
+                  "item": "",
+                  "line_no": "",
+                  "line_type": "pending",
+                  "description": "1). One senior engineer",
+                  "pricing_mode": "rate_as_actual",
+                  "unit_price": 60.0,
+                  "unit_price_display": "60.00",
+                  "unit": "Man/hr",
+                  "qty": null,
+                  "qty_display": "N",
+                  "discount": null,
+                  "amount": null,
+                  "amount_display": "Pending",
+                  "currency": "USD",
+                  "status": "pending",
+                  "basis": "Travel/waiting hourly rate for senior engineer",
+                  "conditions": [],
+                  "notes": []
+                },
+                {
+                  "line_id": "b-3-2",
+                  "item": "",
+                  "line_no": "",
+                  "line_type": "pending",
+                  "description": "2). One technician",
+                  "pricing_mode": "rate_as_actual",
+                  "unit_price": 45.0,
+                  "unit_price_display": "45.00",
+                  "unit": "Man/hr",
+                  "qty": null,
+                  "qty_display": "N",
+                  "discount": null,
+                  "amount": null,
+                  "amount_display": "Pending",
+                  "currency": "USD",
+                  "status": "pending",
+                  "basis": "Travel/waiting hourly rate for technician",
+                  "conditions": [],
+                  "notes": []
+                }
+              ]
+            },
+            {
+              "group_id": "b_group_4",
+              "group_no": "4-7",
+              "title": "Travel and agency arrangements",
+              "description": "",
+              "lines": [
+                {
+                  "line_id": "b-4",
+                  "item": "4",
+                  "line_no": "4",
+                  "line_type": "note",
+                  "description": "Transportation to Singapore",
+                  "pricing_mode": "text_only",
+                  "unit_price": null,
+                  "unit_price_display": "",
+                  "unit": "",
+                  "qty": null,
+                  "qty_display": "",
+                  "discount": null,
+                  "amount": null,
+                  "amount_display": "As actual",
+                  "currency": "USD",
+                  "status": "as_actual",
+                  "basis": "Charged according to actual transportation cost",
+                  "conditions": [],
+                  "notes": []
+                },
+                {
+                  "line_id": "b-5",
+                  "item": "5",
+                  "line_no": "5",
+                  "line_type": "note",
+                  "description": "Port entry formalities and embark formalities",
+                  "pricing_mode": "text_only",
+                  "unit_price": null,
+                  "unit_price_display": "",
+                  "unit": "",
+                  "qty": null,
+                  "qty_display": "",
+                  "discount": null,
+                  "amount": null,
+                  "amount_display": "Arrange by agent",
+                  "currency": "USD",
+                  "status": "arranged_by_agent",
+                  "basis": "Handled by local agent",
+                  "conditions": [],
+                  "notes": []
+                },
+                {
+                  "line_id": "b-6",
+                  "item": "6",
+                  "line_no": "6",
+                  "line_type": "note",
+                  "description": "Disembark formalities and trans. in China",
+                  "pricing_mode": "text_only",
+                  "unit_price": null,
+                  "unit_price_display": "",
+                  "unit": "",
+                  "qty": null,
+                  "qty_display": "",
+                  "discount": null,
+                  "amount": null,
+                  "amount_display": "Arrange by agent",
+                  "currency": "USD",
+                  "status": "arranged_by_agent",
+                  "basis": "Handled by local agent",
+                  "conditions": [],
+                  "notes": []
+                },
+                {
+                  "line_id": "b-7",
+                  "item": "7",
+                  "line_no": "7",
+                  "line_type": "note",
+                  "description": "Transportation from China back to workshop",
+                  "pricing_mode": "text_only",
+                  "unit_price": null,
+                  "unit_price_display": "",
+                  "unit": "",
+                  "qty": null,
+                  "qty_display": "",
+                  "discount": null,
+                  "amount": null,
+                  "amount_display": "As actual",
+                  "currency": "USD",
+                  "status": "as_actual",
+                  "basis": "Charged according to actual transportation cost",
+                  "conditions": [],
+                  "notes": []
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "summary": {
+        "service_charge": {
+          "value_type": "status",
+          "amount": null,
+          "display": "Pending",
+          "currency": "USD",
+          "status": "pending"
+        },
+        "spare_parts_fee": {
+          "value_type": "status",
+          "amount": null,
+          "display": "Pending",
+          "currency": "USD",
+          "status": "pending"
+        },
+        "other": {
+          "value_type": "status",
+          "amount": null,
+          "display": "As actual / Pending",
+          "currency": "USD",
+          "status": "as_actual"
+        },
+        "total": {
+          "value_type": "status",
+          "amount": null,
+          "display": "Pending",
+          "currency": "USD",
+          "status": "pending"
+        }
+      },
+      "remarks": [
+        {
+          "type": "commercial",
+          "text": "Working time is estimated only, final charge will be based on actual execution."
+        }
+      ]
+    }
+  ],
+  "footer": {
+    "summary": {
+      "service_charge": {
+        "value_type": "status",
+        "amount": null,
+        "display": "Refer to selected option",
+        "currency": "USD",
+        "status": "pending"
+      },
+      "spare_parts_fee": {
+        "value_type": "status",
+        "amount": null,
+        "display": "Refer to selected option",
+        "currency": "USD",
+        "status": "pending"
+      },
+      "other": {
+        "value_type": "status",
+        "amount": null,
+        "display": "Refer to selected option",
+        "currency": "USD",
+        "status": "pending"
+      },
+      "total": {
+        "value_type": "status",
+        "amount": null,
+        "display": "Refer to selected option",
+        "currency": "USD",
+        "status": "pending"
+      }
+    },
+    "remark": {
+      "title": "Remark",
+      "items": [
+        {
+          "type": "warranty",
+          "text": "Warranty Time: 6 months"
+        },
+        {
+          "type": "compensation",
+          "text": "Warranty Compensate Amount: 5 times of the service cost at max."
+        },
+        {
+          "type": "cost_clause",
+          "text": "Port entrance fee / Other cost if needed to be charged as actual"
+        },
+        {
+          "type": "cost_clause",
+          "text": "Shipyard management fee / Boarding pass / Crane cost if needed to be charged as actual"
+        },
+        {
+          "type": "commercial",
+          "text": "Other Spares if needed to be charged extra"
+        },
+        {
+          "type": "commercial",
+          "text": "Other repair if needed to be charged extra"
+        },
+        {
+          "type": "tax",
+          "text": "VAT not included"
+        }
+      ]
+    },
+    "service_payment_terms": {
+      "title": "Service Payment Terms",
+      "content": "100% payment shall be paid within 30 days after receipt of the payment notice and relevant bills submitted by Winkong."
+    }
+  },
+  "review_result": {
+    "review_flags": [
+      "Quotation contains multiple options and requires explicit customer selection.",
+      "Some charges are rate-based and billed as actual.",
+      "Pending and extra-cost items should be highlighted before submission."
+    ],
+    "risk_flags": [
+      "Final amount for Option B cannot be determined at quotation stage.",
+      "Local and sailing repair scenarios have different operational assumptions.",
+      "Agent-arranged and actual-cost items may affect final settlement."
+    ],
+    "approval_level": "manager"
+  },
+  "trace": {
+    "historical_references": [
+      {
+        "quote_id": "HIS-2025-00418",
+        "similarity": 0.89,
+        "reason": "Similar auxiliary engine crankshaft and mounting renewal job"
+      },
+      {
+        "quote_id": "HIS-2024-00702",
+        "similarity": 0.84,
+        "reason": "Similar sailing repair manpower-rate quotation"
+      }
+    ],
+    "pricing_basis": [
+      "Option A is based on estimated unit service pricing and known local logistics assumptions.",
+      "Option B is based on manpower charge rates and actual execution settlement.",
+      "Special clauses and actual-cost items are retained as structured remarks and status fields."
+    ],
+    "rule_versions": [
+      "quote_document_schema_v1.1",
+      "pricing_rules_v1.0",
+      "commercial_terms_v1.0"
+    ]
+  }
+}

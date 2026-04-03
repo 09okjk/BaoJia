@@ -1,0 +1,778 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.local/schemas/quote-document-v1.1.schema.json",
+  "title": "QuoteDocument v1.1",
+  "type": "object",
+  "required": [
+    "document_type",
+    "document_version",
+    "header",
+    "table_schema",
+    "quotation_options",
+    "footer",
+    "review_result",
+    "trace"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "document_type": {
+      "type": "string",
+      "const": "quotation"
+    },
+    "document_version": {
+      "type": "string"
+    },
+    "header": {
+      "$ref": "#/$defs/header"
+    },
+    "table_schema": {
+      "$ref": "#/$defs/tableSchema"
+    },
+    "quotation_options": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/quotationOption"
+      }
+    },
+    "footer": {
+      "$ref": "#/$defs/footer"
+    },
+    "review_result": {
+      "$ref": "#/$defs/reviewResult"
+    },
+    "trace": {
+      "$ref": "#/$defs/trace"
+    }
+  },
+  "$defs": {
+    "header": {
+      "type": "object",
+      "required": [
+        "currency",
+        "vessel_name",
+        "date",
+        "imo_no",
+        "vessel_type",
+        "customer_name",
+        "service_port",
+        "attention",
+        "wk_offer_no",
+        "your_ref_no",
+        "quotation_validity",
+        "po_no",
+        "pic_of_winkong"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "currency": {
+          "type": "string"
+        },
+        "vessel_name": {
+          "type": "string"
+        },
+        "date": {
+          "type": "string",
+          "format": "date"
+        },
+        "imo_no": {
+          "type": "string"
+        },
+        "vessel_type": {
+          "type": "string"
+        },
+        "customer_name": {
+          "type": "string"
+        },
+        "service_port": {
+          "type": "string"
+        },
+        "attention": {
+          "type": "string"
+        },
+        "wk_offer_no": {
+          "type": "string"
+        },
+        "your_ref_no": {
+          "type": "string"
+        },
+        "quotation_validity": {
+          "type": "string"
+        },
+        "po_no": {
+          "type": "string"
+        },
+        "pic_of_winkong": {
+          "type": "string"
+        }
+      }
+    },
+    "tableSchema": {
+      "type": "object",
+      "required": [
+        "columns"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "columns": {
+          "type": "array",
+          "minItems": 7,
+          "maxItems": 7,
+          "prefixItems": [
+            {
+              "$ref": "#/$defs/itemColumn"
+            },
+            {
+              "$ref": "#/$defs/descriptionColumn"
+            },
+            {
+              "$ref": "#/$defs/unitPriceColumn"
+            },
+            {
+              "$ref": "#/$defs/unitColumn"
+            },
+            {
+              "$ref": "#/$defs/qtyColumn"
+            },
+            {
+              "$ref": "#/$defs/discountColumn"
+            },
+            {
+              "$ref": "#/$defs/amountColumn"
+            }
+          ],
+          "items": false
+        }
+      }
+    },
+    "itemColumn": {
+      "type": "object",
+      "required": [
+        "key",
+        "label"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "key": {
+          "const": "item"
+        },
+        "label": {
+          "type": "string"
+        }
+      }
+    },
+    "descriptionColumn": {
+      "type": "object",
+      "required": [
+        "key",
+        "label"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "key": {
+          "const": "description"
+        },
+        "label": {
+          "type": "string"
+        }
+      }
+    },
+    "unitPriceColumn": {
+      "type": "object",
+      "required": [
+        "key",
+        "label"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "key": {
+          "const": "unit_price"
+        },
+        "label": {
+          "type": "string"
+        }
+      }
+    },
+    "unitColumn": {
+      "type": "object",
+      "required": [
+        "key",
+        "label"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "key": {
+          "const": "unit"
+        },
+        "label": {
+          "type": "string"
+        }
+      }
+    },
+    "qtyColumn": {
+      "type": "object",
+      "required": [
+        "key",
+        "label"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "key": {
+          "const": "qty"
+        },
+        "label": {
+          "type": "string"
+        }
+      }
+    },
+    "discountColumn": {
+      "type": "object",
+      "required": [
+        "key",
+        "label"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "key": {
+          "const": "discount"
+        },
+        "label": {
+          "type": "string"
+        }
+      }
+    },
+    "amountColumn": {
+      "type": "object",
+      "required": [
+        "key",
+        "label"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "key": {
+          "const": "amount"
+        },
+        "label": {
+          "type": "string"
+        }
+      }
+    },
+    "quotationOption": {
+      "type": "object",
+      "required": [
+        "option_id",
+        "title",
+        "sections",
+        "summary",
+        "remarks"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "option_id": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "sections": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/section"
+          }
+        },
+        "summary": {
+          "$ref": "#/$defs/summary"
+        },
+        "remarks": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/remarkItem"
+          }
+        }
+      }
+    },
+    "section": {
+      "type": "object",
+      "required": [
+        "section_id",
+        "section_type",
+        "title",
+        "groups"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "section_id": {
+          "type": "string"
+        },
+        "section_type": {
+          "type": "string",
+          "enum": [
+            "service",
+            "spare_parts",
+            "other"
+          ]
+        },
+        "title": {
+          "type": "string"
+        },
+        "groups": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/group"
+          }
+        }
+      }
+    },
+    "group": {
+      "type": "object",
+      "required": [
+        "group_id",
+        "group_no",
+        "title",
+        "description",
+        "lines"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "group_id": {
+          "type": "string"
+        },
+        "group_no": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "lines": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/line"
+          }
+        }
+      }
+    },
+    "line": {
+      "type": "object",
+      "required": [
+        "line_id",
+        "item",
+        "line_no",
+        "line_type",
+        "description",
+        "pricing_mode",
+        "unit_price",
+        "unit_price_display",
+        "unit",
+        "qty",
+        "qty_display",
+        "discount",
+        "amount",
+        "amount_display",
+        "currency",
+        "status",
+        "basis",
+        "conditions",
+        "notes"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "line_id": {
+          "type": "string"
+        },
+        "item": {
+          "type": "string"
+        },
+        "line_no": {
+          "type": "string"
+        },
+        "line_type": {
+          "type": "string",
+          "enum": [
+            "priced",
+            "included",
+            "pending",
+            "optional",
+            "conditional",
+            "extra",
+            "note",
+            "header",
+            "scope_note",
+            "technical_note",
+            "assumption_note",
+            "commercial_note"
+          ]
+        },
+        "description": {
+          "type": "string"
+        },
+        "pricing_mode": {
+          "type": "string",
+          "enum": [
+            "unit_price",
+            "lump_sum",
+            "included",
+            "pending",
+            "conditional",
+            "text_only",
+            "rate_only",
+            "rate_as_actual"
+          ]
+        },
+        "unit_price": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "unit_price_display": {
+          "type": "string"
+        },
+        "unit": {
+          "type": "string"
+        },
+        "qty": {
+          "type": [
+            "number",
+            "integer",
+            "null"
+          ]
+        },
+        "qty_display": {
+          "type": "string"
+        },
+        "discount": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/discount"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "amount": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "amount_display": {
+          "type": "string"
+        },
+        "currency": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "chargeable",
+            "included",
+            "pending",
+            "if_needed",
+            "extra",
+            "as_actual",
+            "arranged_by_agent",
+            "by_owner",
+            "excluded"
+          ]
+        },
+        "basis": {
+          "type": "string"
+        },
+        "conditions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "notes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "relation": {
+          "$ref": "#/$defs/relation"
+        }
+      }
+    },
+    "relation": {
+      "type": "object",
+      "required": [
+        "type",
+        "target_line_id"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "alternative_to",
+            "depends_on",
+            "child_of"
+          ]
+        },
+        "target_line_id": {
+          "type": "string"
+        }
+      }
+    },
+    "discount": {
+      "type": "object",
+      "required": [
+        "type",
+        "value",
+        "display"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "percentage",
+            "amount"
+          ]
+        },
+        "value": {
+          "type": "number"
+        },
+        "display": {
+          "type": "string"
+        }
+      }
+    },
+    "summary": {
+      "type": "object",
+      "required": [
+        "service_charge",
+        "spare_parts_fee",
+        "other",
+        "total"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "service_charge": {
+          "$ref": "#/$defs/summaryValue"
+        },
+        "spare_parts_fee": {
+          "$ref": "#/$defs/summaryValue"
+        },
+        "other": {
+          "$ref": "#/$defs/summaryValue"
+        },
+        "total": {
+          "$ref": "#/$defs/summaryValue"
+        }
+      }
+    },
+    "summaryValue": {
+      "type": "object",
+      "required": [
+        "value_type",
+        "amount",
+        "display",
+        "currency",
+        "status"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "value_type": {
+          "type": "string",
+          "enum": [
+            "amount",
+            "status",
+            "text"
+          ]
+        },
+        "amount": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "display": {
+          "type": "string"
+        },
+        "currency": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "chargeable",
+            "included",
+            "pending",
+            "if_needed",
+            "extra",
+            "as_actual",
+            "arranged_by_agent",
+            "by_owner",
+            "excluded"
+          ]
+        }
+      }
+    },
+    "footer": {
+      "type": "object",
+      "required": [
+        "summary",
+        "remark",
+        "service_payment_terms"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "summary": {
+          "$ref": "#/$defs/summary"
+        },
+        "remark": {
+          "$ref": "#/$defs/remarkBlock"
+        },
+        "service_payment_terms": {
+          "$ref": "#/$defs/servicePaymentTerms"
+        }
+      }
+    },
+    "remarkBlock": {
+      "type": "object",
+      "required": [
+        "title",
+        "items"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/remarkItem"
+          }
+        }
+      }
+    },
+    "remarkItem": {
+      "type": "object",
+      "required": [
+        "type",
+        "text"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "warranty",
+            "compensation",
+            "commercial",
+            "cost_clause",
+            "tax",
+            "waiting",
+            "safety",
+            "exclusion",
+            "tbc",
+            "payment_term"
+          ]
+        },
+        "text": {
+          "type": "string"
+        }
+      }
+    },
+    "servicePaymentTerms": {
+      "type": "object",
+      "required": [
+        "title",
+        "content"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "content": {
+          "type": "string"
+        }
+      }
+    },
+    "reviewResult": {
+      "type": "object",
+      "required": [
+        "review_flags",
+        "risk_flags",
+        "approval_level"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "review_flags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "risk_flags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "approval_level": {
+          "type": "string"
+        }
+      }
+    },
+    "trace": {
+      "type": "object",
+      "required": [
+        "historical_references",
+        "pricing_basis",
+        "rule_versions"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "historical_references": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/historicalReference"
+          }
+        },
+        "pricing_basis": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "rule_versions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "historicalReference": {
+      "type": "object",
+      "required": [
+        "quote_id",
+        "similarity",
+        "reason"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "quote_id": {
+          "type": "string"
+        },
+        "similarity": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "reason": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}
