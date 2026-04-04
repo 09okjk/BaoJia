@@ -1,8 +1,10 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://example.local/schemas/quote-document-v1.1.schema.json",
-  "title": "QuoteDocument v1.1",
+  "$id": "https://example.local/schemas/quote-document-v1.1.final.schema.json",
+  "title": "QuoteDocument v1.1 Final",
+  "description": "Final schema aligned with 智能报价 Agent Skill 设计说明书（V2.2）",
   "type": "object",
+  "additionalProperties": false,
   "required": [
     "document_type",
     "document_version",
@@ -13,14 +15,14 @@
     "review_result",
     "trace"
   ],
-  "additionalProperties": false,
   "properties": {
     "document_type": {
       "type": "string",
       "const": "quotation"
     },
     "document_version": {
-      "type": "string"
+      "type": "string",
+      "description": "Schema/data version, e.g. 1.1"
     },
     "header": {
       "$ref": "#/$defs/header"
@@ -30,6 +32,7 @@
     },
     "quotation_options": {
       "type": "array",
+      "description": "Single-option or multi-option quotation body",
       "items": {
         "$ref": "#/$defs/quotationOption"
       }
@@ -47,6 +50,7 @@
   "$defs": {
     "header": {
       "type": "object",
+      "additionalProperties": false,
       "required": [
         "currency",
         "vessel_name",
@@ -62,10 +66,10 @@
         "po_no",
         "pic_of_winkong"
       ],
-      "additionalProperties": false,
       "properties": {
         "currency": {
-          "type": "string"
+          "type": "string",
+          "description": "Currency in header, e.g. USD"
         },
         "vessel_name": {
           "type": "string"
@@ -106,158 +110,123 @@
         }
       }
     },
+
     "tableSchema": {
       "type": "object",
+      "additionalProperties": false,
       "required": [
         "columns"
       ],
-      "additionalProperties": false,
       "properties": {
         "columns": {
           "type": "array",
+          "description": "Fixed quotation table columns. Order is mandatory.",
           "minItems": 7,
           "maxItems": 7,
           "prefixItems": [
-            {
-              "$ref": "#/$defs/itemColumn"
-            },
-            {
-              "$ref": "#/$defs/descriptionColumn"
-            },
-            {
-              "$ref": "#/$defs/unitPriceColumn"
-            },
-            {
-              "$ref": "#/$defs/unitColumn"
-            },
-            {
-              "$ref": "#/$defs/qtyColumn"
-            },
-            {
-              "$ref": "#/$defs/discountColumn"
-            },
-            {
-              "$ref": "#/$defs/amountColumn"
-            }
+            { "$ref": "#/$defs/columnItem" },
+            { "$ref": "#/$defs/columnDescription" },
+            { "$ref": "#/$defs/columnUnitPrice" },
+            { "$ref": "#/$defs/columnUnit" },
+            { "$ref": "#/$defs/columnQty" },
+            { "$ref": "#/$defs/columnDiscount" },
+            { "$ref": "#/$defs/columnAmount" }
           ],
           "items": false
         }
       }
     },
-    "itemColumn": {
+
+    "columnBase": {
       "type": "object",
+      "additionalProperties": false,
       "required": [
         "key",
         "label"
       ],
-      "additionalProperties": false,
       "properties": {
         "key": {
-          "const": "item"
+          "type": "string"
         },
         "label": {
           "type": "string"
         }
       }
     },
-    "descriptionColumn": {
-      "type": "object",
-      "required": [
-        "key",
-        "label"
-      ],
-      "additionalProperties": false,
-      "properties": {
-        "key": {
-          "const": "description"
-        },
-        "label": {
-          "type": "string"
+    "columnItem": {
+      "allOf": [
+        { "$ref": "#/$defs/columnBase" },
+        {
+          "properties": {
+            "key": { "const": "item" }
+          }
         }
-      }
+      ]
     },
-    "unitPriceColumn": {
-      "type": "object",
-      "required": [
-        "key",
-        "label"
-      ],
-      "additionalProperties": false,
-      "properties": {
-        "key": {
-          "const": "unit_price"
-        },
-        "label": {
-          "type": "string"
+    "columnDescription": {
+      "allOf": [
+        { "$ref": "#/$defs/columnBase" },
+        {
+          "properties": {
+            "key": { "const": "description" }
+          }
         }
-      }
+      ]
     },
-    "unitColumn": {
-      "type": "object",
-      "required": [
-        "key",
-        "label"
-      ],
-      "additionalProperties": false,
-      "properties": {
-        "key": {
-          "const": "unit"
-        },
-        "label": {
-          "type": "string"
+    "columnUnitPrice": {
+      "allOf": [
+        { "$ref": "#/$defs/columnBase" },
+        {
+          "properties": {
+            "key": { "const": "unit_price" }
+          }
         }
-      }
+      ]
     },
-    "qtyColumn": {
-      "type": "object",
-      "required": [
-        "key",
-        "label"
-      ],
-      "additionalProperties": false,
-      "properties": {
-        "key": {
-          "const": "qty"
-        },
-        "label": {
-          "type": "string"
+    "columnUnit": {
+      "allOf": [
+        { "$ref": "#/$defs/columnBase" },
+        {
+          "properties": {
+            "key": { "const": "unit" }
+          }
         }
-      }
+      ]
     },
-    "discountColumn": {
-      "type": "object",
-      "required": [
-        "key",
-        "label"
-      ],
-      "additionalProperties": false,
-      "properties": {
-        "key": {
-          "const": "discount"
-        },
-        "label": {
-          "type": "string"
+    "columnQty": {
+      "allOf": [
+        { "$ref": "#/$defs/columnBase" },
+        {
+          "properties": {
+            "key": { "const": "qty" }
+          }
         }
-      }
+      ]
     },
-    "amountColumn": {
-      "type": "object",
-      "required": [
-        "key",
-        "label"
-      ],
-      "additionalProperties": false,
-      "properties": {
-        "key": {
-          "const": "amount"
-        },
-        "label": {
-          "type": "string"
+    "columnDiscount": {
+      "allOf": [
+        { "$ref": "#/$defs/columnBase" },
+        {
+          "properties": {
+            "key": { "const": "discount" }
+          }
         }
-      }
+      ]
     },
+    "columnAmount": {
+      "allOf": [
+        { "$ref": "#/$defs/columnBase" },
+        {
+          "properties": {
+            "key": { "const": "amount" }
+          }
+        }
+      ]
+    },
+
     "quotationOption": {
       "type": "object",
+      "additionalProperties": false,
       "required": [
         "option_id",
         "title",
@@ -265,7 +234,6 @@
         "summary",
         "remarks"
       ],
-      "additionalProperties": false,
       "properties": {
         "option_id": {
           "type": "string"
@@ -290,15 +258,16 @@
         }
       }
     },
+
     "section": {
       "type": "object",
+      "additionalProperties": false,
       "required": [
         "section_id",
         "section_type",
         "title",
         "groups"
       ],
-      "additionalProperties": false,
       "properties": {
         "section_id": {
           "type": "string"
@@ -322,8 +291,10 @@
         }
       }
     },
+
     "group": {
       "type": "object",
+      "additionalProperties": false,
       "required": [
         "group_id",
         "group_no",
@@ -331,7 +302,6 @@
         "description",
         "lines"
       ],
-      "additionalProperties": false,
       "properties": {
         "group_id": {
           "type": "string"
@@ -351,10 +321,13 @@
             "$ref": "#/$defs/line"
           }
         }
-      }
+      },
+      "description": "Group-level summary is intentionally not supported in V2.2"
     },
+
     "line": {
       "type": "object",
+      "additionalProperties": false,
       "required": [
         "line_id",
         "item",
@@ -376,16 +349,17 @@
         "conditions",
         "notes"
       ],
-      "additionalProperties": false,
       "properties": {
         "line_id": {
           "type": "string"
         },
         "item": {
-          "type": "string"
+          "type": "string",
+          "description": "Fixed table column: Item"
         },
         "line_no": {
-          "type": "string"
+          "type": "string",
+          "description": "Logical display index such as 1, 2.1, ※"
         },
         "line_type": {
           "type": "string",
@@ -427,7 +401,8 @@
           ]
         },
         "unit_price_display": {
-          "type": "string"
+          "type": "string",
+          "description": "Display string with thousand separators and two decimals when applicable"
         },
         "unit": {
           "type": "string"
@@ -440,16 +415,13 @@
           ]
         },
         "qty_display": {
-          "type": "string"
+          "type": "string",
+          "description": "Can be 1, 3, N, 3*N, blank, etc."
         },
         "discount": {
           "anyOf": [
-            {
-              "$ref": "#/$defs/discount"
-            },
-            {
-              "type": "null"
-            }
+            { "$ref": "#/$defs/discount" },
+            { "type": "null" }
           ]
         },
         "amount": {
@@ -459,7 +431,8 @@
           ]
         },
         "amount_display": {
-          "type": "string"
+          "type": "string",
+          "description": "Can be formatted amount or status text such as Pending / Extra / As actual"
         },
         "currency": {
           "type": "string"
@@ -498,35 +471,15 @@
         }
       }
     },
-    "relation": {
-      "type": "object",
-      "required": [
-        "type",
-        "target_line_id"
-      ],
-      "additionalProperties": false,
-      "properties": {
-        "type": {
-          "type": "string",
-          "enum": [
-            "alternative_to",
-            "depends_on",
-            "child_of"
-          ]
-        },
-        "target_line_id": {
-          "type": "string"
-        }
-      }
-    },
+
     "discount": {
       "type": "object",
+      "additionalProperties": false,
       "required": [
         "type",
         "value",
         "display"
       ],
-      "additionalProperties": false,
       "properties": {
         "type": {
           "type": "string",
@@ -543,15 +496,38 @@
         }
       }
     },
+
+    "relation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "target_line_id"
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "alternative_to",
+            "depends_on",
+            "child_of"
+          ]
+        },
+        "target_line_id": {
+          "type": "string"
+        }
+      }
+    },
+
     "summary": {
       "type": "object",
+      "additionalProperties": false,
       "required": [
         "service_charge",
         "spare_parts_fee",
         "other",
         "total"
       ],
-      "additionalProperties": false,
       "properties": {
         "service_charge": {
           "$ref": "#/$defs/summaryValue"
@@ -567,8 +543,10 @@
         }
       }
     },
+
     "summaryValue": {
       "type": "object",
+      "additionalProperties": false,
       "required": [
         "value_type",
         "amount",
@@ -576,7 +554,6 @@
         "currency",
         "status"
       ],
-      "additionalProperties": false,
       "properties": {
         "value_type": {
           "type": "string",
@@ -593,7 +570,8 @@
           ]
         },
         "display": {
-          "type": "string"
+          "type": "string",
+          "description": "Formatted amount or text such as Pending / Refer to selected option / As actual"
         },
         "currency": {
           "type": "string"
@@ -614,14 +592,15 @@
         }
       }
     },
+
     "footer": {
       "type": "object",
+      "additionalProperties": false,
       "required": [
         "summary",
         "remark",
         "service_payment_terms"
       ],
-      "additionalProperties": false,
       "properties": {
         "summary": {
           "$ref": "#/$defs/summary"
@@ -634,16 +613,18 @@
         }
       }
     },
+
     "remarkBlock": {
       "type": "object",
+      "additionalProperties": false,
       "required": [
         "title",
         "items"
       ],
-      "additionalProperties": false,
       "properties": {
         "title": {
-          "type": "string"
+          "type": "string",
+          "const": "Remark"
         },
         "items": {
           "type": "array",
@@ -653,13 +634,14 @@
         }
       }
     },
+
     "remarkItem": {
       "type": "object",
+      "additionalProperties": false,
       "required": [
         "type",
         "text"
       ],
-      "additionalProperties": false,
       "properties": {
         "type": {
           "type": "string",
@@ -681,30 +663,33 @@
         }
       }
     },
+
     "servicePaymentTerms": {
       "type": "object",
+      "additionalProperties": false,
       "required": [
         "title",
         "content"
       ],
-      "additionalProperties": false,
       "properties": {
         "title": {
-          "type": "string"
+          "type": "string",
+          "const": "Service Payment Terms"
         },
         "content": {
           "type": "string"
         }
       }
     },
+
     "reviewResult": {
       "type": "object",
+      "additionalProperties": false,
       "required": [
         "review_flags",
         "risk_flags",
         "approval_level"
       ],
-      "additionalProperties": false,
       "properties": {
         "review_flags": {
           "type": "array",
@@ -723,14 +708,15 @@
         }
       }
     },
+
     "trace": {
       "type": "object",
+      "additionalProperties": false,
       "required": [
         "historical_references",
         "pricing_basis",
         "rule_versions"
       ],
-      "additionalProperties": false,
       "properties": {
         "historical_references": {
           "type": "array",
@@ -752,14 +738,15 @@
         }
       }
     },
+
     "historicalReference": {
       "type": "object",
+      "additionalProperties": false,
       "required": [
         "quote_id",
         "similarity",
         "reason"
       ],
-      "additionalProperties": false,
       "properties": {
         "quote_id": {
           "type": "string"
