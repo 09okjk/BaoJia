@@ -1,0 +1,239 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.local/opencode/skills/quote_feasibility_check_skill/output.schema.json",
+  "title": "quote_feasibility_check_skill output",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "can_quote",
+    "quote_scope",
+    "quotable_items",
+    "tbc_items",
+    "exclusions",
+    "missing_fields",
+    "questions_for_user",
+    "review_flags"
+  ],
+  "properties": {
+    "can_quote": {
+      "type": "boolean"
+    },
+    "quote_scope": {
+      "type": "string",
+      "enum": [
+        "full",
+        "partial",
+        "not_ready"
+      ]
+    },
+    "quotable_items": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/decisionItem"
+      }
+    },
+    "tbc_items": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/decisionItem"
+      }
+    },
+    "exclusions": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/decisionItem"
+      }
+    },
+    "missing_fields": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/missingField"
+      }
+    },
+    "questions_for_user": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/questionForUser"
+      }
+    },
+    "review_flags": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/reviewFlag"
+      }
+    }
+  },
+  "$defs": {
+    "stringArray": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "requiredFor": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "prepare",
+          "feasibility_check",
+          "historical_reference",
+          "pricing",
+          "quote_document"
+        ]
+      }
+    },
+    "decisionItem": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "item_id",
+        "item_type",
+        "title",
+        "decision",
+        "reason",
+        "blocking_fields",
+        "suggested_status",
+        "source"
+      ],
+      "properties": {
+        "item_id": {
+          "type": "string"
+        },
+        "item_type": {
+          "type": "string",
+          "enum": [
+            "service",
+            "spare_parts",
+            "other"
+          ]
+        },
+        "title": {
+          "type": "string"
+        },
+        "decision": {
+          "type": "string",
+          "enum": [
+            "quotable",
+            "tbc",
+            "excluded"
+          ]
+        },
+        "reason": {
+          "type": "string"
+        },
+        "blocking_fields": {
+          "$ref": "#/$defs/stringArray"
+        },
+        "suggested_status": {
+          "type": "string",
+          "enum": [
+            "chargeable",
+            "pending",
+            "by_owner",
+            "excluded",
+            "if_needed"
+          ]
+        },
+        "source": {
+          "type": "string",
+          "const": "quote_request.candidate_items"
+        }
+      }
+    },
+    "missingField": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "field",
+        "required_for",
+        "severity",
+        "reason",
+        "suggested_source"
+      ],
+      "properties": {
+        "field": {
+          "type": "string"
+        },
+        "required_for": {
+          "$ref": "#/$defs/requiredFor"
+        },
+        "severity": {
+          "type": "string",
+          "enum": [
+            "high",
+            "medium",
+            "low"
+          ]
+        },
+        "reason": {
+          "type": "string"
+        },
+        "suggested_source": {
+          "type": "string"
+        }
+      }
+    },
+    "questionForUser": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "question_id",
+        "target",
+        "topic",
+        "question",
+        "related_item_ids"
+      ],
+      "properties": {
+        "question_id": {
+          "type": "string"
+        },
+        "target": {
+          "type": "string",
+          "enum": [
+            "customer",
+            "internal"
+          ]
+        },
+        "topic": {
+          "type": "string"
+        },
+        "question": {
+          "type": "string"
+        },
+        "related_item_ids": {
+          "$ref": "#/$defs/stringArray"
+        }
+      }
+    },
+    "reviewFlag": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "flag_code",
+        "severity",
+        "message",
+        "related_item_ids"
+      ],
+      "properties": {
+        "flag_code": {
+          "type": "string"
+        },
+        "severity": {
+          "type": "string",
+          "enum": [
+            "high",
+            "medium",
+            "low"
+          ]
+        },
+        "message": {
+          "type": "string"
+        },
+        "related_item_ids": {
+          "$ref": "#/$defs/stringArray"
+        }
+      }
+    }
+  }
+}

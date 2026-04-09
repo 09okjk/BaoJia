@@ -1,0 +1,28 @@
+{
+  "assessment_report": {
+    "report_id": "demo-001",
+    "vessel_name": "MV EXAMPLE",
+    "imo_no": "1234567",
+    "customer_name": "ABC Shipping",
+    "service_port": "Zhapu Port, China",
+    "service_items": [
+      {
+        "title": "AE-1 crankshaft trueness checks in place",
+        "details": [
+          "Working time abt 15 hours",
+          "2pcs M/B lower bearing remove",
+          "Crankshaft run-out check by magnetic gauge"
+        ]
+      }
+    ],
+    "pending_items": [
+      "Whether spare parts are owner supply"
+    ]
+  },
+  "customer_context": {
+    "currency": "usd"
+  },
+  "business_context": {
+    "service_mode": "voyage repair"
+  }
+}
