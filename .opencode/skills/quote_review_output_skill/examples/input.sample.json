@@ -1,0 +1,151 @@
+{
+  "quote_request": {
+    "request_meta": {
+      "request_id": "qr-demo-001",
+      "source": "assessment_report",
+      "prepared_at": "2026-04-09T06:39:59.068439+00:00",
+      "language": "zh-CN"
+    },
+    "header_context": {
+      "currency": "USD",
+      "vessel_name": "MV EXAMPLE",
+      "imo_no": "1234567",
+      "vessel_type": "Tanker",
+      "customer_name": "ABC Shipping",
+      "service_port": "Zhapu Port, China",
+      "service_date": "2026-04-09",
+      "attention": "Technical Dept.",
+      "customer_ref_no": "REF-001"
+    },
+    "commercial_context": {
+      "preferred_currency": "USD",
+      "pricing_expectation": null,
+      "special_terms": [
+        "Any additional repair not listed above will be charged extra."
+      ]
+    },
+    "source_refs": {
+      "assessment_report_id": "demo-001",
+      "customer_context_ref": null,
+      "business_context_ref": null
+    }
+  },
+  "feasibility_result": {
+    "review_flags": [
+      {
+        "flag_code": "partial_quote_scope",
+        "severity": "medium",
+        "message": "当前仅部分项目具备报价条件。",
+        "related_item_ids": [
+          "svc-1",
+          "spr-1"
+        ]
+      }
+    ],
+    "missing_fields": [
+      {
+        "field": "spare_parts_context.spare_parts_supply_mode",
+        "required_for": [
+          "feasibility_check",
+          "pricing"
+        ],
+        "severity": "medium",
+        "reason": "备件供货责任未确认，影响是否纳入报价。",
+        "suggested_source": "customer_context"
+      }
+    ]
+  },
+  "historical_reference": {
+    "matches": [
+      {
+        "quote_id": "hist-001",
+        "similarity": 0.82,
+        "reason": "服务模式、地点类型和核心服务项高度相似。"
+      }
+    ]
+  },
+  "pricing_result": {
+    "quotation_options": [
+      {
+        "option_id": "option-1",
+        "title": "Option 1",
+        "sections": [
+          {
+            "section_id": "section-service",
+            "section_type": "service",
+            "title": "Service",
+            "groups": [
+              {
+                "group_id": "group-svc-1",
+                "group_no": "1",
+                "title": "AE-1 crankshaft trueness checks in place",
+                "description": "服务项标题和范围已基本明确，可进入报价。",
+                "lines": [
+                  {
+                    "line_id": "line-svc-1",
+                    "item": "1",
+                    "line_no": "1",
+                    "line_type": "priced",
+                    "description": "AE-1 crankshaft trueness checks in place",
+                    "pricing_mode": "lump_sum",
+                    "unit_price": 3500.0,
+                    "unit_price_display": "3,500.00",
+                    "unit": "LS",
+                    "qty": 1,
+                    "qty_display": "1",
+                    "discount": null,
+                    "amount": 3500.0,
+                    "amount_display": "3,500.00",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "lump_sum_override",
+                    "conditions": [],
+                    "notes": [
+                      "服务项标题和范围已基本明确，可进入报价。"
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "summary": {
+          "service_charge": {
+            "value_type": "amount",
+            "amount": 3500.0,
+            "display": "3,500.00",
+            "currency": "USD",
+            "status": "chargeable"
+          },
+          "spare_parts_fee": {
+            "value_type": "status",
+            "amount": null,
+            "display": "Pending",
+            "currency": "USD",
+            "status": "pending"
+          },
+          "other": {
+            "value_type": "amount",
+            "amount": 0.0,
+            "display": "0.00",
+            "currency": "USD",
+            "status": "chargeable"
+          },
+          "total": {
+            "value_type": "status",
+            "amount": null,
+            "display": "Pending",
+            "currency": "USD",
+            "status": "pending"
+          }
+        },
+        "remarks": [
+          {
+            "type": "commercial",
+            "text": "Other repair if needed to be charged extra"
+          }
+        ]
+      }
+    ]
+  }
+}

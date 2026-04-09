@@ -1,0 +1,138 @@
+{
+  "quote_request": {
+    "request_meta": {
+      "request_id": "qr-demo-001",
+      "source": "assessment_report",
+      "prepared_at": "2026-04-09T06:39:59.068439+00:00",
+      "language": "zh-CN"
+    },
+    "header_context": {
+      "currency": "USD",
+      "vessel_name": "MV EXAMPLE",
+      "imo_no": "1234567",
+      "vessel_type": "Tanker",
+      "customer_name": "ABC Shipping",
+      "service_port": "Zhapu Port, China",
+      "service_date": null,
+      "attention": null,
+      "customer_ref_no": null
+    },
+    "service_context": {
+      "service_category": "service",
+      "service_mode": "voyage_repair",
+      "location_type": "port",
+      "needs_multi_option": false,
+      "option_hints": [],
+      "urgency": null
+    },
+    "candidate_items": [],
+    "spare_parts_context": {
+      "has_spare_parts": true,
+      "spare_parts_supply_mode": null,
+      "spare_parts_items": []
+    },
+    "risk_context": {
+      "risks": [],
+      "pending_confirmations": [
+        "Whether spare parts are owner supply"
+      ],
+      "assumptions": []
+    },
+    "commercial_context": {
+      "preferred_currency": "USD",
+      "pricing_expectation": null,
+      "special_terms": []
+    },
+    "source_refs": {
+      "assessment_report_id": "demo-001",
+      "customer_context_ref": null,
+      "business_context_ref": null
+    }
+  },
+  "feasibility_result": {
+    "can_quote": true,
+    "quote_scope": "partial",
+    "quotable_items": [
+      {
+        "item_id": "svc-1",
+        "item_type": "service",
+        "title": "AE-1 crankshaft trueness checks in place",
+        "decision": "quotable",
+        "reason": "服务项标题和范围已基本明确，可进入报价。",
+        "blocking_fields": [],
+        "suggested_status": "chargeable",
+        "source": "quote_request.candidate_items"
+      }
+    ],
+    "tbc_items": [
+      {
+        "item_id": "spr-1",
+        "item_type": "spare_parts",
+        "title": "Main bearing spare parts",
+        "decision": "tbc",
+        "reason": "备件供货责任未确认，当前只能待确认。",
+        "blocking_fields": [
+          "spare_parts_context.spare_parts_supply_mode"
+        ],
+        "suggested_status": "pending",
+        "source": "quote_request.candidate_items"
+      }
+    ],
+    "exclusions": [],
+    "missing_fields": [],
+    "questions_for_user": [],
+    "review_flags": []
+  },
+  "historical_reference": {
+    "matches": [
+      {
+        "quote_id": "hist-001",
+        "similarity": 0.82,
+        "reason": "服务模式、地点类型和核心服务项高度相似。",
+        "matched_features": [
+          "service_mode: voyage_repair"
+        ],
+        "reference_items": [
+          "AE-1 crankshaft trueness checks in place"
+        ],
+        "reference_remarks": [
+          "Other repair if needed to be charged extra"
+        ]
+      }
+    ],
+    "reference_summary": {
+      "price_range_hint": {
+        "currency": "USD",
+        "min": 3200.0,
+        "max": 3800.0,
+        "sample_size": 2
+      },
+      "common_items": [
+        "AE-1 crankshaft trueness checks in place"
+      ],
+      "remark_patterns": [
+        "Other repair if needed to be charged extra"
+      ],
+      "recommended_reference_ids": [
+        "hist-001"
+      ]
+    },
+    "confidence": 0.82
+  },
+  "pricing_rules": {
+    "currency": "USD",
+    "service_rates": {
+      "service": 3500.0,
+      "spare_parts": 800.0,
+      "other": 300.0
+    },
+    "lump_sum_overrides": {
+      "svc-1": 3500.0,
+      "spr-1": 800.0
+    },
+    "multi_option_mode": false,
+    "remark_hints": [
+      "Other repair if needed to be charged extra"
+    ]
+  }
+}

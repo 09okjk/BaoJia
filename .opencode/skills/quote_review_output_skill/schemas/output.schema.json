@@ -1,0 +1,302 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.local/opencode/skills/quote_review_output_skill/output.schema.json",
+  "title": "quote_review_output_skill output",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "quote_document"
+  ],
+  "properties": {
+    "quote_document": {
+      "$ref": "#/$defs/quoteDocument"
+    }
+  },
+  "$defs": {
+    "stringArray": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "columnBase": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["key", "label"],
+      "properties": {
+        "key": { "type": "string" },
+        "label": { "type": "string" }
+      }
+    },
+    "columnItem": {
+      "allOf": [
+        { "$ref": "#/$defs/columnBase" },
+        { "properties": { "key": { "const": "item" } } }
+      ]
+    },
+    "columnDescription": {
+      "allOf": [
+        { "$ref": "#/$defs/columnBase" },
+        { "properties": { "key": { "const": "description" } } }
+      ]
+    },
+    "columnUnitPrice": {
+      "allOf": [
+        { "$ref": "#/$defs/columnBase" },
+        { "properties": { "key": { "const": "unit_price" } } }
+      ]
+    },
+    "columnUnit": {
+      "allOf": [
+        { "$ref": "#/$defs/columnBase" },
+        { "properties": { "key": { "const": "unit" } } }
+      ]
+    },
+    "columnQty": {
+      "allOf": [
+        { "$ref": "#/$defs/columnBase" },
+        { "properties": { "key": { "const": "qty" } } }
+      ]
+    },
+    "columnDiscount": {
+      "allOf": [
+        { "$ref": "#/$defs/columnBase" },
+        { "properties": { "key": { "const": "discount" } } }
+      ]
+    },
+    "columnAmount": {
+      "allOf": [
+        { "$ref": "#/$defs/columnBase" },
+        { "properties": { "key": { "const": "amount" } } }
+      ]
+    },
+    "discount": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "value", "display"],
+      "properties": {
+        "type": { "type": "string", "enum": ["percentage", "amount"] },
+        "value": { "type": "number" },
+        "display": { "type": "string" }
+      }
+    },
+    "relation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "target_line_id"],
+      "properties": {
+        "type": { "type": "string", "enum": ["alternative_to", "depends_on", "child_of"] },
+        "target_line_id": { "type": "string" }
+      }
+    },
+    "line": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["line_id", "item", "line_no", "line_type", "description", "pricing_mode", "unit_price", "unit_price_display", "unit", "qty", "qty_display", "discount", "amount", "amount_display", "currency", "status", "basis", "conditions", "notes"],
+      "properties": {
+        "line_id": { "type": "string" },
+        "item": { "type": "string" },
+        "line_no": { "type": "string" },
+        "line_type": { "type": "string", "enum": ["priced", "included", "pending", "optional", "conditional", "extra", "note", "header", "scope_note", "technical_note", "assumption_note", "commercial_note"] },
+        "description": { "type": "string" },
+        "pricing_mode": { "type": "string", "enum": ["unit_price", "lump_sum", "included", "pending", "conditional", "text_only", "rate_only", "rate_as_actual"] },
+        "unit_price": { "type": ["number", "null"] },
+        "unit_price_display": { "type": "string" },
+        "unit": { "type": "string" },
+        "qty": { "type": ["number", "integer", "null"] },
+        "qty_display": { "type": "string" },
+        "discount": { "anyOf": [{ "$ref": "#/$defs/discount" }, { "type": "null" }] },
+        "amount": { "type": ["number", "null"] },
+        "amount_display": { "type": "string" },
+        "currency": { "type": "string" },
+        "status": { "type": "string", "enum": ["chargeable", "included", "pending", "if_needed", "extra", "as_actual", "arranged_by_agent", "by_owner", "excluded"] },
+        "basis": { "type": "string" },
+        "conditions": { "$ref": "#/$defs/stringArray" },
+        "notes": { "$ref": "#/$defs/stringArray" },
+        "relation": { "$ref": "#/$defs/relation" }
+      }
+    },
+    "group": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["group_id", "group_no", "title", "description", "lines"],
+      "properties": {
+        "group_id": { "type": "string" },
+        "group_no": { "type": "string" },
+        "title": { "type": "string" },
+        "description": { "type": "string" },
+        "lines": { "type": "array", "items": { "$ref": "#/$defs/line" } }
+      }
+    },
+    "section": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["section_id", "section_type", "title", "groups"],
+      "properties": {
+        "section_id": { "type": "string" },
+        "section_type": { "type": "string", "enum": ["service", "spare_parts", "other"] },
+        "title": { "type": "string" },
+        "groups": { "type": "array", "items": { "$ref": "#/$defs/group" } }
+      }
+    },
+    "summaryValue": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["value_type", "amount", "display", "currency", "status"],
+      "properties": {
+        "value_type": { "type": "string", "enum": ["amount", "status", "text"] },
+        "amount": { "type": ["number", "null"] },
+        "display": { "type": "string" },
+        "currency": { "type": "string" },
+        "status": { "type": "string", "enum": ["chargeable", "included", "pending", "if_needed", "extra", "as_actual", "arranged_by_agent", "by_owner", "excluded"] }
+      }
+    },
+    "summary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["service_charge", "spare_parts_fee", "other", "total"],
+      "properties": {
+        "service_charge": { "$ref": "#/$defs/summaryValue" },
+        "spare_parts_fee": { "$ref": "#/$defs/summaryValue" },
+        "other": { "$ref": "#/$defs/summaryValue" },
+        "total": { "$ref": "#/$defs/summaryValue" }
+      }
+    },
+    "remarkItem": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "text"],
+      "properties": {
+        "type": { "type": "string", "enum": ["warranty", "compensation", "commercial", "cost_clause", "tax", "waiting", "safety", "exclusion", "tbc", "payment_term"] },
+        "text": { "type": "string" }
+      }
+    },
+    "quotationOption": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["option_id", "title", "sections", "summary", "remarks"],
+      "properties": {
+        "option_id": { "type": "string" },
+        "title": { "type": "string" },
+        "sections": { "type": "array", "items": { "$ref": "#/$defs/section" } },
+        "summary": { "$ref": "#/$defs/summary" },
+        "remarks": { "type": "array", "items": { "$ref": "#/$defs/remarkItem" } }
+      }
+    },
+    "header": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["currency", "vessel_name", "date", "imo_no", "vessel_type", "customer_name", "service_port", "attention", "wk_offer_no", "your_ref_no", "quotation_validity", "po_no", "pic_of_winkong"],
+      "properties": {
+        "currency": { "type": "string" },
+        "vessel_name": { "type": "string" },
+        "date": { "type": "string" },
+        "imo_no": { "type": "string" },
+        "vessel_type": { "type": "string" },
+        "customer_name": { "type": "string" },
+        "service_port": { "type": "string" },
+        "attention": { "type": "string" },
+        "wk_offer_no": { "type": "string" },
+        "your_ref_no": { "type": "string" },
+        "quotation_validity": { "type": "string" },
+        "po_no": { "type": "string" },
+        "pic_of_winkong": { "type": "string" }
+      }
+    },
+    "tableSchema": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["columns"],
+      "properties": {
+        "columns": {
+          "type": "array",
+          "minItems": 7,
+          "maxItems": 7,
+          "prefixItems": [
+            { "$ref": "#/$defs/columnItem" },
+            { "$ref": "#/$defs/columnDescription" },
+            { "$ref": "#/$defs/columnUnitPrice" },
+            { "$ref": "#/$defs/columnUnit" },
+            { "$ref": "#/$defs/columnQty" },
+            { "$ref": "#/$defs/columnDiscount" },
+            { "$ref": "#/$defs/columnAmount" }
+          ],
+          "items": false
+        }
+      }
+    },
+    "remarkBlock": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["title", "items"],
+      "properties": {
+        "title": { "type": "string", "const": "Remark" },
+        "items": { "type": "array", "items": { "$ref": "#/$defs/remarkItem" } }
+      }
+    },
+    "servicePaymentTerms": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["title", "content"],
+      "properties": {
+        "title": { "type": "string", "const": "Service Payment Terms" },
+        "content": { "type": "string" }
+      }
+    },
+    "footer": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["summary", "remark", "service_payment_terms"],
+      "properties": {
+        "summary": { "$ref": "#/$defs/summary" },
+        "remark": { "$ref": "#/$defs/remarkBlock" },
+        "service_payment_terms": { "$ref": "#/$defs/servicePaymentTerms" }
+      }
+    },
+    "reviewResult": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["review_flags", "risk_flags", "approval_level"],
+      "properties": {
+        "review_flags": { "$ref": "#/$defs/stringArray" },
+        "risk_flags": { "$ref": "#/$defs/stringArray" },
+        "approval_level": { "type": "string" }
+      }
+    },
+    "historicalReference": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["quote_id", "similarity", "reason"],
+      "properties": {
+        "quote_id": { "type": "string" },
+        "similarity": { "type": "number", "minimum": 0, "maximum": 1 },
+        "reason": { "type": "string" }
+      }
+    },
+    "trace": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["historical_references", "pricing_basis", "rule_versions"],
+      "properties": {
+        "historical_references": { "type": "array", "items": { "$ref": "#/$defs/historicalReference" } },
+        "pricing_basis": { "$ref": "#/$defs/stringArray" },
+        "rule_versions": { "$ref": "#/$defs/stringArray" }
+      }
+    },
+    "quoteDocument": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["document_type", "document_version", "header", "table_schema", "quotation_options", "footer", "review_result", "trace"],
+      "properties": {
+        "document_type": { "type": "string", "const": "quotation" },
+        "document_version": { "type": "string" },
+        "header": { "$ref": "#/$defs/header" },
+        "table_schema": { "$ref": "#/$defs/tableSchema" },
+        "quotation_options": { "type": "array", "items": { "$ref": "#/$defs/quotationOption" } },
+        "footer": { "$ref": "#/$defs/footer" },
+        "review_result": { "$ref": "#/$defs/reviewResult" },
+        "trace": { "$ref": "#/$defs/trace" }
+      }
+    }
+  }
+}

@@ -1,0 +1,125 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.local/opencode/skills/historical_quote_reference_skill/output.schema.json",
+  "title": "historical_quote_reference_skill output",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "matches",
+    "reference_summary",
+    "confidence"
+  ],
+  "properties": {
+    "matches": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/match"
+      }
+    },
+    "reference_summary": {
+      "$ref": "#/$defs/referenceSummary"
+    },
+    "confidence": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    }
+  },
+  "$defs": {
+    "stringArray": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "nullableNumber": {
+      "type": ["number", "null"]
+    },
+    "nullableString": {
+      "type": ["string", "null"]
+    },
+    "match": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "quote_id",
+        "similarity",
+        "reason",
+        "matched_features",
+        "reference_items",
+        "reference_remarks"
+      ],
+      "properties": {
+        "quote_id": {
+          "type": "string"
+        },
+        "similarity": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "reason": {
+          "type": "string"
+        },
+        "matched_features": {
+          "$ref": "#/$defs/stringArray"
+        },
+        "reference_items": {
+          "$ref": "#/$defs/stringArray"
+        },
+        "reference_remarks": {
+          "$ref": "#/$defs/stringArray"
+        }
+      }
+    },
+    "priceRangeHint": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "currency",
+        "min",
+        "max",
+        "sample_size"
+      ],
+      "properties": {
+        "currency": {
+          "$ref": "#/$defs/nullableString"
+        },
+        "min": {
+          "$ref": "#/$defs/nullableNumber"
+        },
+        "max": {
+          "$ref": "#/$defs/nullableNumber"
+        },
+        "sample_size": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "referenceSummary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "price_range_hint",
+        "common_items",
+        "remark_patterns",
+        "recommended_reference_ids"
+      ],
+      "properties": {
+        "price_range_hint": {
+          "$ref": "#/$defs/priceRangeHint"
+        },
+        "common_items": {
+          "$ref": "#/$defs/stringArray"
+        },
+        "remark_patterns": {
+          "$ref": "#/$defs/stringArray"
+        },
+        "recommended_reference_ids": {
+          "$ref": "#/$defs/stringArray"
+        }
+      }
+    }
+  }
+}

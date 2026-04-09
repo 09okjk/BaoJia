@@ -1,0 +1,80 @@
+{
+  "matches": [
+    {
+      "quote_id": "hist-001",
+      "similarity": 1.0,
+      "reason": "服务模式、地点类型和核心服务项高度相似。",
+      "matched_features": [
+        "service_category: service",
+        "service_mode: voyage_repair",
+        "location_type: port",
+        "vessel_type: Tanker",
+        "item_title: AE-1 crankshaft trueness checks in place"
+      ],
+      "reference_items": [
+        "AE-1 crankshaft trueness checks in place",
+        "M/B lower bearing remove"
+      ],
+      "reference_remarks": [
+        "Other repair if needed to be charged extra"
+      ]
+    },
+    {
+      "quote_id": "hist-002",
+      "similarity": 0.9,
+      "reason": "服务模式、地点类型和核心服务项高度相似。",
+      "matched_features": [
+        "service_category: service",
+        "service_mode: voyage_repair",
+        "location_type: port",
+        "item_title: AE-1 crankshaft trueness checks in place"
+      ],
+      "reference_items": [
+        "AE-1 crankshaft trueness checks in place",
+        "Crankshaft run-out check"
+      ],
+      "reference_remarks": [
+        "Other repair if needed to be charged extra"
+      ]
+    },
+    {
+      "quote_id": "hist-003",
+      "similarity": 0.25,
+      "reason": "存在多个关键特征匹配。",
+      "matched_features": [
+        "service_category: service",
+        "vessel_type: Tanker"
+      ],
+      "reference_items": [
+        "AE resilient mountings renewal"
+      ],
+      "reference_remarks": [
+        "Spares supply by shipside"
+      ]
+    }
+  ],
+  "reference_summary": {
+    "price_range_hint": {
+      "currency": "USD",
+      "min": 3200.0,
+      "max": 9800.0,
+      "sample_size": 3
+    },
+    "common_items": [
+      "AE-1 crankshaft trueness checks in place",
+      "M/B lower bearing remove",
+      "Crankshaft run-out check",
+      "AE resilient mountings renewal"
+    ],
+    "remark_patterns": [
+      "Other repair if needed to be charged extra",
+      "Spares supply by shipside"
+    ],
+    "recommended_reference_ids": [
+      "hist-001",
+      "hist-002",
+      "hist-003"
+    ]
+  },
+  "confidence": 1.0
+}

@@ -1,0 +1,49 @@
+[
+  {
+    "quote_id": "hist-001",
+    "service_category": "service",
+    "service_mode": "voyage_repair",
+    "location_type": "port",
+    "vessel_type": "Tanker",
+    "currency": "USD",
+    "total_amount": 3500.0,
+    "items": [
+      "AE-1 crankshaft trueness checks in place",
+      "M/B lower bearing remove"
+    ],
+    "remarks": [
+      "Other repair if needed to be charged extra"
+    ]
+  },
+  {
+    "quote_id": "hist-002",
+    "service_category": "service",
+    "service_mode": "voyage_repair",
+    "location_type": "port",
+    "vessel_type": "Bulk Carrier",
+    "currency": "USD",
+    "total_amount": 3200.0,
+    "items": [
+      "AE-1 crankshaft trueness checks in place",
+      "Crankshaft run-out check"
+    ],
+    "remarks": [
+      "Other repair if needed to be charged extra"
+    ]
+  },
+  {
+    "quote_id": "hist-003",
+    "service_category": "service",
+    "service_mode": "dock_repair",
+    "location_type": "shipyard",
+    "vessel_type": "Tanker",
+    "currency": "USD",
+    "total_amount": 9800.0,
+    "items": [
+      "AE resilient mountings renewal"
+    ],
+    "remarks": [
+      "Spares supply by shipside"
+    ]
+  }
+]

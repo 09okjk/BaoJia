@@ -1,0 +1,16 @@
+{
+  "currency": "USD",
+  "service_rates": {
+    "service": 3500.0,
+    "spare_parts": 800.0,
+    "other": 300.0
+  },
+  "lump_sum_overrides": {
+    "svc-1": 3500.0,
+    "spr-1": 800.0
+  },
+  "multi_option_mode": false,
+  "remark_hints": [
+    "Other repair if needed to be charged extra"
+  ]
+}

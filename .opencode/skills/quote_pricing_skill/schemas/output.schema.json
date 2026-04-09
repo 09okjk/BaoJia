@@ -1,0 +1,315 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.local/opencode/skills/quote_pricing_skill/output.schema.json",
+  "title": "quote_pricing_skill output",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "quotation_options"
+  ],
+  "properties": {
+    "quotation_options": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/quotationOption"
+      }
+    }
+  },
+  "$defs": {
+    "stringArray": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "discount": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "value",
+        "display"
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "percentage",
+            "amount"
+          ]
+        },
+        "value": {
+          "type": "number"
+        },
+        "display": {
+          "type": "string"
+        }
+      }
+    },
+    "relation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "target_line_id"
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "alternative_to",
+            "depends_on",
+            "child_of"
+          ]
+        },
+        "target_line_id": {
+          "type": "string"
+        }
+      }
+    },
+    "line": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "line_id",
+        "item",
+        "line_no",
+        "line_type",
+        "description",
+        "pricing_mode",
+        "unit_price",
+        "unit_price_display",
+        "unit",
+        "qty",
+        "qty_display",
+        "discount",
+        "amount",
+        "amount_display",
+        "currency",
+        "status",
+        "basis",
+        "conditions",
+        "notes"
+      ],
+      "properties": {
+        "line_id": { "type": "string" },
+        "item": { "type": "string" },
+        "line_no": { "type": "string" },
+        "line_type": {
+          "type": "string",
+          "enum": [
+            "priced",
+            "included",
+            "pending",
+            "optional",
+            "conditional",
+            "extra",
+            "note",
+            "header",
+            "scope_note",
+            "technical_note",
+            "assumption_note",
+            "commercial_note"
+          ]
+        },
+        "description": { "type": "string" },
+        "pricing_mode": {
+          "type": "string",
+          "enum": [
+            "unit_price",
+            "lump_sum",
+            "included",
+            "pending",
+            "conditional",
+            "text_only",
+            "rate_only",
+            "rate_as_actual"
+          ]
+        },
+        "unit_price": { "type": ["number", "null"] },
+        "unit_price_display": { "type": "string" },
+        "unit": { "type": "string" },
+        "qty": { "type": ["number", "integer", "null"] },
+        "qty_display": { "type": "string" },
+        "discount": {
+          "anyOf": [
+            { "$ref": "#/$defs/discount" },
+            { "type": "null" }
+          ]
+        },
+        "amount": { "type": ["number", "null"] },
+        "amount_display": { "type": "string" },
+        "currency": { "type": "string" },
+        "status": {
+          "type": "string",
+          "enum": [
+            "chargeable",
+            "included",
+            "pending",
+            "if_needed",
+            "extra",
+            "as_actual",
+            "arranged_by_agent",
+            "by_owner",
+            "excluded"
+          ]
+        },
+        "basis": { "type": "string" },
+        "conditions": { "$ref": "#/$defs/stringArray" },
+        "notes": { "$ref": "#/$defs/stringArray" },
+        "relation": { "$ref": "#/$defs/relation" }
+      }
+    },
+    "group": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "group_id",
+        "group_no",
+        "title",
+        "description",
+        "lines"
+      ],
+      "properties": {
+        "group_id": { "type": "string" },
+        "group_no": { "type": "string" },
+        "title": { "type": "string" },
+        "description": { "type": "string" },
+        "lines": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/line" }
+        }
+      }
+    },
+    "section": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "section_id",
+        "section_type",
+        "title",
+        "groups"
+      ],
+      "properties": {
+        "section_id": { "type": "string" },
+        "section_type": {
+          "type": "string",
+          "enum": [
+            "service",
+            "spare_parts",
+            "other"
+          ]
+        },
+        "title": { "type": "string" },
+        "groups": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/group" }
+        }
+      }
+    },
+    "summaryValue": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "value_type",
+        "amount",
+        "display",
+        "currency",
+        "status"
+      ],
+      "properties": {
+        "value_type": {
+          "type": "string",
+          "enum": [
+            "amount",
+            "status",
+            "text"
+          ]
+        },
+        "amount": { "type": ["number", "null"] },
+        "display": { "type": "string" },
+        "currency": { "type": "string" },
+        "status": {
+          "type": "string",
+          "enum": [
+            "chargeable",
+            "included",
+            "pending",
+            "if_needed",
+            "extra",
+            "as_actual",
+            "arranged_by_agent",
+            "by_owner",
+            "excluded"
+          ]
+        }
+      }
+    },
+    "summary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "service_charge",
+        "spare_parts_fee",
+        "other",
+        "total"
+      ],
+      "properties": {
+        "service_charge": { "$ref": "#/$defs/summaryValue" },
+        "spare_parts_fee": { "$ref": "#/$defs/summaryValue" },
+        "other": { "$ref": "#/$defs/summaryValue" },
+        "total": { "$ref": "#/$defs/summaryValue" }
+      }
+    },
+    "remarkItem": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "text"
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "warranty",
+            "compensation",
+            "commercial",
+            "cost_clause",
+            "tax",
+            "waiting",
+            "safety",
+            "exclusion",
+            "tbc",
+            "payment_term"
+          ]
+        },
+        "text": { "type": "string" }
+      }
+    },
+    "quotationOption": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "option_id",
+        "title",
+        "sections",
+        "summary",
+        "remarks"
+      ],
+      "properties": {
+        "option_id": { "type": "string" },
+        "title": { "type": "string" },
+        "sections": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/section" }
+        },
+        "summary": { "$ref": "#/$defs/summary" },
+        "remarks": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/remarkItem" }
+        }
+      }
+    }
+  }
+}
