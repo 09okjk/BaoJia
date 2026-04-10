@@ -1,0 +1,104 @@
+{
+  "assessment_report": {
+    "report_id": "assess-001",
+    "vessel_name": "MV EXAMPLE",
+    "imo_no": "1234567",
+    "vessel_type": "Tanker",
+    "customer_name": "ABC Shipping",
+    "service_port": "Zhapu Port, China",
+    "service_date": "2026-04-09",
+    "attention": "Jessica",
+    "service_mode": "voyage repair",
+    "service_category": "轮机",
+    "needs_multi_option": true,
+    "option_hints": [
+      "Option A Standard quotation",
+      "Option B 5% discount quotation"
+    ],
+    "service_items": [
+      {
+        "title": "AE-1 crankshaft trueness checks in place",
+        "description": "Working time abt 15 hours",
+        "work_scope": [
+          "2pcs M/B lower bearing remove",
+          "Crankshaft run-out check by magnetic gauge"
+        ],
+        "labor_hint": [
+          "1 supervisor",
+          "2 fitters"
+        ],
+        "quantity": 1,
+        "unit": "job"
+      },
+      {
+        "title": "Transportation and accommodation",
+        "description": "Travel and hotel arrangement for service attendance",
+        "item_type": "other",
+        "quantity": 2,
+        "unit": "person-day",
+        "price_hints": [
+          "travel",
+          "hotel"
+        ]
+      }
+    ],
+    "spare_parts_items": [
+      {
+        "title": "Main bearing spare parts",
+        "description": "Subject to final spare parts confirmation"
+      }
+    ],
+    "pending_items": [
+      "Whether spare parts are owner supply"
+    ]
+  },
+  "customer_context": {
+    "currency": "USD",
+    "special_terms": [
+      "Any additional repair not listed above will be charged extra.",
+      "Payment within 30 days upon invoice date."
+    ]
+  },
+  "business_context": {
+    "pricing_rules": {
+      "currency": "USD",
+      "service_rates": {
+        "mechanical_supervisor_hourly": 55.0,
+        "mechanical_technician_hourly": 35.0,
+        "electrical_supervisor_hourly": 60.0,
+        "electrical_assistant_hourly": 40.0,
+        "service": 3500.0,
+        "spare_parts": 800.0,
+        "other": 300.0
+      },
+      "lump_sum_overrides": {},
+      "multi_option_mode": true,
+      "remark_hints": [
+        "Other repair if needed to be charged extra"
+      ],
+      "default_discount_percentage": 5.0,
+      "discount_overrides": {},
+      "pricing_multipliers": {
+        "spare_parts_oem": 1.25,
+        "spare_parts_alternative": 1.5,
+        "freight": 1.35,
+        "delivery": 1.35,
+        "third_party": 1.4,
+        "dock_port_service": 1.3,
+        "dockyard_management": 1.2,
+        "boarding_travel": 1.2
+      },
+      "charge_bases": {
+        "third_party_base": 1200.0,
+        "freight_base": 300.0,
+        "delivery_base": 260.0,
+        "transportation_base": 450.0,
+        "accommodation_daily": 45.0,
+        "port_service_base": 150.0,
+        "maritime_reporting_base": 150.0,
+        "dockyard_management_base": 200.0,
+        "boarding_travel_base": 180.0
+      }
+    }
+  }
+}

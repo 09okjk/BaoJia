@@ -52,7 +52,7 @@ def build_quote_document(payload: dict[str, Any]) -> dict[str, Any]:
 
     header = _build_header(quote_request)
     footer = _build_footer(quote_request, quotation_options)
-    review_result = _build_review_result(feasibility_result)
+    review_result = _build_review_result(feasibility_result, quotation_options)
     trace = _build_trace(historical_reference, pricing_result)
 
     return {
@@ -114,9 +114,9 @@ def _build_header(quote_request: dict[str, Any]) -> dict[str, str]:
         "attention": _string_or_blank(header_context.get("attention")),
         "wk_offer_no": _build_offer_no(quote_request),
         "your_ref_no": _string_or_blank(header_context.get("customer_ref_no")),
-        "quotation_validity": "30 days",
+        "quotation_validity": _quotation_validity(quote_request),
         "po_no": "",
-        "pic_of_winkong": "Winkong",
+        "pic_of_winkong": _pic_of_winkong(quote_request),
     }
 
 
@@ -141,9 +141,8 @@ def _build_offer_no(quote_request: dict[str, Any]) -> str:
 def _build_footer(
     quote_request: dict[str, Any], quotation_options: list[Any]
 ) -> dict[str, Any]:
-    summary = (
-        quotation_options[0]["summary"] if quotation_options else _empty_summary("USD")
-    )
+    currency = _footer_currency(quote_request, quotation_options)
+    summary = _build_footer_summary(quotation_options, currency)
     remarks = _build_footer_remarks(quote_request, quotation_options)
     return {
         "summary": summary,
@@ -153,9 +152,51 @@ def _build_footer(
         },
         "service_payment_terms": {
             "title": "Service Payment Terms",
-            "content": "Payment within 30 days upon invoice date.",
+            "content": _service_payment_terms(quote_request),
         },
     }
+
+
+def _build_footer_summary(
+    quotation_options: list[Any], currency: str
+) -> dict[str, Any]:
+    valid_options = [option for option in quotation_options if isinstance(option, dict)]
+    if not valid_options:
+        return _empty_summary(currency)
+    if len(valid_options) == 1:
+        return valid_options[0]["summary"]
+
+    recommended = _recommended_option(valid_options)
+    if recommended is not None:
+        return recommended["summary"]
+
+    return {
+        "service_charge": _summary_value(
+            None, "Refer to selected option", currency, "pending", "text"
+        ),
+        "spare_parts_fee": _summary_value(
+            None, "Refer to selected option", currency, "pending", "text"
+        ),
+        "other": _summary_value(
+            None, "Refer to selected option", currency, "pending", "text"
+        ),
+        "total": _summary_value(
+            None, "Refer to selected option", currency, "pending", "text"
+        ),
+    }
+
+
+def _recommended_option(
+    quotation_options: list[dict[str, Any]],
+) -> dict[str, Any] | None:
+    for option in quotation_options:
+        option_id = _string_or_blank(option.get("option_id")).lower()
+        title = _string_or_blank(option.get("title")).lower()
+        if option_id in {"option-a", "option-1"}:
+            return option
+        if "standard" in title or "recommended" in title or "base" in title:
+            return option
+    return quotation_options[0] if quotation_options else None
 
 
 def _build_footer_remarks(
@@ -170,7 +211,10 @@ def _build_footer_remarks(
         for remark in option.get("remarks", []):
             if not isinstance(remark, dict):
                 continue
-            remark_type = _string_or_blank(remark.get("type")) or "commercial"
+            remark_type = _remark_type(
+                _string_or_blank(remark.get("type")),
+                _string_or_blank(remark.get("text")),
+            )
             text = _string_or_blank(remark.get("text"))
             if not text:
                 continue
@@ -194,23 +238,106 @@ def _build_footer_remarks(
         text = _string_or_blank(term)
         if not text:
             continue
-        key = ("commercial", text)
+        remark_type = _remark_type("commercial", text)
+        key = (remark_type, text)
         if key in seen:
             continue
         seen.add(key)
-        items.append({"type": "commercial", "text": text})
+        items.append({"type": remark_type, "text": text})
 
-    if not items:
-        items.append(
+    default_remarks = _default_footer_remarks(quotation_options)
+    for item in default_remarks:
+        key = (item["type"], item["text"])
+        if key in seen:
+            continue
+        seen.add(key)
+        items.append(item)
+
+    return items
+
+
+def _default_footer_remarks(quotation_options: list[Any]) -> list[dict[str, str]]:
+    has_service = False
+    has_spare_parts = False
+    has_voyage_or_riding = False
+    has_troubleshooting = False
+
+    for option in quotation_options:
+        if not isinstance(option, dict):
+            continue
+        for section in option.get("sections", []):
+            if not isinstance(section, dict):
+                continue
+            section_type = _string_or_blank(section.get("section_type"))
+            if section_type == "service":
+                has_service = True
+            if section_type == "spare_parts":
+                has_spare_parts = True
+            for group in section.get("groups", []):
+                if not isinstance(group, dict):
+                    continue
+                text = (
+                    _string_or_blank(group.get("title"))
+                    + " "
+                    + _string_or_blank(group.get("description"))
+                ).lower()
+                if any(
+                    keyword in text for keyword in ["voyage", "航修", "riding", "随航"]
+                ):
+                    has_voyage_or_riding = True
+                if any(
+                    keyword in text
+                    for keyword in ["inspection", "检查", "troubleshooting", "排查"]
+                ):
+                    has_troubleshooting = True
+
+    remarks = []
+    if has_spare_parts:
+        remarks.append(
+            {
+                "type": "warranty",
+                "text": "Spare parts warranty period shall follow supplier confirmation.",
+            }
+        )
+    if has_service:
+        warranty_text = (
+            "Inspection and troubleshooting items carry no service warranty."
+            if has_troubleshooting
+            else "Service warranty is 6 months from completion unless otherwise agreed."
+        )
+        remarks.append({"type": "warranty", "text": warranty_text})
+        remarks.append(
+            {
+                "type": "compensation",
+                "text": "Warranty Compensate Amount: 5 times of the service cost at max.",
+            }
+        )
+    if has_voyage_or_riding:
+        remarks.append(
+            {
+                "type": "waiting",
+                "text": "Waiting cost caused by weather or vessel delay shall be negotiated amicably, normally 300-500 USD per person per day.",
+            }
+        )
+        remarks.append(
+            {
+                "type": "safety",
+                "text": "Safety environment/measures on board shall be arranged by owner side.",
+            }
+        )
+    if not remarks:
+        remarks.append(
             {
                 "type": "commercial",
                 "text": "Quoted scope is subject to final onboard condition.",
             }
         )
-    return items
+    return remarks
 
 
-def _build_review_result(feasibility_result: dict[str, Any]) -> dict[str, Any]:
+def _build_review_result(
+    feasibility_result: dict[str, Any], quotation_options: list[Any]
+) -> dict[str, Any]:
     review_flags = (
         feasibility_result.get("review_flags")
         if isinstance(feasibility_result.get("review_flags"), list)
@@ -224,6 +351,12 @@ def _build_review_result(feasibility_result: dict[str, Any]) -> dict[str, Any]:
 
     review_flag_texts = []
     risk_flag_texts = []
+    has_high_risk = False
+    tbc_option_exists = _has_pending_or_tbc_content(quotation_options)
+    multi_option = (
+        len([option for option in quotation_options if isinstance(option, dict)]) > 1
+    )
+
     for flag in review_flags:
         if isinstance(flag, dict):
             message = _string_or_blank(flag.get("message"))
@@ -232,19 +365,29 @@ def _build_review_result(feasibility_result: dict[str, Any]) -> dict[str, Any]:
                 review_flag_texts.append(message)
                 if severity in {"high", "medium"}:
                     risk_flag_texts.append(message)
+                if severity == "high":
+                    has_high_risk = True
 
     for item in missing_fields:
-        if isinstance(item, dict) and _string_or_blank(item.get("severity")) == "high":
+        if isinstance(item, dict):
+            severity = _string_or_blank(item.get("severity"))
             reason = _string_or_blank(item.get("reason"))
-            if reason:
+            if severity == "high":
+                has_high_risk = True
+            if reason and severity in {"high", "medium"}:
                 risk_flag_texts.append(reason)
 
+    if multi_option:
+        review_flag_texts.append("当前报价包含多方案，提交审核时需确认推荐方案。")
+    if tbc_option_exists:
+        review_flag_texts.append(
+            "当前报价包含待确认或按条件收费内容，提交前需再次核对。"
+        )
+
     approval_level = "standard"
-    if any(
-        _string_or_blank(item.get("severity")) == "high"
-        for item in missing_fields
-        if isinstance(item, dict)
-    ):
+    if has_high_risk:
+        approval_level = "manager"
+    elif multi_option or tbc_option_exists:
         approval_level = "manager"
 
     return {
@@ -252,6 +395,28 @@ def _build_review_result(feasibility_result: dict[str, Any]) -> dict[str, Any]:
         "risk_flags": _dedupe_strings(risk_flag_texts),
         "approval_level": approval_level,
     }
+
+
+def _has_pending_or_tbc_content(quotation_options: list[Any]) -> bool:
+    for option in quotation_options:
+        if not isinstance(option, dict):
+            continue
+        for section in option.get("sections", []):
+            if not isinstance(section, dict):
+                continue
+            for group in section.get("groups", []):
+                if not isinstance(group, dict):
+                    continue
+                for line in group.get("lines", []):
+                    if not isinstance(line, dict):
+                        continue
+                    if _string_or_blank(line.get("status")) in {
+                        "pending",
+                        "if_needed",
+                        "as_actual",
+                    }:
+                        return True
+    return False
 
 
 def _build_trace(
@@ -296,10 +461,14 @@ def _build_trace(
                     if basis:
                         pricing_basis.append(basis)
 
+    rule_versions = ["quote_pricing_skill:v2", "quote_review_output_skill:v2"]
+    if len([option for option in quotation_options if isinstance(option, dict)]) > 1:
+        rule_versions.append("multi_option_footer_strategy:v1")
+
     return {
         "historical_references": historical_references,
         "pricing_basis": _dedupe_strings(pricing_basis),
-        "rule_versions": ["quote_pricing_skill:v1", "quote_review_output_skill:v1"],
+        "rule_versions": rule_versions,
     }
 
 
@@ -328,11 +497,111 @@ def _summary_value(
     }
 
 
+def _footer_currency(
+    quote_request: dict[str, Any], quotation_options: list[Any]
+) -> str:
+    header_context = (
+        quote_request.get("header_context")
+        if isinstance(quote_request.get("header_context"), dict)
+        else {}
+    )
+    currency = _string_or_blank(header_context.get("currency"))
+    if currency:
+        return currency
+    for option in quotation_options:
+        if not isinstance(option, dict):
+            continue
+        summary = option.get("summary")
+        if isinstance(summary, dict):
+            total = summary.get("total")
+            if isinstance(total, dict):
+                value = _string_or_blank(total.get("currency"))
+                if value:
+                    return value
+    return "USD"
+
+
+def _quotation_validity(quote_request: dict[str, Any]) -> str:
+    commercial_context = (
+        quote_request.get("commercial_context")
+        if isinstance(quote_request.get("commercial_context"), dict)
+        else {}
+    )
+    special_terms = (
+        commercial_context.get("special_terms")
+        if isinstance(commercial_context.get("special_terms"), list)
+        else []
+    )
+    for term in special_terms:
+        text = _string_or_blank(term)
+        if "validity" in text.lower() or "有效期" in text:
+            return text
+    return "30 days"
+
+
+def _service_payment_terms(quote_request: dict[str, Any]) -> str:
+    commercial_context = (
+        quote_request.get("commercial_context")
+        if isinstance(quote_request.get("commercial_context"), dict)
+        else {}
+    )
+    special_terms = (
+        commercial_context.get("special_terms")
+        if isinstance(commercial_context.get("special_terms"), list)
+        else []
+    )
+    for term in special_terms:
+        text = _string_or_blank(term)
+        lowered = text.lower()
+        if "payment" in lowered or "付款" in text:
+            return text
+    return "Payment within 30 days upon invoice date."
+
+
+def _pic_of_winkong(quote_request: dict[str, Any]) -> str:
+    header_context = (
+        quote_request.get("header_context")
+        if isinstance(quote_request.get("header_context"), dict)
+        else {}
+    )
+    attention = _string_or_blank(header_context.get("attention"))
+    return attention or "Winkong"
+
+
+def _remark_type(default_type: str, text: str) -> str:
+    lowered = text.lower()
+    if "warranty" in lowered or "质保" in text:
+        return "warranty"
+    if "compensate" in lowered or "赔偿" in text:
+        return "compensation"
+    if "waiting" in lowered or "等待" in text:
+        return "waiting"
+    if "safety" in lowered or "安全" in text:
+        return "safety"
+    if "exclude" in lowered or "not included" in lowered:
+        return "exclusion"
+    if "payment" in lowered or "付款" in text:
+        return "payment_term"
+    if default_type in {
+        "warranty",
+        "compensation",
+        "commercial",
+        "cost_clause",
+        "tax",
+        "waiting",
+        "safety",
+        "exclusion",
+        "tbc",
+        "payment_term",
+    }:
+        return default_type
+    return "commercial"
+
+
 def _string_or_blank(value: Any) -> str:
     if value is None:
         return ""
-    text = str(value).strip()
-    return text
+    return str(value).strip()
 
 
 def _dedupe_strings(values: list[str]) -> list[str]:

@@ -64,11 +64,11 @@
       }
     ]
   },
-  "pricing_result": {
-    "quotation_options": [
-      {
-        "option_id": "option-1",
-        "title": "Option 1",
+    "pricing_result": {
+      "quotation_options": [
+        {
+        "option_id": "option-a",
+        "title": "Option A Standard quotation",
         "sections": [
           {
             "section_id": "section-service",
@@ -82,27 +82,48 @@
                 "description": "服务项标题和范围已基本明确，可进入报价。",
                 "lines": [
                   {
-                    "line_id": "line-svc-1",
+                    "line_id": "option-a-line-svc-1",
                     "item": "1",
                     "line_no": "1",
                     "line_type": "priced",
-                    "description": "AE-1 crankshaft trueness checks in place",
+                    "description": "AE-1 crankshaft trueness checks in place Working time abt 15 hours",
                     "pricing_mode": "lump_sum",
-                    "unit_price": 3500.0,
-                    "unit_price_display": "3,500.00",
-                    "unit": "LS",
+                    "unit_price": 962.5,
+                    "unit_price_display": "962.50",
+                    "unit": "job",
                     "qty": 1,
                     "qty_display": "1",
                     "discount": null,
-                    "amount": 3500.0,
-                    "amount_display": "3,500.00",
+                    "amount": 962.5,
+                    "amount_display": "962.50",
                     "currency": "USD",
                     "status": "chargeable",
-                    "basis": "lump_sum_override",
+                    "basis": "workflow_service_rate",
                     "conditions": [],
                     "notes": [
                       "服务项标题和范围已基本明确，可进入报价。"
                     ]
+                  },
+                  {
+                    "line_id": "option-a-line-svc-1-scope-1",
+                    "item": "",
+                    "line_no": "",
+                    "line_type": "scope_note",
+                    "description": "2pcs M/B lower bearing remove",
+                    "pricing_mode": "text_only",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "included_scope",
+                    "conditions": [],
+                    "notes": []
                   }
                 ]
               }
@@ -112,8 +133,8 @@
         "summary": {
           "service_charge": {
             "value_type": "amount",
-            "amount": 3500.0,
-            "display": "3,500.00",
+            "amount": 962.5,
+            "display": "962.50",
             "currency": "USD",
             "status": "chargeable"
           },
@@ -143,6 +164,119 @@
           {
             "type": "commercial",
             "text": "Other repair if needed to be charged extra"
+          }
+        ]
+      },
+      {
+        "option_id": "option-b",
+        "title": "Option B 5% discount quotation",
+        "sections": [
+          {
+            "section_id": "option-b-section-service",
+            "section_type": "service",
+            "title": "Service",
+            "groups": [
+              {
+                "group_id": "option-b-group-svc-1",
+                "group_no": "1",
+                "title": "AE-1 crankshaft trueness checks in place",
+                "description": "服务项标题和范围已基本明确，可进入报价。",
+                "lines": [
+                  {
+                    "line_id": "option-b-line-svc-1",
+                    "item": "1",
+                    "line_no": "1",
+                    "line_type": "priced",
+                    "description": "AE-1 crankshaft trueness checks in place Working time abt 15 hours",
+                    "pricing_mode": "lump_sum",
+                    "unit_price": 962.5,
+                    "unit_price_display": "962.50",
+                    "unit": "job",
+                    "qty": 1,
+                    "qty_display": "1",
+                    "discount": {
+                      "type": "percentage",
+                      "value": 5,
+                      "display": "5%"
+                    },
+                    "amount": 914.38,
+                    "amount_display": "914.38",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "workflow_service_rate",
+                    "conditions": [],
+                    "notes": [
+                      "服务项标题和范围已基本明确，可进入报价。"
+                    ],
+                    "relation": {
+                      "type": "alternative_to",
+                      "target_line_id": "option-a-line-svc-1"
+                    }
+                  },
+                  {
+                    "line_id": "option-b-line-svc-1-discount-note",
+                    "item": "",
+                    "line_no": "",
+                    "line_type": "commercial_note",
+                    "description": "Commercial discount 5% applied within approved authority.",
+                    "pricing_mode": "text_only",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "discount_authority",
+                    "conditions": [],
+                    "notes": []
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "summary": {
+          "service_charge": {
+            "value_type": "amount",
+            "amount": 914.38,
+            "display": "914.38",
+            "currency": "USD",
+            "status": "chargeable"
+          },
+          "spare_parts_fee": {
+            "value_type": "status",
+            "amount": null,
+            "display": "Pending",
+            "currency": "USD",
+            "status": "pending"
+          },
+          "other": {
+            "value_type": "amount",
+            "amount": 0.0,
+            "display": "0.00",
+            "currency": "USD",
+            "status": "chargeable"
+          },
+          "total": {
+            "value_type": "status",
+            "amount": null,
+            "display": "Pending",
+            "currency": "USD",
+            "status": "pending"
+          }
+        },
+        "remarks": [
+          {
+            "type": "commercial",
+            "text": "Other repair if needed to be charged extra"
+          },
+          {
+            "type": "commercial",
+            "text": "Commercial discount 5% applied within operator authority."
           }
         ]
       }

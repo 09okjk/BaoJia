@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.local/opencode/quote_orchestrator/input.schema.json",
+  "title": "quote_orchestrator input",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "assessment_report"
+  ],
+  "properties": {
+    "assessment_report": {
+      "type": "object"
+    },
+    "customer_context": {
+      "type": "object"
+    },
+    "business_context": {
+      "type": "object"
+    }
+  }
+}

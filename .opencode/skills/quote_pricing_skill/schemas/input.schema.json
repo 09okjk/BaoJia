@@ -207,7 +207,7 @@
     "pricingRules": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["currency", "service_rates", "lump_sum_overrides", "multi_option_mode", "remark_hints"],
+      "required": ["currency", "service_rates", "lump_sum_overrides", "multi_option_mode", "remark_hints", "default_discount_percentage", "discount_overrides", "pricing_multipliers", "charge_bases"],
       "properties": {
         "currency": { "type": "string" },
         "service_rates": {
@@ -219,7 +219,20 @@
           "additionalProperties": { "type": "number" }
         },
         "multi_option_mode": { "type": "boolean" },
-        "remark_hints": { "$ref": "#/$defs/stringArray" }
+        "remark_hints": { "$ref": "#/$defs/stringArray" },
+        "default_discount_percentage": { "type": "number", "minimum": 0, "maximum": 5 },
+        "discount_overrides": {
+          "type": "object",
+          "additionalProperties": { "type": "number", "minimum": 0, "maximum": 5 }
+        },
+        "pricing_multipliers": {
+          "type": "object",
+          "additionalProperties": { "type": "number" }
+        },
+        "charge_bases": {
+          "type": "object",
+          "additionalProperties": { "type": "number" }
+        }
       }
     }
   }

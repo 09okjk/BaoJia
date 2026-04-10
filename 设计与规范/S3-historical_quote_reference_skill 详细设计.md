@@ -370,3 +370,102 @@
 - 增加向量化或语义检索能力
 - 区分成交案例与未成交案例的参考价值
 - 对 remark 模板做更细粒度归类
+
+---
+
+## 15. 历史样本字段不可扩展时的优化方向
+
+### 15.1 当前约束
+
+当前历史样本库字段不可新增。已知可用字段只有这类基础信息：
+
+- `quote_id`
+- `service_category`
+- `service_mode`
+- `location_type`
+- `vessel_type`
+- `currency`
+- `total_amount`
+- `items`
+- `remarks`
+
+因此，本 Skill 的增强方向不能依赖“给历史数据库补新字段”，而应基于现有字段做更强的结构化提炼。
+
+### 15.2 可在本 Skill 内新增的派生摘要
+
+在不修改历史样本原始字段的前提下，后续版本可在 `reference_summary` 中增加以下派生结构：
+
+1. `item_clusters`
+- 基于历史 `items` 做去重、归一化和关键词聚类。
+- 目标：提升“历史常见项”对下游的可消费性，而不是只返回原始标题列表。
+
+2. `remark_blocks`
+- 基于历史 `remarks` 做规则归类，例如：
+  - `commercial`
+  - `warranty`
+  - `waiting`
+  - `safety`
+  - `payment_term`
+  - `exclusion`
+- 目标：让下游不再只拿自由文本 remark，而是能按类型组装最终 remark。
+
+3. `charge_item_hints`
+- 不新增历史字段，而是从 `items` 与 `remarks` 文本中推断常见附加费用线索。
+- 例如识别：
+  - `transportation`
+  - `accommodation`
+  - `dockyard_management`
+  - `maritime_reporting`
+  - `freight`
+  - `delivery`
+- 输出应保持“hint”定位，而不是金额结论。
+
+4. `option_style_hints`
+- 从历史 remark 与 item 组合中推断是否存在常见方案风格，例如：
+  - `standard_vs_discount`
+  - `service_only`
+  - `owner_supply_spares`
+  - `spares_tbc`
+- 目标：服务下游多方案建模，但不在本 Skill 直接生成方案。
+
+5. `history_quality_flags`
+- 对历史参考质量做结构化标记，例如：
+  - `low_sample_size`
+  - `weak_item_overlap`
+  - `remark_only_match`
+  - `broad_price_range`
+- 目标：让下游知道“历史参考是否足够可信”。
+
+### 15.3 推荐实现原则
+
+1. 仍然保持“历史参考是辅助，不是替代”
+- 不在本 Skill 内输出最终金额建议。
+- 不在本 Skill 内输出 `quotation_options`。
+
+2. 新增字段必须是“派生摘要”，不是“伪造业务事实”
+- 例如可以输出“历史上常见存在 dockyard management 线索”，不能输出“本次一定收 200 USD”。
+
+3. 相似性和摘要都要可解释
+- 派生出的 hint 必须说明来源是历史 `items`、`remarks` 还是价格区间。
+
+### 15.4 对下游的价值
+
+在字段不可扩展的前提下，本 Skill 后续最现实的价值提升是：
+
+- 让 `quote_pricing_skill` 更容易判断“是否应该生成某类附加费用行”
+- 让 `quote_pricing_skill` 更容易判断“某类复杂备件更适合 pending / by_owner / service only”
+- 让 `quote_review_output_skill` 更容易生成更像历史习惯的 remark 与 trace
+
+### 15.5 分阶段建议
+
+第一阶段：
+- 增加 `remark_blocks`
+- 增加 `history_quality_flags`
+
+第二阶段：
+- 增加 `charge_item_hints`
+- 增加 `option_style_hints`
+
+第三阶段：
+- 增加 `item_clusters`
+- 优化基于 item/remark 的规则式归类

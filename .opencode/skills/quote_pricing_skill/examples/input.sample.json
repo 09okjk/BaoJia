@@ -21,11 +21,63 @@
       "service_category": "service",
       "service_mode": "voyage_repair",
       "location_type": "port",
-      "needs_multi_option": false,
-      "option_hints": [],
+      "needs_multi_option": true,
+      "option_hints": [
+        "Option A Standard quotation",
+        "Option B 5% discount quotation"
+      ],
       "urgency": null
     },
-    "candidate_items": [],
+    "candidate_items": [
+      {
+        "item_id": "svc-1",
+        "item_type": "service",
+        "title": "AE-1 crankshaft trueness checks in place",
+        "description": "Working time abt 15 hours",
+        "work_scope": [
+          "2pcs M/B lower bearing remove",
+          "Crankshaft run-out check by magnetic gauge"
+        ],
+        "quantity_hint": 1,
+        "unit_hint": "job",
+        "labor_hint": [
+          "1 supervisor",
+          "2 fitters"
+        ],
+        "pricing_clues": [],
+        "status_hint": null,
+        "source": "assessment_report"
+      },
+      {
+        "item_id": "spr-1",
+        "item_type": "spare_parts",
+        "title": "Main bearing spare parts",
+        "description": "Subject to final spare parts confirmation",
+        "work_scope": [],
+        "quantity_hint": null,
+        "unit_hint": null,
+        "labor_hint": [],
+        "pricing_clues": [],
+        "status_hint": null,
+        "source": "assessment_report"
+      },
+      {
+        "item_id": "oth-1",
+        "item_type": "other",
+        "title": "Transportation and accommodation",
+        "description": "Travel and hotel arrangement for service attendance",
+        "work_scope": [],
+        "quantity_hint": 2,
+        "unit_hint": "person-day",
+        "labor_hint": [],
+        "pricing_clues": [
+          "travel",
+          "hotel"
+        ],
+        "status_hint": null,
+        "source": "assessment_report"
+      }
+    ],
     "spare_parts_context": {
       "has_spare_parts": true,
       "spare_parts_supply_mode": null,
@@ -59,6 +111,16 @@
         "title": "AE-1 crankshaft trueness checks in place",
         "decision": "quotable",
         "reason": "服务项标题和范围已基本明确，可进入报价。",
+        "blocking_fields": [],
+        "suggested_status": "chargeable",
+        "source": "quote_request.candidate_items"
+      },
+      {
+        "item_id": "oth-1",
+        "item_type": "other",
+        "title": "Transportation and accommodation",
+        "decision": "quotable",
+        "reason": "附加费用可按标准口径预估报价。",
         "blocking_fields": [],
         "suggested_status": "chargeable",
         "source": "quote_request.candidate_items"
@@ -122,17 +184,43 @@
   "pricing_rules": {
     "currency": "USD",
     "service_rates": {
+      "mechanical_supervisor_hourly": 55.0,
+      "mechanical_technician_hourly": 35.0,
+      "electrical_supervisor_hourly": 60.0,
+      "electrical_assistant_hourly": 40.0,
       "service": 3500.0,
       "spare_parts": 800.0,
       "other": 300.0
     },
     "lump_sum_overrides": {
-      "svc-1": 3500.0,
       "spr-1": 800.0
     },
-    "multi_option_mode": false,
+    "multi_option_mode": true,
     "remark_hints": [
       "Other repair if needed to be charged extra"
-    ]
+    ],
+    "default_discount_percentage": 5.0,
+    "discount_overrides": {},
+    "pricing_multipliers": {
+      "spare_parts_oem": 1.25,
+      "spare_parts_alternative": 1.5,
+      "freight": 1.35,
+      "delivery": 1.35,
+      "third_party": 1.4,
+      "dock_port_service": 1.3,
+      "dockyard_management": 1.2,
+      "boarding_travel": 1.2
+    },
+    "charge_bases": {
+      "third_party_base": 1200.0,
+      "freight_base": 300.0,
+      "delivery_base": 260.0,
+      "transportation_base": 450.0,
+      "accommodation_daily": 45.0,
+      "port_service_base": 150.0,
+      "maritime_reporting_base": 150.0,
+      "dockyard_management_base": 200.0,
+      "boarding_travel_base": 180.0
+    }
   }
 }

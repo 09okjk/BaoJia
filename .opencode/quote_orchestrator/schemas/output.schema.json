@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.local/opencode/quote_orchestrator/output.schema.json",
+  "title": "quote_orchestrator output",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "prepare_result",
+    "feasibility_result",
+    "historical_reference",
+    "pricing_result",
+    "quote_document"
+  ],
+  "properties": {
+    "prepare_result": {
+      "type": "object"
+    },
+    "feasibility_result": {
+      "type": "object"
+    },
+    "historical_reference": {
+      "type": "object"
+    },
+    "pricing_result": {
+      "type": "object"
+    },
+    "quote_document": {
+      "type": "object"
+    }
+  }
+}

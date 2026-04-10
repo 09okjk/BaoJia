@@ -1,0 +1,195 @@
+{
+  "assessment_report": {
+    "report_id": "dimitra-m-20260401",
+    "vessel_name": "M/V DIMITRA M",
+    "vessel_type": "82,000 mt Kamsarmax Bulk Carrier",
+    "service_port": "中国区域（中/南部）港口",
+    "service_date": "2025-12",
+    "service_mode": "dock repair",
+    "location_type": "port",
+    "summary": "HCU 系统大修与 MPC 系统检查报价准备",
+    "risks": [
+      "船厂交叉作业导致工期延误",
+      "备件等待影响施工进度",
+      "现场安全审批或动火限制影响施工"
+    ],
+    "pending_items": [
+      "HPS accumulators repair kit",
+      "HCU accumulators repair kit",
+      "Nitrogen for refilling",
+      "FIVA valves pilot valves",
+      "Fuel booster units top covers and suction valves",
+      "Exhaust valve actuators safety valves",
+      "MPC & UPS batteries",
+      "设备/备件由客户提供、我方提供，还是仍待确认",
+      "需提前确认船厂作业窗口和交叉作业安排",
+      "动火作业许可、受限空间作业许可、高压系统作业安全程序"
+    ],
+    "service_items": [
+      {
+        "title": "HCU system overhaul",
+        "description": "64k 运行小时大修范围，港口/坞修窗口施工",
+        "item_type": "service",
+        "quantity": 1,
+        "unit": "set",
+        "work_scope": [
+          "Overhaul ELFI valve and Multiway valve units",
+          "Exhaust valve actuator and fuel oil pressure booster overhauling",
+          "Cylinder lubricator system overhauling",
+          "Accumulator overhauling and refill with nitrogen",
+          "Maintenance and overhauling of HPS"
+        ],
+        "labor_hint": [
+          "1 supervisor 8 hours",
+          "7 fitters 8 hours"
+        ],
+        "pricing_clues": [
+          "mechanical",
+          "dock repair",
+          "high pressure system"
+        ]
+      },
+      {
+        "title": "MPC system inspection",
+        "description": "64k 运行小时检查范围，港口/坞修窗口施工",
+        "item_type": "service",
+        "quantity": 1,
+        "unit": "set",
+        "work_scope": [
+          "MPC health inspection",
+          "MPC related replacement check"
+        ],
+        "labor_hint": [
+          "1 electrical supervisor 8 hours",
+          "1 electrical assistant 8 hours"
+        ],
+        "pricing_clues": [
+          "electrical",
+          "inspection",
+          "dock repair"
+        ]
+      },
+      {
+        "title": "Dockyard management fee",
+        "description": "厂修管理费，据实或按标准口径预估",
+        "item_type": "other",
+        "quantity": 1,
+        "unit": "lot",
+        "price_hints": [
+          "dockyard",
+          "management fee"
+        ]
+      },
+      {
+        "title": "Transportation and accommodation",
+        "description": "施工人员交通与住宿安排",
+        "item_type": "other",
+        "quantity": 2,
+        "unit": "person-day",
+        "price_hints": [
+          "travel",
+          "hotel"
+        ]
+      },
+      {
+        "title": "Maritime reporting / safety permit",
+        "description": "如涉及动火或高风险作业，需办理相关报备与审批",
+        "item_type": "other",
+        "quantity": 1,
+        "unit": "lot",
+        "price_hints": [
+          "maritime",
+          "safety permit"
+        ],
+        "status": "if_needed"
+      }
+    ],
+    "spare_parts_items": [
+      {
+        "title": "HPS accumulators repair kit",
+        "description": "待确认备件归属与供货方式",
+        "item_type": "spare_parts"
+      },
+      {
+        "title": "HCU accumulators repair kit",
+        "description": "待确认备件归属与供货方式",
+        "item_type": "spare_parts"
+      },
+      {
+        "title": "Nitrogen for refilling",
+        "description": "待确认是否由我司提供",
+        "item_type": "spare_parts"
+      },
+      {
+        "title": "FIVA valves pilot valves",
+        "description": "待确认备件归属与供货方式",
+        "item_type": "spare_parts"
+      },
+      {
+        "title": "Fuel booster units top covers and suction valves",
+        "description": "待确认备件归属与供货方式",
+        "item_type": "spare_parts"
+      },
+      {
+        "title": "Exhaust valve actuators safety valves",
+        "description": "待确认备件归属与供货方式",
+        "item_type": "spare_parts"
+      },
+      {
+        "title": "MPC & UPS batteries",
+        "description": "待确认备件归属与供货方式",
+        "item_type": "spare_parts"
+      }
+    ]
+  },
+  "customer_context": {
+    "currency": "USD",
+    "special_terms": [
+      "Payment within 30 days upon invoice date.",
+      "Other repair if needed to be charged extra."
+    ]
+  },
+  "business_context": {
+    "multi_option": true,
+    "pricing_rules": {
+      "currency": "USD",
+      "service_rates": {
+        "mechanical_supervisor_hourly": 55.0,
+        "mechanical_technician_hourly": 35.0,
+        "electrical_supervisor_hourly": 60.0,
+        "electrical_assistant_hourly": 40.0,
+        "service": 3500.0,
+        "spare_parts": 800.0,
+        "other": 300.0
+      },
+      "lump_sum_overrides": {},
+      "multi_option_mode": true,
+      "remark_hints": [
+        "Other repair if needed to be charged extra"
+      ],
+      "default_discount_percentage": 5.0,
+      "discount_overrides": {},
+      "pricing_multipliers": {
+        "spare_parts_oem": 1.25,
+        "spare_parts_alternative": 1.5,
+        "freight": 1.35,
+        "delivery": 1.35,
+        "third_party": 1.4,
+        "dock_port_service": 1.3,
+        "dockyard_management": 1.2,
+        "boarding_travel": 1.2
+      },
+      "charge_bases": {
+        "third_party_base": 1200.0,
+        "freight_base": 300.0,
+        "delivery_base": 260.0,
+        "transportation_base": 450.0,
+        "accommodation_daily": 45.0,
+        "port_service_base": 150.0,
+        "maritime_reporting_base": 150.0,
+        "dockyard_management_base": 200.0,
+        "boarding_travel_base": 180.0
+      }
+    }
+  }
+}

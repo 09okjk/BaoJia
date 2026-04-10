@@ -382,3 +382,120 @@
 - 增加 rate-based 定价与按实际规则
 - 增加 relation 建模支持
 - 增加更丰富的 pricing_rules 外置配置能力
+
+---
+
+## 15. 在历史样本字段不可扩展前提下的定价增强方向
+
+### 15.1 当前约束
+
+当前历史样本库不能新增字段，因此本 Skill 后续若要“更深使用历史报价”，不能假设历史输入中已经存在：
+
+- 附加费用明细字段
+- 备件供货模式字段
+- OEM / 替代件字段
+- 多方案类型字段
+
+后续增强必须依赖：
+
+1. `historical_quote_reference_skill` 基于现有历史字段提炼出的派生摘要
+2. 当前 `quote_request` / `feasibility_result` / `pricing_rules` 中的业务事实
+
+### 15.2 历史参考在本 Skill 的推荐消费方式
+
+后续版本建议将历史参考作为“决策辅助信号”，而不是最终金额来源。
+
+#### A. 附加费用触发辅助
+
+当满足以下条件时，可让历史参考参与“是否生成 other 类 line”的决策：
+
+- `charge_item_hints` 显示某类项目历史上常见附加费用
+- 当前 `quote_request` 中存在相关风险、地点或作业模式线索
+- 当前规则未明确禁止该费用
+
+推荐输出方式：
+
+- 优先生成 `if_needed` / `pending` / `as_actual`
+- 仅在规则足够明确时生成金额
+
+#### B. 复杂备件表达辅助
+
+当历史摘要显示：
+
+- remark 中经常出现 `shipside` / `owner supply`
+- 同类项目价格区间波动极大
+- 同类项目 remark 中经常出现 `TBC`
+
+则本 Skill 可更倾向于：
+
+- 输出 `pending`
+- 输出 `by_owner`
+- 生成 `service only` 风格方案
+
+注意：
+- 历史不能替代当前供货责任确认。
+- 历史只能帮助决定“如何保守表达”，不能伪造 `supply_mode`。
+
+#### C. 多方案风格辅助
+
+若历史摘要中的 `option_style_hints` 显示某类项目更常采用：
+
+- `standard_vs_discount`
+- `service_only`
+- `spares_tbc`
+
+则本 Skill 后续可据此优先选择多方案类型，而不是永远输出“标准价 + 5% 折扣价”。
+
+### 15.3 推荐增强点
+
+1. `other` section 自动补行策略
+- 基于历史 `charge_item_hints` 和当前场景线索，自动补：
+  - `Dockyard management fee`
+  - `Transportation`
+  - `Accommodation`
+  - `Maritime reporting`
+- 第一版应优先输出保守状态，不直接强算金额。
+
+2. 历史质量感知策略
+- 若 `historical_reference.history_quality_flags` 显示历史参考弱，则：
+  - 降低自动补行力度
+  - 更倾向 `pending`
+  - 降低 remark 注入数量
+
+3. 复杂备件保守策略
+- 结合：
+  - 当前 `spare_parts_supply_mode`
+  - 历史 `remark_blocks`
+  - 当前 `missing_fields`
+- 输出更稳定的：
+  - `pending`
+  - `by_owner`
+  - `service only`
+ 结构，而不是简单复制历史文本。
+
+4. 历史区间只作为 fallback，不作为主定价
+- `price_range_hint` 可以继续作为无规则金额时的兜底。
+- 但后续应避免把总价区间直接投射成某一条 line 金额。
+
+### 15.4 建议的实现顺序
+
+第一阶段：
+- 消费 `remark_blocks`
+- 消费 `history_quality_flags`
+
+第二阶段：
+- 消费 `charge_item_hints`
+- 增加基于历史 hint 的 `other` 自动补行
+
+第三阶段：
+- 消费 `option_style_hints`
+- 优化多方案生成策略
+
+### 15.5 验收重点
+
+后续优化验收时，应重点检查：
+
+1. 历史参考是否只作为辅助，不越界替代业务事实
+2. 自动生成的附加费用行是否优先采用保守状态
+3. 复杂备件表达是否比“统一 pending”更贴近真实报价习惯
+4. 多方案是否比单纯折扣方案更符合历史模式

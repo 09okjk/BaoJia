@@ -320,3 +320,83 @@
 - 优化 remark 去重、归类和模板化输出
 - 优化 approval_level 计算规则
 - 细化 trace 的定价依据和规则版本来源
+
+---
+
+## 14. 历史参考增强后的组装与审核方向
+
+### 14.1 当前约束
+
+即使后续增强历史参考能力，本 Skill 仍然不能：
+
+- 重新计算金额
+- 重新做历史检索
+- 重新生成 `quotation_options`
+
+本 Skill 只负责复用上游结果并把“历史依据”更清晰地表达在最终文档里。
+
+### 14.2 后续推荐增强点
+
+#### A. remark 组装优先使用结构化历史块
+
+若 `historical_reference.reference_summary` 后续增加结构化 `remark_blocks`，本 Skill 应：
+
+1. 优先按类型合并：
+- `warranty`
+- `waiting`
+- `safety`
+- `payment_term`
+- `commercial`
+
+2. 再与以下来源做去重：
+- `pricing_result.quotation_options[*].remarks`
+- `quote_request.commercial_context.special_terms`
+- 默认 remark 模板
+
+目标：
+- 避免 footer remark 只是若干历史自由文本拼接。
+
+#### B. review_result 增加历史参考质量提示
+
+若历史摘要后续输出 `history_quality_flags`，本 Skill 可在 `review_result.review_flags` 中增加如下提醒：
+
+- 历史样本数量不足
+- 当前项目与历史案例相似度偏弱
+- 历史价格区间过宽，参考价值有限
+
+目标：
+- 让审核人知道“当前报价对历史的依赖程度”和“历史参考是否可信”。
+
+#### C. trace 更精确表达历史使用方式
+
+后续版本可在 `trace` 中更细地表达：
+
+1. 历史命中结果
+2. 历史摘要被用于哪些模块
+3. 历史只参与了 remark / fallback / option style 哪一类决策
+
+推荐方向：
+- `pricing_basis` 更明确区分：
+  - `historical_price_range`
+  - `historical_remark_block`
+  - `historical_charge_item_hint`
+  - `historical_option_style_hint`
+
+### 14.3 建议的落地顺序
+
+第一阶段：
+- 增加历史质量相关 review flag
+- 增加 trace 中的历史使用分类
+
+第二阶段：
+- 使用结构化 `remark_blocks` 改善 footer remark 组装
+
+第三阶段：
+- 根据历史增强后的 option style 来源，优化 review 审批提示
+
+### 14.4 验收重点
+
+1. 最终 `quote_document` 仍严格符合 QuoteDocument Schema
+2. `review_result` 能明确提示历史参考是否可靠
+3. `trace` 能回答“历史参考到底被用在了哪里”
+4. remark 组装更像真实报价单，而不是自由文本拼接
