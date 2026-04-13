@@ -1,0 +1,919 @@
+{
+    "msg": "success",
+    "code": "00000000",
+    "data": {
+        "quotationOrders": {
+            "inquiryNo": "RH-2026-000108",
+            "quotationNo": "RH-2026-000108",
+            "quotationLang": 1,
+            "displayDiscounts": 1,
+            "taxRate": false,
+            "quotationTemplate": 1,
+            "currencyName": "人民币",
+            "currencySymbol": "¥",
+            "engineeringQuotationOrder": {
+                "vesselName": "STL HUANGHE",
+                "date": "2026/03/13",
+                "imoNo": "9918183",
+                "vesselType": "液化天然气船",
+                "customerName": "青岛普生堂商贸有限公司",
+                "servicePort": "洋浦港",
+                "attention": "李云风",
+                "wkOfferNo": "RH-2026-000108",
+                "youRefNo": "",
+                "quotationValidity": "30日",
+                "inquiryInitiator": "李云风",
+                "poNo": null,
+                "paymentTerms": null,
+                "remarks": [
+                    "Second attendance on board for sea trail based on 2 Men one (1) day, will charge extraUSD800/time.",
+                    "Warranty Time: 6 Months",
+                    "Warranty Compensate Amount: 5times of the service cost at max.",
+                    "Port entrance fee /Other cost if needed to be charged as actual.",
+                    "Shipyard management fee/Boarding pass/Crane cost if needed to be charged as actual.",
+                    "Other Spares if needed to be charged extra.",
+                    "Other repair if needed to be charged extra.",
+                    "VAT not included."
+                ],
+                "servicePaymentTerms": [
+                    "100%的款项应在收到Winkong提交的付款通知和相关账单后30天内支付。"
+                ],
+                "paymentTermsForSpareParts": [],
+                "inscribe": "Address: 17F, Zhongxin Building, No. 263 Liaoning Road, Qingdao, P. R. China 266012\nTel: +86 (0532) 83829109/83800536/80912153\nE-mail: biz@winkong.net\nWeb: www.winkong.net",
+                "descriptions": [
+                    {
+                        "unique": "RH-2026-0001081001",
+                        "type": 1,
+                        "sort": null,
+                        "index": "1",
+                        "content": "汽缸,设备厂家：111,设备型号：5S60MC ",
+                        "price": "¥555",
+                        "unit": "次",
+                        "qty": "1",
+                        "discount": "0%",
+                        "amount": "¥555",
+                        "discountType": 1,
+                        "fixedAppendFlag": false
+                    },
+                    {
+                        "unique": "RH-2026-0001081001-scopeWoke-1",
+                        "type": 2,
+                        "sort": null,
+                        "index": "1.1",
+                        "content": "111",
+                        "price": "¥630",
+                        "unit": null,
+                        "qty": null,
+                        "discount": null,
+                        "amount": null,
+                        "discountType": 1,
+                        "fixedAppendFlag": false
+                    },
+                    {
+                        "unique": "RH-2026-0001082001",
+                        "type": 3,
+                        "sort": null,
+                        "index": "1.2",
+                        "content": "方管（南通-MN-儒海-蓝色-自贸区）,品质：原厂",
+                        "price": "¥188",
+                        "unit": "卷",
+                        "qty": "5",
+                        "discount": "0%",
+                        "amount": "¥940",
+                        "discountType": 1,
+                        "fixedAppendFlag": false
+                    },
+                    {
+                        "unique": "RH-2026-0001081001-tool-1",
+                        "type": 4,
+                        "sort": null,
+                        "index": "1.3",
+                        "content": "需求1",
+                        "price": "¥55",
+                        "unit": "毫米",
+                        "qty": "2",
+                        "discount": "0%",
+                        "amount": "¥110",
+                        "discountType": 1,
+                        "fixedAppendFlag": false
+                    },
+                    {
+                        "unique": "RH-2026-0001081001-tool-2",
+                        "type": 4,
+                        "sort": null,
+                        "index": "1.4",
+                        "content": "耗材1",
+                        "price": "¥56",
+                        "unit": "次",
+                        "qty": "4",
+                        "discount": "0%",
+                        "amount": "¥224",
+                        "discountType": 1,
+                        "fixedAppendFlag": false
+                    },
+                    {
+                        "unique": "RH-2026-0001081001-tool-3",
+                        "type": 4,
+                        "sort": null,
+                        "index": "1.5",
+                        "content": "专用1",
+                        "price": "¥57",
+                        "unit": "次",
+                        "qty": "3",
+                        "discount": "0%",
+                        "amount": "¥171",
+                        "discountType": 1,
+                        "fixedAppendFlag": false
+                    },
+                    {
+                        "unique": "RH-2026-0001081002",
+                        "type": 1,
+                        "sort": null,
+                        "index": "2",
+                        "content": "活塞冠,设备厂家：222,设备型号：5S60MC ",
+                        "price": "¥88",
+                        "unit": "MPa",
+                        "qty": "1",
+                        "discount": "0%",
+                        "amount": "¥88",
+                        "discountType": 1,
+                        "fixedAppendFlag": false
+                    },
+                    {
+                        "unique": "RH-2026-0001081002-scopeWoke-1",
+                        "type": 2,
+                        "sort": null,
+                        "index": "2.1",
+                        "content": "222",
+                        "price": null,
+                        "unit": null,
+                        "qty": null,
+                        "discount": null,
+                        "amount": null,
+                        "discountType": 1,
+                        "fixedAppendFlag": false
+                    },
+                    {
+                        "unique": "RH-2026-0001082002",
+                        "type": 3,
+                        "sort": null,
+                        "index": "2.2",
+                        "content": "内六角扳手,品质：原厂",
+                        "price": "¥255",
+                        "unit": "把",
+                        "qty": "4",
+                        "discount": "0%",
+                        "amount": "¥1020",
+                        "discountType": 1,
+                        "fixedAppendFlag": false
+                    },
+                    {
+                        "unique": "RH-2026-0001081002-tool-1",
+                        "type": 4,
+                        "sort": null,
+                        "index": "2.3",
+                        "content": "需求2",
+                        "price": "¥85",
+                        "unit": "亩",
+                        "qty": "2",
+                        "discount": "0%",
+                        "amount": "¥170",
+                        "discountType": 1,
+                        "fixedAppendFlag": false
+                    },
+                    {
+                        "unique": "RH-2026-0001081002-tool-2",
+                        "type": 4,
+                        "sort": null,
+                        "index": "2.4",
+                        "content": "耗材2",
+                        "price": "¥84",
+                        "unit": "亩",
+                        "qty": "3",
+                        "discount": "0%",
+                        "amount": "¥252",
+                        "discountType": 1,
+                        "fixedAppendFlag": false
+                    },
+                    {
+                        "unique": "RH-2026-0001081002-tool-3",
+                        "type": 4,
+                        "sort": null,
+                        "index": "2.5",
+                        "content": "专用2",
+                        "price": "¥83",
+                        "unit": "MPa",
+                        "qty": "4",
+                        "discount": "0%",
+                        "amount": "¥332",
+                        "discountType": 1,
+                        "fixedAppendFlag": false
+                    }
+                ],
+                "summary": [
+                    {
+                        "serviceCharge": "¥643.00",
+                        "sparePartsFee": "¥3219.00",
+                        "other": "¥0.00",
+                        "total": "¥3862.00",
+                        "vat": "无税",
+                        "serviceTaxRate": null,
+                        "productTaxRate": null,
+                        "finalAmount": "¥3862.00"
+                    }
+                ]
+            },
+            "engineeringQuotationBlueTechnologyOrder": null,
+            "manHourQuotationOrder": null,
+            "laboratoryQuotationOrder": null,
+            "superchargerQuotationOrder": null,
+            "auxiliaryTurbochargerQuotationOrder": null,
+            "productQuotationOrder": null,
+            "digitalProductQuotationOrder": null,
+            "valveQuotationOrder": null
+        },
+        "quotationInfo": {
+            "inquiryNo": "RH-2026-000108",
+            "quotationNo": "RH-2026-000108",
+            "inquiryContent": {
+                "inquiryNo": "RH-2026-000108",
+                "projectNo": null,
+                "inquiryState": 50,
+                "inquiryBusinessType": 1,
+                "serviceObjectType": 1,
+                "customerName": "青岛普生堂商贸有限公司",
+                "customerContact": "李云风",
+                "customerContactPhone": "+86 17744421795",
+                "vesselsCategoryName": "现有船",
+                "vesselsTypeName": "液化天然气船",
+                "vesselsName": "STL HUANGHE",
+                "vesselsAliasName": null,
+                "shipyardName": "",
+                "maritimeFlagName": "中国香港",
+                "classSocietyName": null,
+                "imoNo": "9918183",
+                "hullNo": null,
+                "inquirySource": 2,
+                "inquirySubject": "施工单信息031302",
+                "endQuoteTime": null,
+                "scheduledServiceHours": "2026/03/13",
+                "estimatedDepartureTime": null,
+                "serviceAddressType": 1,
+                "serviceAddress": "港口|洋浦港",
+                "detailedAddress": "儋州市洋浦经济开发区吉浦路与瀚洋路东交汇处西南",
+                "customerInquiryNo": "",
+                "customerRequirement": null,
+                "deliveryMethod": null,
+                "salesMethod": null,
+                "lifeCycle": null,
+                "enCurrencyName": "CNY",
+                "currencyName": "人民币",
+                "currencyNo": "CT0010",
+                "currencySymbol": "¥",
+                "exchangeRate": 1.00000000
+            },
+            "quotationInfo": {
+                "currencyNo": "CT0010",
+                "currencyName": "人民币",
+                "validityPeriodOfQuotation": 30,
+                "quotationLang": 1,
+                "displayDiscounts": 1,
+                "quotationType": [
+                    1
+                ],
+                "hours": null,
+                "hostRuntime": null,
+                "hostRuntimeVal": null,
+                "hostNo": null,
+                "workScope": null,
+                "quotationTemplate": 1,
+                "quotationBasis": null,
+                "taxRate": 1,
+                "taxRateType": 3,
+                "serviceTaxRate": 4,
+                "productTaxRate": 5,
+                "grossMargin": 16.28
+            },
+            "projects": [
+                {
+                    "quotationNo": "RH-2026-000108",
+                    "sort": 1,
+                    "participationQuotation": 1,
+                    "quotationType": 1,
+                    "quotationProjectType": 3,
+                    "businessFocalPoint": 1,
+                    "serviceProject": {
+                        "serviceOrderNo": "RH-2026-0001081001",
+                        "serviceProjectNo": null,
+                        "serviceProjectName": null,
+                        "enServiceProjectName": null,
+                        "totalPeopleNumber": 2,
+                        "totalDayNumber": 4,
+                        "hourShift": null,
+                        "serviceDescriptionNo": "RS0000000002",
+                        "serviceDescriptionName": "汽缸",
+                        "enServiceDescriptionName": "Cylinder",
+                        "serviceTypeNo": null,
+                        "serviceTypeName": null,
+                        "enServiceTypeName": null,
+                        "enContent": "Cylinder,Equipment manufacturer：111,Equipment model：5S60MC ",
+                        "zhContent": "汽缸,设备厂家：111,设备型号：5S60MC ",
+                        "deviceName": "传统二冲程柴油机",
+                        "deviceModel": "5S60MC ",
+                        "deviceManufacturer": "111",
+                        "unitNo": null,
+                        "unit": "JOB",
+                        "number": 3,
+                        "partsModel": [],
+                        "workingHours": null,
+                        "workingPersonnel": [
+                            {
+                                "detailedJobResponsibilities": "111",
+                                "unit": {
+                                    "unitNo": null,
+                                    "zhUnitName": null,
+                                    "type": null
+                                },
+                                "quantity": null,
+                                "typeOfWorkNo": "JN0008",
+                                "typeOfWorkName": "轮机工程师",
+                                "rankNo": "RN0008",
+                                "rankName": "MT5",
+                                "constructionHour": 5,
+                                "peopleNumber": 2,
+                                "workHour": null,
+                                "referencePrice": 90.00,
+                                "peopleRelatedContentList": null
+                            }
+                        ],
+                        "designHour": [
+                            {
+                                "workHourType": "详细设计",
+                                "workHour": null
+                            },
+                            {
+                                "workHourType": "轮机生产设计",
+                                "workHour": null
+                            },
+                            {
+                                "workHourType": "电气生产设计",
+                                "workHour": null
+                            },
+                            {
+                                "workHourType": "舾装生产设计",
+                                "workHour": null
+                            },
+                            {
+                                "workHourType": "结构生产设计",
+                                "workHour": null
+                            },
+                            {
+                                "workHourType": "总工时",
+                                "workHour": null
+                            },
+                            {
+                                "workHourType": "测绘",
+                                "workHour": null
+                            }
+                        ],
+                        "inspectionHours": null,
+                        "equipmentModificationDesign": null,
+                        "designersNum": null,
+                        "thirdPartyType": 1,
+                        "thirdPartyTypeName": null,
+                        "currencyNo": null,
+                        "currencyName": null,
+                        "costPrice": null,
+                        "thirdPartyQuotationType": null,
+                        "costPriceBreakDown": null,
+                        "detailedScopeOfWork": [
+                            {
+                                "enCurrencyName": "CNY",
+                                "enDescribe": "111",
+                                "describe": "111",
+                                "unitNo": null,
+                                "unitName": null,
+                                "unitValType": null,
+                                "number": null,
+                                "price": 630,
+                                "discountType": 1,
+                                "discount": null,
+                                "totalPrice": null,
+                                "fixedTotalPrice": null,
+                                "children": null
+                            }
+                        ],
+                        "engineeringQuotation": [
+                            {
+                                "enContent": null,
+                                "zhContent": null,
+                                "content": "汽缸,设备厂家：111,设备型号：5S60MC ",
+                                "calculateExpenseType": 1,
+                                "grossMargin": 0,
+                                "unitNo": "UM0040",
+                                "unitName": "次",
+                                "unitValType": 0,
+                                "number": "1",
+                                "price": "555",
+                                "discountType": 1,
+                                "discount": 0,
+                                "totalPrice": "555",
+                                "fixedTotalPrice": "555"
+                            }
+                        ],
+                        "manHourQuotation": null,
+                        "requirementTools": [
+                            {
+                                "toolName": "需求1",
+                                "toolType": "劳保用品",
+                                "unitNo": "UM0014",
+                                "unitName": "毫米",
+                                "number": 2,
+                                "charging": 1,
+                                "display": 1,
+                                "price": 55,
+                                "discountType": 1,
+                                "discount": 0,
+                                "totalPrice": 110,
+                                "fixedTotalPrice": 110
+                            }
+                        ],
+                        "consumableContents": [
+                            {
+                                "toolName": "耗材1",
+                                "toolType": "111",
+                                "unitNo": "UM0040",
+                                "unitName": "次",
+                                "number": 4,
+                                "charging": 1,
+                                "display": 1,
+                                "price": 56,
+                                "discountType": 1,
+                                "discount": 0,
+                                "totalPrice": 224,
+                                "fixedTotalPrice": 224
+                            }
+                        ],
+                        "specializedToolContents": [
+                            {
+                                "toolName": "专用1",
+                                "toolType": "111",
+                                "unitNo": "UM0040",
+                                "unitName": "次",
+                                "number": 3,
+                                "charging": 1,
+                                "display": 1,
+                                "price": 57,
+                                "discountType": 1,
+                                "discount": 0,
+                                "totalPrice": 171,
+                                "fixedTotalPrice": 171
+                            }
+                        ],
+                        "detectionProject": null,
+                        "detectionQuotation": null,
+                        "superchargerQuotationType": null,
+                        "superchargerQuotation": null,
+                        "whetherAviationRepair": true
+                    },
+                    "commodityProject": [
+                        {
+                            "commodityOrderNo": "RH-2026-0001082001",
+                            "commodityType": 0,
+                            "applicationDevice": "传统二冲程柴油机",
+                            "applicationDeviceModel": "5S60MC ",
+                            "sort": 1,
+                            "serviceOrderNo": null,
+                            "skuCode": null,
+                            "commodityName": "方管（南通-MN-儒海-蓝色-自贸区）",
+                            "model": null,
+                            "manufacture": null,
+                            "partNo": null,
+                            "drawingNo": null,
+                            "quality": null,
+                            "commodityRemark": null,
+                            "alternative": [
+                                {
+                                    "check": 1,
+                                    "commodityEvaluationPlanNo": "RH-2026-0001082001001",
+                                    "skuCode": "SU00000000000642",
+                                    "commodityName": "方管（南通-MN-儒海-蓝色-自贸区）",
+                                    "manufacturer": "",
+                                    "model": null,
+                                    "primaryKey": 1,
+                                    "quality": "原厂",
+                                    "coreParameters": [],
+                                    "number": 5,
+                                    "partNo": null,
+                                    "drawingNo": null,
+                                    "unitNo": "UM0028",
+                                    "unit": "卷",
+                                    "unitType": 0,
+                                    "supplyCycle": 4,
+                                    "price": 133,
+                                    "currencyNo": "CT0010",
+                                    "currency": "人民币",
+                                    "purchaseUnitPrice": "人民币|133.00",
+                                    "afterSalesMouth": 3,
+                                    "evaluationRemark": null,
+                                    "taxRate": "1%",
+                                    "shippingCostsIsInclude": 0,
+                                    "attachmentInformationContentList": []
+                                }
+                            ],
+                            "commodityQuotation": [
+                                {
+                                    "enContent": null,
+                                    "zhContent": null,
+                                    "content": null,
+                                    "calculateExpenseType": 1,
+                                    "grossMargin": 29.26,
+                                    "unitNo": "UM0028",
+                                    "unitName": "卷",
+                                    "unitValType": 0,
+                                    "number": "5",
+                                    "price": "188",
+                                    "discountType": 1,
+                                    "discount": 0,
+                                    "totalPrice": "940",
+                                    "fixedTotalPrice": "940"
+                                }
+                            ]
+                        }
+                    ],
+                    "valveProject": null,
+                    "quotationIdea": "<p>111</p>"
+                },
+                {
+                    "quotationNo": "RH-2026-000108",
+                    "sort": 2,
+                    "participationQuotation": 1,
+                    "quotationType": 1,
+                    "quotationProjectType": 3,
+                    "businessFocalPoint": 1,
+                    "serviceProject": {
+                        "serviceOrderNo": "RH-2026-0001081002",
+                        "serviceProjectNo": null,
+                        "serviceProjectName": null,
+                        "enServiceProjectName": null,
+                        "totalPeopleNumber": 4,
+                        "totalDayNumber": 5,
+                        "hourShift": 1,
+                        "serviceDescriptionNo": "RS0000000006",
+                        "serviceDescriptionName": "活塞冠",
+                        "enServiceDescriptionName": "Piston crown",
+                        "serviceTypeNo": null,
+                        "serviceTypeName": null,
+                        "enServiceTypeName": null,
+                        "enContent": "Piston crown,Equipment manufacturer：222,Equipment model：5S60MC ",
+                        "zhContent": "活塞冠,设备厂家：222,设备型号：5S60MC ",
+                        "deviceName": "传统二冲程柴油机",
+                        "deviceModel": "5S60MC ",
+                        "deviceManufacturer": "222",
+                        "unitNo": null,
+                        "unit": "次",
+                        "number": 5,
+                        "partsModel": [],
+                        "workingHours": null,
+                        "workingPersonnel": [
+                            {
+                                "detailedJobResponsibilities": "222",
+                                "unit": {
+                                    "unitNo": null,
+                                    "zhUnitName": null,
+                                    "type": null
+                                },
+                                "quantity": null,
+                                "typeOfWorkNo": "JN0011",
+                                "typeOfWorkName": "焊工",
+                                "rankNo": "RN0026",
+                                "rankName": "WP5",
+                                "constructionHour": 5,
+                                "peopleNumber": 4,
+                                "workHour": null,
+                                "referencePrice": null,
+                                "peopleRelatedContentList": null
+                            }
+                        ],
+                        "designHour": [
+                            {
+                                "workHourType": "详细设计",
+                                "workHour": null
+                            },
+                            {
+                                "workHourType": "轮机生产设计",
+                                "workHour": null
+                            },
+                            {
+                                "workHourType": "电气生产设计",
+                                "workHour": null
+                            },
+                            {
+                                "workHourType": "舾装生产设计",
+                                "workHour": null
+                            },
+                            {
+                                "workHourType": "结构生产设计",
+                                "workHour": null
+                            },
+                            {
+                                "workHourType": "总工时",
+                                "workHour": null
+                            },
+                            {
+                                "workHourType": "测绘",
+                                "workHour": null
+                            }
+                        ],
+                        "inspectionHours": null,
+                        "equipmentModificationDesign": null,
+                        "designersNum": null,
+                        "thirdPartyType": 1,
+                        "thirdPartyTypeName": null,
+                        "currencyNo": null,
+                        "currencyName": null,
+                        "costPrice": null,
+                        "thirdPartyQuotationType": null,
+                        "costPriceBreakDown": null,
+                        "detailedScopeOfWork": [
+                            {
+                                "enCurrencyName": "CNY",
+                                "enDescribe": "222",
+                                "describe": "222",
+                                "unitNo": null,
+                                "unitName": null,
+                                "unitValType": null,
+                                "number": null,
+                                "price": null,
+                                "discountType": 1,
+                                "discount": null,
+                                "totalPrice": null,
+                                "fixedTotalPrice": null,
+                                "children": null
+                            }
+                        ],
+                        "engineeringQuotation": [
+                            {
+                                "enContent": null,
+                                "zhContent": null,
+                                "content": "活塞冠,设备厂家：222,设备型号：5S60MC ",
+                                "calculateExpenseType": 1,
+                                "grossMargin": 0,
+                                "unitNo": "UM0015",
+                                "unitName": "MPa",
+                                "unitValType": 0,
+                                "number": "1",
+                                "price": "88",
+                                "discountType": 1,
+                                "discount": 0,
+                                "totalPrice": "88",
+                                "fixedTotalPrice": "88"
+                            }
+                        ],
+                        "manHourQuotation": null,
+                        "requirementTools": [
+                            {
+                                "toolName": "需求2",
+                                "toolType": "工具",
+                                "unitNo": "UM0038",
+                                "unitName": "亩",
+                                "number": 2,
+                                "charging": 1,
+                                "display": 1,
+                                "price": 85,
+                                "discountType": 1,
+                                "discount": 0,
+                                "totalPrice": 170,
+                                "fixedTotalPrice": 170
+                            }
+                        ],
+                        "consumableContents": [
+                            {
+                                "toolName": "耗材2",
+                                "toolType": "222",
+                                "unitNo": "UM0038",
+                                "unitName": "亩",
+                                "number": 3,
+                                "charging": 1,
+                                "display": 1,
+                                "price": 84,
+                                "discountType": 1,
+                                "discount": 0,
+                                "totalPrice": 252,
+                                "fixedTotalPrice": 252
+                            }
+                        ],
+                        "specializedToolContents": [
+                            {
+                                "toolName": "专用2",
+                                "toolType": "222",
+                                "unitNo": "UM0015",
+                                "unitName": "MPa",
+                                "number": 4,
+                                "charging": 1,
+                                "display": 1,
+                                "price": 83,
+                                "discountType": 1,
+                                "discount": 0,
+                                "totalPrice": 332,
+                                "fixedTotalPrice": 332
+                            }
+                        ],
+                        "detectionProject": null,
+                        "detectionQuotation": null,
+                        "superchargerQuotationType": null,
+                        "superchargerQuotation": null,
+                        "whetherAviationRepair": false
+                    },
+                    "commodityProject": [
+                        {
+                            "commodityOrderNo": "RH-2026-0001082002",
+                            "commodityType": 0,
+                            "applicationDevice": "传统二冲程柴油机",
+                            "applicationDeviceModel": "5S60MC ",
+                            "sort": 1,
+                            "serviceOrderNo": null,
+                            "skuCode": null,
+                            "commodityName": "内六角扳手",
+                            "model": null,
+                            "manufacture": null,
+                            "partNo": null,
+                            "drawingNo": null,
+                            "quality": null,
+                            "commodityRemark": null,
+                            "alternative": [
+                                {
+                                    "check": 1,
+                                    "commodityEvaluationPlanNo": "RH-2026-0001082002001",
+                                    "skuCode": "SU00000000000638",
+                                    "commodityName": "内六角扳手",
+                                    "manufacturer": "",
+                                    "model": null,
+                                    "primaryKey": 1,
+                                    "quality": "原厂",
+                                    "coreParameters": [],
+                                    "number": 4,
+                                    "partNo": null,
+                                    "drawingNo": null,
+                                    "unitNo": "UM0002",
+                                    "unit": "把",
+                                    "unitType": 0,
+                                    "supplyCycle": 4,
+                                    "price": 244,
+                                    "currencyNo": "CT0010",
+                                    "currency": "人民币",
+                                    "purchaseUnitPrice": "人民币|244.00",
+                                    "afterSalesMouth": 3,
+                                    "evaluationRemark": null,
+                                    "taxRate": "13%",
+                                    "shippingCostsIsInclude": 0,
+                                    "attachmentInformationContentList": []
+                                }
+                            ],
+                            "commodityQuotation": [
+                                {
+                                    "enContent": null,
+                                    "zhContent": null,
+                                    "content": null,
+                                    "calculateExpenseType": 1,
+                                    "grossMargin": 4.31,
+                                    "unitNo": "UM0002",
+                                    "unitName": "把",
+                                    "unitValType": 0,
+                                    "number": "4",
+                                    "price": "255",
+                                    "discountType": 1,
+                                    "discount": 0,
+                                    "totalPrice": "1020",
+                                    "fixedTotalPrice": "1020"
+                                }
+                            ]
+                        }
+                    ],
+                    "valveProject": null,
+                    "quotationIdea": "<p>111</p>"
+                }
+            ],
+            "otherExpense": null,
+            "quotationRemark": [
+                {
+                    "check": 1,
+                    "type": 3,
+                    "params": [
+                        "2 Men one (1) day, will charge extraUSD800/time."
+                    ],
+                    "newClauseNo": null,
+                    "newClause": null
+                },
+                {
+                    "check": 1,
+                    "type": 1,
+                    "params": [
+                        "6"
+                    ],
+                    "newClauseNo": null,
+                    "newClause": null
+                },
+                {
+                    "check": 0,
+                    "type": 1,
+                    "params": [],
+                    "newClauseNo": null,
+                    "newClause": null
+                },
+                {
+                    "check": 0,
+                    "type": 1,
+                    "params": null,
+                    "newClauseNo": null,
+                    "newClause": null
+                },
+                {
+                    "check": 1,
+                    "type": 2,
+                    "params": null,
+                    "newClauseNo": null,
+                    "newClause": "Warranty Compensate Amount: 5times of the service cost at max."
+                },
+                {
+                    "check": 1,
+                    "type": 2,
+                    "params": null,
+                    "newClauseNo": null,
+                    "newClause": "Port entrance fee /Other cost if needed to be charged as actual."
+                },
+                {
+                    "check": 1,
+                    "type": 2,
+                    "params": null,
+                    "newClauseNo": null,
+                    "newClause": "Shipyard management fee/Boarding pass/Crane cost if needed to be charged as actual."
+                },
+                {
+                    "check": 1,
+                    "type": 2,
+                    "params": null,
+                    "newClauseNo": null,
+                    "newClause": "Other Spares if needed to be charged extra."
+                },
+                {
+                    "check": 1,
+                    "type": 2,
+                    "params": null,
+                    "newClauseNo": null,
+                    "newClause": "Other repair if needed to be charged extra."
+                },
+                {
+                    "check": 1,
+                    "type": 2,
+                    "params": null,
+                    "newClauseNo": null,
+                    "newClause": "VAT not included."
+                }
+            ],
+            "paymentProvision": [
+                {
+                    "check": 0,
+                    "businessType": 1,
+                    "type": 1,
+                    "ratio": null,
+                    "days": null,
+                    "newClause": "100"
+                },
+                {
+                    "check": 1,
+                    "businessType": 1,
+                    "type": 1,
+                    "ratio": 100,
+                    "days": 30,
+                    "newClause": "100"
+                },
+                {
+                    "check": 0,
+                    "businessType": 2,
+                    "type": 1,
+                    "ratio": null,
+                    "days": null,
+                    "newClause": "100"
+                },
+                {
+                    "check": 0,
+                    "businessType": 2,
+                    "type": 1,
+                    "ratio": null,
+                    "days": 100,
+                    "newClause": "100"
+                },
+                {
+                    "check": 0,
+                    "businessType": 2,
+                    "type": 1,
+                    "ratio": null,
+                    "days": null,
+                    "newClause": "100"
+                }
+            ],
+            "defaultApprove": null
+        }
+    }
+}

@@ -1,1 +1,9 @@
 .venv/
+
+# quotation-pdf local environment and generated outputs
+quotation-pdf/.venv/
+quotation-pdf/.vscode/
+quotation-pdf/.trae/
+quotation-pdf/out/
+quotation-pdf/**/__pycache__/
+quotation-pdf/**/*.py[cod]

@@ -1,0 +1,77 @@
+@import '../common-pdf.less';
+@page {
+  size: A4;
+  margin: 30px;
+  margin-top: 110px;
+}
+.engineering-pdf {
+  page: engineeringPdf;
+}
+@page {
+  @top-center {
+    content: element(headerRunningEngineering);
+  }
+  @bottom-right {
+    padding-bottom: 20px;
+    // content: counter(page) '/' counter(pages);
+  }
+}
+.header {
+  position: running(headerRunningEngineering);
+}
+table {
+  tr {
+    td {
+      padding: 3px 6px !important;
+    }
+  }
+}
+.blue-title {
+  text-align: center;
+  font-size: 20px;
+  font-weight: 800px;
+  color: #000;
+  font-weight: 800;
+  font-family: PingFang SC, PingFang SC;
+  margin-top: 5px;
+}
+.blue-header {
+  justify-content: flex-start !important;
+  margin-top: 4px;
+  .blue_gms_logo {
+    width: 170px;
+    height: 56px;
+  }
+  .rainbow-bar {
+    width: 170px;
+    height: 12px;
+    display: block;
+    margin-top: -14px;
+  }
+  .blue-logo {
+    width: 62px;
+    height: 58px;
+    margin-left: 30px;
+    margin-top: 6px;
+  }
+  .blue-title-small {
+    font-size: 13px;
+    color: #000;
+    font-family: Source Sans 3, Source Sans 3;
+    text-align: center;
+    line-height: 17px;
+  }
+  .blue-net-content {
+    // border-bottom: 1px solid #000;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-top: 8px;
+    margin-left: 8px;
+  }
+  .blue-net-text {
+    font-size: 13px;
+    color: #000;
+    font-family: Source Sans 3, Source Sans 3;
+  }
+}

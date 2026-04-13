@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Quotation {{ quote_document.header.wk_offer_no }}</title>
+    <style>
+{% include 'quote_document_pdf.css' %}
+    </style>
+  </head>
+  <body>
+    <div class="document">
+      <section class="topbar">
+        <div class="brand">
+          <h1>Quotation</h1>
+          <p>{{ quote_document.header.customer_name }}</p>
+          <p>{{ quote_document.header.vessel_name }}{% if quote_document.header.imo_no %} / IMO {{ quote_document.header.imo_no }}{% endif %}</p>
+        </div>
+        <div class="offer-no">
+          <div class="label">Offer No.</div>
+          <div class="value">{{ quote_document.header.wk_offer_no }}</div>
+          <div class="muted">Version {{ quote_document.document_version }}</div>
+        </div>
+      </section>
+
+      <table class="meta-table">
+        <tbody>
+          <tr>
+            <td class="label">Currency</td>
+            <td class="value">{{ quote_document.header.currency }}</td>
+            <td class="label">Date</td>
+            <td class="value">{{ quote_document.header.date }}</td>
+          </tr>
+          <tr>
+            <td class="label">Vessel Type</td>
+            <td class="value">{{ quote_document.header.vessel_type }}</td>
+            <td class="label">Service Port</td>
+            <td class="value">{{ quote_document.header.service_port }}</td>
+          </tr>
+          <tr>
+            <td class="label">Attention</td>
+            <td class="value">{{ quote_document.header.attention }}</td>
+            <td class="label">Your Ref No.</td>
+            <td class="value">{{ quote_document.header.your_ref_no }}</td>
+          </tr>
+          <tr>
+            <td class="label">Quotation Validity</td>
+            <td class="value">{{ quote_document.header.quotation_validity }}</td>
+            <td class="label">PO No.</td>
+            <td class="value">{{ quote_document.header.po_no }}</td>
+          </tr>
+          <tr>
+            <td class="label">PIC of Winkong</td>
+            <td class="value">{{ quote_document.header.pic_of_winkong }}</td>
+            <td class="label">Document Type</td>
+            <td class="value">{{ quote_document.document_type }}</td>
+          </tr>
+        </tbody>
+      </table>
+
+      {% for option in quote_document.quotation_options %}
+      <section class="option{% if not loop.first %} page-break{% endif %}">
+        <div class="option-title">{{ option.title }}</div>
+
+        {% for section in option.sections %}
+        <div class="section-title">{{ section.title }} <span class="muted">({{ section.section_type }})</span></div>
+
+        {% for group in section.groups %}
+        <p class="group-title">{% if group.group_no %}{{ group.group_no }}. {% endif %}{{ group.title }}</p>
+        {% if group.description %}
+        <p class="group-description">{{ group.description }}</p>
+        {% endif %}
+
+        <table class="line-table">
+          <thead>
+            <tr>
+              {% for column in quote_document.table_schema.columns %}
+              <th>{{ column.label }}</th>
+              {% endfor %}
+            </tr>
+          </thead>
+          <tbody>
+            {% for line in group.lines %}
+            {% set line_type_class = 'line-type-note' if line.line_type in ['note', 'scope_note', 'technical_note', 'assumption_note', 'commercial_note'] else ('line-type-header' if line.line_type == 'header' else '') %}
+            <tr class="{{ line_type_class }} line-status-{{ line.status }}">
+              <td>{{ line.item }}</td>
+              <td>
+                {{ line.description }}
+                {% if line.basis %}
+                <span class="line-basis">Basis: {{ line.basis }}</span>
+                {% endif %}
+                {% if line.conditions %}
+                <span class="line-conditions">Conditions: {{ line.conditions | join('; ') }}</span>
+                {% endif %}
+                {% if line.notes %}
+                <span class="line-notes">Notes: {{ line.notes | join('; ') }}</span>
+                {% endif %}
+                {% if line.relation %}
+                <span class="line-relation">Relation: {{ line.relation.type }} -> {{ line.relation.target_line_id }}</span>
+                {% endif %}
+              </td>
+              <td class="num">{{ line.unit_price_display }}</td>
+              <td>{{ line.unit }}</td>
+              <td class="num">{{ line.qty_display }}</td>
+              <td class="num">{{ line.discount.display if line.discount else '' }}</td>
+              <td class="num">{{ line.amount_display }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+        {% endfor %}
+        {% endfor %}
+
+        <div class="footer-block">
+          <h3>Option Summary</h3>
+          <table class="summary-table">
+            <thead>
+              <tr>
+                <th>Service Charge</th>
+                <th>Spare Parts Fee</th>
+                <th>Other</th>
+                <th>Total</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="summary-status-{{ option.summary.total.status }}">
+                <td class="num">{{ option.summary.service_charge.display }}</td>
+                <td class="num">{{ option.summary.spare_parts_fee.display }}</td>
+                <td class="num">{{ option.summary.other.display }}</td>
+                <td class="num">{{ option.summary.total.display }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        {% if option.remarks %}
+        <div class="footer-block">
+          <h3>Option Remarks</h3>
+          <ul class="remark-list">
+            {% for remark in option.remarks %}
+            <li>[{{ remark.type }}] {{ remark.text }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+        {% endif %}
+      </section>
+      {% endfor %}
+
+      <section class="footer-block">
+        <h3>Footer Summary</h3>
+        <table class="summary-table">
+          <thead>
+            <tr>
+              <th>Service Charge</th>
+              <th>Spare Parts Fee</th>
+              <th>Other</th>
+              <th>Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="summary-status-{{ quote_document.footer.summary.total.status }}">
+              <td class="num">{{ quote_document.footer.summary.service_charge.display }}</td>
+              <td class="num">{{ quote_document.footer.summary.spare_parts_fee.display }}</td>
+              <td class="num">{{ quote_document.footer.summary.other.display }}</td>
+              <td class="num">{{ quote_document.footer.summary.total.display }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section class="footer-block">
+        <h3>{{ quote_document.footer.remark.title }}</h3>
+        <ul class="remark-list">
+          {% for item in quote_document.footer.remark['items'] %}
+          <li>[{{ item.type }}] {{ item.text }}</li>
+          {% endfor %}
+        </ul>
+      </section>
+
+      <section class="footer-block">
+        <h3>{{ quote_document.footer.service_payment_terms.title }}</h3>
+        <div>{{ quote_document.footer.service_payment_terms.content }}</div>
+      </section>
+
+      <section class="footer-block">
+        <h3>Review Result</h3>
+        <p><strong>Approval Level:</strong> {{ quote_document.review_result.approval_level }}</p>
+        <table class="list-table">
+          <thead>
+            <tr>
+              <th>Review Flags</th>
+              <th>Risk Flags</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <ul class="flag-list">
+                  {% for flag in quote_document.review_result.review_flags %}
+                  <li>{{ flag }}</li>
+                  {% endfor %}
+                </ul>
+              </td>
+              <td>
+                <ul class="flag-list">
+                  {% for flag in quote_document.review_result.risk_flags %}
+                  <li>{{ flag }}</li>
+                  {% endfor %}
+                </ul>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section class="footer-block">
+        <h3>Trace</h3>
+        <table class="list-table">
+          <thead>
+            <tr>
+              <th>Historical References</th>
+              <th>Pricing Basis</th>
+              <th>Rule Versions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <ul class="trace-list">
+                  {% for item in quote_document.trace.historical_references %}
+                  <li>{{ item.quote_id }} ({{ '%.2f'|format(item.similarity) }}): {{ item.reason }}</li>
+                  {% endfor %}
+                </ul>
+              </td>
+              <td>
+                <ul class="trace-list">
+                  {% for item in quote_document.trace.pricing_basis %}
+                  <li>{{ item }}</li>
+                  {% endfor %}
+                </ul>
+              </td>
+              <td>
+                <ul class="trace-list">
+                  {% for item in quote_document.trace.rule_versions %}
+                  <li>{{ item }}</li>
+                  {% endfor %}
+                </ul>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+    </div>
+  </body>
+</html>
