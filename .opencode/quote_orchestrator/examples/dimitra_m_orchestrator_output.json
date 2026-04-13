@@ -1,0 +1,4827 @@
+{
+  "prepare_result": {
+    "quote_request": {
+      "request_meta": {
+        "request_id": "qr-dimitra-m-20260401",
+        "source": "assessment_report",
+        "prepared_at": "2026-04-10T09:03:22.922705+00:00",
+        "language": "zh-CN"
+      },
+      "header_context": {
+        "currency": "USD",
+        "vessel_name": "M/V DIMITRA M",
+        "imo_no": "YZJ2013-1138",
+        "vessel_type": "82,000 mt Kamsarmax Bulk Carrier",
+        "customer_name": "TBD Customer",
+        "service_port": "China region (Central/South), drydock yard to be confirmed",
+        "service_date": "2025-12-15",
+        "attention": "Technical Department",
+        "customer_ref_no": "DIMITRA-M-HCU-MPC-64K"
+      },
+      "service_context": {
+        "service_category": "integrated",
+        "service_mode": "dock_repair",
+        "location_type": "shipyard",
+        "needs_multi_option": true,
+        "option_hints": [
+          "Option A Standard quotation",
+          "Option B Service only quotation"
+        ],
+        "urgency": "normal"
+      },
+      "candidate_items": [
+        {
+          "item_id": "svc-1",
+          "item_type": "service",
+          "title": "HCU system overhaul",
+          "description": "64k running hours overhaul scope for HCU system",
+          "work_scope": [
+            "Overhaul ELFI valve/Multiway valve units",
+            "Exhaust valve actuator and fuel oil pressure booster overhauling",
+            "Cylinder lubricator system overhauling",
+            "Accumulator overhauling and refill with nitrogen",
+            "Maintenance and overhauling of HPS",
+            "8 hours execution window",
+            "1 set",
+            "Mechanical engineer MT5 x1",
+            "Mechanical fitter FP5 x7"
+          ],
+          "quantity_hint": 1,
+          "unit_hint": "set",
+          "labor_hint": [
+            "Mechanical engineer MT5 x1",
+            "Mechanical fitter FP5 x7"
+          ],
+          "pricing_clues": [
+            "64k overhaul",
+            "drydock service",
+            "nitrogen refill"
+          ],
+          "status_hint": null,
+          "source": "assessment_report"
+        },
+        {
+          "item_id": "svc-2",
+          "item_type": "service",
+          "title": "MPC system inspection",
+          "description": "64k running hours inspection scope for MPC system",
+          "work_scope": [
+            "MPC health inspection and replacement",
+            "8 hours execution window",
+            "1 set",
+            "Electrical engineer ET5 x1",
+            "Electrical engineer ET3 x1"
+          ],
+          "quantity_hint": 1,
+          "unit_hint": "set",
+          "labor_hint": [
+            "Electrical engineer ET5 x1",
+            "Electrical engineer ET3 x1"
+          ],
+          "pricing_clues": [
+            "64k inspection",
+            "electrical control system"
+          ],
+          "status_hint": null,
+          "source": "assessment_report"
+        },
+        {
+          "item_id": "oth-3",
+          "item_type": "other",
+          "title": "Transportation",
+          "description": "Engineer round-trip transportation for China drydock attendance",
+          "work_scope": [
+            "Round-trip travel for service engineers",
+            "Based on one round trip"
+          ],
+          "quantity_hint": 4,
+          "unit_hint": "person",
+          "labor_hint": [],
+          "pricing_clues": [
+            "travel",
+            "ticket",
+            "transportation"
+          ],
+          "status_hint": null,
+          "source": "assessment_report"
+        },
+        {
+          "item_id": "oth-4",
+          "item_type": "other",
+          "title": "Accommodation",
+          "description": "Accommodation and meal arrangement during drydock attendance",
+          "work_scope": [
+            "Hotel and meal arrangement if needed",
+            "Estimated 4 persons for 2 days"
+          ],
+          "quantity_hint": 8,
+          "unit_hint": "person-day",
+          "labor_hint": [],
+          "pricing_clues": [
+            "hotel",
+            "meal",
+            "accommodation"
+          ],
+          "status_hint": "if_needed",
+          "source": "assessment_report"
+        },
+        {
+          "item_id": "oth-5",
+          "item_type": "other",
+          "title": "Dockyard management fee",
+          "description": "Potential dockyard management / boarding / coordination fee during drydock",
+          "work_scope": [
+            "Applicable if required by yard or local arrangement"
+          ],
+          "quantity_hint": 1,
+          "unit_hint": "lot",
+          "labor_hint": [],
+          "pricing_clues": [
+            "dockyard",
+            "management fee"
+          ],
+          "status_hint": "as_actual",
+          "source": "assessment_report"
+        },
+        {
+          "item_id": "oth-6",
+          "item_type": "other",
+          "title": "Maritime reporting / safety permit",
+          "description": "Potential hot work / permit / reporting related charge",
+          "work_scope": [
+            "Applicable only if required by yard or local authority"
+          ],
+          "quantity_hint": 1,
+          "unit_hint": "lot",
+          "labor_hint": [],
+          "pricing_clues": [
+            "maritime",
+            "permit",
+            "hot work"
+          ],
+          "status_hint": "if_needed",
+          "source": "assessment_report"
+        },
+        {
+          "item_id": "spr-7",
+          "item_type": "spare_parts",
+          "title": "HPS accumulators repair kit",
+          "description": "Pending confirmation for HCU overhaul scope",
+          "work_scope": [
+            "Supply responsibility to be confirmed"
+          ],
+          "quantity_hint": null,
+          "unit_hint": null,
+          "labor_hint": [],
+          "pricing_clues": [],
+          "status_hint": null,
+          "source": "assessment_report"
+        },
+        {
+          "item_id": "spr-8",
+          "item_type": "spare_parts",
+          "title": "HCU accumulators repair kit",
+          "description": "Pending confirmation for HCU overhaul scope",
+          "work_scope": [
+            "Supply responsibility to be confirmed"
+          ],
+          "quantity_hint": null,
+          "unit_hint": null,
+          "labor_hint": [],
+          "pricing_clues": [],
+          "status_hint": null,
+          "source": "assessment_report"
+        },
+        {
+          "item_id": "spr-9",
+          "item_type": "spare_parts",
+          "title": "Nitrogen for refilling",
+          "description": "Pending confirmation for HCU overhaul scope",
+          "work_scope": [
+            "Supply responsibility to be confirmed"
+          ],
+          "quantity_hint": null,
+          "unit_hint": null,
+          "labor_hint": [],
+          "pricing_clues": [],
+          "status_hint": null,
+          "source": "assessment_report"
+        },
+        {
+          "item_id": "spr-10",
+          "item_type": "spare_parts",
+          "title": "FIVA valves pilot valves",
+          "description": "Pending confirmation for HCU overhaul scope",
+          "work_scope": [
+            "Supply responsibility to be confirmed"
+          ],
+          "quantity_hint": null,
+          "unit_hint": null,
+          "labor_hint": [],
+          "pricing_clues": [],
+          "status_hint": null,
+          "source": "assessment_report"
+        },
+        {
+          "item_id": "spr-11",
+          "item_type": "spare_parts",
+          "title": "Fuel booster units top covers and suction valves",
+          "description": "Pending confirmation for HCU overhaul scope",
+          "work_scope": [
+            "Supply responsibility to be confirmed"
+          ],
+          "quantity_hint": null,
+          "unit_hint": null,
+          "labor_hint": [],
+          "pricing_clues": [],
+          "status_hint": null,
+          "source": "assessment_report"
+        },
+        {
+          "item_id": "spr-12",
+          "item_type": "spare_parts",
+          "title": "Exhaust valve actuators safety valves",
+          "description": "Pending confirmation for HCU overhaul scope",
+          "work_scope": [
+            "Supply responsibility to be confirmed"
+          ],
+          "quantity_hint": null,
+          "unit_hint": null,
+          "labor_hint": [],
+          "pricing_clues": [],
+          "status_hint": null,
+          "source": "assessment_report"
+        },
+        {
+          "item_id": "spr-13",
+          "item_type": "spare_parts",
+          "title": "MPC and UPS batteries",
+          "description": "Pending confirmation for MPC inspection scope",
+          "work_scope": [
+            "Supply responsibility to be confirmed"
+          ],
+          "quantity_hint": null,
+          "unit_hint": null,
+          "labor_hint": [],
+          "pricing_clues": [],
+          "status_hint": null,
+          "source": "assessment_report"
+        }
+      ],
+      "spare_parts_context": {
+        "has_spare_parts": true,
+        "spare_parts_supply_mode": null,
+        "spare_parts_items": [
+          {
+            "item_id": "spr-1",
+            "item_type": "spare_parts",
+            "title": "HPS accumulators repair kit",
+            "description": "Pending confirmation for HCU overhaul scope",
+            "work_scope": [
+              "Supply responsibility to be confirmed"
+            ],
+            "quantity_hint": null,
+            "unit_hint": null,
+            "labor_hint": [],
+            "pricing_clues": [],
+            "status_hint": null,
+            "source": "assessment_report"
+          },
+          {
+            "item_id": "spr-2",
+            "item_type": "spare_parts",
+            "title": "HCU accumulators repair kit",
+            "description": "Pending confirmation for HCU overhaul scope",
+            "work_scope": [
+              "Supply responsibility to be confirmed"
+            ],
+            "quantity_hint": null,
+            "unit_hint": null,
+            "labor_hint": [],
+            "pricing_clues": [],
+            "status_hint": null,
+            "source": "assessment_report"
+          },
+          {
+            "item_id": "spr-3",
+            "item_type": "spare_parts",
+            "title": "Nitrogen for refilling",
+            "description": "Pending confirmation for HCU overhaul scope",
+            "work_scope": [
+              "Supply responsibility to be confirmed"
+            ],
+            "quantity_hint": null,
+            "unit_hint": null,
+            "labor_hint": [],
+            "pricing_clues": [],
+            "status_hint": null,
+            "source": "assessment_report"
+          },
+          {
+            "item_id": "spr-4",
+            "item_type": "spare_parts",
+            "title": "FIVA valves pilot valves",
+            "description": "Pending confirmation for HCU overhaul scope",
+            "work_scope": [
+              "Supply responsibility to be confirmed"
+            ],
+            "quantity_hint": null,
+            "unit_hint": null,
+            "labor_hint": [],
+            "pricing_clues": [],
+            "status_hint": null,
+            "source": "assessment_report"
+          },
+          {
+            "item_id": "spr-5",
+            "item_type": "spare_parts",
+            "title": "Fuel booster units top covers and suction valves",
+            "description": "Pending confirmation for HCU overhaul scope",
+            "work_scope": [
+              "Supply responsibility to be confirmed"
+            ],
+            "quantity_hint": null,
+            "unit_hint": null,
+            "labor_hint": [],
+            "pricing_clues": [],
+            "status_hint": null,
+            "source": "assessment_report"
+          },
+          {
+            "item_id": "spr-6",
+            "item_type": "spare_parts",
+            "title": "Exhaust valve actuators safety valves",
+            "description": "Pending confirmation for HCU overhaul scope",
+            "work_scope": [
+              "Supply responsibility to be confirmed"
+            ],
+            "quantity_hint": null,
+            "unit_hint": null,
+            "labor_hint": [],
+            "pricing_clues": [],
+            "status_hint": null,
+            "source": "assessment_report"
+          },
+          {
+            "item_id": "spr-7",
+            "item_type": "spare_parts",
+            "title": "MPC and UPS batteries",
+            "description": "Pending confirmation for MPC inspection scope",
+            "work_scope": [
+              "Supply responsibility to be confirmed"
+            ],
+            "quantity_hint": null,
+            "unit_hint": null,
+            "labor_hint": [],
+            "pricing_clues": [],
+            "status_hint": null,
+            "source": "assessment_report"
+          }
+        ]
+      },
+      "risk_context": {
+        "risks": [
+          "High risk: yard cross-operation may delay schedule and restrict working window.",
+          "Medium risk: spare parts waiting may interrupt execution progress.",
+          "Medium risk: onsite safety approval or hot work restriction may affect execution arrangement."
+        ],
+        "pending_confirmations": [
+          "Confirm whether HPS/HCU accumulator repair kits are owner supply or our supply.",
+          "Confirm whether FIVA valves pilot valves are owner supply or our supply.",
+          "Confirm whether fuel booster unit components are owner supply or our supply.",
+          "Confirm whether MPC and UPS batteries are owner supply or our supply.",
+          "Confirm drydock yard, exact service window and cross-operation arrangement.",
+          "Confirm hot work / enclosed space / high pressure safety approval conditions."
+        ],
+        "assumptions": [
+          "Current evaluation report is for quotation preparation only and final execution depends on onboard and yard condition.",
+          "Spare parts supply responsibility remains to be confirmed.",
+          "Drydock location is within China central or south region."
+        ]
+      },
+      "commercial_context": {
+        "preferred_currency": "USD",
+        "pricing_expectation": null,
+        "special_terms": [
+          "Quotation validity: 30 days",
+          "Payment within 30 days upon invoice date.",
+          "All evaluation data is for quotation preparation only and actual execution is subject to site condition.",
+          "Other repair and extra scope if needed to be charged extra."
+        ]
+      },
+      "source_refs": {
+        "assessment_report_id": "dimitra-m-20260401",
+        "customer_context_ref": null,
+        "business_context_ref": null
+      }
+    },
+    "normalization_flags": [
+      {
+        "flag_code": "normalized_service_mode",
+        "field": "service_context.service_mode",
+        "from": "dock repair",
+        "to": "dock_repair",
+        "reason": "统一服务模式枚举。"
+      }
+    ],
+    "missing_fields": []
+  },
+  "feasibility_result": {
+    "can_quote": true,
+    "quote_scope": "partial",
+    "quotable_items": [
+      {
+        "item_id": "svc-1",
+        "item_type": "service",
+        "title": "HCU system overhaul",
+        "decision": "quotable",
+        "reason": "服务项标题和范围已基本明确，可进入报价。",
+        "blocking_fields": [],
+        "suggested_status": "chargeable",
+        "source": "quote_request.candidate_items"
+      },
+      {
+        "item_id": "svc-2",
+        "item_type": "service",
+        "title": "MPC system inspection",
+        "decision": "quotable",
+        "reason": "服务项标题和范围已基本明确，可进入报价。",
+        "blocking_fields": [],
+        "suggested_status": "chargeable",
+        "source": "quote_request.candidate_items"
+      },
+      {
+        "item_id": "oth-3",
+        "item_type": "other",
+        "title": "Transportation",
+        "decision": "quotable",
+        "reason": "服务项标题和范围已基本明确，可进入报价。",
+        "blocking_fields": [],
+        "suggested_status": "chargeable",
+        "source": "quote_request.candidate_items"
+      },
+      {
+        "item_id": "oth-4",
+        "item_type": "other",
+        "title": "Accommodation",
+        "decision": "quotable",
+        "reason": "服务项标题和范围已基本明确，可进入报价。",
+        "blocking_fields": [],
+        "suggested_status": "chargeable",
+        "source": "quote_request.candidate_items"
+      },
+      {
+        "item_id": "oth-5",
+        "item_type": "other",
+        "title": "Dockyard management fee",
+        "decision": "quotable",
+        "reason": "服务项标题和范围已基本明确，可进入报价。",
+        "blocking_fields": [],
+        "suggested_status": "chargeable",
+        "source": "quote_request.candidate_items"
+      },
+      {
+        "item_id": "oth-6",
+        "item_type": "other",
+        "title": "Maritime reporting / safety permit",
+        "decision": "quotable",
+        "reason": "服务项标题和范围已基本明确，可进入报价。",
+        "blocking_fields": [],
+        "suggested_status": "chargeable",
+        "source": "quote_request.candidate_items"
+      }
+    ],
+    "tbc_items": [
+      {
+        "item_id": "spr-7",
+        "item_type": "spare_parts",
+        "title": "HPS accumulators repair kit",
+        "decision": "tbc",
+        "reason": "备件供货责任未确认，当前只能待确认。",
+        "blocking_fields": [
+          "spare_parts_context.spare_parts_supply_mode"
+        ],
+        "suggested_status": "pending",
+        "source": "quote_request.candidate_items"
+      },
+      {
+        "item_id": "spr-8",
+        "item_type": "spare_parts",
+        "title": "HCU accumulators repair kit",
+        "decision": "tbc",
+        "reason": "备件供货责任未确认，当前只能待确认。",
+        "blocking_fields": [
+          "spare_parts_context.spare_parts_supply_mode"
+        ],
+        "suggested_status": "pending",
+        "source": "quote_request.candidate_items"
+      },
+      {
+        "item_id": "spr-9",
+        "item_type": "spare_parts",
+        "title": "Nitrogen for refilling",
+        "decision": "tbc",
+        "reason": "备件供货责任未确认，当前只能待确认。",
+        "blocking_fields": [
+          "spare_parts_context.spare_parts_supply_mode"
+        ],
+        "suggested_status": "pending",
+        "source": "quote_request.candidate_items"
+      },
+      {
+        "item_id": "spr-10",
+        "item_type": "spare_parts",
+        "title": "FIVA valves pilot valves",
+        "decision": "tbc",
+        "reason": "备件供货责任未确认，当前只能待确认。",
+        "blocking_fields": [
+          "spare_parts_context.spare_parts_supply_mode"
+        ],
+        "suggested_status": "pending",
+        "source": "quote_request.candidate_items"
+      },
+      {
+        "item_id": "spr-11",
+        "item_type": "spare_parts",
+        "title": "Fuel booster units top covers and suction valves",
+        "decision": "tbc",
+        "reason": "备件供货责任未确认，当前只能待确认。",
+        "blocking_fields": [
+          "spare_parts_context.spare_parts_supply_mode"
+        ],
+        "suggested_status": "pending",
+        "source": "quote_request.candidate_items"
+      },
+      {
+        "item_id": "spr-12",
+        "item_type": "spare_parts",
+        "title": "Exhaust valve actuators safety valves",
+        "decision": "tbc",
+        "reason": "备件供货责任未确认，当前只能待确认。",
+        "blocking_fields": [
+          "spare_parts_context.spare_parts_supply_mode"
+        ],
+        "suggested_status": "pending",
+        "source": "quote_request.candidate_items"
+      },
+      {
+        "item_id": "spr-13",
+        "item_type": "spare_parts",
+        "title": "MPC and UPS batteries",
+        "decision": "tbc",
+        "reason": "备件供货责任未确认，当前只能待确认。",
+        "blocking_fields": [
+          "spare_parts_context.spare_parts_supply_mode"
+        ],
+        "suggested_status": "pending",
+        "source": "quote_request.candidate_items"
+      }
+    ],
+    "exclusions": [],
+    "missing_fields": [
+      {
+        "field": "spare_parts_context.spare_parts_supply_mode",
+        "required_for": [
+          "feasibility_check",
+          "pricing"
+        ],
+        "severity": "medium",
+        "reason": "备件供货责任未确认，影响是否纳入报价。",
+        "suggested_source": "customer_context"
+      }
+    ],
+    "questions_for_user": [
+      {
+        "question_id": "q-spr-7",
+        "target": "customer",
+        "topic": "spare_parts_supply_mode",
+        "question": "HPS accumulators repair kit 由船东提供还是由我司供货？",
+        "related_item_ids": [
+          "spr-7"
+        ]
+      },
+      {
+        "question_id": "q-spr-8",
+        "target": "customer",
+        "topic": "spare_parts_supply_mode",
+        "question": "HCU accumulators repair kit 由船东提供还是由我司供货？",
+        "related_item_ids": [
+          "spr-8"
+        ]
+      },
+      {
+        "question_id": "q-spr-9",
+        "target": "customer",
+        "topic": "spare_parts_supply_mode",
+        "question": "Nitrogen for refilling 由船东提供还是由我司供货？",
+        "related_item_ids": [
+          "spr-9"
+        ]
+      },
+      {
+        "question_id": "q-spr-10",
+        "target": "customer",
+        "topic": "spare_parts_supply_mode",
+        "question": "FIVA valves pilot valves 由船东提供还是由我司供货？",
+        "related_item_ids": [
+          "spr-10"
+        ]
+      },
+      {
+        "question_id": "q-spr-11",
+        "target": "customer",
+        "topic": "spare_parts_supply_mode",
+        "question": "Fuel booster units top covers and suction valves 由船东提供还是由我司供货？",
+        "related_item_ids": [
+          "spr-11"
+        ]
+      },
+      {
+        "question_id": "q-spr-12",
+        "target": "customer",
+        "topic": "spare_parts_supply_mode",
+        "question": "Exhaust valve actuators safety valves 由船东提供还是由我司供货？",
+        "related_item_ids": [
+          "spr-12"
+        ]
+      },
+      {
+        "question_id": "q-spr-13",
+        "target": "customer",
+        "topic": "spare_parts_supply_mode",
+        "question": "MPC and UPS batteries 由船东提供还是由我司供货？",
+        "related_item_ids": [
+          "spr-13"
+        ]
+      }
+    ],
+    "review_flags": [
+      {
+        "flag_code": "partial_quote_scope",
+        "severity": "medium",
+        "message": "当前仅部分项目具备报价条件。",
+        "related_item_ids": [
+          "svc-1",
+          "svc-2",
+          "oth-3",
+          "oth-4",
+          "oth-5",
+          "oth-6",
+          "spr-7",
+          "spr-8",
+          "spr-9",
+          "spr-10",
+          "spr-11",
+          "spr-12",
+          "spr-13"
+        ]
+      }
+    ]
+  },
+  "historical_reference": {
+    "matches": [
+      {
+        "quote_id": "hist-003",
+        "similarity": 0.5,
+        "reason": "存在多个关键特征匹配。",
+        "matched_features": [
+          "service_mode: dock_repair",
+          "location_type: shipyard"
+        ],
+        "reference_items": [
+          "AE resilient mountings renewal"
+        ],
+        "reference_remarks": [
+          "Spares supply by shipside"
+        ]
+      }
+    ],
+    "reference_summary": {
+      "price_range_hint": {
+        "currency": "USD",
+        "min": 9800.0,
+        "max": 9800.0,
+        "sample_size": 1
+      },
+      "common_items": [
+        "AE resilient mountings renewal"
+      ],
+      "remark_patterns": [
+        "Spares supply by shipside"
+      ],
+      "recommended_reference_ids": [
+        "hist-003"
+      ],
+      "item_clusters": [
+        {
+          "cluster_key": "resilient mountings renewal",
+          "sample_size": 1,
+          "examples": [
+            "AE resilient mountings renewal"
+          ]
+        }
+      ],
+      "remark_blocks": [
+        {
+          "remark_type": "commercial",
+          "texts": [
+            "Spares supply by shipside"
+          ],
+          "sample_size": 1
+        }
+      ],
+      "charge_item_hints": [],
+      "option_style_hints": [
+        {
+          "style_type": "owner_supply_spares",
+          "source": "history_text",
+          "sample_size": 1,
+          "examples": [
+            "Spares supply by shipside"
+          ]
+        }
+      ],
+      "history_quality_flags": [
+        "low_sample_size",
+        "weak_item_overlap",
+        "context_only_match"
+      ]
+    },
+    "confidence": 0.55
+  },
+  "pricing_result": {
+    "quotation_options": [
+      {
+        "option_id": "option-a",
+        "title": "Option A Standard quotation",
+        "sections": [
+          {
+            "section_id": "option-a-section-service",
+            "section_type": "service",
+            "title": "Service",
+            "groups": [
+              {
+                "group_id": "option-a-group-svc-1",
+                "group_no": "1",
+                "title": "HCU system overhaul",
+                "description": "服务项标题和范围已基本明确，可进入报价。",
+                "lines": [
+                  {
+                    "line_id": "option-a-line-svc-1",
+                    "item": "1",
+                    "line_no": "1",
+                    "line_type": "priced",
+                    "description": "HCU system overhaul 64k running hours overhaul scope for HCU system",
+                    "pricing_mode": "lump_sum",
+                    "unit_price": 2224.0,
+                    "unit_price_display": "2,224.00",
+                    "unit": "set",
+                    "qty": 1,
+                    "qty_display": "1",
+                    "discount": null,
+                    "amount": 2224.0,
+                    "amount_display": "2,224.00",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "workflow_service_rate",
+                    "conditions": [],
+                    "notes": [
+                      "服务项标题和范围已基本明确，可进入报价。",
+                      "64k running hours overhaul scope for HCU system"
+                    ]
+                  },
+                  {
+                    "line_id": "option-a-line-svc-1-scope-1",
+                    "item": "",
+                    "line_no": "",
+                    "line_type": "scope_note",
+                    "description": "Overhaul ELFI valve/Multiway valve units",
+                    "pricing_mode": "text_only",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "included_scope",
+                    "conditions": [],
+                    "notes": []
+                  },
+                  {
+                    "line_id": "option-a-line-svc-1-scope-2",
+                    "item": "",
+                    "line_no": "",
+                    "line_type": "scope_note",
+                    "description": "Exhaust valve actuator and fuel oil pressure booster overhauling",
+                    "pricing_mode": "text_only",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "included_scope",
+                    "conditions": [],
+                    "notes": []
+                  },
+                  {
+                    "line_id": "option-a-line-svc-1-scope-3",
+                    "item": "",
+                    "line_no": "",
+                    "line_type": "scope_note",
+                    "description": "Cylinder lubricator system overhauling",
+                    "pricing_mode": "text_only",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "included_scope",
+                    "conditions": [],
+                    "notes": []
+                  },
+                  {
+                    "line_id": "option-a-line-svc-1-scope-4",
+                    "item": "",
+                    "line_no": "",
+                    "line_type": "scope_note",
+                    "description": "Accumulator overhauling and refill with nitrogen",
+                    "pricing_mode": "text_only",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "included_scope",
+                    "conditions": [],
+                    "notes": []
+                  },
+                  {
+                    "line_id": "option-a-line-svc-1-scope-5",
+                    "item": "",
+                    "line_no": "",
+                    "line_type": "scope_note",
+                    "description": "Maintenance and overhauling of HPS",
+                    "pricing_mode": "text_only",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "included_scope",
+                    "conditions": [],
+                    "notes": []
+                  },
+                  {
+                    "line_id": "option-a-line-svc-1-scope-6",
+                    "item": "",
+                    "line_no": "",
+                    "line_type": "scope_note",
+                    "description": "8 hours execution window",
+                    "pricing_mode": "text_only",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "included_scope",
+                    "conditions": [],
+                    "notes": []
+                  },
+                  {
+                    "line_id": "option-a-line-svc-1-scope-7",
+                    "item": "",
+                    "line_no": "",
+                    "line_type": "scope_note",
+                    "description": "1 set",
+                    "pricing_mode": "text_only",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "included_scope",
+                    "conditions": [],
+                    "notes": []
+                  },
+                  {
+                    "line_id": "option-a-line-svc-1-scope-8",
+                    "item": "",
+                    "line_no": "",
+                    "line_type": "scope_note",
+                    "description": "Mechanical engineer MT5 x1",
+                    "pricing_mode": "text_only",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "included_scope",
+                    "conditions": [],
+                    "notes": []
+                  },
+                  {
+                    "line_id": "option-a-line-svc-1-scope-9",
+                    "item": "",
+                    "line_no": "",
+                    "line_type": "scope_note",
+                    "description": "Mechanical fitter FP5 x7",
+                    "pricing_mode": "text_only",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "included_scope",
+                    "conditions": [],
+                    "notes": []
+                  }
+                ]
+              },
+              {
+                "group_id": "option-a-group-svc-2",
+                "group_no": "2",
+                "title": "MPC system inspection",
+                "description": "服务项标题和范围已基本明确，可进入报价。",
+                "lines": [
+                  {
+                    "line_id": "option-a-line-svc-2",
+                    "item": "2",
+                    "line_no": "2",
+                    "line_type": "priced",
+                    "description": "MPC system inspection 64k running hours inspection scope for MPC system",
+                    "pricing_mode": "lump_sum",
+                    "unit_price": 576.0,
+                    "unit_price_display": "576.00",
+                    "unit": "set",
+                    "qty": 1,
+                    "qty_display": "1",
+                    "discount": null,
+                    "amount": 576.0,
+                    "amount_display": "576.00",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "workflow_service_rate",
+                    "conditions": [],
+                    "notes": [
+                      "服务项标题和范围已基本明确，可进入报价。",
+                      "64k running hours inspection scope for MPC system"
+                    ]
+                  },
+                  {
+                    "line_id": "option-a-line-svc-2-scope-1",
+                    "item": "",
+                    "line_no": "",
+                    "line_type": "scope_note",
+                    "description": "MPC health inspection and replacement",
+                    "pricing_mode": "text_only",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "included_scope",
+                    "conditions": [],
+                    "notes": []
+                  },
+                  {
+                    "line_id": "option-a-line-svc-2-scope-2",
+                    "item": "",
+                    "line_no": "",
+                    "line_type": "scope_note",
+                    "description": "8 hours execution window",
+                    "pricing_mode": "text_only",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "included_scope",
+                    "conditions": [],
+                    "notes": []
+                  },
+                  {
+                    "line_id": "option-a-line-svc-2-scope-3",
+                    "item": "",
+                    "line_no": "",
+                    "line_type": "scope_note",
+                    "description": "1 set",
+                    "pricing_mode": "text_only",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "included_scope",
+                    "conditions": [],
+                    "notes": []
+                  },
+                  {
+                    "line_id": "option-a-line-svc-2-scope-4",
+                    "item": "",
+                    "line_no": "",
+                    "line_type": "scope_note",
+                    "description": "Electrical engineer ET5 x1",
+                    "pricing_mode": "text_only",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "included_scope",
+                    "conditions": [],
+                    "notes": []
+                  },
+                  {
+                    "line_id": "option-a-line-svc-2-scope-5",
+                    "item": "",
+                    "line_no": "",
+                    "line_type": "scope_note",
+                    "description": "Electrical engineer ET3 x1",
+                    "pricing_mode": "text_only",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "included_scope",
+                    "conditions": [],
+                    "notes": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "section_id": "option-a-section-other",
+            "section_type": "other",
+            "title": "Other",
+            "groups": [
+              {
+                "group_id": "option-a-group-oth-3",
+                "group_no": "1",
+                "title": "Transportation",
+                "description": "服务项标题和范围已基本明确，可进入报价。",
+                "lines": [
+                  {
+                    "line_id": "option-a-line-oth-3",
+                    "item": "1",
+                    "line_no": "1",
+                    "line_type": "priced",
+                    "description": "Transportation Engineer round-trip transportation for China drydock attendance",
+                    "pricing_mode": "lump_sum",
+                    "unit_price": 540.0,
+                    "unit_price_display": "540.00",
+                    "unit": "person",
+                    "qty": 4,
+                    "qty_display": "4",
+                    "discount": null,
+                    "amount": 540.0,
+                    "amount_display": "540.00",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "workflow_logistics_rule",
+                    "conditions": [],
+                    "notes": [
+                      "服务项标题和范围已基本明确，可进入报价。",
+                      "Engineer round-trip transportation for China drydock attendance"
+                    ]
+                  },
+                  {
+                    "line_id": "option-a-line-oth-3-scope-1",
+                    "item": "",
+                    "line_no": "",
+                    "line_type": "scope_note",
+                    "description": "Round-trip travel for service engineers",
+                    "pricing_mode": "text_only",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "included_scope",
+                    "conditions": [],
+                    "notes": []
+                  },
+                  {
+                    "line_id": "option-a-line-oth-3-scope-2",
+                    "item": "",
+                    "line_no": "",
+                    "line_type": "scope_note",
+                    "description": "Based on one round trip",
+                    "pricing_mode": "text_only",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "included_scope",
+                    "conditions": [],
+                    "notes": []
+                  }
+                ]
+              },
+              {
+                "group_id": "option-a-group-oth-4",
+                "group_no": "2",
+                "title": "Accommodation",
+                "description": "服务项标题和范围已基本明确，可进入报价。",
+                "lines": [
+                  {
+                    "line_id": "option-a-line-oth-4",
+                    "item": "2",
+                    "line_no": "2",
+                    "line_type": "priced",
+                    "description": "Accommodation Accommodation and meal arrangement during drydock attendance",
+                    "pricing_mode": "lump_sum",
+                    "unit_price": 440.0,
+                    "unit_price_display": "440.00",
+                    "unit": "person-day",
+                    "qty": 8,
+                    "qty_display": "8",
+                    "discount": null,
+                    "amount": 440.0,
+                    "amount_display": "440.00",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "workflow_logistics_rule",
+                    "conditions": [],
+                    "notes": [
+                      "服务项标题和范围已基本明确，可进入报价。",
+                      "Accommodation and meal arrangement during drydock attendance"
+                    ]
+                  },
+                  {
+                    "line_id": "option-a-line-oth-4-scope-1",
+                    "item": "",
+                    "line_no": "",
+                    "line_type": "scope_note",
+                    "description": "Hotel and meal arrangement if needed",
+                    "pricing_mode": "text_only",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "included_scope",
+                    "conditions": [],
+                    "notes": []
+                  },
+                  {
+                    "line_id": "option-a-line-oth-4-scope-2",
+                    "item": "",
+                    "line_no": "",
+                    "line_type": "scope_note",
+                    "description": "Estimated 4 persons for 2 days",
+                    "pricing_mode": "text_only",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "included_scope",
+                    "conditions": [],
+                    "notes": []
+                  }
+                ]
+              },
+              {
+                "group_id": "option-a-group-oth-5",
+                "group_no": "3",
+                "title": "Dockyard management fee",
+                "description": "服务项标题和范围已基本明确，可进入报价。",
+                "lines": [
+                  {
+                    "line_id": "option-a-line-oth-5",
+                    "item": "3",
+                    "line_no": "3",
+                    "line_type": "priced",
+                    "description": "Dockyard management fee Potential dockyard management / boarding / coordination fee during drydock",
+                    "pricing_mode": "lump_sum",
+                    "unit_price": 360.0,
+                    "unit_price_display": "360.00",
+                    "unit": "lot",
+                    "qty": 1,
+                    "qty_display": "1",
+                    "discount": null,
+                    "amount": 360.0,
+                    "amount_display": "360.00",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "workflow_dockyard_management_rule",
+                    "conditions": [],
+                    "notes": [
+                      "服务项标题和范围已基本明确，可进入报价。",
+                      "Potential dockyard management / boarding / coordination fee during drydock"
+                    ]
+                  },
+                  {
+                    "line_id": "option-a-line-oth-5-scope-1",
+                    "item": "",
+                    "line_no": "",
+                    "line_type": "scope_note",
+                    "description": "Applicable if required by yard or local arrangement",
+                    "pricing_mode": "text_only",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "included_scope",
+                    "conditions": [],
+                    "notes": []
+                  }
+                ]
+              },
+              {
+                "group_id": "option-a-group-oth-6",
+                "group_no": "4",
+                "title": "Maritime reporting / safety permit",
+                "description": "服务项标题和范围已基本明确，可进入报价。",
+                "lines": [
+                  {
+                    "line_id": "option-a-line-oth-6",
+                    "item": "4",
+                    "line_no": "4",
+                    "line_type": "priced",
+                    "description": "Maritime reporting / safety permit Potential hot work / permit / reporting related charge",
+                    "pricing_mode": "lump_sum",
+                    "unit_price": 180.0,
+                    "unit_price_display": "180.00",
+                    "unit": "lot",
+                    "qty": 1,
+                    "qty_display": "1",
+                    "discount": null,
+                    "amount": 180.0,
+                    "amount_display": "180.00",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "workflow_maritime_reporting_rule",
+                    "conditions": [],
+                    "notes": [
+                      "服务项标题和范围已基本明确，可进入报价。",
+                      "Potential hot work / permit / reporting related charge"
+                    ]
+                  },
+                  {
+                    "line_id": "option-a-line-oth-6-scope-1",
+                    "item": "",
+                    "line_no": "",
+                    "line_type": "scope_note",
+                    "description": "Applicable only if required by yard or local authority",
+                    "pricing_mode": "text_only",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "included_scope",
+                    "conditions": [],
+                    "notes": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "section_id": "option-a-section-spare_parts",
+            "section_type": "spare_parts",
+            "title": "Spare Parts",
+            "groups": [
+              {
+                "group_id": "option-a-group-spr-7",
+                "group_no": "1",
+                "title": "HPS accumulators repair kit",
+                "description": "备件供货责任未确认，当前只能待确认。",
+                "lines": [
+                  {
+                    "line_id": "option-a-line-spr-7",
+                    "item": "1",
+                    "line_no": "1",
+                    "line_type": "pending",
+                    "description": "HPS accumulators repair kit Pending confirmation for MPC inspection scope",
+                    "pricing_mode": "pending",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "LS",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "Pending",
+                    "currency": "USD",
+                    "status": "pending",
+                    "basis": "historical_price_range",
+                    "conditions": [
+                      "Subject to confirmation"
+                    ],
+                    "notes": [
+                      "备件供货责任未确认，当前只能待确认。",
+                      "Pending confirmation for MPC inspection scope",
+                      "Confirm whether HPS/HCU accumulator repair kits are owner supply or our supply."
+                    ]
+                  },
+                  {
+                    "line_id": "option-a-line-spr-7-scope-1",
+                    "item": "",
+                    "line_no": "",
+                    "line_type": "scope_note",
+                    "description": "Supply responsibility to be confirmed",
+                    "pricing_mode": "text_only",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "included_scope",
+                    "conditions": [],
+                    "notes": []
+                  }
+                ]
+              },
+              {
+                "group_id": "option-a-group-spr-8",
+                "group_no": "2",
+                "title": "HCU accumulators repair kit",
+                "description": "备件供货责任未确认，当前只能待确认。",
+                "lines": [
+                  {
+                    "line_id": "option-a-line-spr-8",
+                    "item": "2",
+                    "line_no": "2",
+                    "line_type": "pending",
+                    "description": "HCU accumulators repair kit Pending confirmation for HCU overhaul scope",
+                    "pricing_mode": "pending",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "LS",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "Pending",
+                    "currency": "USD",
+                    "status": "pending",
+                    "basis": "historical_price_range",
+                    "conditions": [
+                      "Subject to confirmation"
+                    ],
+                    "notes": [
+                      "备件供货责任未确认，当前只能待确认。",
+                      "Pending confirmation for HCU overhaul scope",
+                      "Confirm whether HPS/HCU accumulator repair kits are owner supply or our supply."
+                    ]
+                  },
+                  {
+                    "line_id": "option-a-line-spr-8-scope-1",
+                    "item": "",
+                    "line_no": "",
+                    "line_type": "scope_note",
+                    "description": "Supply responsibility to be confirmed",
+                    "pricing_mode": "text_only",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "included_scope",
+                    "conditions": [],
+                    "notes": []
+                  }
+                ]
+              },
+              {
+                "group_id": "option-a-group-spr-9",
+                "group_no": "3",
+                "title": "Nitrogen for refilling",
+                "description": "备件供货责任未确认，当前只能待确认。",
+                "lines": [
+                  {
+                    "line_id": "option-a-line-spr-9",
+                    "item": "3",
+                    "line_no": "3",
+                    "line_type": "pending",
+                    "description": "Nitrogen for refilling Pending confirmation for HCU overhaul scope",
+                    "pricing_mode": "pending",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "LS",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "Pending",
+                    "currency": "USD",
+                    "status": "pending",
+                    "basis": "historical_price_range",
+                    "conditions": [
+                      "Subject to confirmation"
+                    ],
+                    "notes": [
+                      "备件供货责任未确认，当前只能待确认。",
+                      "Pending confirmation for HCU overhaul scope",
+                      "Confirm whether HPS/HCU accumulator repair kits are owner supply or our supply."
+                    ]
+                  },
+                  {
+                    "line_id": "option-a-line-spr-9-scope-1",
+                    "item": "",
+                    "line_no": "",
+                    "line_type": "scope_note",
+                    "description": "Supply responsibility to be confirmed",
+                    "pricing_mode": "text_only",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "included_scope",
+                    "conditions": [],
+                    "notes": []
+                  }
+                ]
+              },
+              {
+                "group_id": "option-a-group-spr-10",
+                "group_no": "4",
+                "title": "FIVA valves pilot valves",
+                "description": "备件供货责任未确认，当前只能待确认。",
+                "lines": [
+                  {
+                    "line_id": "option-a-line-spr-10",
+                    "item": "4",
+                    "line_no": "4",
+                    "line_type": "pending",
+                    "description": "FIVA valves pilot valves Pending confirmation for HCU overhaul scope",
+                    "pricing_mode": "pending",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "LS",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "Pending",
+                    "currency": "USD",
+                    "status": "pending",
+                    "basis": "historical_price_range",
+                    "conditions": [
+                      "Subject to confirmation"
+                    ],
+                    "notes": [
+                      "备件供货责任未确认，当前只能待确认。",
+                      "Pending confirmation for HCU overhaul scope",
+                      "Confirm whether HPS/HCU accumulator repair kits are owner supply or our supply."
+                    ]
+                  },
+                  {
+                    "line_id": "option-a-line-spr-10-scope-1",
+                    "item": "",
+                    "line_no": "",
+                    "line_type": "scope_note",
+                    "description": "Supply responsibility to be confirmed",
+                    "pricing_mode": "text_only",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "included_scope",
+                    "conditions": [],
+                    "notes": []
+                  }
+                ]
+              },
+              {
+                "group_id": "option-a-group-spr-11",
+                "group_no": "5",
+                "title": "Fuel booster units top covers and suction valves",
+                "description": "备件供货责任未确认，当前只能待确认。",
+                "lines": [
+                  {
+                    "line_id": "option-a-line-spr-11",
+                    "item": "5",
+                    "line_no": "5",
+                    "line_type": "pending",
+                    "description": "Fuel booster units top covers and suction valves Pending confirmation for HCU overhaul scope",
+                    "pricing_mode": "pending",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "LS",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "Pending",
+                    "currency": "USD",
+                    "status": "pending",
+                    "basis": "historical_price_range",
+                    "conditions": [
+                      "Subject to confirmation"
+                    ],
+                    "notes": [
+                      "备件供货责任未确认，当前只能待确认。",
+                      "Pending confirmation for HCU overhaul scope",
+                      "Confirm whether HPS/HCU accumulator repair kits are owner supply or our supply."
+                    ]
+                  },
+                  {
+                    "line_id": "option-a-line-spr-11-scope-1",
+                    "item": "",
+                    "line_no": "",
+                    "line_type": "scope_note",
+                    "description": "Supply responsibility to be confirmed",
+                    "pricing_mode": "text_only",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "included_scope",
+                    "conditions": [],
+                    "notes": []
+                  }
+                ]
+              },
+              {
+                "group_id": "option-a-group-spr-12",
+                "group_no": "6",
+                "title": "Exhaust valve actuators safety valves",
+                "description": "备件供货责任未确认，当前只能待确认。",
+                "lines": [
+                  {
+                    "line_id": "option-a-line-spr-12",
+                    "item": "6",
+                    "line_no": "6",
+                    "line_type": "pending",
+                    "description": "Exhaust valve actuators safety valves Pending confirmation for HCU overhaul scope",
+                    "pricing_mode": "pending",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "LS",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "Pending",
+                    "currency": "USD",
+                    "status": "pending",
+                    "basis": "historical_price_range",
+                    "conditions": [
+                      "Subject to confirmation"
+                    ],
+                    "notes": [
+                      "备件供货责任未确认，当前只能待确认。",
+                      "Pending confirmation for HCU overhaul scope",
+                      "Confirm whether HPS/HCU accumulator repair kits are owner supply or our supply."
+                    ]
+                  },
+                  {
+                    "line_id": "option-a-line-spr-12-scope-1",
+                    "item": "",
+                    "line_no": "",
+                    "line_type": "scope_note",
+                    "description": "Supply responsibility to be confirmed",
+                    "pricing_mode": "text_only",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "included_scope",
+                    "conditions": [],
+                    "notes": []
+                  }
+                ]
+              },
+              {
+                "group_id": "option-a-group-spr-13",
+                "group_no": "7",
+                "title": "MPC and UPS batteries",
+                "description": "备件供货责任未确认，当前只能待确认。",
+                "lines": [
+                  {
+                    "line_id": "option-a-line-spr-13",
+                    "item": "7",
+                    "line_no": "7",
+                    "line_type": "pending",
+                    "description": "MPC and UPS batteries Pending confirmation for MPC inspection scope",
+                    "pricing_mode": "pending",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "LS",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "Pending",
+                    "currency": "USD",
+                    "status": "pending",
+                    "basis": "historical_price_range",
+                    "conditions": [
+                      "Subject to confirmation"
+                    ],
+                    "notes": [
+                      "备件供货责任未确认，当前只能待确认。",
+                      "Pending confirmation for MPC inspection scope",
+                      "Confirm whether HPS/HCU accumulator repair kits are owner supply or our supply."
+                    ]
+                  },
+                  {
+                    "line_id": "option-a-line-spr-13-scope-1",
+                    "item": "",
+                    "line_no": "",
+                    "line_type": "scope_note",
+                    "description": "Supply responsibility to be confirmed",
+                    "pricing_mode": "text_only",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "included_scope",
+                    "conditions": [],
+                    "notes": []
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "summary": {
+          "service_charge": {
+            "value_type": "amount",
+            "amount": 2800.0,
+            "display": "2,800.00",
+            "currency": "USD",
+            "status": "chargeable"
+          },
+          "spare_parts_fee": {
+            "value_type": "status",
+            "amount": null,
+            "display": "Pending",
+            "currency": "USD",
+            "status": "pending"
+          },
+          "other": {
+            "value_type": "amount",
+            "amount": 1520.0,
+            "display": "1,520.00",
+            "currency": "USD",
+            "status": "chargeable"
+          },
+          "total": {
+            "value_type": "status",
+            "amount": null,
+            "display": "Pending",
+            "currency": "USD",
+            "status": "pending"
+          }
+        },
+        "remarks": [
+          {
+            "type": "commercial",
+            "text": "Other repair if needed to be charged extra."
+          },
+          {
+            "type": "commercial",
+            "text": "Shipyard management fee / boarding pass / crane cost if needed to be charged as actual."
+          },
+          {
+            "type": "commercial",
+            "text": "Port entrance fee / other cost if needed to be charged as actual."
+          },
+          {
+            "type": "commercial",
+            "text": "Spares supply by shipside"
+          }
+        ]
+      },
+      {
+        "option_id": "option-b",
+        "title": "Option B Service only quotation",
+        "sections": [
+          {
+            "section_id": "option-b-section-service",
+            "section_type": "service",
+            "title": "Service",
+            "groups": [
+              {
+                "group_id": "option-b-group-svc-1",
+                "group_no": "1",
+                "title": "HCU system overhaul",
+                "description": "服务项标题和范围已基本明确，可进入报价。",
+                "lines": [
+                  {
+                    "line_id": "option-b-line-svc-1",
+                    "item": "1",
+                    "line_no": "1",
+                    "line_type": "priced",
+                    "description": "HCU system overhaul 64k running hours overhaul scope for HCU system",
+                    "pricing_mode": "lump_sum",
+                    "unit_price": 2224.0,
+                    "unit_price_display": "2,224.00",
+                    "unit": "set",
+                    "qty": 1,
+                    "qty_display": "1",
+                    "discount": {
+                      "type": "percentage",
+                      "value": 5.0,
+                      "display": "5%"
+                    },
+                    "amount": 2112.8,
+                    "amount_display": "2,112.80",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "workflow_service_rate",
+                    "conditions": [],
+                    "notes": [
+                      "服务项标题和范围已基本明确，可进入报价。",
+                      "64k running hours overhaul scope for HCU system"
+                    ],
+                    "relation": {
+                      "type": "alternative_to",
+                      "target_line_id": "option-a-line-svc-1"
+                    }
+                  },
+                  {
+                    "line_id": "option-b-line-svc-1-scope-1",
+                    "item": "",
+                    "line_no": "",
+                    "line_type": "scope_note",
+                    "description": "Overhaul ELFI valve/Multiway valve units",
+                    "pricing_mode": "text_only",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "included_scope",
+                    "conditions": [],
+                    "notes": []
+                  },
+                  {
+                    "line_id": "option-b-line-svc-1-scope-2",
+                    "item": "",
+                    "line_no": "",
+                    "line_type": "scope_note",
+                    "description": "Exhaust valve actuator and fuel oil pressure booster overhauling",
+                    "pricing_mode": "text_only",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "included_scope",
+                    "conditions": [],
+                    "notes": []
+                  },
+                  {
+                    "line_id": "option-b-line-svc-1-scope-3",
+                    "item": "",
+                    "line_no": "",
+                    "line_type": "scope_note",
+                    "description": "Cylinder lubricator system overhauling",
+                    "pricing_mode": "text_only",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "included_scope",
+                    "conditions": [],
+                    "notes": []
+                  },
+                  {
+                    "line_id": "option-b-line-svc-1-scope-4",
+                    "item": "",
+                    "line_no": "",
+                    "line_type": "scope_note",
+                    "description": "Accumulator overhauling and refill with nitrogen",
+                    "pricing_mode": "text_only",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "included_scope",
+                    "conditions": [],
+                    "notes": []
+                  },
+                  {
+                    "line_id": "option-b-line-svc-1-scope-5",
+                    "item": "",
+                    "line_no": "",
+                    "line_type": "scope_note",
+                    "description": "Maintenance and overhauling of HPS",
+                    "pricing_mode": "text_only",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "included_scope",
+                    "conditions": [],
+                    "notes": []
+                  },
+                  {
+                    "line_id": "option-b-line-svc-1-scope-6",
+                    "item": "",
+                    "line_no": "",
+                    "line_type": "scope_note",
+                    "description": "8 hours execution window",
+                    "pricing_mode": "text_only",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "included_scope",
+                    "conditions": [],
+                    "notes": []
+                  },
+                  {
+                    "line_id": "option-b-line-svc-1-scope-7",
+                    "item": "",
+                    "line_no": "",
+                    "line_type": "scope_note",
+                    "description": "1 set",
+                    "pricing_mode": "text_only",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "included_scope",
+                    "conditions": [],
+                    "notes": []
+                  },
+                  {
+                    "line_id": "option-b-line-svc-1-scope-8",
+                    "item": "",
+                    "line_no": "",
+                    "line_type": "scope_note",
+                    "description": "Mechanical engineer MT5 x1",
+                    "pricing_mode": "text_only",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "included_scope",
+                    "conditions": [],
+                    "notes": []
+                  },
+                  {
+                    "line_id": "option-b-line-svc-1-scope-9",
+                    "item": "",
+                    "line_no": "",
+                    "line_type": "scope_note",
+                    "description": "Mechanical fitter FP5 x7",
+                    "pricing_mode": "text_only",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "included_scope",
+                    "conditions": [],
+                    "notes": []
+                  },
+                  {
+                    "line_id": "option-b-line-svc-1-discount-note",
+                    "item": "",
+                    "line_no": "",
+                    "line_type": "commercial_note",
+                    "description": "Commercial discount 5% applied within approved authority.",
+                    "pricing_mode": "text_only",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "discount_authority",
+                    "conditions": [],
+                    "notes": []
+                  }
+                ]
+              },
+              {
+                "group_id": "option-b-group-svc-2",
+                "group_no": "2",
+                "title": "MPC system inspection",
+                "description": "服务项标题和范围已基本明确，可进入报价。",
+                "lines": [
+                  {
+                    "line_id": "option-b-line-svc-2",
+                    "item": "2",
+                    "line_no": "2",
+                    "line_type": "priced",
+                    "description": "MPC system inspection 64k running hours inspection scope for MPC system",
+                    "pricing_mode": "lump_sum",
+                    "unit_price": 576.0,
+                    "unit_price_display": "576.00",
+                    "unit": "set",
+                    "qty": 1,
+                    "qty_display": "1",
+                    "discount": {
+                      "type": "percentage",
+                      "value": 5.0,
+                      "display": "5%"
+                    },
+                    "amount": 547.2,
+                    "amount_display": "547.20",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "workflow_service_rate",
+                    "conditions": [],
+                    "notes": [
+                      "服务项标题和范围已基本明确，可进入报价。",
+                      "64k running hours inspection scope for MPC system"
+                    ],
+                    "relation": {
+                      "type": "alternative_to",
+                      "target_line_id": "option-a-line-svc-2"
+                    }
+                  },
+                  {
+                    "line_id": "option-b-line-svc-2-scope-1",
+                    "item": "",
+                    "line_no": "",
+                    "line_type": "scope_note",
+                    "description": "MPC health inspection and replacement",
+                    "pricing_mode": "text_only",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "included_scope",
+                    "conditions": [],
+                    "notes": []
+                  },
+                  {
+                    "line_id": "option-b-line-svc-2-scope-2",
+                    "item": "",
+                    "line_no": "",
+                    "line_type": "scope_note",
+                    "description": "8 hours execution window",
+                    "pricing_mode": "text_only",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "included_scope",
+                    "conditions": [],
+                    "notes": []
+                  },
+                  {
+                    "line_id": "option-b-line-svc-2-scope-3",
+                    "item": "",
+                    "line_no": "",
+                    "line_type": "scope_note",
+                    "description": "1 set",
+                    "pricing_mode": "text_only",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "included_scope",
+                    "conditions": [],
+                    "notes": []
+                  },
+                  {
+                    "line_id": "option-b-line-svc-2-scope-4",
+                    "item": "",
+                    "line_no": "",
+                    "line_type": "scope_note",
+                    "description": "Electrical engineer ET5 x1",
+                    "pricing_mode": "text_only",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "included_scope",
+                    "conditions": [],
+                    "notes": []
+                  },
+                  {
+                    "line_id": "option-b-line-svc-2-scope-5",
+                    "item": "",
+                    "line_no": "",
+                    "line_type": "scope_note",
+                    "description": "Electrical engineer ET3 x1",
+                    "pricing_mode": "text_only",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "included_scope",
+                    "conditions": [],
+                    "notes": []
+                  },
+                  {
+                    "line_id": "option-b-line-svc-2-discount-note",
+                    "item": "",
+                    "line_no": "",
+                    "line_type": "commercial_note",
+                    "description": "Commercial discount 5% applied within approved authority.",
+                    "pricing_mode": "text_only",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "discount_authority",
+                    "conditions": [],
+                    "notes": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "section_id": "option-b-section-other",
+            "section_type": "other",
+            "title": "Other",
+            "groups": [
+              {
+                "group_id": "option-b-group-oth-3",
+                "group_no": "1",
+                "title": "Transportation",
+                "description": "服务项标题和范围已基本明确，可进入报价。",
+                "lines": [
+                  {
+                    "line_id": "option-b-line-oth-3",
+                    "item": "1",
+                    "line_no": "1",
+                    "line_type": "priced",
+                    "description": "Transportation Engineer round-trip transportation for China drydock attendance",
+                    "pricing_mode": "lump_sum",
+                    "unit_price": 540.0,
+                    "unit_price_display": "540.00",
+                    "unit": "person",
+                    "qty": 4,
+                    "qty_display": "4",
+                    "discount": {
+                      "type": "percentage",
+                      "value": 5.0,
+                      "display": "5%"
+                    },
+                    "amount": 513.0,
+                    "amount_display": "513.00",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "workflow_logistics_rule",
+                    "conditions": [],
+                    "notes": [
+                      "服务项标题和范围已基本明确，可进入报价。",
+                      "Engineer round-trip transportation for China drydock attendance"
+                    ],
+                    "relation": {
+                      "type": "alternative_to",
+                      "target_line_id": "option-a-line-oth-3"
+                    }
+                  },
+                  {
+                    "line_id": "option-b-line-oth-3-scope-1",
+                    "item": "",
+                    "line_no": "",
+                    "line_type": "scope_note",
+                    "description": "Round-trip travel for service engineers",
+                    "pricing_mode": "text_only",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "included_scope",
+                    "conditions": [],
+                    "notes": []
+                  },
+                  {
+                    "line_id": "option-b-line-oth-3-scope-2",
+                    "item": "",
+                    "line_no": "",
+                    "line_type": "scope_note",
+                    "description": "Based on one round trip",
+                    "pricing_mode": "text_only",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "included_scope",
+                    "conditions": [],
+                    "notes": []
+                  },
+                  {
+                    "line_id": "option-b-line-oth-3-discount-note",
+                    "item": "",
+                    "line_no": "",
+                    "line_type": "commercial_note",
+                    "description": "Commercial discount 5% applied within approved authority.",
+                    "pricing_mode": "text_only",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "discount_authority",
+                    "conditions": [],
+                    "notes": []
+                  }
+                ]
+              },
+              {
+                "group_id": "option-b-group-oth-4",
+                "group_no": "2",
+                "title": "Accommodation",
+                "description": "服务项标题和范围已基本明确，可进入报价。",
+                "lines": [
+                  {
+                    "line_id": "option-b-line-oth-4",
+                    "item": "2",
+                    "line_no": "2",
+                    "line_type": "priced",
+                    "description": "Accommodation Accommodation and meal arrangement during drydock attendance",
+                    "pricing_mode": "lump_sum",
+                    "unit_price": 440.0,
+                    "unit_price_display": "440.00",
+                    "unit": "person-day",
+                    "qty": 8,
+                    "qty_display": "8",
+                    "discount": {
+                      "type": "percentage",
+                      "value": 5.0,
+                      "display": "5%"
+                    },
+                    "amount": 418.0,
+                    "amount_display": "418.00",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "workflow_logistics_rule",
+                    "conditions": [],
+                    "notes": [
+                      "服务项标题和范围已基本明确，可进入报价。",
+                      "Accommodation and meal arrangement during drydock attendance"
+                    ],
+                    "relation": {
+                      "type": "alternative_to",
+                      "target_line_id": "option-a-line-oth-4"
+                    }
+                  },
+                  {
+                    "line_id": "option-b-line-oth-4-scope-1",
+                    "item": "",
+                    "line_no": "",
+                    "line_type": "scope_note",
+                    "description": "Hotel and meal arrangement if needed",
+                    "pricing_mode": "text_only",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "included_scope",
+                    "conditions": [],
+                    "notes": []
+                  },
+                  {
+                    "line_id": "option-b-line-oth-4-scope-2",
+                    "item": "",
+                    "line_no": "",
+                    "line_type": "scope_note",
+                    "description": "Estimated 4 persons for 2 days",
+                    "pricing_mode": "text_only",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "included_scope",
+                    "conditions": [],
+                    "notes": []
+                  },
+                  {
+                    "line_id": "option-b-line-oth-4-discount-note",
+                    "item": "",
+                    "line_no": "",
+                    "line_type": "commercial_note",
+                    "description": "Commercial discount 5% applied within approved authority.",
+                    "pricing_mode": "text_only",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "discount_authority",
+                    "conditions": [],
+                    "notes": []
+                  }
+                ]
+              },
+              {
+                "group_id": "option-b-group-oth-5",
+                "group_no": "3",
+                "title": "Dockyard management fee",
+                "description": "服务项标题和范围已基本明确，可进入报价。",
+                "lines": [
+                  {
+                    "line_id": "option-b-line-oth-5",
+                    "item": "3",
+                    "line_no": "3",
+                    "line_type": "priced",
+                    "description": "Dockyard management fee Potential dockyard management / boarding / coordination fee during drydock",
+                    "pricing_mode": "lump_sum",
+                    "unit_price": 360.0,
+                    "unit_price_display": "360.00",
+                    "unit": "lot",
+                    "qty": 1,
+                    "qty_display": "1",
+                    "discount": {
+                      "type": "percentage",
+                      "value": 5.0,
+                      "display": "5%"
+                    },
+                    "amount": 342.0,
+                    "amount_display": "342.00",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "workflow_dockyard_management_rule",
+                    "conditions": [],
+                    "notes": [
+                      "服务项标题和范围已基本明确，可进入报价。",
+                      "Potential dockyard management / boarding / coordination fee during drydock"
+                    ],
+                    "relation": {
+                      "type": "alternative_to",
+                      "target_line_id": "option-a-line-oth-5"
+                    }
+                  },
+                  {
+                    "line_id": "option-b-line-oth-5-scope-1",
+                    "item": "",
+                    "line_no": "",
+                    "line_type": "scope_note",
+                    "description": "Applicable if required by yard or local arrangement",
+                    "pricing_mode": "text_only",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "included_scope",
+                    "conditions": [],
+                    "notes": []
+                  },
+                  {
+                    "line_id": "option-b-line-oth-5-discount-note",
+                    "item": "",
+                    "line_no": "",
+                    "line_type": "commercial_note",
+                    "description": "Commercial discount 5% applied within approved authority.",
+                    "pricing_mode": "text_only",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "discount_authority",
+                    "conditions": [],
+                    "notes": []
+                  }
+                ]
+              },
+              {
+                "group_id": "option-b-group-oth-6",
+                "group_no": "4",
+                "title": "Maritime reporting / safety permit",
+                "description": "服务项标题和范围已基本明确，可进入报价。",
+                "lines": [
+                  {
+                    "line_id": "option-b-line-oth-6",
+                    "item": "4",
+                    "line_no": "4",
+                    "line_type": "priced",
+                    "description": "Maritime reporting / safety permit Potential hot work / permit / reporting related charge",
+                    "pricing_mode": "lump_sum",
+                    "unit_price": 180.0,
+                    "unit_price_display": "180.00",
+                    "unit": "lot",
+                    "qty": 1,
+                    "qty_display": "1",
+                    "discount": {
+                      "type": "percentage",
+                      "value": 5.0,
+                      "display": "5%"
+                    },
+                    "amount": 171.0,
+                    "amount_display": "171.00",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "workflow_maritime_reporting_rule",
+                    "conditions": [],
+                    "notes": [
+                      "服务项标题和范围已基本明确，可进入报价。",
+                      "Potential hot work / permit / reporting related charge"
+                    ],
+                    "relation": {
+                      "type": "alternative_to",
+                      "target_line_id": "option-a-line-oth-6"
+                    }
+                  },
+                  {
+                    "line_id": "option-b-line-oth-6-scope-1",
+                    "item": "",
+                    "line_no": "",
+                    "line_type": "scope_note",
+                    "description": "Applicable only if required by yard or local authority",
+                    "pricing_mode": "text_only",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "included_scope",
+                    "conditions": [],
+                    "notes": []
+                  },
+                  {
+                    "line_id": "option-b-line-oth-6-discount-note",
+                    "item": "",
+                    "line_no": "",
+                    "line_type": "commercial_note",
+                    "description": "Commercial discount 5% applied within approved authority.",
+                    "pricing_mode": "text_only",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "discount_authority",
+                    "conditions": [],
+                    "notes": []
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "summary": {
+          "service_charge": {
+            "value_type": "amount",
+            "amount": 2660.0,
+            "display": "2,660.00",
+            "currency": "USD",
+            "status": "chargeable"
+          },
+          "spare_parts_fee": {
+            "value_type": "amount",
+            "amount": 0.0,
+            "display": "0.00",
+            "currency": "USD",
+            "status": "chargeable"
+          },
+          "other": {
+            "value_type": "amount",
+            "amount": 1444.0,
+            "display": "1,444.00",
+            "currency": "USD",
+            "status": "chargeable"
+          },
+          "total": {
+            "value_type": "amount",
+            "amount": 4104.0,
+            "display": "4,104.00",
+            "currency": "USD",
+            "status": "chargeable"
+          }
+        },
+        "remarks": [
+          {
+            "type": "commercial",
+            "text": "Other repair if needed to be charged extra."
+          },
+          {
+            "type": "commercial",
+            "text": "Shipyard management fee / boarding pass / crane cost if needed to be charged as actual."
+          },
+          {
+            "type": "commercial",
+            "text": "Port entrance fee / other cost if needed to be charged as actual."
+          },
+          {
+            "type": "commercial",
+            "text": "Spares supply by shipside"
+          },
+          {
+            "type": "commercial",
+            "text": "Commercial discount 5% applied within operator authority."
+          },
+          {
+            "type": "tbc",
+            "text": "Spare parts are excluded from this option and remain subject to separate confirmation."
+          }
+        ]
+      }
+    ]
+  },
+  "quote_document": {
+    "document_type": "quotation",
+    "document_version": "1.1",
+    "header": {
+      "currency": "USD",
+      "vessel_name": "M/V DIMITRA M",
+      "date": "2025-12-15",
+      "imo_no": "YZJ2013-1138",
+      "vessel_type": "82,000 mt Kamsarmax Bulk Carrier",
+      "customer_name": "TBD Customer",
+      "service_port": "China region (Central/South), drydock yard to be confirmed",
+      "attention": "Technical Department",
+      "wk_offer_no": "WK-dimitra-m-20260401",
+      "your_ref_no": "DIMITRA-M-HCU-MPC-64K",
+      "quotation_validity": "Quotation validity: 30 days",
+      "po_no": "",
+      "pic_of_winkong": "Technical Department"
+    },
+    "table_schema": {
+      "columns": [
+        {
+          "key": "item",
+          "label": "Item"
+        },
+        {
+          "key": "description",
+          "label": "Description"
+        },
+        {
+          "key": "unit_price",
+          "label": "Unit Price"
+        },
+        {
+          "key": "unit",
+          "label": "Unit"
+        },
+        {
+          "key": "qty",
+          "label": "Q'ty"
+        },
+        {
+          "key": "discount",
+          "label": "Discount"
+        },
+        {
+          "key": "amount",
+          "label": "Amount"
+        }
+      ]
+    },
+    "quotation_options": [
+      {
+        "option_id": "option-a",
+        "title": "Option A Standard quotation",
+        "sections": [
+          {
+            "section_id": "option-a-section-service",
+            "section_type": "service",
+            "title": "Service",
+            "groups": [
+              {
+                "group_id": "option-a-group-svc-1",
+                "group_no": "1",
+                "title": "HCU system overhaul",
+                "description": "服务项标题和范围已基本明确，可进入报价。",
+                "lines": [
+                  {
+                    "line_id": "option-a-line-svc-1",
+                    "item": "1",
+                    "line_no": "1",
+                    "line_type": "priced",
+                    "description": "HCU system overhaul 64k running hours overhaul scope for HCU system",
+                    "pricing_mode": "lump_sum",
+                    "unit_price": 2224.0,
+                    "unit_price_display": "2,224.00",
+                    "unit": "set",
+                    "qty": 1,
+                    "qty_display": "1",
+                    "discount": null,
+                    "amount": 2224.0,
+                    "amount_display": "2,224.00",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "workflow_service_rate",
+                    "conditions": [],
+                    "notes": [
+                      "服务项标题和范围已基本明确，可进入报价。",
+                      "64k running hours overhaul scope for HCU system"
+                    ]
+                  },
+                  {
+                    "line_id": "option-a-line-svc-1-scope-1",
+                    "item": "",
+                    "line_no": "",
+                    "line_type": "scope_note",
+                    "description": "Overhaul ELFI valve/Multiway valve units",
+                    "pricing_mode": "text_only",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "included_scope",
+                    "conditions": [],
+                    "notes": []
+                  },
+                  {
+                    "line_id": "option-a-line-svc-1-scope-2",
+                    "item": "",
+                    "line_no": "",
+                    "line_type": "scope_note",
+                    "description": "Exhaust valve actuator and fuel oil pressure booster overhauling",
+                    "pricing_mode": "text_only",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "included_scope",
+                    "conditions": [],
+                    "notes": []
+                  },
+                  {
+                    "line_id": "option-a-line-svc-1-scope-3",
+                    "item": "",
+                    "line_no": "",
+                    "line_type": "scope_note",
+                    "description": "Cylinder lubricator system overhauling",
+                    "pricing_mode": "text_only",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "included_scope",
+                    "conditions": [],
+                    "notes": []
+                  },
+                  {
+                    "line_id": "option-a-line-svc-1-scope-4",
+                    "item": "",
+                    "line_no": "",
+                    "line_type": "scope_note",
+                    "description": "Accumulator overhauling and refill with nitrogen",
+                    "pricing_mode": "text_only",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "included_scope",
+                    "conditions": [],
+                    "notes": []
+                  },
+                  {
+                    "line_id": "option-a-line-svc-1-scope-5",
+                    "item": "",
+                    "line_no": "",
+                    "line_type": "scope_note",
+                    "description": "Maintenance and overhauling of HPS",
+                    "pricing_mode": "text_only",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "included_scope",
+                    "conditions": [],
+                    "notes": []
+                  },
+                  {
+                    "line_id": "option-a-line-svc-1-scope-6",
+                    "item": "",
+                    "line_no": "",
+                    "line_type": "scope_note",
+                    "description": "8 hours execution window",
+                    "pricing_mode": "text_only",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "included_scope",
+                    "conditions": [],
+                    "notes": []
+                  },
+                  {
+                    "line_id": "option-a-line-svc-1-scope-7",
+                    "item": "",
+                    "line_no": "",
+                    "line_type": "scope_note",
+                    "description": "1 set",
+                    "pricing_mode": "text_only",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "included_scope",
+                    "conditions": [],
+                    "notes": []
+                  },
+                  {
+                    "line_id": "option-a-line-svc-1-scope-8",
+                    "item": "",
+                    "line_no": "",
+                    "line_type": "scope_note",
+                    "description": "Mechanical engineer MT5 x1",
+                    "pricing_mode": "text_only",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "included_scope",
+                    "conditions": [],
+                    "notes": []
+                  },
+                  {
+                    "line_id": "option-a-line-svc-1-scope-9",
+                    "item": "",
+                    "line_no": "",
+                    "line_type": "scope_note",
+                    "description": "Mechanical fitter FP5 x7",
+                    "pricing_mode": "text_only",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "included_scope",
+                    "conditions": [],
+                    "notes": []
+                  }
+                ]
+              },
+              {
+                "group_id": "option-a-group-svc-2",
+                "group_no": "2",
+                "title": "MPC system inspection",
+                "description": "服务项标题和范围已基本明确，可进入报价。",
+                "lines": [
+                  {
+                    "line_id": "option-a-line-svc-2",
+                    "item": "2",
+                    "line_no": "2",
+                    "line_type": "priced",
+                    "description": "MPC system inspection 64k running hours inspection scope for MPC system",
+                    "pricing_mode": "lump_sum",
+                    "unit_price": 576.0,
+                    "unit_price_display": "576.00",
+                    "unit": "set",
+                    "qty": 1,
+                    "qty_display": "1",
+                    "discount": null,
+                    "amount": 576.0,
+                    "amount_display": "576.00",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "workflow_service_rate",
+                    "conditions": [],
+                    "notes": [
+                      "服务项标题和范围已基本明确，可进入报价。",
+                      "64k running hours inspection scope for MPC system"
+                    ]
+                  },
+                  {
+                    "line_id": "option-a-line-svc-2-scope-1",
+                    "item": "",
+                    "line_no": "",
+                    "line_type": "scope_note",
+                    "description": "MPC health inspection and replacement",
+                    "pricing_mode": "text_only",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "included_scope",
+                    "conditions": [],
+                    "notes": []
+                  },
+                  {
+                    "line_id": "option-a-line-svc-2-scope-2",
+                    "item": "",
+                    "line_no": "",
+                    "line_type": "scope_note",
+                    "description": "8 hours execution window",
+                    "pricing_mode": "text_only",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "included_scope",
+                    "conditions": [],
+                    "notes": []
+                  },
+                  {
+                    "line_id": "option-a-line-svc-2-scope-3",
+                    "item": "",
+                    "line_no": "",
+                    "line_type": "scope_note",
+                    "description": "1 set",
+                    "pricing_mode": "text_only",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "included_scope",
+                    "conditions": [],
+                    "notes": []
+                  },
+                  {
+                    "line_id": "option-a-line-svc-2-scope-4",
+                    "item": "",
+                    "line_no": "",
+                    "line_type": "scope_note",
+                    "description": "Electrical engineer ET5 x1",
+                    "pricing_mode": "text_only",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "included_scope",
+                    "conditions": [],
+                    "notes": []
+                  },
+                  {
+                    "line_id": "option-a-line-svc-2-scope-5",
+                    "item": "",
+                    "line_no": "",
+                    "line_type": "scope_note",
+                    "description": "Electrical engineer ET3 x1",
+                    "pricing_mode": "text_only",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "included_scope",
+                    "conditions": [],
+                    "notes": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "section_id": "option-a-section-other",
+            "section_type": "other",
+            "title": "Other",
+            "groups": [
+              {
+                "group_id": "option-a-group-oth-3",
+                "group_no": "1",
+                "title": "Transportation",
+                "description": "服务项标题和范围已基本明确，可进入报价。",
+                "lines": [
+                  {
+                    "line_id": "option-a-line-oth-3",
+                    "item": "1",
+                    "line_no": "1",
+                    "line_type": "priced",
+                    "description": "Transportation Engineer round-trip transportation for China drydock attendance",
+                    "pricing_mode": "lump_sum",
+                    "unit_price": 540.0,
+                    "unit_price_display": "540.00",
+                    "unit": "person",
+                    "qty": 4,
+                    "qty_display": "4",
+                    "discount": null,
+                    "amount": 540.0,
+                    "amount_display": "540.00",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "workflow_logistics_rule",
+                    "conditions": [],
+                    "notes": [
+                      "服务项标题和范围已基本明确，可进入报价。",
+                      "Engineer round-trip transportation for China drydock attendance"
+                    ]
+                  },
+                  {
+                    "line_id": "option-a-line-oth-3-scope-1",
+                    "item": "",
+                    "line_no": "",
+                    "line_type": "scope_note",
+                    "description": "Round-trip travel for service engineers",
+                    "pricing_mode": "text_only",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "included_scope",
+                    "conditions": [],
+                    "notes": []
+                  },
+                  {
+                    "line_id": "option-a-line-oth-3-scope-2",
+                    "item": "",
+                    "line_no": "",
+                    "line_type": "scope_note",
+                    "description": "Based on one round trip",
+                    "pricing_mode": "text_only",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "included_scope",
+                    "conditions": [],
+                    "notes": []
+                  }
+                ]
+              },
+              {
+                "group_id": "option-a-group-oth-4",
+                "group_no": "2",
+                "title": "Accommodation",
+                "description": "服务项标题和范围已基本明确，可进入报价。",
+                "lines": [
+                  {
+                    "line_id": "option-a-line-oth-4",
+                    "item": "2",
+                    "line_no": "2",
+                    "line_type": "priced",
+                    "description": "Accommodation Accommodation and meal arrangement during drydock attendance",
+                    "pricing_mode": "lump_sum",
+                    "unit_price": 440.0,
+                    "unit_price_display": "440.00",
+                    "unit": "person-day",
+                    "qty": 8,
+                    "qty_display": "8",
+                    "discount": null,
+                    "amount": 440.0,
+                    "amount_display": "440.00",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "workflow_logistics_rule",
+                    "conditions": [],
+                    "notes": [
+                      "服务项标题和范围已基本明确，可进入报价。",
+                      "Accommodation and meal arrangement during drydock attendance"
+                    ]
+                  },
+                  {
+                    "line_id": "option-a-line-oth-4-scope-1",
+                    "item": "",
+                    "line_no": "",
+                    "line_type": "scope_note",
+                    "description": "Hotel and meal arrangement if needed",
+                    "pricing_mode": "text_only",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "included_scope",
+                    "conditions": [],
+                    "notes": []
+                  },
+                  {
+                    "line_id": "option-a-line-oth-4-scope-2",
+                    "item": "",
+                    "line_no": "",
+                    "line_type": "scope_note",
+                    "description": "Estimated 4 persons for 2 days",
+                    "pricing_mode": "text_only",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "included_scope",
+                    "conditions": [],
+                    "notes": []
+                  }
+                ]
+              },
+              {
+                "group_id": "option-a-group-oth-5",
+                "group_no": "3",
+                "title": "Dockyard management fee",
+                "description": "服务项标题和范围已基本明确，可进入报价。",
+                "lines": [
+                  {
+                    "line_id": "option-a-line-oth-5",
+                    "item": "3",
+                    "line_no": "3",
+                    "line_type": "priced",
+                    "description": "Dockyard management fee Potential dockyard management / boarding / coordination fee during drydock",
+                    "pricing_mode": "lump_sum",
+                    "unit_price": 360.0,
+                    "unit_price_display": "360.00",
+                    "unit": "lot",
+                    "qty": 1,
+                    "qty_display": "1",
+                    "discount": null,
+                    "amount": 360.0,
+                    "amount_display": "360.00",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "workflow_dockyard_management_rule",
+                    "conditions": [],
+                    "notes": [
+                      "服务项标题和范围已基本明确，可进入报价。",
+                      "Potential dockyard management / boarding / coordination fee during drydock"
+                    ]
+                  },
+                  {
+                    "line_id": "option-a-line-oth-5-scope-1",
+                    "item": "",
+                    "line_no": "",
+                    "line_type": "scope_note",
+                    "description": "Applicable if required by yard or local arrangement",
+                    "pricing_mode": "text_only",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "included_scope",
+                    "conditions": [],
+                    "notes": []
+                  }
+                ]
+              },
+              {
+                "group_id": "option-a-group-oth-6",
+                "group_no": "4",
+                "title": "Maritime reporting / safety permit",
+                "description": "服务项标题和范围已基本明确，可进入报价。",
+                "lines": [
+                  {
+                    "line_id": "option-a-line-oth-6",
+                    "item": "4",
+                    "line_no": "4",
+                    "line_type": "priced",
+                    "description": "Maritime reporting / safety permit Potential hot work / permit / reporting related charge",
+                    "pricing_mode": "lump_sum",
+                    "unit_price": 180.0,
+                    "unit_price_display": "180.00",
+                    "unit": "lot",
+                    "qty": 1,
+                    "qty_display": "1",
+                    "discount": null,
+                    "amount": 180.0,
+                    "amount_display": "180.00",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "workflow_maritime_reporting_rule",
+                    "conditions": [],
+                    "notes": [
+                      "服务项标题和范围已基本明确，可进入报价。",
+                      "Potential hot work / permit / reporting related charge"
+                    ]
+                  },
+                  {
+                    "line_id": "option-a-line-oth-6-scope-1",
+                    "item": "",
+                    "line_no": "",
+                    "line_type": "scope_note",
+                    "description": "Applicable only if required by yard or local authority",
+                    "pricing_mode": "text_only",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "included_scope",
+                    "conditions": [],
+                    "notes": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "section_id": "option-a-section-spare_parts",
+            "section_type": "spare_parts",
+            "title": "Spare Parts",
+            "groups": [
+              {
+                "group_id": "option-a-group-spr-7",
+                "group_no": "1",
+                "title": "HPS accumulators repair kit",
+                "description": "备件供货责任未确认，当前只能待确认。",
+                "lines": [
+                  {
+                    "line_id": "option-a-line-spr-7",
+                    "item": "1",
+                    "line_no": "1",
+                    "line_type": "pending",
+                    "description": "HPS accumulators repair kit Pending confirmation for MPC inspection scope",
+                    "pricing_mode": "pending",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "LS",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "Pending",
+                    "currency": "USD",
+                    "status": "pending",
+                    "basis": "historical_price_range",
+                    "conditions": [
+                      "Subject to confirmation"
+                    ],
+                    "notes": [
+                      "备件供货责任未确认，当前只能待确认。",
+                      "Pending confirmation for MPC inspection scope",
+                      "Confirm whether HPS/HCU accumulator repair kits are owner supply or our supply."
+                    ]
+                  },
+                  {
+                    "line_id": "option-a-line-spr-7-scope-1",
+                    "item": "",
+                    "line_no": "",
+                    "line_type": "scope_note",
+                    "description": "Supply responsibility to be confirmed",
+                    "pricing_mode": "text_only",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "included_scope",
+                    "conditions": [],
+                    "notes": []
+                  }
+                ]
+              },
+              {
+                "group_id": "option-a-group-spr-8",
+                "group_no": "2",
+                "title": "HCU accumulators repair kit",
+                "description": "备件供货责任未确认，当前只能待确认。",
+                "lines": [
+                  {
+                    "line_id": "option-a-line-spr-8",
+                    "item": "2",
+                    "line_no": "2",
+                    "line_type": "pending",
+                    "description": "HCU accumulators repair kit Pending confirmation for HCU overhaul scope",
+                    "pricing_mode": "pending",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "LS",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "Pending",
+                    "currency": "USD",
+                    "status": "pending",
+                    "basis": "historical_price_range",
+                    "conditions": [
+                      "Subject to confirmation"
+                    ],
+                    "notes": [
+                      "备件供货责任未确认，当前只能待确认。",
+                      "Pending confirmation for HCU overhaul scope",
+                      "Confirm whether HPS/HCU accumulator repair kits are owner supply or our supply."
+                    ]
+                  },
+                  {
+                    "line_id": "option-a-line-spr-8-scope-1",
+                    "item": "",
+                    "line_no": "",
+                    "line_type": "scope_note",
+                    "description": "Supply responsibility to be confirmed",
+                    "pricing_mode": "text_only",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "included_scope",
+                    "conditions": [],
+                    "notes": []
+                  }
+                ]
+              },
+              {
+                "group_id": "option-a-group-spr-9",
+                "group_no": "3",
+                "title": "Nitrogen for refilling",
+                "description": "备件供货责任未确认，当前只能待确认。",
+                "lines": [
+                  {
+                    "line_id": "option-a-line-spr-9",
+                    "item": "3",
+                    "line_no": "3",
+                    "line_type": "pending",
+                    "description": "Nitrogen for refilling Pending confirmation for HCU overhaul scope",
+                    "pricing_mode": "pending",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "LS",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "Pending",
+                    "currency": "USD",
+                    "status": "pending",
+                    "basis": "historical_price_range",
+                    "conditions": [
+                      "Subject to confirmation"
+                    ],
+                    "notes": [
+                      "备件供货责任未确认，当前只能待确认。",
+                      "Pending confirmation for HCU overhaul scope",
+                      "Confirm whether HPS/HCU accumulator repair kits are owner supply or our supply."
+                    ]
+                  },
+                  {
+                    "line_id": "option-a-line-spr-9-scope-1",
+                    "item": "",
+                    "line_no": "",
+                    "line_type": "scope_note",
+                    "description": "Supply responsibility to be confirmed",
+                    "pricing_mode": "text_only",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "included_scope",
+                    "conditions": [],
+                    "notes": []
+                  }
+                ]
+              },
+              {
+                "group_id": "option-a-group-spr-10",
+                "group_no": "4",
+                "title": "FIVA valves pilot valves",
+                "description": "备件供货责任未确认，当前只能待确认。",
+                "lines": [
+                  {
+                    "line_id": "option-a-line-spr-10",
+                    "item": "4",
+                    "line_no": "4",
+                    "line_type": "pending",
+                    "description": "FIVA valves pilot valves Pending confirmation for HCU overhaul scope",
+                    "pricing_mode": "pending",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "LS",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "Pending",
+                    "currency": "USD",
+                    "status": "pending",
+                    "basis": "historical_price_range",
+                    "conditions": [
+                      "Subject to confirmation"
+                    ],
+                    "notes": [
+                      "备件供货责任未确认，当前只能待确认。",
+                      "Pending confirmation for HCU overhaul scope",
+                      "Confirm whether HPS/HCU accumulator repair kits are owner supply or our supply."
+                    ]
+                  },
+                  {
+                    "line_id": "option-a-line-spr-10-scope-1",
+                    "item": "",
+                    "line_no": "",
+                    "line_type": "scope_note",
+                    "description": "Supply responsibility to be confirmed",
+                    "pricing_mode": "text_only",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "included_scope",
+                    "conditions": [],
+                    "notes": []
+                  }
+                ]
+              },
+              {
+                "group_id": "option-a-group-spr-11",
+                "group_no": "5",
+                "title": "Fuel booster units top covers and suction valves",
+                "description": "备件供货责任未确认，当前只能待确认。",
+                "lines": [
+                  {
+                    "line_id": "option-a-line-spr-11",
+                    "item": "5",
+                    "line_no": "5",
+                    "line_type": "pending",
+                    "description": "Fuel booster units top covers and suction valves Pending confirmation for HCU overhaul scope",
+                    "pricing_mode": "pending",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "LS",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "Pending",
+                    "currency": "USD",
+                    "status": "pending",
+                    "basis": "historical_price_range",
+                    "conditions": [
+                      "Subject to confirmation"
+                    ],
+                    "notes": [
+                      "备件供货责任未确认，当前只能待确认。",
+                      "Pending confirmation for HCU overhaul scope",
+                      "Confirm whether HPS/HCU accumulator repair kits are owner supply or our supply."
+                    ]
+                  },
+                  {
+                    "line_id": "option-a-line-spr-11-scope-1",
+                    "item": "",
+                    "line_no": "",
+                    "line_type": "scope_note",
+                    "description": "Supply responsibility to be confirmed",
+                    "pricing_mode": "text_only",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "included_scope",
+                    "conditions": [],
+                    "notes": []
+                  }
+                ]
+              },
+              {
+                "group_id": "option-a-group-spr-12",
+                "group_no": "6",
+                "title": "Exhaust valve actuators safety valves",
+                "description": "备件供货责任未确认，当前只能待确认。",
+                "lines": [
+                  {
+                    "line_id": "option-a-line-spr-12",
+                    "item": "6",
+                    "line_no": "6",
+                    "line_type": "pending",
+                    "description": "Exhaust valve actuators safety valves Pending confirmation for HCU overhaul scope",
+                    "pricing_mode": "pending",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "LS",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "Pending",
+                    "currency": "USD",
+                    "status": "pending",
+                    "basis": "historical_price_range",
+                    "conditions": [
+                      "Subject to confirmation"
+                    ],
+                    "notes": [
+                      "备件供货责任未确认，当前只能待确认。",
+                      "Pending confirmation for HCU overhaul scope",
+                      "Confirm whether HPS/HCU accumulator repair kits are owner supply or our supply."
+                    ]
+                  },
+                  {
+                    "line_id": "option-a-line-spr-12-scope-1",
+                    "item": "",
+                    "line_no": "",
+                    "line_type": "scope_note",
+                    "description": "Supply responsibility to be confirmed",
+                    "pricing_mode": "text_only",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "included_scope",
+                    "conditions": [],
+                    "notes": []
+                  }
+                ]
+              },
+              {
+                "group_id": "option-a-group-spr-13",
+                "group_no": "7",
+                "title": "MPC and UPS batteries",
+                "description": "备件供货责任未确认，当前只能待确认。",
+                "lines": [
+                  {
+                    "line_id": "option-a-line-spr-13",
+                    "item": "7",
+                    "line_no": "7",
+                    "line_type": "pending",
+                    "description": "MPC and UPS batteries Pending confirmation for MPC inspection scope",
+                    "pricing_mode": "pending",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "LS",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "Pending",
+                    "currency": "USD",
+                    "status": "pending",
+                    "basis": "historical_price_range",
+                    "conditions": [
+                      "Subject to confirmation"
+                    ],
+                    "notes": [
+                      "备件供货责任未确认，当前只能待确认。",
+                      "Pending confirmation for MPC inspection scope",
+                      "Confirm whether HPS/HCU accumulator repair kits are owner supply or our supply."
+                    ]
+                  },
+                  {
+                    "line_id": "option-a-line-spr-13-scope-1",
+                    "item": "",
+                    "line_no": "",
+                    "line_type": "scope_note",
+                    "description": "Supply responsibility to be confirmed",
+                    "pricing_mode": "text_only",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "included_scope",
+                    "conditions": [],
+                    "notes": []
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "summary": {
+          "service_charge": {
+            "value_type": "amount",
+            "amount": 2800.0,
+            "display": "2,800.00",
+            "currency": "USD",
+            "status": "chargeable"
+          },
+          "spare_parts_fee": {
+            "value_type": "status",
+            "amount": null,
+            "display": "Pending",
+            "currency": "USD",
+            "status": "pending"
+          },
+          "other": {
+            "value_type": "amount",
+            "amount": 1520.0,
+            "display": "1,520.00",
+            "currency": "USD",
+            "status": "chargeable"
+          },
+          "total": {
+            "value_type": "status",
+            "amount": null,
+            "display": "Pending",
+            "currency": "USD",
+            "status": "pending"
+          }
+        },
+        "remarks": [
+          {
+            "type": "commercial",
+            "text": "Other repair if needed to be charged extra."
+          },
+          {
+            "type": "commercial",
+            "text": "Shipyard management fee / boarding pass / crane cost if needed to be charged as actual."
+          },
+          {
+            "type": "commercial",
+            "text": "Port entrance fee / other cost if needed to be charged as actual."
+          },
+          {
+            "type": "commercial",
+            "text": "Spares supply by shipside"
+          }
+        ]
+      },
+      {
+        "option_id": "option-b",
+        "title": "Option B Service only quotation",
+        "sections": [
+          {
+            "section_id": "option-b-section-service",
+            "section_type": "service",
+            "title": "Service",
+            "groups": [
+              {
+                "group_id": "option-b-group-svc-1",
+                "group_no": "1",
+                "title": "HCU system overhaul",
+                "description": "服务项标题和范围已基本明确，可进入报价。",
+                "lines": [
+                  {
+                    "line_id": "option-b-line-svc-1",
+                    "item": "1",
+                    "line_no": "1",
+                    "line_type": "priced",
+                    "description": "HCU system overhaul 64k running hours overhaul scope for HCU system",
+                    "pricing_mode": "lump_sum",
+                    "unit_price": 2224.0,
+                    "unit_price_display": "2,224.00",
+                    "unit": "set",
+                    "qty": 1,
+                    "qty_display": "1",
+                    "discount": {
+                      "type": "percentage",
+                      "value": 5.0,
+                      "display": "5%"
+                    },
+                    "amount": 2112.8,
+                    "amount_display": "2,112.80",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "workflow_service_rate",
+                    "conditions": [],
+                    "notes": [
+                      "服务项标题和范围已基本明确，可进入报价。",
+                      "64k running hours overhaul scope for HCU system"
+                    ],
+                    "relation": {
+                      "type": "alternative_to",
+                      "target_line_id": "option-a-line-svc-1"
+                    }
+                  },
+                  {
+                    "line_id": "option-b-line-svc-1-scope-1",
+                    "item": "",
+                    "line_no": "",
+                    "line_type": "scope_note",
+                    "description": "Overhaul ELFI valve/Multiway valve units",
+                    "pricing_mode": "text_only",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "included_scope",
+                    "conditions": [],
+                    "notes": []
+                  },
+                  {
+                    "line_id": "option-b-line-svc-1-scope-2",
+                    "item": "",
+                    "line_no": "",
+                    "line_type": "scope_note",
+                    "description": "Exhaust valve actuator and fuel oil pressure booster overhauling",
+                    "pricing_mode": "text_only",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "included_scope",
+                    "conditions": [],
+                    "notes": []
+                  },
+                  {
+                    "line_id": "option-b-line-svc-1-scope-3",
+                    "item": "",
+                    "line_no": "",
+                    "line_type": "scope_note",
+                    "description": "Cylinder lubricator system overhauling",
+                    "pricing_mode": "text_only",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "included_scope",
+                    "conditions": [],
+                    "notes": []
+                  },
+                  {
+                    "line_id": "option-b-line-svc-1-scope-4",
+                    "item": "",
+                    "line_no": "",
+                    "line_type": "scope_note",
+                    "description": "Accumulator overhauling and refill with nitrogen",
+                    "pricing_mode": "text_only",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "included_scope",
+                    "conditions": [],
+                    "notes": []
+                  },
+                  {
+                    "line_id": "option-b-line-svc-1-scope-5",
+                    "item": "",
+                    "line_no": "",
+                    "line_type": "scope_note",
+                    "description": "Maintenance and overhauling of HPS",
+                    "pricing_mode": "text_only",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "included_scope",
+                    "conditions": [],
+                    "notes": []
+                  },
+                  {
+                    "line_id": "option-b-line-svc-1-scope-6",
+                    "item": "",
+                    "line_no": "",
+                    "line_type": "scope_note",
+                    "description": "8 hours execution window",
+                    "pricing_mode": "text_only",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "included_scope",
+                    "conditions": [],
+                    "notes": []
+                  },
+                  {
+                    "line_id": "option-b-line-svc-1-scope-7",
+                    "item": "",
+                    "line_no": "",
+                    "line_type": "scope_note",
+                    "description": "1 set",
+                    "pricing_mode": "text_only",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "included_scope",
+                    "conditions": [],
+                    "notes": []
+                  },
+                  {
+                    "line_id": "option-b-line-svc-1-scope-8",
+                    "item": "",
+                    "line_no": "",
+                    "line_type": "scope_note",
+                    "description": "Mechanical engineer MT5 x1",
+                    "pricing_mode": "text_only",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "included_scope",
+                    "conditions": [],
+                    "notes": []
+                  },
+                  {
+                    "line_id": "option-b-line-svc-1-scope-9",
+                    "item": "",
+                    "line_no": "",
+                    "line_type": "scope_note",
+                    "description": "Mechanical fitter FP5 x7",
+                    "pricing_mode": "text_only",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "included_scope",
+                    "conditions": [],
+                    "notes": []
+                  },
+                  {
+                    "line_id": "option-b-line-svc-1-discount-note",
+                    "item": "",
+                    "line_no": "",
+                    "line_type": "commercial_note",
+                    "description": "Commercial discount 5% applied within approved authority.",
+                    "pricing_mode": "text_only",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "discount_authority",
+                    "conditions": [],
+                    "notes": []
+                  }
+                ]
+              },
+              {
+                "group_id": "option-b-group-svc-2",
+                "group_no": "2",
+                "title": "MPC system inspection",
+                "description": "服务项标题和范围已基本明确，可进入报价。",
+                "lines": [
+                  {
+                    "line_id": "option-b-line-svc-2",
+                    "item": "2",
+                    "line_no": "2",
+                    "line_type": "priced",
+                    "description": "MPC system inspection 64k running hours inspection scope for MPC system",
+                    "pricing_mode": "lump_sum",
+                    "unit_price": 576.0,
+                    "unit_price_display": "576.00",
+                    "unit": "set",
+                    "qty": 1,
+                    "qty_display": "1",
+                    "discount": {
+                      "type": "percentage",
+                      "value": 5.0,
+                      "display": "5%"
+                    },
+                    "amount": 547.2,
+                    "amount_display": "547.20",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "workflow_service_rate",
+                    "conditions": [],
+                    "notes": [
+                      "服务项标题和范围已基本明确，可进入报价。",
+                      "64k running hours inspection scope for MPC system"
+                    ],
+                    "relation": {
+                      "type": "alternative_to",
+                      "target_line_id": "option-a-line-svc-2"
+                    }
+                  },
+                  {
+                    "line_id": "option-b-line-svc-2-scope-1",
+                    "item": "",
+                    "line_no": "",
+                    "line_type": "scope_note",
+                    "description": "MPC health inspection and replacement",
+                    "pricing_mode": "text_only",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "included_scope",
+                    "conditions": [],
+                    "notes": []
+                  },
+                  {
+                    "line_id": "option-b-line-svc-2-scope-2",
+                    "item": "",
+                    "line_no": "",
+                    "line_type": "scope_note",
+                    "description": "8 hours execution window",
+                    "pricing_mode": "text_only",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "included_scope",
+                    "conditions": [],
+                    "notes": []
+                  },
+                  {
+                    "line_id": "option-b-line-svc-2-scope-3",
+                    "item": "",
+                    "line_no": "",
+                    "line_type": "scope_note",
+                    "description": "1 set",
+                    "pricing_mode": "text_only",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "included_scope",
+                    "conditions": [],
+                    "notes": []
+                  },
+                  {
+                    "line_id": "option-b-line-svc-2-scope-4",
+                    "item": "",
+                    "line_no": "",
+                    "line_type": "scope_note",
+                    "description": "Electrical engineer ET5 x1",
+                    "pricing_mode": "text_only",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "included_scope",
+                    "conditions": [],
+                    "notes": []
+                  },
+                  {
+                    "line_id": "option-b-line-svc-2-scope-5",
+                    "item": "",
+                    "line_no": "",
+                    "line_type": "scope_note",
+                    "description": "Electrical engineer ET3 x1",
+                    "pricing_mode": "text_only",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "included_scope",
+                    "conditions": [],
+                    "notes": []
+                  },
+                  {
+                    "line_id": "option-b-line-svc-2-discount-note",
+                    "item": "",
+                    "line_no": "",
+                    "line_type": "commercial_note",
+                    "description": "Commercial discount 5% applied within approved authority.",
+                    "pricing_mode": "text_only",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "discount_authority",
+                    "conditions": [],
+                    "notes": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "section_id": "option-b-section-other",
+            "section_type": "other",
+            "title": "Other",
+            "groups": [
+              {
+                "group_id": "option-b-group-oth-3",
+                "group_no": "1",
+                "title": "Transportation",
+                "description": "服务项标题和范围已基本明确，可进入报价。",
+                "lines": [
+                  {
+                    "line_id": "option-b-line-oth-3",
+                    "item": "1",
+                    "line_no": "1",
+                    "line_type": "priced",
+                    "description": "Transportation Engineer round-trip transportation for China drydock attendance",
+                    "pricing_mode": "lump_sum",
+                    "unit_price": 540.0,
+                    "unit_price_display": "540.00",
+                    "unit": "person",
+                    "qty": 4,
+                    "qty_display": "4",
+                    "discount": {
+                      "type": "percentage",
+                      "value": 5.0,
+                      "display": "5%"
+                    },
+                    "amount": 513.0,
+                    "amount_display": "513.00",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "workflow_logistics_rule",
+                    "conditions": [],
+                    "notes": [
+                      "服务项标题和范围已基本明确，可进入报价。",
+                      "Engineer round-trip transportation for China drydock attendance"
+                    ],
+                    "relation": {
+                      "type": "alternative_to",
+                      "target_line_id": "option-a-line-oth-3"
+                    }
+                  },
+                  {
+                    "line_id": "option-b-line-oth-3-scope-1",
+                    "item": "",
+                    "line_no": "",
+                    "line_type": "scope_note",
+                    "description": "Round-trip travel for service engineers",
+                    "pricing_mode": "text_only",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "included_scope",
+                    "conditions": [],
+                    "notes": []
+                  },
+                  {
+                    "line_id": "option-b-line-oth-3-scope-2",
+                    "item": "",
+                    "line_no": "",
+                    "line_type": "scope_note",
+                    "description": "Based on one round trip",
+                    "pricing_mode": "text_only",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "included_scope",
+                    "conditions": [],
+                    "notes": []
+                  },
+                  {
+                    "line_id": "option-b-line-oth-3-discount-note",
+                    "item": "",
+                    "line_no": "",
+                    "line_type": "commercial_note",
+                    "description": "Commercial discount 5% applied within approved authority.",
+                    "pricing_mode": "text_only",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "discount_authority",
+                    "conditions": [],
+                    "notes": []
+                  }
+                ]
+              },
+              {
+                "group_id": "option-b-group-oth-4",
+                "group_no": "2",
+                "title": "Accommodation",
+                "description": "服务项标题和范围已基本明确，可进入报价。",
+                "lines": [
+                  {
+                    "line_id": "option-b-line-oth-4",
+                    "item": "2",
+                    "line_no": "2",
+                    "line_type": "priced",
+                    "description": "Accommodation Accommodation and meal arrangement during drydock attendance",
+                    "pricing_mode": "lump_sum",
+                    "unit_price": 440.0,
+                    "unit_price_display": "440.00",
+                    "unit": "person-day",
+                    "qty": 8,
+                    "qty_display": "8",
+                    "discount": {
+                      "type": "percentage",
+                      "value": 5.0,
+                      "display": "5%"
+                    },
+                    "amount": 418.0,
+                    "amount_display": "418.00",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "workflow_logistics_rule",
+                    "conditions": [],
+                    "notes": [
+                      "服务项标题和范围已基本明确，可进入报价。",
+                      "Accommodation and meal arrangement during drydock attendance"
+                    ],
+                    "relation": {
+                      "type": "alternative_to",
+                      "target_line_id": "option-a-line-oth-4"
+                    }
+                  },
+                  {
+                    "line_id": "option-b-line-oth-4-scope-1",
+                    "item": "",
+                    "line_no": "",
+                    "line_type": "scope_note",
+                    "description": "Hotel and meal arrangement if needed",
+                    "pricing_mode": "text_only",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "included_scope",
+                    "conditions": [],
+                    "notes": []
+                  },
+                  {
+                    "line_id": "option-b-line-oth-4-scope-2",
+                    "item": "",
+                    "line_no": "",
+                    "line_type": "scope_note",
+                    "description": "Estimated 4 persons for 2 days",
+                    "pricing_mode": "text_only",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "included_scope",
+                    "conditions": [],
+                    "notes": []
+                  },
+                  {
+                    "line_id": "option-b-line-oth-4-discount-note",
+                    "item": "",
+                    "line_no": "",
+                    "line_type": "commercial_note",
+                    "description": "Commercial discount 5% applied within approved authority.",
+                    "pricing_mode": "text_only",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "discount_authority",
+                    "conditions": [],
+                    "notes": []
+                  }
+                ]
+              },
+              {
+                "group_id": "option-b-group-oth-5",
+                "group_no": "3",
+                "title": "Dockyard management fee",
+                "description": "服务项标题和范围已基本明确，可进入报价。",
+                "lines": [
+                  {
+                    "line_id": "option-b-line-oth-5",
+                    "item": "3",
+                    "line_no": "3",
+                    "line_type": "priced",
+                    "description": "Dockyard management fee Potential dockyard management / boarding / coordination fee during drydock",
+                    "pricing_mode": "lump_sum",
+                    "unit_price": 360.0,
+                    "unit_price_display": "360.00",
+                    "unit": "lot",
+                    "qty": 1,
+                    "qty_display": "1",
+                    "discount": {
+                      "type": "percentage",
+                      "value": 5.0,
+                      "display": "5%"
+                    },
+                    "amount": 342.0,
+                    "amount_display": "342.00",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "workflow_dockyard_management_rule",
+                    "conditions": [],
+                    "notes": [
+                      "服务项标题和范围已基本明确，可进入报价。",
+                      "Potential dockyard management / boarding / coordination fee during drydock"
+                    ],
+                    "relation": {
+                      "type": "alternative_to",
+                      "target_line_id": "option-a-line-oth-5"
+                    }
+                  },
+                  {
+                    "line_id": "option-b-line-oth-5-scope-1",
+                    "item": "",
+                    "line_no": "",
+                    "line_type": "scope_note",
+                    "description": "Applicable if required by yard or local arrangement",
+                    "pricing_mode": "text_only",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "included_scope",
+                    "conditions": [],
+                    "notes": []
+                  },
+                  {
+                    "line_id": "option-b-line-oth-5-discount-note",
+                    "item": "",
+                    "line_no": "",
+                    "line_type": "commercial_note",
+                    "description": "Commercial discount 5% applied within approved authority.",
+                    "pricing_mode": "text_only",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "discount_authority",
+                    "conditions": [],
+                    "notes": []
+                  }
+                ]
+              },
+              {
+                "group_id": "option-b-group-oth-6",
+                "group_no": "4",
+                "title": "Maritime reporting / safety permit",
+                "description": "服务项标题和范围已基本明确，可进入报价。",
+                "lines": [
+                  {
+                    "line_id": "option-b-line-oth-6",
+                    "item": "4",
+                    "line_no": "4",
+                    "line_type": "priced",
+                    "description": "Maritime reporting / safety permit Potential hot work / permit / reporting related charge",
+                    "pricing_mode": "lump_sum",
+                    "unit_price": 180.0,
+                    "unit_price_display": "180.00",
+                    "unit": "lot",
+                    "qty": 1,
+                    "qty_display": "1",
+                    "discount": {
+                      "type": "percentage",
+                      "value": 5.0,
+                      "display": "5%"
+                    },
+                    "amount": 171.0,
+                    "amount_display": "171.00",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "workflow_maritime_reporting_rule",
+                    "conditions": [],
+                    "notes": [
+                      "服务项标题和范围已基本明确，可进入报价。",
+                      "Potential hot work / permit / reporting related charge"
+                    ],
+                    "relation": {
+                      "type": "alternative_to",
+                      "target_line_id": "option-a-line-oth-6"
+                    }
+                  },
+                  {
+                    "line_id": "option-b-line-oth-6-scope-1",
+                    "item": "",
+                    "line_no": "",
+                    "line_type": "scope_note",
+                    "description": "Applicable only if required by yard or local authority",
+                    "pricing_mode": "text_only",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "included_scope",
+                    "conditions": [],
+                    "notes": []
+                  },
+                  {
+                    "line_id": "option-b-line-oth-6-discount-note",
+                    "item": "",
+                    "line_no": "",
+                    "line_type": "commercial_note",
+                    "description": "Commercial discount 5% applied within approved authority.",
+                    "pricing_mode": "text_only",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "discount_authority",
+                    "conditions": [],
+                    "notes": []
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "summary": {
+          "service_charge": {
+            "value_type": "amount",
+            "amount": 2660.0,
+            "display": "2,660.00",
+            "currency": "USD",
+            "status": "chargeable"
+          },
+          "spare_parts_fee": {
+            "value_type": "amount",
+            "amount": 0.0,
+            "display": "0.00",
+            "currency": "USD",
+            "status": "chargeable"
+          },
+          "other": {
+            "value_type": "amount",
+            "amount": 1444.0,
+            "display": "1,444.00",
+            "currency": "USD",
+            "status": "chargeable"
+          },
+          "total": {
+            "value_type": "amount",
+            "amount": 4104.0,
+            "display": "4,104.00",
+            "currency": "USD",
+            "status": "chargeable"
+          }
+        },
+        "remarks": [
+          {
+            "type": "commercial",
+            "text": "Other repair if needed to be charged extra."
+          },
+          {
+            "type": "commercial",
+            "text": "Shipyard management fee / boarding pass / crane cost if needed to be charged as actual."
+          },
+          {
+            "type": "commercial",
+            "text": "Port entrance fee / other cost if needed to be charged as actual."
+          },
+          {
+            "type": "commercial",
+            "text": "Spares supply by shipside"
+          },
+          {
+            "type": "commercial",
+            "text": "Commercial discount 5% applied within operator authority."
+          },
+          {
+            "type": "tbc",
+            "text": "Spare parts are excluded from this option and remain subject to separate confirmation."
+          }
+        ]
+      }
+    ],
+    "footer": {
+      "summary": {
+        "service_charge": {
+          "value_type": "amount",
+          "amount": 2800.0,
+          "display": "2,800.00",
+          "currency": "USD",
+          "status": "chargeable"
+        },
+        "spare_parts_fee": {
+          "value_type": "status",
+          "amount": null,
+          "display": "Pending",
+          "currency": "USD",
+          "status": "pending"
+        },
+        "other": {
+          "value_type": "amount",
+          "amount": 1520.0,
+          "display": "1,520.00",
+          "currency": "USD",
+          "status": "chargeable"
+        },
+        "total": {
+          "value_type": "status",
+          "amount": null,
+          "display": "Pending",
+          "currency": "USD",
+          "status": "pending"
+        }
+      },
+      "remark": {
+        "title": "Remark",
+        "items": [
+          {
+            "type": "commercial",
+            "text": "Other repair if needed to be charged extra."
+          },
+          {
+            "type": "commercial",
+            "text": "Shipyard management fee / boarding pass / crane cost if needed to be charged as actual."
+          },
+          {
+            "type": "commercial",
+            "text": "Port entrance fee / other cost if needed to be charged as actual."
+          },
+          {
+            "type": "commercial",
+            "text": "Commercial discount 5% applied within operator authority."
+          },
+          {
+            "type": "exclusion",
+            "text": "Spare parts are excluded from this option and remain subject to separate confirmation."
+          },
+          {
+            "type": "commercial",
+            "text": "Quotation validity: 30 days"
+          },
+          {
+            "type": "payment_term",
+            "text": "Payment within 30 days upon invoice date."
+          },
+          {
+            "type": "commercial",
+            "text": "All evaluation data is for quotation preparation only and actual execution is subject to site condition."
+          },
+          {
+            "type": "commercial",
+            "text": "Other repair and extra scope if needed to be charged extra."
+          },
+          {
+            "type": "warranty",
+            "text": "Spare parts warranty period shall follow supplier confirmation."
+          },
+          {
+            "type": "warranty",
+            "text": "Inspection and troubleshooting items carry no service warranty."
+          },
+          {
+            "type": "compensation",
+            "text": "Warranty Compensate Amount: 5 times of the service cost at max."
+          }
+        ]
+      },
+      "service_payment_terms": {
+        "title": "Service Payment Terms",
+        "content": "Payment within 30 days upon invoice date."
+      }
+    },
+    "review_result": {
+      "review_flags": [
+        "当前仅部分项目具备报价条件。",
+        "历史参考样本数量不足，请谨慎参考历史报价。",
+        "当前项目与历史案例的明细项重合度较低，请人工确认。",
+        "当前历史参考主要依赖上下文匹配，缺少强明细项支撑。",
+        "当前报价包含多方案，提交审核时需确认推荐方案。",
+        "当前报价包含待确认或按条件收费内容，提交前需再次核对。"
+      ],
+      "risk_flags": [
+        "当前仅部分项目具备报价条件。",
+        "备件供货责任未确认，影响是否纳入报价。",
+        "当前项目与历史案例的明细项重合度较低，请人工确认。",
+        "当前历史参考主要依赖上下文匹配，缺少强明细项支撑。"
+      ],
+      "approval_level": "manager"
+    },
+    "trace": {
+      "historical_references": [
+        {
+          "quote_id": "hist-003",
+          "similarity": 0.5,
+          "reason": "存在多个关键特征匹配。"
+        }
+      ],
+      "pricing_basis": [
+        "workflow_service_rate",
+        "included_scope",
+        "workflow_logistics_rule",
+        "workflow_dockyard_management_rule",
+        "workflow_maritime_reporting_rule",
+        "historical_price_range",
+        "discount_authority",
+        "historical_remark_block",
+        "historical_option_style_hint",
+        "history_quality:low_sample_size",
+        "history_quality:weak_item_overlap",
+        "history_quality:context_only_match"
+      ],
+      "rule_versions": [
+        "quote_pricing_skill:v2",
+        "quote_review_output_skill:v2",
+        "multi_option_footer_strategy:v1",
+        "historical_remark_blocks:v1",
+        "historical_option_style_hints:v1"
+      ]
+    }
+  }
+}

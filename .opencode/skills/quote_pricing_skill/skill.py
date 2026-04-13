@@ -32,8 +32,13 @@ def build_pricing_result(payload: dict[str, Any]) -> dict[str, Any]:
     if not isinstance(pricing_rules, dict):
         pricing_rules = {}
 
+    feasibility_result = _augment_feasibility_with_history(
+        quote_request, feasibility_result, historical_reference
+    )
     currency = _pick_currency(quote_request, pricing_rules, historical_reference)
-    option_strategies = _build_option_strategies(quote_request, pricing_rules)
+    option_strategies = _build_option_strategies(
+        quote_request, pricing_rules, historical_reference
+    )
 
     quotation_options = []
     for option_index, option_strategy in enumerate(option_strategies, start=1):
@@ -118,6 +123,15 @@ def _build_option(
     if not sections:
         return None
 
+    if option_strategy.get("include_spare_parts") is False:
+        sections = [
+            section
+            for section in sections
+            if section.get("section_type") != "spare_parts"
+        ]
+        if not sections:
+            return None
+
     return {
         "option_id": option_strategy["option_id"],
         "title": option_strategy["title"],
@@ -138,8 +152,137 @@ def _decision_items(
     return [item for item in value if isinstance(item, dict)]
 
 
+def _augment_feasibility_with_history(
+    quote_request: dict[str, Any],
+    feasibility_result: dict[str, Any],
+    historical_reference: dict[str, Any],
+) -> dict[str, Any]:
+    if not isinstance(feasibility_result, dict):
+        return feasibility_result
+
+    reference_summary = (
+        historical_reference.get("reference_summary")
+        if isinstance(historical_reference.get("reference_summary"), dict)
+        else {}
+    )
+    history_quality_flags = (
+        reference_summary.get("history_quality_flags")
+        if isinstance(reference_summary.get("history_quality_flags"), list)
+        else []
+    )
+    charge_item_hints = _history_charge_item_hints(historical_reference)
+    if not charge_item_hints or "context_only_match" in history_quality_flags:
+        return feasibility_result
+
+    quotable_items = _decision_items(feasibility_result, "quotable_items")
+    existing_titles = {
+        str(item.get("title") or "").strip().lower()
+        for item in quotable_items
+        if isinstance(item, dict)
+    }
+
+    auto_items = []
+    for hint_type in charge_item_hints:
+        auto_item = _history_hint_to_other_item(
+            hint_type, quote_request, existing_titles
+        )
+        if auto_item is not None:
+            auto_items.append(auto_item)
+            existing_titles.add(str(auto_item.get("title") or "").strip().lower())
+
+    if not auto_items:
+        return feasibility_result
+
+    augmented = dict(feasibility_result)
+    augmented["quotable_items"] = quotable_items + auto_items
+    return augmented
+
+
+def _history_hint_to_other_item(
+    hint_type: str, quote_request: dict[str, Any], existing_titles: set[str]
+) -> dict[str, Any] | None:
+    risk_context = (
+        quote_request.get("risk_context")
+        if isinstance(quote_request.get("risk_context"), dict)
+        else {}
+    )
+    pending_confirmations = (
+        risk_context.get("pending_confirmations")
+        if isinstance(risk_context.get("pending_confirmations"), list)
+        else []
+    )
+    service_context = (
+        quote_request.get("service_context")
+        if isinstance(quote_request.get("service_context"), dict)
+        else {}
+    )
+    service_mode = str(service_context.get("service_mode") or "").strip().lower()
+
+    mapping = {
+        "dockyard_management": {
+            "title": "Dockyard management fee",
+            "description": "Historical cases often include dockyard management related charges.",
+            "keywords": ["dockyard", "shipyard", "厂修"],
+            "reason": "历史相似报价中常见厂修管理相关费用，建议保守纳入报价结构。",
+            "suggested_status": "as_actual",
+        },
+        "maritime_reporting": {
+            "title": "Maritime reporting / safety permit",
+            "description": "Historical cases often include maritime reporting or safety permit related charges.",
+            "keywords": ["maritime", "permit", "报备", "动火", "安全"],
+            "reason": "历史相似报价中存在报备或安全许可线索，建议保守纳入结构。",
+            "suggested_status": "if_needed",
+        },
+        "transportation": {
+            "title": "Transportation",
+            "description": "Historical cases often include transportation charges.",
+            "keywords": ["travel", "交通", "ticket"],
+            "reason": "历史相似报价中常见交通费，建议保守纳入结构。",
+            "suggested_status": "as_actual",
+        },
+        "accommodation": {
+            "title": "Accommodation",
+            "description": "Historical cases often include accommodation charges.",
+            "keywords": ["hotel", "住宿", "食宿"],
+            "reason": "历史相似报价中常见住宿或食宿费，建议保守纳入结构。",
+            "suggested_status": "if_needed",
+        },
+    }
+    config = mapping.get(hint_type)
+    if not config:
+        return None
+
+    title_key = config["title"].lower()
+    if title_key in existing_titles:
+        return None
+    if (
+        hint_type == "dockyard_management"
+        and "dock" not in service_mode
+        and "yard" not in service_mode
+    ):
+        return None
+    if hint_type == "maritime_reporting" and not any(
+        any(keyword in str(text).lower() for keyword in config["keywords"])
+        for text in pending_confirmations
+    ):
+        return None
+
+    return {
+        "item_id": f"hist-other-{hint_type}",
+        "item_type": "other",
+        "title": config["title"],
+        "decision": "quotable",
+        "reason": config["reason"],
+        "blocking_fields": [],
+        "suggested_status": config["suggested_status"],
+        "source": "historical_reference",
+    }
+
+
 def _build_option_strategies(
-    quote_request: dict[str, Any], pricing_rules: dict[str, Any]
+    quote_request: dict[str, Any],
+    pricing_rules: dict[str, Any],
+    historical_reference: dict[str, Any],
 ) -> list[dict[str, Any]]:
     service_context = (
         quote_request.get("service_context")
@@ -158,6 +301,10 @@ def _build_option_strategies(
         pricing_rules.get("multi_option_mode")
     )
     discount_percentage = _default_discount_percentage(pricing_rules)
+    option_style_hints = _history_option_style_hints(historical_reference)
+
+    if not multi_option and "service_only" in option_style_hints:
+        multi_option = True
 
     if not multi_option:
         title = option_titles[0] if option_titles else "Option 1"
@@ -172,21 +319,37 @@ def _build_option_strategies(
         ]
 
     if not option_titles:
-        option_titles = [
-            "Option A Standard quotation",
-            f"Option B {discount_percentage:.0f}% discount quotation",
-        ]
+        if "service_only" in option_style_hints or "spares_tbc" in option_style_hints:
+            option_titles = [
+                "Option A Standard quotation",
+                "Option B Service only quotation",
+            ]
+        else:
+            option_titles = [
+                "Option A Standard quotation",
+                f"Option B {discount_percentage:.0f}% discount quotation",
+            ]
     elif len(option_titles) == 1:
-        option_titles.append(f"Option B {discount_percentage:.0f}% discount quotation")
+        if "service_only" in option_style_hints or "spares_tbc" in option_style_hints:
+            option_titles.append("Option B Service only quotation")
+        else:
+            option_titles.append(
+                f"Option B {discount_percentage:.0f}% discount quotation"
+            )
 
     strategies = []
     for index, title in enumerate(option_titles, start=1):
         normalized_title = title.lower()
         apply_discount = False
+        include_spare_parts = True
         if index == 2 and discount_percentage > 0:
             apply_discount = True
         if any(keyword in normalized_title for keyword in ["discount", "折扣"]):
             apply_discount = discount_percentage > 0
+        if any(
+            keyword in normalized_title for keyword in ["service only", "service-only"]
+        ):
+            include_spare_parts = False
 
         option_id = f"option-{chr(96 + index)}"
         strategies.append(
@@ -196,6 +359,7 @@ def _build_option_strategies(
                 "discount_percentage": discount_percentage if apply_discount else 0.0,
                 "is_recommended": index == 1,
                 "alternative_to_option_id": "option-a" if index > 1 else None,
+                "include_spare_parts": include_spare_parts,
             }
         )
     return strategies
@@ -219,6 +383,11 @@ def _build_sections_for_items(
         item_type = (
             item.get("item_type") if item.get("item_type") in grouped else "other"
         )
+        if (
+            item_type == "spare_parts"
+            and option_strategy.get("include_spare_parts") is False
+        ):
+            continue
         grouped[item_type].append(item)
 
     sections = []
@@ -500,7 +669,12 @@ def _resolve_amount(
         return float(override)
 
     workflow_amount = _workflow_charge_amount(
-        section_type, item, candidate_item, quote_request, pricing_rules
+        section_type,
+        item,
+        candidate_item,
+        quote_request,
+        pricing_rules,
+        historical_reference,
     )
     if workflow_amount is not None:
         return workflow_amount
@@ -529,10 +703,12 @@ def _workflow_charge_amount(
     candidate_item: dict[str, Any],
     quote_request: dict[str, Any],
     pricing_rules: dict[str, Any],
+    historical_reference: dict[str, Any],
 ) -> float | None:
     multipliers = _pricing_multipliers(pricing_rules)
     bases = _charge_bases(pricing_rules)
     item_text = " ".join(_candidate_texts(candidate_item)).lower()
+    historical_charge_hints = _history_charge_item_hints(historical_reference)
 
     if section_type == "spare_parts":
         supply_mode = _spare_parts_supply_mode(quote_request)
@@ -553,6 +729,8 @@ def _workflow_charge_amount(
 
     if section_type == "other":
         quantity = _numeric_quantity(candidate_item.get("quantity_hint")) or 1.0
+        if not _is_supported_other_charge(item_text, historical_charge_hints):
+            return None
         if any(keyword in item_text for keyword in ["travel", "交通", "ticket"]):
             return round(
                 bases["transportation_base"] * multipliers["boarding_travel"], 2
@@ -845,6 +1023,28 @@ def _build_option_remarks(
         if isinstance(historical_reference.get("reference_summary"), dict)
         else {}
     )
+    remark_blocks = (
+        reference_summary.get("remark_blocks")
+        if isinstance(reference_summary.get("remark_blocks"), list)
+        else []
+    )
+    for block in remark_blocks:
+        if not isinstance(block, dict):
+            continue
+        remark_type = (
+            str(block.get("remark_type") or "commercial").strip() or "commercial"
+        )
+        texts = block.get("texts") if isinstance(block.get("texts"), list) else []
+        for text in texts[:2]:
+            cleaned = str(text).strip()
+            key = cleaned.lower()
+            if not cleaned or key in seen:
+                continue
+            seen.add(key)
+            remarks.append(
+                {"type": _remark_type_for_output(remark_type), "text": cleaned}
+            )
+
     remark_patterns = (
         reference_summary.get("remark_patterns")
         if isinstance(reference_summary.get("remark_patterns"), list)
@@ -864,6 +1064,13 @@ def _build_option_remarks(
             {
                 "type": "commercial",
                 "text": f"Commercial discount {_format_percentage(float(discount_percentage))} applied within operator authority.",
+            }
+        )
+    if option_strategy.get("include_spare_parts") is False:
+        remarks.append(
+            {
+                "type": "tbc",
+                "text": "Spare parts are excluded from this option and remain subject to separate confirmation.",
             }
         )
     return remarks
@@ -1146,6 +1353,92 @@ def _default_discount_percentage(pricing_rules: dict[str, Any]) -> float:
     if isinstance(value, (int, float)) and value > 0:
         return round(float(value), 2)
     return DEFAULT_DISCOUNT_PERCENTAGE
+
+
+def _history_option_style_hints(historical_reference: dict[str, Any]) -> set[str]:
+    reference_summary = (
+        historical_reference.get("reference_summary")
+        if isinstance(historical_reference.get("reference_summary"), dict)
+        else {}
+    )
+    option_style_hints = (
+        reference_summary.get("option_style_hints")
+        if isinstance(reference_summary.get("option_style_hints"), list)
+        else []
+    )
+    result = set()
+    for hint in option_style_hints:
+        if isinstance(hint, dict):
+            style_type = str(hint.get("style_type") or "").strip()
+            if style_type:
+                result.add(style_type)
+    return result
+
+
+def _history_charge_item_hints(historical_reference: dict[str, Any]) -> set[str]:
+    reference_summary = (
+        historical_reference.get("reference_summary")
+        if isinstance(historical_reference.get("reference_summary"), dict)
+        else {}
+    )
+    charge_item_hints = (
+        reference_summary.get("charge_item_hints")
+        if isinstance(reference_summary.get("charge_item_hints"), list)
+        else []
+    )
+    result = set()
+    for hint in charge_item_hints:
+        if isinstance(hint, dict):
+            hint_type = str(hint.get("hint_type") or "").strip()
+            if hint_type:
+                result.add(hint_type)
+    return result
+
+
+def _is_supported_other_charge(
+    item_text: str, historical_charge_hints: set[str]
+) -> bool:
+    direct_mapping = {
+        "transportation": ["travel", "交通", "ticket"],
+        "accommodation": ["hotel", "住宿", "accommodation", "meal", "食宿"],
+        "dockyard_management": ["dockyard", "船厂管理", "management fee"],
+        "maritime_reporting": ["maritime", "海事", "报备", "hot work"],
+    }
+    for hint_type, keywords in direct_mapping.items():
+        if hint_type in historical_charge_hints and any(
+            keyword in item_text for keyword in keywords
+        ):
+            return True
+    return any(
+        keyword in item_text
+        for keyword in [
+            "travel",
+            "交通",
+            "hotel",
+            "住宿",
+            "dockyard",
+            "船厂管理",
+            "maritime",
+            "海事",
+            "报备",
+        ]
+    )
+
+
+def _remark_type_for_output(remark_type: str) -> str:
+    allowed_types = {
+        "warranty",
+        "compensation",
+        "commercial",
+        "cost_clause",
+        "tax",
+        "waiting",
+        "safety",
+        "exclusion",
+        "tbc",
+        "payment_term",
+    }
+    return remark_type if remark_type in allowed_types else "commercial"
 
 
 def _pricing_multipliers(pricing_rules: dict[str, Any]) -> dict[str, float]:

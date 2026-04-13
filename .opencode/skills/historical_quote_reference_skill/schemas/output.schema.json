@@ -97,6 +97,62 @@
         }
       }
     },
+    "countedTextBlock": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["sample_size", "examples"],
+      "properties": {
+        "sample_size": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "examples": {
+          "$ref": "#/$defs/stringArray"
+        }
+      }
+    },
+    "itemCluster": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["cluster_key", "sample_size", "examples"],
+      "properties": {
+        "cluster_key": { "type": "string" },
+        "sample_size": { "type": "integer", "minimum": 0 },
+        "examples": { "$ref": "#/$defs/stringArray" }
+      }
+    },
+    "remarkBlock": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["remark_type", "texts", "sample_size"],
+      "properties": {
+        "remark_type": { "type": "string" },
+        "texts": { "$ref": "#/$defs/stringArray" },
+        "sample_size": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "chargeItemHint": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["hint_type", "source", "sample_size", "examples"],
+      "properties": {
+        "hint_type": { "type": "string" },
+        "source": { "type": "string" },
+        "sample_size": { "type": "integer", "minimum": 0 },
+        "examples": { "$ref": "#/$defs/stringArray" }
+      }
+    },
+    "optionStyleHint": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["style_type", "source", "sample_size", "examples"],
+      "properties": {
+        "style_type": { "type": "string" },
+        "source": { "type": "string" },
+        "sample_size": { "type": "integer", "minimum": 0 },
+        "examples": { "$ref": "#/$defs/stringArray" }
+      }
+    },
     "referenceSummary": {
       "type": "object",
       "additionalProperties": false,
@@ -104,7 +160,12 @@
         "price_range_hint",
         "common_items",
         "remark_patterns",
-        "recommended_reference_ids"
+        "recommended_reference_ids",
+        "item_clusters",
+        "remark_blocks",
+        "charge_item_hints",
+        "option_style_hints",
+        "history_quality_flags"
       ],
       "properties": {
         "price_range_hint": {
@@ -117,6 +178,25 @@
           "$ref": "#/$defs/stringArray"
         },
         "recommended_reference_ids": {
+          "$ref": "#/$defs/stringArray"
+        },
+        "item_clusters": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/itemCluster" }
+        },
+        "remark_blocks": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/remarkBlock" }
+        },
+        "charge_item_hints": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/chargeItemHint" }
+        },
+        "option_style_hints": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/optionStyleHint" }
+        },
+        "history_quality_flags": {
           "$ref": "#/$defs/stringArray"
         }
       }

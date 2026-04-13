@@ -51,8 +51,10 @@ def build_quote_document(payload: dict[str, Any]) -> dict[str, Any]:
         return {"quote_document": {}}
 
     header = _build_header(quote_request)
-    footer = _build_footer(quote_request, quotation_options)
-    review_result = _build_review_result(feasibility_result, quotation_options)
+    footer = _build_footer(quote_request, quotation_options, historical_reference)
+    review_result = _build_review_result(
+        feasibility_result, quotation_options, historical_reference
+    )
     trace = _build_trace(historical_reference, pricing_result)
 
     return {
@@ -139,11 +141,15 @@ def _build_offer_no(quote_request: dict[str, Any]) -> str:
 
 
 def _build_footer(
-    quote_request: dict[str, Any], quotation_options: list[Any]
+    quote_request: dict[str, Any],
+    quotation_options: list[Any],
+    historical_reference: dict[str, Any],
 ) -> dict[str, Any]:
     currency = _footer_currency(quote_request, quotation_options)
     summary = _build_footer_summary(quotation_options, currency)
-    remarks = _build_footer_remarks(quote_request, quotation_options)
+    remarks = _build_footer_remarks(
+        quote_request, quotation_options, historical_reference
+    )
     return {
         "summary": summary,
         "remark": {
@@ -200,10 +206,40 @@ def _recommended_option(
 
 
 def _build_footer_remarks(
-    quote_request: dict[str, Any], quotation_options: list[Any]
+    quote_request: dict[str, Any],
+    quotation_options: list[Any],
+    historical_reference: dict[str, Any],
 ) -> list[dict[str, str]]:
     items: list[dict[str, str]] = []
     seen: set[tuple[str, str]] = set()
+
+    reference_summary = (
+        historical_reference.get("reference_summary")
+        if isinstance(historical_reference.get("reference_summary"), dict)
+        else {}
+    )
+    remark_blocks = (
+        reference_summary.get("remark_blocks")
+        if isinstance(reference_summary.get("remark_blocks"), list)
+        else []
+    )
+    for block in remark_blocks:
+        if not isinstance(block, dict):
+            continue
+        remark_type = _string_or_blank(block.get("remark_type")) or "commercial"
+        texts = block.get("texts") if isinstance(block.get("texts"), list) else []
+        for text in texts[:2]:
+            cleaned = _string_or_blank(text)
+            if not cleaned:
+                continue
+            if _should_skip_historical_footer_remark(cleaned, quote_request):
+                continue
+            normalized_type = _remark_type(remark_type, cleaned)
+            key = (normalized_type, cleaned)
+            if key in seen:
+                continue
+            seen.add(key)
+            items.append({"type": normalized_type, "text": cleaned})
 
     for option in quotation_options:
         if not isinstance(option, dict):
@@ -217,6 +253,8 @@ def _build_footer_remarks(
             )
             text = _string_or_blank(remark.get("text"))
             if not text:
+                continue
+            if _should_skip_historical_footer_remark(text, quote_request):
                 continue
             key = (remark_type, text)
             if key in seen:
@@ -238,6 +276,8 @@ def _build_footer_remarks(
         text = _string_or_blank(term)
         if not text:
             continue
+        if _should_skip_historical_footer_remark(text, quote_request):
+            continue
         remark_type = _remark_type("commercial", text)
         key = (remark_type, text)
         if key in seen:
@@ -247,6 +287,8 @@ def _build_footer_remarks(
 
     default_remarks = _default_footer_remarks(quotation_options)
     for item in default_remarks:
+        if _should_skip_historical_footer_remark(item["text"], quote_request):
+            continue
         key = (item["type"], item["text"])
         if key in seen:
             continue
@@ -336,7 +378,9 @@ def _default_footer_remarks(quotation_options: list[Any]) -> list[dict[str, str]
 
 
 def _build_review_result(
-    feasibility_result: dict[str, Any], quotation_options: list[Any]
+    feasibility_result: dict[str, Any],
+    quotation_options: list[Any],
+    historical_reference: dict[str, Any],
 ) -> dict[str, Any]:
     review_flags = (
         feasibility_result.get("review_flags")
@@ -376,6 +420,31 @@ def _build_review_result(
                 has_high_risk = True
             if reason and severity in {"high", "medium"}:
                 risk_flag_texts.append(reason)
+
+    reference_summary = (
+        historical_reference.get("reference_summary")
+        if isinstance(historical_reference.get("reference_summary"), dict)
+        else {}
+    )
+    history_quality_flags = (
+        reference_summary.get("history_quality_flags")
+        if isinstance(reference_summary.get("history_quality_flags"), list)
+        else []
+    )
+    quality_flag_messages = {
+        "low_sample_size": "历史参考样本数量不足，请谨慎参考历史报价。",
+        "weak_top_match": "当前项目与历史案例最高匹配度偏弱，请人工复核。",
+        "weak_item_overlap": "当前项目与历史案例的明细项重合度较低，请人工确认。",
+        "broad_price_range": "历史价格区间较宽，不能直接据此判断最终价格。",
+        "context_only_match": "当前历史参考主要依赖上下文匹配，缺少强明细项支撑。",
+    }
+    for flag in history_quality_flags:
+        message = quality_flag_messages.get(str(flag).strip())
+        if not message:
+            continue
+        review_flag_texts.append(message)
+        if flag in {"weak_top_match", "weak_item_overlap", "context_only_match"}:
+            risk_flag_texts.append(message)
 
     if multi_option:
         review_flag_texts.append("当前报价包含多方案，提交审核时需确认推荐方案。")
@@ -440,6 +509,11 @@ def _build_trace(
         )
 
     pricing_basis = []
+    reference_summary = (
+        historical_reference.get("reference_summary")
+        if isinstance(historical_reference.get("reference_summary"), dict)
+        else {}
+    )
     quotation_options = (
         pricing_result.get("quotation_options")
         if isinstance(pricing_result.get("quotation_options"), list)
@@ -461,9 +535,43 @@ def _build_trace(
                     if basis:
                         pricing_basis.append(basis)
 
+    if isinstance(
+        reference_summary.get("remark_blocks"), list
+    ) and reference_summary.get("remark_blocks"):
+        pricing_basis.append("historical_remark_block")
+    if isinstance(
+        reference_summary.get("charge_item_hints"), list
+    ) and reference_summary.get("charge_item_hints"):
+        pricing_basis.append("historical_charge_item_hint")
+    if isinstance(
+        reference_summary.get("option_style_hints"), list
+    ) and reference_summary.get("option_style_hints"):
+        pricing_basis.append("historical_option_style_hint")
+    history_quality_flags = (
+        reference_summary.get("history_quality_flags")
+        if isinstance(reference_summary.get("history_quality_flags"), list)
+        else []
+    )
+    if history_quality_flags:
+        pricing_basis.extend(
+            [f"history_quality:{flag}" for flag in history_quality_flags]
+        )
+
     rule_versions = ["quote_pricing_skill:v2", "quote_review_output_skill:v2"]
     if len([option for option in quotation_options if isinstance(option, dict)]) > 1:
         rule_versions.append("multi_option_footer_strategy:v1")
+    if isinstance(
+        reference_summary.get("remark_blocks"), list
+    ) and reference_summary.get("remark_blocks"):
+        rule_versions.append("historical_remark_blocks:v1")
+    if isinstance(
+        reference_summary.get("charge_item_hints"), list
+    ) and reference_summary.get("charge_item_hints"):
+        rule_versions.append("historical_charge_item_hints:v1")
+    if isinstance(
+        reference_summary.get("option_style_hints"), list
+    ) and reference_summary.get("option_style_hints"):
+        rule_versions.append("historical_option_style_hints:v1")
 
     return {
         "historical_references": historical_references,
@@ -596,6 +704,27 @@ def _remark_type(default_type: str, text: str) -> str:
     }:
         return default_type
     return "commercial"
+
+
+def _should_skip_historical_footer_remark(
+    text: str, quote_request: dict[str, Any]
+) -> bool:
+    lowered = text.lower()
+    if not any(
+        keyword in lowered
+        for keyword in ["shipside", "owner supply", "owner supplied", "船东提供"]
+    ):
+        return False
+
+    spare_parts_context = (
+        quote_request.get("spare_parts_context")
+        if isinstance(quote_request.get("spare_parts_context"), dict)
+        else {}
+    )
+    supply_mode = _string_or_blank(
+        spare_parts_context.get("spare_parts_supply_mode")
+    ).lower()
+    return supply_mode not in {"owner_supply", "shipside"}
 
 
 def _string_or_blank(value: Any) -> str:

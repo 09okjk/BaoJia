@@ -74,6 +74,53 @@
       "hist-001",
       "hist-002",
       "hist-003"
+    ],
+    "item_clusters": [
+      {
+        "cluster_key": "ae 1 crankshaft trueness checks",
+        "sample_size": 2,
+        "examples": [
+          "AE-1 crankshaft trueness checks in place"
+        ]
+      },
+      {
+        "cluster_key": "m b lower bearing remove",
+        "sample_size": 1,
+        "examples": [
+          "M/B lower bearing remove"
+        ]
+      },
+      {
+        "cluster_key": "crankshaft run out check",
+        "sample_size": 1,
+        "examples": [
+          "Crankshaft run-out check"
+        ]
+      }
+    ],
+    "remark_blocks": [
+      {
+        "remark_type": "commercial",
+        "texts": [
+          "Other repair if needed to be charged extra",
+          "Spares supply by shipside"
+        ],
+        "sample_size": 3
+      }
+    ],
+    "charge_item_hints": [],
+    "option_style_hints": [
+      {
+        "style_type": "owner_supply_spares",
+        "source": "history_text",
+        "sample_size": 1,
+        "examples": [
+          "Spares supply by shipside"
+        ]
+      }
+    ],
+    "history_quality_flags": [
+      "broad_price_range"
     ]
   },
   "confidence": 1.0

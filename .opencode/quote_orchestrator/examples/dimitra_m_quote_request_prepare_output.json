@@ -1,0 +1,427 @@
+{
+  "quote_request": {
+    "request_meta": {
+      "request_id": "qr-dimitra-m-20260401",
+      "source": "assessment_report",
+      "prepared_at": "2026-04-10T09:02:25.507143+00:00",
+      "language": "zh-CN"
+    },
+    "header_context": {
+      "currency": "USD",
+      "vessel_name": "M/V DIMITRA M",
+      "imo_no": "YZJ2013-1138",
+      "vessel_type": "82,000 mt Kamsarmax Bulk Carrier",
+      "customer_name": "TBD Customer",
+      "service_port": "China region (Central/South), drydock yard to be confirmed",
+      "service_date": "2025-12-15",
+      "attention": "Technical Department",
+      "customer_ref_no": "DIMITRA-M-HCU-MPC-64K"
+    },
+    "service_context": {
+      "service_category": "integrated",
+      "service_mode": "dock_repair",
+      "location_type": "shipyard",
+      "needs_multi_option": true,
+      "option_hints": [
+        "Option A Standard quotation",
+        "Option B Service only quotation"
+      ],
+      "urgency": "normal"
+    },
+    "candidate_items": [
+      {
+        "item_id": "svc-1",
+        "item_type": "service",
+        "title": "HCU system overhaul",
+        "description": "64k running hours overhaul scope for HCU system",
+        "work_scope": [
+          "Overhaul ELFI valve/Multiway valve units",
+          "Exhaust valve actuator and fuel oil pressure booster overhauling",
+          "Cylinder lubricator system overhauling",
+          "Accumulator overhauling and refill with nitrogen",
+          "Maintenance and overhauling of HPS",
+          "8 hours execution window",
+          "1 set",
+          "Mechanical engineer MT5 x1",
+          "Mechanical fitter FP5 x7"
+        ],
+        "quantity_hint": 1,
+        "unit_hint": "set",
+        "labor_hint": [
+          "Mechanical engineer MT5 x1",
+          "Mechanical fitter FP5 x7"
+        ],
+        "pricing_clues": [
+          "64k overhaul",
+          "drydock service",
+          "nitrogen refill"
+        ],
+        "status_hint": null,
+        "source": "assessment_report"
+      },
+      {
+        "item_id": "svc-2",
+        "item_type": "service",
+        "title": "MPC system inspection",
+        "description": "64k running hours inspection scope for MPC system",
+        "work_scope": [
+          "MPC health inspection and replacement",
+          "8 hours execution window",
+          "1 set",
+          "Electrical engineer ET5 x1",
+          "Electrical engineer ET3 x1"
+        ],
+        "quantity_hint": 1,
+        "unit_hint": "set",
+        "labor_hint": [
+          "Electrical engineer ET5 x1",
+          "Electrical engineer ET3 x1"
+        ],
+        "pricing_clues": [
+          "64k inspection",
+          "electrical control system"
+        ],
+        "status_hint": null,
+        "source": "assessment_report"
+      },
+      {
+        "item_id": "oth-3",
+        "item_type": "other",
+        "title": "Transportation",
+        "description": "Engineer round-trip transportation for China drydock attendance",
+        "work_scope": [
+          "Round-trip travel for service engineers",
+          "Based on one round trip"
+        ],
+        "quantity_hint": 4,
+        "unit_hint": "person",
+        "labor_hint": [],
+        "pricing_clues": [
+          "travel",
+          "ticket",
+          "transportation"
+        ],
+        "status_hint": null,
+        "source": "assessment_report"
+      },
+      {
+        "item_id": "oth-4",
+        "item_type": "other",
+        "title": "Accommodation",
+        "description": "Accommodation and meal arrangement during drydock attendance",
+        "work_scope": [
+          "Hotel and meal arrangement if needed",
+          "Estimated 4 persons for 2 days"
+        ],
+        "quantity_hint": 8,
+        "unit_hint": "person-day",
+        "labor_hint": [],
+        "pricing_clues": [
+          "hotel",
+          "meal",
+          "accommodation"
+        ],
+        "status_hint": "if_needed",
+        "source": "assessment_report"
+      },
+      {
+        "item_id": "oth-5",
+        "item_type": "other",
+        "title": "Dockyard management fee",
+        "description": "Potential dockyard management / boarding / coordination fee during drydock",
+        "work_scope": [
+          "Applicable if required by yard or local arrangement"
+        ],
+        "quantity_hint": 1,
+        "unit_hint": "lot",
+        "labor_hint": [],
+        "pricing_clues": [
+          "dockyard",
+          "management fee"
+        ],
+        "status_hint": "as_actual",
+        "source": "assessment_report"
+      },
+      {
+        "item_id": "oth-6",
+        "item_type": "other",
+        "title": "Maritime reporting / safety permit",
+        "description": "Potential hot work / permit / reporting related charge",
+        "work_scope": [
+          "Applicable only if required by yard or local authority"
+        ],
+        "quantity_hint": 1,
+        "unit_hint": "lot",
+        "labor_hint": [],
+        "pricing_clues": [
+          "maritime",
+          "permit",
+          "hot work"
+        ],
+        "status_hint": "if_needed",
+        "source": "assessment_report"
+      },
+      {
+        "item_id": "spr-7",
+        "item_type": "spare_parts",
+        "title": "HPS accumulators repair kit",
+        "description": "Pending confirmation for HCU overhaul scope",
+        "work_scope": [
+          "Supply responsibility to be confirmed"
+        ],
+        "quantity_hint": null,
+        "unit_hint": null,
+        "labor_hint": [],
+        "pricing_clues": [],
+        "status_hint": null,
+        "source": "assessment_report"
+      },
+      {
+        "item_id": "spr-8",
+        "item_type": "spare_parts",
+        "title": "HCU accumulators repair kit",
+        "description": "Pending confirmation for HCU overhaul scope",
+        "work_scope": [
+          "Supply responsibility to be confirmed"
+        ],
+        "quantity_hint": null,
+        "unit_hint": null,
+        "labor_hint": [],
+        "pricing_clues": [],
+        "status_hint": null,
+        "source": "assessment_report"
+      },
+      {
+        "item_id": "spr-9",
+        "item_type": "spare_parts",
+        "title": "Nitrogen for refilling",
+        "description": "Pending confirmation for HCU overhaul scope",
+        "work_scope": [
+          "Supply responsibility to be confirmed"
+        ],
+        "quantity_hint": null,
+        "unit_hint": null,
+        "labor_hint": [],
+        "pricing_clues": [],
+        "status_hint": null,
+        "source": "assessment_report"
+      },
+      {
+        "item_id": "spr-10",
+        "item_type": "spare_parts",
+        "title": "FIVA valves pilot valves",
+        "description": "Pending confirmation for HCU overhaul scope",
+        "work_scope": [
+          "Supply responsibility to be confirmed"
+        ],
+        "quantity_hint": null,
+        "unit_hint": null,
+        "labor_hint": [],
+        "pricing_clues": [],
+        "status_hint": null,
+        "source": "assessment_report"
+      },
+      {
+        "item_id": "spr-11",
+        "item_type": "spare_parts",
+        "title": "Fuel booster units top covers and suction valves",
+        "description": "Pending confirmation for HCU overhaul scope",
+        "work_scope": [
+          "Supply responsibility to be confirmed"
+        ],
+        "quantity_hint": null,
+        "unit_hint": null,
+        "labor_hint": [],
+        "pricing_clues": [],
+        "status_hint": null,
+        "source": "assessment_report"
+      },
+      {
+        "item_id": "spr-12",
+        "item_type": "spare_parts",
+        "title": "Exhaust valve actuators safety valves",
+        "description": "Pending confirmation for HCU overhaul scope",
+        "work_scope": [
+          "Supply responsibility to be confirmed"
+        ],
+        "quantity_hint": null,
+        "unit_hint": null,
+        "labor_hint": [],
+        "pricing_clues": [],
+        "status_hint": null,
+        "source": "assessment_report"
+      },
+      {
+        "item_id": "spr-13",
+        "item_type": "spare_parts",
+        "title": "MPC and UPS batteries",
+        "description": "Pending confirmation for MPC inspection scope",
+        "work_scope": [
+          "Supply responsibility to be confirmed"
+        ],
+        "quantity_hint": null,
+        "unit_hint": null,
+        "labor_hint": [],
+        "pricing_clues": [],
+        "status_hint": null,
+        "source": "assessment_report"
+      }
+    ],
+    "spare_parts_context": {
+      "has_spare_parts": true,
+      "spare_parts_supply_mode": null,
+      "spare_parts_items": [
+        {
+          "item_id": "spr-1",
+          "item_type": "spare_parts",
+          "title": "HPS accumulators repair kit",
+          "description": "Pending confirmation for HCU overhaul scope",
+          "work_scope": [
+            "Supply responsibility to be confirmed"
+          ],
+          "quantity_hint": null,
+          "unit_hint": null,
+          "labor_hint": [],
+          "pricing_clues": [],
+          "status_hint": null,
+          "source": "assessment_report"
+        },
+        {
+          "item_id": "spr-2",
+          "item_type": "spare_parts",
+          "title": "HCU accumulators repair kit",
+          "description": "Pending confirmation for HCU overhaul scope",
+          "work_scope": [
+            "Supply responsibility to be confirmed"
+          ],
+          "quantity_hint": null,
+          "unit_hint": null,
+          "labor_hint": [],
+          "pricing_clues": [],
+          "status_hint": null,
+          "source": "assessment_report"
+        },
+        {
+          "item_id": "spr-3",
+          "item_type": "spare_parts",
+          "title": "Nitrogen for refilling",
+          "description": "Pending confirmation for HCU overhaul scope",
+          "work_scope": [
+            "Supply responsibility to be confirmed"
+          ],
+          "quantity_hint": null,
+          "unit_hint": null,
+          "labor_hint": [],
+          "pricing_clues": [],
+          "status_hint": null,
+          "source": "assessment_report"
+        },
+        {
+          "item_id": "spr-4",
+          "item_type": "spare_parts",
+          "title": "FIVA valves pilot valves",
+          "description": "Pending confirmation for HCU overhaul scope",
+          "work_scope": [
+            "Supply responsibility to be confirmed"
+          ],
+          "quantity_hint": null,
+          "unit_hint": null,
+          "labor_hint": [],
+          "pricing_clues": [],
+          "status_hint": null,
+          "source": "assessment_report"
+        },
+        {
+          "item_id": "spr-5",
+          "item_type": "spare_parts",
+          "title": "Fuel booster units top covers and suction valves",
+          "description": "Pending confirmation for HCU overhaul scope",
+          "work_scope": [
+            "Supply responsibility to be confirmed"
+          ],
+          "quantity_hint": null,
+          "unit_hint": null,
+          "labor_hint": [],
+          "pricing_clues": [],
+          "status_hint": null,
+          "source": "assessment_report"
+        },
+        {
+          "item_id": "spr-6",
+          "item_type": "spare_parts",
+          "title": "Exhaust valve actuators safety valves",
+          "description": "Pending confirmation for HCU overhaul scope",
+          "work_scope": [
+            "Supply responsibility to be confirmed"
+          ],
+          "quantity_hint": null,
+          "unit_hint": null,
+          "labor_hint": [],
+          "pricing_clues": [],
+          "status_hint": null,
+          "source": "assessment_report"
+        },
+        {
+          "item_id": "spr-7",
+          "item_type": "spare_parts",
+          "title": "MPC and UPS batteries",
+          "description": "Pending confirmation for MPC inspection scope",
+          "work_scope": [
+            "Supply responsibility to be confirmed"
+          ],
+          "quantity_hint": null,
+          "unit_hint": null,
+          "labor_hint": [],
+          "pricing_clues": [],
+          "status_hint": null,
+          "source": "assessment_report"
+        }
+      ]
+    },
+    "risk_context": {
+      "risks": [
+        "High risk: yard cross-operation may delay schedule and restrict working window.",
+        "Medium risk: spare parts waiting may interrupt execution progress.",
+        "Medium risk: onsite safety approval or hot work restriction may affect execution arrangement."
+      ],
+      "pending_confirmations": [
+        "Confirm whether HPS/HCU accumulator repair kits are owner supply or our supply.",
+        "Confirm whether FIVA valves pilot valves are owner supply or our supply.",
+        "Confirm whether fuel booster unit components are owner supply or our supply.",
+        "Confirm whether MPC and UPS batteries are owner supply or our supply.",
+        "Confirm drydock yard, exact service window and cross-operation arrangement.",
+        "Confirm hot work / enclosed space / high pressure safety approval conditions."
+      ],
+      "assumptions": [
+        "Current evaluation report is for quotation preparation only and final execution depends on onboard and yard condition.",
+        "Spare parts supply responsibility remains to be confirmed.",
+        "Drydock location is within China central or south region."
+      ]
+    },
+    "commercial_context": {
+      "preferred_currency": "USD",
+      "pricing_expectation": null,
+      "special_terms": [
+        "Quotation validity: 30 days",
+        "Payment within 30 days upon invoice date.",
+        "All evaluation data is for quotation preparation only and actual execution is subject to site condition.",
+        "Other repair and extra scope if needed to be charged extra."
+      ]
+    },
+    "source_refs": {
+      "assessment_report_id": "dimitra-m-20260401",
+      "customer_context_ref": null,
+      "business_context_ref": null
+    }
+  },
+  "normalization_flags": [
+    {
+      "flag_code": "normalized_service_mode",
+      "field": "service_context.service_mode",
+      "from": "dock repair",
+      "to": "dock_repair",
+      "reason": "统一服务模式枚举。"
+    }
+  ],
+  "missing_fields": []
+}

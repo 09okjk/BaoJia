@@ -1,0 +1,276 @@
+{
+  "assessment_report": {
+    "report_id": "dimitra-m-20260401",
+    "vessel_name": "M/V DIMITRA M",
+    "imo_no": "YZJ2013-1138",
+    "vessel_type": "82,000 mt Kamsarmax Bulk Carrier",
+    "customer_name": "TBD Customer",
+    "service_port": "China region (Central/South), drydock yard to be confirmed",
+    "service_date": "2025-12-15",
+    "attention": "Technical Department",
+    "customer_ref_no": "DIMITRA-M-HCU-MPC-64K",
+    "service_category": "integrated",
+    "service_mode": "dock repair",
+    "location_type": "shipyard",
+    "needs_multi_option": true,
+    "option_hints": [
+      "Option A Standard quotation",
+      "Option B Service only quotation"
+    ],
+    "service_items": [
+      {
+        "title": "HCU system overhaul",
+        "description": "64k running hours overhaul scope for HCU system",
+        "details": [
+          "Overhaul ELFI valve/Multiway valve units",
+          "Exhaust valve actuator and fuel oil pressure booster overhauling",
+          "Cylinder lubricator system overhauling",
+          "Accumulator overhauling and refill with nitrogen",
+          "Maintenance and overhauling of HPS",
+          "8 hours execution window",
+          "1 set",
+          "Mechanical engineer MT5 x1",
+          "Mechanical fitter FP5 x7"
+        ],
+        "quantity": 1,
+        "unit": "set",
+        "labor_hint": [
+          "Mechanical engineer MT5 x1",
+          "Mechanical fitter FP5 x7"
+        ],
+        "pricing_clues": [
+          "64k overhaul",
+          "drydock service",
+          "nitrogen refill"
+        ]
+      },
+      {
+        "title": "MPC system inspection",
+        "description": "64k running hours inspection scope for MPC system",
+        "details": [
+          "MPC health inspection and replacement",
+          "8 hours execution window",
+          "1 set",
+          "Electrical engineer ET5 x1",
+          "Electrical engineer ET3 x1"
+        ],
+        "quantity": 1,
+        "unit": "set",
+        "labor_hint": [
+          "Electrical engineer ET5 x1",
+          "Electrical engineer ET3 x1"
+        ],
+        "pricing_clues": [
+          "64k inspection",
+          "electrical control system"
+        ]
+      },
+      {
+        "title": "Transportation",
+        "description": "Engineer round-trip transportation for China drydock attendance",
+        "details": [
+          "Round-trip travel for service engineers",
+          "Based on one round trip"
+        ],
+        "quantity": 4,
+        "unit": "person",
+        "item_type": "other",
+        "pricing_clues": [
+          "travel",
+          "ticket",
+          "transportation"
+        ]
+      },
+      {
+        "title": "Accommodation",
+        "description": "Accommodation and meal arrangement during drydock attendance",
+        "details": [
+          "Hotel and meal arrangement if needed",
+          "Estimated 4 persons for 2 days"
+        ],
+        "quantity": 8,
+        "unit": "person-day",
+        "item_type": "other",
+        "pricing_clues": [
+          "hotel",
+          "meal",
+          "accommodation"
+        ],
+        "status_hint": "if_needed"
+      },
+      {
+        "title": "Dockyard management fee",
+        "description": "Potential dockyard management / boarding / coordination fee during drydock",
+        "details": [
+          "Applicable if required by yard or local arrangement"
+        ],
+        "quantity": 1,
+        "unit": "lot",
+        "item_type": "other",
+        "pricing_clues": [
+          "dockyard",
+          "management fee"
+        ],
+        "status_hint": "as_actual"
+      },
+      {
+        "title": "Maritime reporting / safety permit",
+        "description": "Potential hot work / permit / reporting related charge",
+        "details": [
+          "Applicable only if required by yard or local authority"
+        ],
+        "quantity": 1,
+        "unit": "lot",
+        "item_type": "other",
+        "pricing_clues": [
+          "maritime",
+          "permit",
+          "hot work"
+        ],
+        "status_hint": "if_needed"
+      }
+    ],
+    "spare_parts_items": [
+      {
+        "title": "HPS accumulators repair kit",
+        "description": "Pending confirmation for HCU overhaul scope",
+        "details": [
+          "Supply responsibility to be confirmed"
+        ],
+        "item_type": "spare_parts"
+      },
+      {
+        "title": "HCU accumulators repair kit",
+        "description": "Pending confirmation for HCU overhaul scope",
+        "details": [
+          "Supply responsibility to be confirmed"
+        ],
+        "item_type": "spare_parts"
+      },
+      {
+        "title": "Nitrogen for refilling",
+        "description": "Pending confirmation for HCU overhaul scope",
+        "details": [
+          "Supply responsibility to be confirmed"
+        ],
+        "item_type": "spare_parts"
+      },
+      {
+        "title": "FIVA valves pilot valves",
+        "description": "Pending confirmation for HCU overhaul scope",
+        "details": [
+          "Supply responsibility to be confirmed"
+        ],
+        "item_type": "spare_parts"
+      },
+      {
+        "title": "Fuel booster units top covers and suction valves",
+        "description": "Pending confirmation for HCU overhaul scope",
+        "details": [
+          "Supply responsibility to be confirmed"
+        ],
+        "item_type": "spare_parts"
+      },
+      {
+        "title": "Exhaust valve actuators safety valves",
+        "description": "Pending confirmation for HCU overhaul scope",
+        "details": [
+          "Supply responsibility to be confirmed"
+        ],
+        "item_type": "spare_parts"
+      },
+      {
+        "title": "MPC and UPS batteries",
+        "description": "Pending confirmation for MPC inspection scope",
+        "details": [
+          "Supply responsibility to be confirmed"
+        ],
+        "item_type": "spare_parts"
+      }
+    ],
+    "pending_items": [
+      "Confirm whether HPS/HCU accumulator repair kits are owner supply or our supply.",
+      "Confirm whether FIVA valves pilot valves are owner supply or our supply.",
+      "Confirm whether fuel booster unit components are owner supply or our supply.",
+      "Confirm whether MPC and UPS batteries are owner supply or our supply.",
+      "Confirm drydock yard, exact service window and cross-operation arrangement.",
+      "Confirm hot work / enclosed space / high pressure safety approval conditions."
+    ],
+    "risks": [
+      "High risk: yard cross-operation may delay schedule and restrict working window.",
+      "Medium risk: spare parts waiting may interrupt execution progress.",
+      "Medium risk: onsite safety approval or hot work restriction may affect execution arrangement."
+    ],
+    "assumptions": [
+      "Current evaluation report is for quotation preparation only and final execution depends on onboard and yard condition.",
+      "Spare parts supply responsibility remains to be confirmed.",
+      "Drydock location is within China central or south region."
+    ],
+    "summary": "HCU overhaul and MPC inspection for M/V DIMITRA M during 2025/12-2026/01 China drydock.",
+    "spare_parts_needed": true
+  },
+  "customer_context": {
+    "currency": "USD",
+    "attention": "Technical Department",
+    "preferred_currency": "USD",
+    "special_terms": [
+      "Quotation validity: 30 days",
+      "Payment within 30 days upon invoice date.",
+      "All evaluation data is for quotation preparation only and actual execution is subject to site condition.",
+      "Other repair and extra scope if needed to be charged extra."
+    ]
+  },
+  "business_context": {
+    "service_mode": "dock repair",
+    "service_category": "integrated",
+    "location_type": "shipyard",
+    "needs_multi_option": true,
+    "option_hints": [
+      "Option A Standard quotation",
+      "Option B Service only quotation"
+    ],
+    "urgency": "normal",
+    "pricing_rules": {
+      "currency": "USD",
+      "service_rates": {
+        "mechanical_supervisor_hourly": 68.0,
+        "mechanical_technician_hourly": 42.0,
+        "electrical_supervisor_hourly": 72.0,
+        "electrical_assistant_hourly": 48.0,
+        "service": 4200.0,
+        "spare_parts": 1500.0,
+        "other": 300.0
+      },
+      "lump_sum_overrides": {},
+      "multi_option_mode": true,
+      "remark_hints": [
+        "Other repair if needed to be charged extra.",
+        "Shipyard management fee / boarding pass / crane cost if needed to be charged as actual.",
+        "Port entrance fee / other cost if needed to be charged as actual."
+      ],
+      "default_discount_percentage": 5.0,
+      "discount_overrides": {},
+      "pricing_multipliers": {
+        "spare_parts_oem": 1.25,
+        "spare_parts_alternative": 1.5,
+        "freight": 1.35,
+        "delivery": 1.35,
+        "third_party": 1.4,
+        "dock_port_service": 1.3,
+        "dockyard_management": 1.2,
+        "boarding_travel": 1.2
+      },
+      "charge_bases": {
+        "third_party_base": 1200.0,
+        "freight_base": 300.0,
+        "delivery_base": 260.0,
+        "transportation_base": 450.0,
+        "accommodation_daily": 55.0,
+        "port_service_base": 180.0,
+        "maritime_reporting_base": 180.0,
+        "dockyard_management_base": 300.0,
+        "boarding_travel_base": 220.0
+      }
+    }
+  }
+}

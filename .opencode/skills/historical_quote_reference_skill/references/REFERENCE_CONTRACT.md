@@ -48,6 +48,19 @@
   },
   "common_items": [],
   "remark_patterns": [],
-  "recommended_reference_ids": []
+  "recommended_reference_ids": [],
+  "item_clusters": [],
+  "remark_blocks": [],
+  "charge_item_hints": [],
+  "option_style_hints": [],
+  "history_quality_flags": []
 }
 ```
+
+## 派生摘要说明
+
+- `item_clusters`: 基于历史 `items` 文本归一化后的常见项目簇，仅供下游识别常见项模式。
+- `remark_blocks`: 基于历史 `remarks` 的类型化归类结果，仅供下游组装 remark。
+- `charge_item_hints`: 基于历史 `items` / `remarks` 文本推断出的常见附加费用线索，不是最终收费结论。
+- `option_style_hints`: 基于历史文本推断出的常见方案风格线索，例如 `owner_supply_spares`。
+- `history_quality_flags`: 对当前历史参考质量的保守标记，用于提醒下游不要过度依赖历史。

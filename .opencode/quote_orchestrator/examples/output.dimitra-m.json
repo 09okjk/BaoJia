@@ -4,7 +4,7 @@
       "request_meta": {
         "request_id": "qr-dimitra-m-20260401",
         "source": "assessment_report",
-        "prepared_at": "2026-04-10T05:52:20.553065+00:00",
+        "prepared_at": "2026-04-10T08:00:22.136820+00:00",
         "language": "zh-CN"
       },
       "header_context": {
@@ -743,6 +743,63 @@
         "hist-003",
         "hist-001",
         "hist-002"
+      ],
+      "item_clusters": [
+        {
+          "cluster_key": "crankshaft trueness checks place",
+          "sample_size": 2,
+          "examples": [
+            "AE-1 crankshaft trueness checks in place"
+          ]
+        },
+        {
+          "cluster_key": "resilient mountings renewal",
+          "sample_size": 1,
+          "examples": [
+            "AE resilient mountings renewal"
+          ]
+        },
+        {
+          "cluster_key": "lower bearing remove",
+          "sample_size": 1,
+          "examples": [
+            "M/B lower bearing remove"
+          ]
+        },
+        {
+          "cluster_key": "crankshaft run out check",
+          "sample_size": 1,
+          "examples": [
+            "Crankshaft run-out check"
+          ]
+        }
+      ],
+      "remark_blocks": [
+        {
+          "remark_type": "commercial",
+          "texts": [
+            "Other repair if needed to be charged extra",
+            "Spares supply by shipside"
+          ],
+          "sample_size": 3
+        }
+      ],
+      "charge_item_hints": [],
+      "option_style_hints": [
+        {
+          "style_type": "owner_supply_spares",
+          "source": "history_text",
+          "sample_size": 1,
+          "examples": [
+            "Spares supply by shipside"
+          ]
+        }
+      ],
+      "history_quality_flags": [
+        "weak_top_match",
+        "weak_item_overlap",
+        "broad_price_range",
+        "context_only_match"
       ]
     },
     "confidence": 0.6
@@ -3547,10 +3604,6 @@
           },
           {
             "type": "commercial",
-            "text": "Spares supply by shipside"
-          },
-          {
-            "type": "commercial",
             "text": "Commercial discount 5% applied within operator authority."
           },
           {
@@ -3583,13 +3636,20 @@
     "review_result": {
       "review_flags": [
         "当前仅部分项目具备报价条件。",
+        "当前项目与历史案例最高匹配度偏弱，请人工复核。",
+        "当前项目与历史案例的明细项重合度较低，请人工确认。",
+        "历史价格区间较宽，不能直接据此判断最终价格。",
+        "当前历史参考主要依赖上下文匹配，缺少强明细项支撑。",
         "当前报价包含多方案，提交审核时需确认推荐方案。",
         "当前报价包含待确认或按条件收费内容，提交前需再次核对。"
       ],
       "risk_flags": [
         "当前仅部分项目具备报价条件。",
         "项目工作范围未确认，当前无法稳定报价。",
-        "备件供货责任未确认，影响是否纳入报价。"
+        "备件供货责任未确认，影响是否纳入报价。",
+        "当前项目与历史案例最高匹配度偏弱，请人工复核。",
+        "当前项目与历史案例的明细项重合度较低，请人工确认。",
+        "当前历史参考主要依赖上下文匹配，缺少强明细项支撑。"
       ],
       "approval_level": "manager"
     },
@@ -3618,12 +3678,20 @@
         "workflow_dockyard_management_rule",
         "workflow_logistics_rule",
         "workflow_maritime_reporting_rule",
-        "discount_authority"
+        "discount_authority",
+        "historical_remark_block",
+        "historical_option_style_hint",
+        "history_quality:weak_top_match",
+        "history_quality:weak_item_overlap",
+        "history_quality:broad_price_range",
+        "history_quality:context_only_match"
       ],
       "rule_versions": [
         "quote_pricing_skill:v2",
         "quote_review_output_skill:v2",
-        "multi_option_footer_strategy:v1"
+        "multi_option_footer_strategy:v1",
+        "historical_remark_blocks:v1",
+        "historical_option_style_hints:v1"
       ]
     }
   }
