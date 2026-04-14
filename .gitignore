@@ -7,3 +7,5 @@ quotation-pdf/.trae/
 quotation-pdf/out/
 quotation-pdf/**/__pycache__/
 quotation-pdf/**/*.py[cod]
+quotation_orchestrator/examples/
+quotation_orchestrator/out/
