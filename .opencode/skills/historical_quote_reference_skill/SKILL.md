@@ -56,7 +56,7 @@ description: 基于 quote_request 和 quotable_items 检索相似历史报价案
 
 1. 检查输入是否包含 `quote_request`，并确认输入为 JSON 对象。
 2. 从 `quote_request` 和 `quotable_items` 提取检索特征，例如服务类别、服务模式、地点类型、项目标题。
-3. 从历史样本库中检索相似案例。
+3. 先做规则预筛，再对候选历史案例做向量或 TF-IDF 重排。
 4. 为每个候选历史案例计算相似度，并保留可解释的命中特征。
 5. 输出 Top N 匹配结果到 `matches`。
 6. 聚合历史结果，输出 `reference_summary`。
@@ -67,7 +67,36 @@ description: 基于 quote_request 和 quotable_items 检索相似历史报价案
 
 - `matches` 中每条结果都应说明“为什么相似”
 - `reference_summary.price_range_hint` 仅作参考，不得视为最终报价结论
+- `reference_summary.retrieval_strategy` 应标明当前重排策略
 - `confidence` 范围必须在 `0.0` 到 `1.0` 之间
+
+## Embedding 接入
+
+当前实现支持阿里云 `text-embedding-v4` 的 OpenAI 兼容接口。
+
+环境变量：
+
+- `DASHSCOPE_API_KEY`
+- `DASHSCOPE_BASE_URL`，默认 `https://dashscope.aliyuncs.com/compatible-mode/v1`
+- `HIST_EMBED_MODEL`，默认 `text-embedding-v4`
+- `HIST_EMBED_DIMENSIONS`，默认 `1024`
+- `HIST_EMBED_TIMEOUT_SECONDS`，默认 `30`
+
+当前实现会优先尝试从 `.opencode/.env` 加载上述变量。如果 `.env` 中存在：
+
+`DASHSCOPE_API_KEY=sk-xxx`
+
+则运行 Skill 时会自动读取，无需手动在终端中再次设置环境变量。
+
+缓存文件：
+
+- `data/historical_embeddings.cache.json`
+
+缓存构建命令：
+
+`& ".opencode/.venv/Scripts/python.exe" ".opencode/skills/historical_quote_reference_skill/build_embedding_cache.py"`
+
+如果未配置 API Key 或 embedding 调用失败，Skill 会自动回退到本地 TF-IDF 重排。
 
 推荐结构见：`references/REFERENCE_CONTRACT.md`
 

@@ -272,5 +272,13 @@
         "boarding_travel_base": 220.0
       }
     }
+  },
+  "render_options": {
+    "enabled": true,
+    "languages": [
+      "zh",
+      "en"
+    ],
+    "output_dir": ".opencode/skills/quote_pdf_render_skill/out"
   }
 }

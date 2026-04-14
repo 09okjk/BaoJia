@@ -1,0 +1,586 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Engineering Quotation</title>
+    <style>
+@page {
+  size: A4;
+  margin: 30px;
+  margin-top: 110px;
+}
+
+@page {
+  @top-center {
+    content: element(headerRunningEngineering);
+  }
+  @bottom-right {
+    padding-bottom: 20px;
+  }
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  line-height: 1.2;
+}
+
+.engineering-pdf {
+  page: engineeringPdf;
+}
+
+.blue {
+  color: #67b6ff;
+}
+
+.line-through {
+  text-decoration: line-through;
+}
+
+.currencyName {
+  text-align: right;
+  font-size: 14px;
+  font-weight: normal;
+  margin-bottom: 5px;
+}
+
+table {
+  margin-top: -1px;
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+  color: #000;
+}
+
+table tr {
+  break-inside: avoid;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+
+table tr td {
+  padding: 6px;
+  border: 1px solid #000;
+  white-space: normal;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-all;
+  break-inside: avoid;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+
+table tr td {
+  padding: 3px 6px !important;
+}
+
+table .bold {
+  font-weight: 700;
+}
+
+.tr-img {
+  width: 100%;
+}
+
+.tr-img .td-img {
+  width: 50%;
+}
+
+.tr-img .td-img div {
+  min-height: 80px;
+}
+
+.tr-img .td-img div img {
+  width: 100%;
+  margin: 0 auto;
+  display: block;
+  height: 200px;
+  object-fit: contain;
+}
+
+.header {
+  position: running(headerRunningEngineering);
+  width: 100%;
+  text-align: start;
+}
+
+.header .info_header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header .info_header .winkong_marinsmart_logo {
+  width: 140px;
+}
+
+.header .info_header .yibei {
+  height: 100px;
+}
+
+.header .info_header .gms {
+  width: 140px;
+}
+
+.header .info_header .aeo_box {
+  margin-right: 20px;
+  width: 100px;
+  height: 68px;
+}
+
+.header .info_header .aeo_box .aeo {
+  display: block;
+  width: 100%;
+}
+
+.header .info_header .mitsubishi_box {
+  width: 150px;
+}
+
+.header .info_header .mitsubishi_box img {
+  display: block;
+  width: 100%;
+}
+
+.header .info_header .title-box {
+  color: #05328e;
+  text-align: center;
+  font-weight: 500;
+}
+
+.header .info_header .title-box .size-big {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.header .info_header .title-box .size-middle {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.header .info_header .title-box .small-box p {
+  font-size: 12px;
+}
+
+.content .bottom-img {
+  display: block;
+  width: 720px;
+  height: 161px;
+}
+
+.content .table-blue thead {
+  background-color: #0066cc;
+  color: #fff;
+}
+
+.content .pre-line {
+  white-space: pre-line;
+}
+
+.content .en-word-line {
+  word-break: break-word;
+}
+
+.content .title {
+  margin: 0 auto 10px;
+  width: 100%;
+  word-break: normal;
+  font-size: 20px;
+  text-align: center;
+  font-weight: 700;
+}
+
+.content .table-bg {
+  background-color: #ededed;
+}
+
+.content .table-bg td:nth-child(odd) {
+  width: 25%;
+}
+
+.content .table-bg td:nth-child(even) {
+  width: 25%;
+}
+
+.content .introduce-text p {
+  margin-bottom: 6px;
+  font-size: 12px;
+  line-height: 12px;
+  color: #666;
+}
+
+.content .introduce-text p:nth-child(1) {
+  margin-top: 6px;
+}
+
+.content .introduce-text h1 {
+  margin-bottom: 6px;
+  font-size: 12px;
+  line-height: 12px;
+  font-weight: normal;
+  color: #666;
+}
+
+.content .introduce-text h1:nth-child(1) {
+  margin-top: 6px;
+  color: #002fa7;
+}
+
+.content .time,
+.content .total {
+  line-height: 30px;
+  font-size: 14px;
+  text-align: right;
+}
+
+.content .mitsubishi_box {
+  width: 150px;
+}
+
+.content .mitsubishi_box img {
+  display: block;
+  width: 100%;
+}
+
+.blue-title {
+  text-align: center;
+  font-size: 20px;
+  font-weight: 800;
+  color: #000;
+  font-family: PingFang SC, PingFang SC;
+  margin-top: 5px;
+}
+
+.blue-header {
+  justify-content: flex-start !important;
+  margin-top: 4px;
+}
+
+.blue-header .blue_gms_logo {
+  width: 170px;
+  height: 56px;
+}
+
+.blue-header .rainbow-bar {
+  width: 170px;
+  height: 12px;
+  display: block;
+  margin-top: -14px;
+}
+
+.blue-header .blue-logo {
+  width: 62px;
+  height: 58px;
+  margin-left: 30px;
+  margin-top: 6px;
+}
+
+.blue-header .blue-title-small {
+  font-size: 13px;
+  color: #000;
+  font-family: Source Sans 3, Source Sans 3;
+  text-align: center;
+  line-height: 17px;
+}
+
+.blue-header .blue-net-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-top: 8px;
+  margin-left: 8px;
+}
+
+.blue-header .blue-net-text {
+  font-size: 13px;
+  color: #000;
+  font-family: Source Sans 3, Source Sans 3;
+}
+    </style>
+  </head>
+  <body>
+    <div class="engineering-pdf">
+      
+      <header class="header">
+        <div class="info_header">
+          <img
+            alt="img"
+            class="winkong_marinsmart_logo"
+            src="file:///E:/PythonProjects/BaoJia/quotation-pdf/src/templates/assets/winkong_marinsmart_logo.png"
+            title="logo"
+          />
+          <div class="title-box">
+            
+            <p class="size-big">青 岛 儒 海 船 舶 股 份 有 限 公 司</p>
+            <p class="size-big">WinKong Marine Engineering Co.，Ltd.</p>
+            <p class="size-middle">贻贝MarinSmart船海服务互联网平台</p>
+            <p class="size-middle">MARINSMART PLATFORM</p>
+            
+
+            
+          </div>
+          <div class="aeo_box">
+            
+            <img
+              alt="img"
+              class="aeo"
+              src="file:///E:/PythonProjects/BaoJia/quotation-pdf/src/templates/assets/aeo-logo.png"
+              title="aeo-logo"
+            />
+            
+          </div>
+        </div>
+      </header>
+      
+
+      
+
+      <section class="content">
+        <h1 class="title">Quotation</h1>
+        <h2 class="currencyName"><span>币种 Currency：</span> <span>USD</span></h2>
+
+        <table class="table-bg">
+          <tbody>
+            <tr>
+              <td class="bold">
+                <p>船名</p>
+                <p>Vessel Name</p>
+              </td>
+              <td>M/V EXAMPLE</td>
+              <td class="bold">
+                <p>日期</p>
+                <p>Date</p>
+              </td>
+              <td>2026/04/09</td>
+            </tr>
+            <tr>
+              <td class="bold"><p>IMO No.</p></td>
+              <td>1234567</td>
+              <td class="bold">
+                <p>船型</p>
+                <p>Vessel Type</p>
+              </td>
+              <td>Bulk Carrier</td>
+            </tr>
+            <tr>
+              <td class="bold">
+                <p>客户名称</p>
+                <p>Customer Name</p>
+              </td>
+              <td>ABC Shipping</td>
+              <td class="bold">
+                <p>港口</p>
+                <p>Service Port</p>
+              </td>
+              <td>Qingdao</td>
+            </tr>
+            <tr>
+              <td class="bold">
+                <p>联系人</p>
+                <p>Attention</p>
+              </td>
+              <td>Technical Department</td>
+              <td class="bold">
+                <p>我方报价号</p>
+                <p>WK Offer No.</p>
+              </td>
+              <td>WK-demo-001</td>
+            </tr>
+            <tr>
+              <td class="bold">
+                <p>询价号</p>
+                <p>Your Ref No.</p>
+              </td>
+              <td>REF-001</td>
+              <td class="bold">
+                <p>报价有效期</p>
+                <p>Quotation Validity</p>
+              </td>
+              <td>30 days</td>
+            </tr>
+            <tr>
+              <td class="bold">
+                <p>确认号</p>
+                <p>PO No.</p>
+              </td>
+              <td></td>
+              <td class="bold">
+                <p>询价发起人</p>
+                <p>PIC of WinKong</p>
+              </td>
+              <td>Winkong</td>
+            </tr>
+          </tbody>
+        </table>
+
+        
+        <table class="table-blue">
+          <thead>
+            <tr class="bold">
+              <td style="min-width: 42px">
+                <p>序号</p>
+                <p>Item</p>
+              </td>
+              <td style="min-width: 100px">
+                <p>项目内容</p>
+                <p>Description</p>
+              </td>
+              <td style="min-width: 72px">
+                <p>单价</p>
+                <p>Unit Price</p>
+              </td>
+              <td style="min-width: 42px">
+                <p>单位</p>
+                <p>Unit</p>
+              </td>
+              <td style="min-width: 42px">
+                <p>数量</p>
+                <p>Q'ty</p>
+              </td>
+              
+              <td style="min-width: 72px">
+                <p>合计</p>
+                <p>Amount</p>
+              </td>
+            </tr>
+          </thead>
+          <tbody>
+            
+            
+            <tr>
+              <td>1</td>
+              <td class="pre-line en-word-line">HCU 系统大修</td>
+              <td class=""></td>
+              <td></td>
+              <td></td>
+              
+              <td class=""></td>
+            </tr>
+            
+            
+            <tr>
+              <td>1.1</td>
+              <td class="pre-line en-word-line">HCU 系统 64000 小时大修范围</td>
+              <td class="">$2,224</td>
+              <td>set</td>
+              <td>1</td>
+              
+              <td class="">$2,224</td>
+            </tr>
+            
+            
+            <tr>
+              <td></td>
+              <td class="pre-line en-word-line">方案合计 - 方案 A 标准报价</td>
+              <td class="">USD 2,224.00</td>
+              <td></td>
+              <td></td>
+              
+              <td class="">USD 2,224.00</td>
+            </tr>
+            
+          </tbody>
+        </table>
+        
+
+        
+        <table>
+          <thead>
+            <tr>
+              <td colspan="4" class="bold">总结 Summary</td>
+            </tr>
+            <tr>
+              <td class="bold">
+                <p>
+                  服务费
+                </p>
+                <p>Service Charge</p>
+              </td>
+              <td class="bold">
+                <p>
+                  备件费
+                </p>
+                <p>Spare Parts Fee</p>
+              </td>
+              <td class="bold">
+                <p>
+                  其它
+                </p>
+                <p>Other</p>
+              </td>
+              <td class="bold">
+                <p>总计</p>
+                <p>Total</p>
+              </td>
+            </tr>
+          </thead>
+          <tbody>
+            
+            <tr>
+              <td>USD 2,224.00</td>
+              <td>USD 0.00</td>
+              <td>USD 0.00</td>
+              <td>USD 2,224.00</td>
+            </tr>
+            
+          </tbody>
+        </table>
+        
+
+        
+        <table>
+          <tbody>
+            <tr>
+              <td class="bold">备注Remark</td>
+            </tr>
+            <tr>
+              <td>
+                
+                <p>※ [Option A Standard quotation] 如有其他维修项目，需另行收费。</p>
+                
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        
+
+        
+        <table>
+          <tbody>
+            <tr>
+              <td class="bold">服务支付条款 Service Payment Terms</td>
+            </tr>
+            <tr>
+              <td>
+                
+                <p>Payment within 30 days upon invoice date.</p>
+                
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        
+
+        
+
+        
+
+        <table>
+          <tbody>
+            <tr>
+              <td>
+                <img
+                  alt="img"
+                  class="bottom-img"
+                  src="file:///E:/PythonProjects/BaoJia/quotation-pdf/src/templates/assets/cooperative-brand.png"
+                  title="cooperative-brand"
+                />
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,251 @@
+{
+  "matches": [
+    {
+      "quote_id": "hist-001",
+      "similarity": 0.76,
+      "reason": "核心项目工作范围、文本语义与服务场景相似。",
+      "matched_features": [
+        "service_category: service",
+        "service_mode: voyage_repair",
+        "location_type: port",
+        "vessel_type_normalized: tanker",
+        "item_type: service",
+        "item_type_match: service",
+        "item_title: AE-1 crankshaft trueness checks in place",
+        "work_scope_match: AE-1 crankshaft trueness checks in place",
+        "pricing_clue_match: AE-1 crankshaft trueness checks in place",
+        "labor_hint_match: AE-1 crankshaft trueness checks in place",
+        "option_style: standard_vs_discount"
+      ],
+      "reference_items": [
+        "AE-1 crankshaft trueness checks in place"
+      ],
+      "reference_remarks": [
+        "Other repair if needed to be charged extra"
+      ],
+      "match_level": "strong_item_match",
+      "matched_item_pairs": [
+        {
+          "query_item_id": "svc-1",
+          "query_title": "AE-1 crankshaft trueness checks in place",
+          "reference_item_id": "hist-001-svc-1",
+          "reference_title": "AE-1 crankshaft trueness checks in place",
+          "similarity": 0.65,
+          "matched_signals": [
+            "item_type_match: service",
+            "item_title: AE-1 crankshaft trueness checks in place",
+            "work_scope_match: AE-1 crankshaft trueness checks in place",
+            "pricing_clue_match: AE-1 crankshaft trueness checks in place",
+            "labor_hint_match: AE-1 crankshaft trueness checks in place"
+          ]
+        }
+      ],
+      "commercial_fit": {
+        "spare_parts_supply_mode_match": false,
+        "option_style_overlap": [
+          "standard_vs_discount"
+        ]
+      },
+      "prefilter_score": 0.85,
+      "semantic_score": 0.96,
+      "rerank_stage": "hybrid"
+    },
+    {
+      "quote_id": "hist-002",
+      "similarity": 0.66,
+      "reason": "核心项目工作范围、文本语义与服务场景相似。",
+      "matched_features": [
+        "service_category: service",
+        "service_mode: voyage_repair",
+        "location_type: port",
+        "item_type: service",
+        "item_type_match: service",
+        "item_title: AE-1 crankshaft trueness checks in place",
+        "work_scope_match: AE-1 crankshaft trueness checks in place",
+        "pricing_clue_match: AE-1 crankshaft trueness checks in place",
+        "labor_hint_match: AE-1 crankshaft trueness checks in place",
+        "option_style: standard_vs_discount"
+      ],
+      "reference_items": [
+        "AE-1 crankshaft trueness checks in place"
+      ],
+      "reference_remarks": [
+        "Other repair if needed to be charged extra"
+      ],
+      "match_level": "strong_item_match",
+      "matched_item_pairs": [
+        {
+          "query_item_id": "svc-1",
+          "query_title": "AE-1 crankshaft trueness checks in place",
+          "reference_item_id": "hist-002-svc-1",
+          "reference_title": "AE-1 crankshaft trueness checks in place",
+          "similarity": 0.65,
+          "matched_signals": [
+            "item_type_match: service",
+            "item_title: AE-1 crankshaft trueness checks in place",
+            "work_scope_match: AE-1 crankshaft trueness checks in place",
+            "pricing_clue_match: AE-1 crankshaft trueness checks in place",
+            "labor_hint_match: AE-1 crankshaft trueness checks in place"
+          ]
+        }
+      ],
+      "commercial_fit": {
+        "spare_parts_supply_mode_match": false,
+        "option_style_overlap": [
+          "standard_vs_discount"
+        ]
+      },
+      "prefilter_score": 0.75,
+      "semantic_score": 0.87,
+      "rerank_stage": "hybrid"
+    },
+    {
+      "quote_id": "hist-003",
+      "similarity": 0.43,
+      "reason": "核心项目工作范围、文本语义与服务场景相似。",
+      "matched_features": [
+        "service_category: service",
+        "vessel_type_normalized: tanker",
+        "item_type: service",
+        "item_type_match: service",
+        "pricing_clue_match: AE resilient mountings renewal",
+        "labor_hint_match: AE resilient mountings renewal",
+        "option_style: owner_supply_spares"
+      ],
+      "reference_items": [
+        "AE resilient mountings renewal"
+      ],
+      "reference_remarks": [
+        "Spares supply by shipside"
+      ],
+      "match_level": "item_and_context",
+      "matched_item_pairs": [
+        {
+          "query_item_id": "svc-1",
+          "query_title": "AE-1 crankshaft trueness checks in place",
+          "reference_item_id": "hist-003-svc-1",
+          "reference_title": "AE resilient mountings renewal",
+          "similarity": 0.22,
+          "matched_signals": [
+            "item_type_match: service",
+            "pricing_clue_match: AE resilient mountings renewal",
+            "labor_hint_match: AE resilient mountings renewal"
+          ]
+        }
+      ],
+      "commercial_fit": {
+        "spare_parts_supply_mode_match": false,
+        "option_style_overlap": [
+          "owner_supply_spares"
+        ]
+      },
+      "prefilter_score": 0.3,
+      "semantic_score": 0.54,
+      "rerank_stage": "hybrid"
+    }
+  ],
+  "reference_summary": {
+    "price_range_hint": {
+      "currency": "USD",
+      "min": 3200.0,
+      "max": 9800.0,
+      "sample_size": 3
+    },
+    "common_items": [
+      "AE-1 crankshaft trueness checks in place",
+      "AE resilient mountings renewal"
+    ],
+    "remark_patterns": [
+      "Other repair if needed to be charged extra",
+      "Spares supply by shipside"
+    ],
+    "recommended_reference_ids": [
+      "hist-001",
+      "hist-002",
+      "hist-003"
+    ],
+    "item_clusters": [
+      {
+        "cluster_key": "crankshaft trueness checks place",
+        "sample_size": 2,
+        "examples": [
+          "AE-1 crankshaft trueness checks in place"
+        ]
+      },
+      {
+        "cluster_key": "resilient mountings renewal",
+        "sample_size": 1,
+        "examples": [
+          "AE resilient mountings renewal"
+        ]
+      }
+    ],
+    "remark_blocks": [
+      {
+        "remark_type": "commercial",
+        "texts": [
+          "Other repair if needed to be charged extra",
+          "Spares supply by shipside"
+        ],
+        "sample_size": 3
+      }
+    ],
+    "charge_item_hints": [
+      {
+        "hint_type": "dockyard_management",
+        "source": "history_text",
+        "sample_size": 1,
+        "examples": [
+          "dockyard_management"
+        ]
+      }
+    ],
+    "option_style_hints": [
+      {
+        "style_type": "standard_vs_discount",
+        "source": "history_text",
+        "sample_size": 1,
+        "examples": [
+          "standard_vs_discount"
+        ]
+      },
+      {
+        "style_type": "owner_supply_spares",
+        "source": "history_text",
+        "sample_size": 2,
+        "examples": [
+          "Spares supply by shipside",
+          "owner_supply_spares"
+        ]
+      }
+    ],
+    "history_quality_flags": [
+      "broad_price_range",
+      "broad_item_price_range",
+      "commercial_mismatch"
+    ],
+    "item_price_hints": [
+      {
+        "query_item_id": "svc-1",
+        "query_title": "AE-1 crankshaft trueness checks in place",
+        "currency": "USD",
+        "min": 3200.0,
+        "max": 9800.0,
+        "median": 3500.0,
+        "sample_size": 3,
+        "matched_reference_item_ids": [
+          "hist-001-svc-1",
+          "hist-002-svc-1",
+          "hist-003-svc-1"
+        ],
+        "source_quote_ids": [
+          "hist-001",
+          "hist-002",
+          "hist-003"
+        ]
+      }
+    ],
+    "retrieval_strategy": "rule_prefilter+aliyun_embedding_rerank"
+  },
+  "confidence": 1.0
+}

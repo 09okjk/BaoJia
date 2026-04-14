@@ -2,59 +2,58 @@
 
 ## 1. 文档目的
 
-本文用于细化第三个 Skill：`historical_quote_reference_skill` 的设计，作为后续开发、联调和验收参考。
+本文用于细化第三个 Skill：`historical_quote_reference_skill` 的当前实现设计，作为开发、联调和验收参考。
 
-本设计严格对齐《智能报价 Agent Skill 设计说明书（V2.2）》中的以下约束：
-
-- 第三个 Skill 的目标是“从历史报价数据库检索相似案例，并形成报价参考摘要”
-- 各 Skill 之间统一使用 JSON 作为输入输出协议
-- 本 Skill 提供报价参考，不直接输出金额结论或最终报价文档
-- 历史参考应服务后续定价和审核，而不是替代规则计算
-
----
+本设计对齐当前仓库中的可执行实现、样例与 schema，重点说明历史参考如何为后续定价与审核提供结构化辅助信息。
 
 ## 2. Skill 定位
 
 `historical_quote_reference_skill` 是智能报价链路中的历史参考检索层。
 
-它接收标准化后的 `quote_request` 和第二个 Skill 输出的 `quotable_items`，从历史报价样本中检索相似案例，并输出结构化参考结果。
+它接收：
+
+- `quote_request`
+- `quotable_items`
+
+并从本地历史样本库中检索相似案例，输出：
+
+- `matches`
+- `reference_summary`
+- `confidence`
 
 它回答的核心问题是：
 
-1. 当前报价任务和哪些历史案例相似
-2. 历史上常见的报价项有哪些
-3. 历史 remark / 商务条款模式有哪些
-4. 当前历史参考结果的可信度大致如何
-
----
+1. 当前报价请求和哪些历史案例相似
+2. 相似性主要来自上下文还是 item 级工作内容
+3. 历史中常见的报价项、remark 模式、附加收费线索、方案风格线索有哪些
+4. 当前历史参考是否足够可靠，是否存在明显质量风险
+5. 哪些历史 item 可以为当前 item 提供价格区间参考
 
 ## 3. 目标与非目标
 
-## 3.1 目标
+### 3.1 目标
 
-- 接收 `quote_request` 和 `quotable_items`
-- 检索相似历史案例
-- 输出 `matches`
-- 输出 `reference_summary`
-- 输出 `confidence`
+- 消费 `quote_request` 与 `quotable_items`
+- 输出可解释的历史匹配结果 `matches`
+- 输出可供下游消费的 `reference_summary`
+- 输出保守的 `confidence`
+- 提供 item 级历史价格提示 `item_price_hints`
 
-## 3.2 非目标
+### 3.2 非目标
 
 以下内容不属于本 Skill：
 
-- 不生成可报价判断
-- 不计算最终金额
+- 不输出可报价判断
+- 不直接计算最终金额
 - 不生成 `quotation_options`
 - 不生成最终 `QuoteDocument`
-- 不直接决定 remark 最终写法
+- 不直接决定最终 remark 写法
 
-本 Skill 只提供“参考”，不输出最终定价结论。
-
----
+本 Skill 的职责是“提供参考”，而不是“替代定价”。
 
 ## 4. 上下游关系
 
-## 4.1 上游输入
+### 4.1 上游输入
 
 本 Skill 接收：
 
@@ -67,10 +66,10 @@
 
 其中：
 
-- `quote_request` 来自第一个 Skill
-- `quotable_items` 来自第二个 Skill
+- `quote_request` 来自 `quote_request_prepare_skill`
+- `quotable_items` 来自 `quote_feasibility_check_skill`
 
-## 4.2 下游输出
+### 4.2 下游输出
 
 本 Skill 直接服务于：
 
@@ -79,34 +78,30 @@
 
 其中：
 
-- `quote_pricing_skill` 依赖历史相似案例、价格带和常见项参考
-- `quote_review_output_skill` 可复用历史引用信息生成 `trace`
-
----
+- `quote_pricing_skill` 消费价格区间、item 级价格提示、remark 模式、附加费用线索、方案风格线索和质量标记
+- `quote_review_output_skill` 可复用历史引用结果和摘要信息生成最终 `trace`
 
 ## 5. 设计原则
 
-## 5.1 历史参考是辅助，不是替代
+### 5.1 历史参考是辅助，不是替代
 
-历史案例只能作为参考输入，不能替代当前业务事实和规则计算。
+历史样本只能作为参考输入，不能替代当前业务事实与规则计算。
 
-## 5.2 结果必须结构化
+### 5.2 相似性必须可解释
 
-不要只输出一段自由文本总结，应输出可被后续 Skill 消费的结构化对象。
+输出不能只有“命中某个 quote_id”，还应说明命中的上下文特征、item 特征和商业特征。
 
-## 5.3 相似性要可解释
+### 5.3 优先 item 级参考
 
-历史匹配结果应能说明“为什么相似”，而不仅是给出一个 ID。
+对下游定价最有价值的是 item 级相似性与 item 级价格提示，而不是只返回 quote 级总价区间。
 
-## 5.4 置信度必须保守
+### 5.4 保守表达不确定性
 
-当历史样本不足、特征不充分时，`confidence` 应保守，不要人为拉高。
-
----
+当历史样本不足、item 重叠弱、商业条件不一致时，必须用 `history_quality_flags` 与较保守的 `confidence` 显式表达。
 
 ## 6. 输入详细设计
 
-## 6.1 输入对象
+### 6.1 输入对象
 
 ```json
 {
@@ -115,28 +110,95 @@
 }
 ```
 
-## 6.2 输入字段要求
+### 6.2 输入字段要求
 
-### `quote_request`
+#### `quote_request`
 
-至少应提供部分以下信息：
+当前实现主要使用以下字段：
 
-- `header_context`
-- `service_context`
-- `candidate_items`
-- `commercial_context`
+- `header_context.vessel_type`
+- `service_context.service_category`
+- `service_context.service_mode`
+- `service_context.location_type`
+- `spare_parts_context.spare_parts_supply_mode`
+- `candidate_items[*]`
 
-### `quotable_items`
+其中 `candidate_items[*]` 虽不直接作为主输入列表参与排序，但其字段形状与 `quotable_items` 的 `item_id` 对应关系决定了整条链路中 item 的可解释性与下游复用能力。
 
-应提供第二个 Skill 已判定可进入报价的项目列表。
+#### `quotable_items`
 
-若 `quotable_items` 为空，本 Skill 仍可运行，但应输出低置信度结果。
+本 Skill 主要围绕 `quotable_items` 做 item-level 匹配。
 
----
+当前实现至少消费：
 
-## 7. 输出详细设计
+- `item_id`
+- `item_type`
+- `title`
 
-## 7.1 输出对象
+并在 item 级文本匹配中兼容读取：
+
+- `description`
+- `work_scope`
+- `labor_hint`
+- `pricing_clues`
+
+如果 `quotable_items` 为空，本 Skill 仍可运行，但会输出更保守的历史参考结果。
+
+## 7. 历史样本结构
+
+历史样本库位于：
+
+` .opencode/skills/historical_quote_reference_skill/data/historical_quotes.sample.json `
+
+当前实现支持以下历史字段：
+
+- `quote_id`
+- `service_category`
+- `service_mode`
+- `location_type`
+- `vessel_type`
+- `vessel_type_normalized`
+- `service_port_region`
+- `spare_parts_supply_mode`
+- `currency`
+- `total_amount`
+- `items`
+- `remarks`
+- `commercial_terms`
+- `option_style_tags`
+- `charge_item_tags`
+- `item_details`
+
+其中 `item_details` 是 item-level 匹配和 item 级价格提示的核心数据结构。
+
+推荐结构：
+
+```json
+{
+  "item_id": "hist-004-svc-1",
+  "item_type": "service",
+  "title": "HCU system overhaul",
+  "description": "64k running hours overhaul scope",
+  "work_scope": [
+    "Overhaul ELFI valve and Multiway valve units"
+  ],
+  "labor_hint": [
+    "1 supervisor 8 hours",
+    "7 fitters 8 hours"
+  ],
+  "pricing_clues": [
+    "mechanical",
+    "dock repair"
+  ],
+  "amount": 2550.0,
+  "currency": "USD",
+  "status": "chargeable"
+}
+```
+
+## 8. 输出详细设计
+
+### 8.1 输出对象
 
 ```json
 {
@@ -146,326 +208,381 @@
 }
 ```
 
-## 7.2 字段定义
+### 8.2 `matches`
 
-### `matches`
+每个历史命中结果包含：
 
-历史匹配结果列表。
-
-### `reference_summary`
-
-对历史参考的聚合摘要。
-
-### `confidence`
-
-`0.0 - 1.0` 之间的置信度，用于表达当前历史参考结果的可靠程度。
-
----
-
-## 8. 推荐数据结构
-
-## 8.1 `matches`
-
-推荐结构：
-
-```json
-{
-  "quote_id": "",
-  "similarity": 0.0,
-  "reason": "",
-  "matched_features": [],
-  "reference_items": [],
-  "reference_remarks": []
-}
-```
-
-字段说明：
-
-- `quote_id`：历史报价唯一标识
-- `similarity`：相似度分值
-- `reason`：简短说明为什么相似
-- `matched_features`：命中的相似特征
-- `reference_items`：可供后续参考的历史报价项标题
-- `reference_remarks`：可供后续参考的历史 remark 文本
-
-## 8.2 `reference_summary`
-
-推荐结构：
-
-```json
-{
-  "price_range_hint": {
-    "currency": null,
-    "min": null,
-    "max": null,
-    "sample_size": 0
-  },
-  "common_items": [],
-  "remark_patterns": [],
-  "recommended_reference_ids": []
-}
-```
+- `quote_id`
+- `similarity`
+- `reason`
+- `matched_features`
+- `reference_items`
+- `reference_remarks`
+- `match_level`
+- `matched_item_pairs`
+- `commercial_fit`
 
 说明：
 
-- `price_range_hint`：仅提供区间参考，不直接形成最终报价金额
-- `common_items`：历史常见报价项标题或模式
-- `remark_patterns`：历史 remark 模板或常见表达
-- `recommended_reference_ids`：建议优先参考的历史报价 ID
+- `match_level` 用于表达当前命中更偏上下文还是 item 级重合
+- `matched_item_pairs` 用于表达 query item 与 reference item 的具体对应关系
+- `commercial_fit` 用于表达商业条件是否接近，例如备件供应责任是否一致
 
----
+### 8.3 `reference_summary`
 
-## 9. 检索规则设计
+当前实现输出以下聚合字段：
 
-## 9.1 相似性判断维度
+- `price_range_hint`
+- `common_items`
+- `remark_patterns`
+- `recommended_reference_ids`
+- `item_clusters`
+- `remark_blocks`
+- `charge_item_hints`
+- `option_style_hints`
+- `history_quality_flags`
+- `item_price_hints`
+- `retrieval_strategy`
 
-至少可从以下维度做相似性判断：
+其中：
 
-1. 服务类别
-2. 服务模式
-3. 地点类型或服务地点
-4. 候选报价项标题
-5. 船型或项目类型线索
+- `price_range_hint` 是 quote 级总价区间，仅作兜底参考
+- `item_price_hints` 是 item 级价格提示，优先级高于 quote 级区间
+- `charge_item_hints` 为附加收费线索，不代表直接金额结论
+- `option_style_hints` 为历史方案风格线索，不直接生成报价方案
+- `history_quality_flags` 用于表达历史参考的可信度风险
 
-## 9.2 基础检索策略
+### 8.4 `confidence`
 
-第一版建议采用可解释、可控的规则式检索：
+`confidence` 取值范围为 `0.0 - 1.0`，基于：
 
-- 先按服务类别和服务模式过滤
-- 再按 `quotable_items` 标题做关键词重合度匹配
-- 再补充地点、船型等特征加权
+- Top match 相似度
+- 样本数量
+- 是否存在 item 级命中
+- 是否缺少 `quotable_items`
 
-## 9.3 置信度生成策略
+## 9. 匹配逻辑设计
 
-第一版可根据以下因素粗略生成：
+### 9.1 场景匹配
 
-- 匹配样本数量
-- 关键特征命中程度
-- 是否命中高权重特征，例如服务模式、核心项目标题
+当前场景级匹配使用以下字段：
 
----
+1. `service_category`
+2. `service_mode`
+3. `location_type`
+4. `vessel_type_normalized`
+
+其中 `vessel_type` 会先归一化，例如：
+
+- `Kamsarmax Bulk Carrier` -> `bulk_carrier`
+- `82,000 mt Kamsarmax Bulk Carrier` -> `bulk_carrier`
+- `Oil/Chemical Tanker` -> `tanker`
+
+### 9.2 item-level 匹配
+
+当前 item-level 匹配围绕 `quotable_items` 与历史 `item_details` 进行。
+
+匹配信号包括：
+
+1. `item_type` 是否一致
+2. `title` 是否精确命中或高重合
+3. `description + work_scope + labor_hint + pricing_clues` 拼接文本的 token overlap
+4. `pricing_clues` 是否重合
+5. `labor_hint` 是否重合
+
+每个 query item 只保留当前历史记录中的最佳 reference item 匹配对。
+
+### 9.3 商业适配度
+
+当前 `commercial_fit` 主要表达：
+
+1. `spare_parts_supply_mode_match`
+2. `option_style_overlap`
+
+该信息主要用于提示“技术上像，但商业边界可能不同”的情况。
+
+### 9.4 规则预筛
+
+当前实现先做规则预筛，预筛分主要来自：
+
+1. `service_mode`
+2. `service_category`
+3. `location_type`
+4. `vessel_type_normalized`
+5. `item_type_overlap`
+6. `title_overlap`
+
+只有通过预筛的历史记录才进入下一阶段重排。
+
+### 9.5 向量重排
+
+当前实现已进入“规则预筛 + 向量重排”的混合检索阶段。
+
+当前实现优先使用阿里云 `text-embedding-v4` 的 OpenAI 兼容接口做向量重排；如果未配置 `DASHSCOPE_API_KEY` 或调用失败，则自动回退到本地零依赖 TF-IDF 稀疏向量余弦相似度实现。
+
+新增输出字段：
+
+1. `prefilter_score`
+2. `semantic_score`
+3. `rerank_stage`
+
+其中：
+
+- `prefilter_score` 表示规则预筛得分
+- `semantic_score` 表示 query 与历史记录文本的 embedding 或 TF-IDF 语义相似度
+- `rerank_stage` 当前固定为 `hybrid`
+
+当前 `reference_summary.retrieval_strategy` 可能取值：
+
+1. `rule_prefilter+aliyun_embedding_rerank`
+2. `rule_prefilter+tfidf_fallback`
+
+### 9.6 排序与截断
+
+所有通过预筛的历史记录会结合：
+
+1. 规则分
+2. 预筛分
+3. `semantic_score`
+
+计算最终 `similarity`，再按 `similarity` 降序排序，最终取 Top 3 作为 `matches`。
 
 ## 10. 处理流程设计
 
-建议流程如下：
+当前实现流程如下：
 
 ```text
-1. 检查输入结构完整性
-2. 提取检索特征
-3. 读取历史样本库
-4. 计算每条历史样本的相似度
-5. 选取 Top N 匹配结果
-6. 生成 matches
-7. 聚合生成 reference_summary
-8. 计算 confidence
-9. 输出结构化结果
+1. 校验输入结构
+2. 提取 service_context / header_context / spare_parts_context
+3. 归一化 vessel_type
+4. 读取历史样本库
+5. 对每条历史记录做规则预筛
+6. 构造 query text 与 record text
+7. 使用 TF-IDF 余弦做语义重排
+8. 对每条历史记录做 item-level 匹配
+9. 计算商业适配度
+10. 聚合为 similarity / matched_features / matched_item_pairs
+11. 生成 Top 3 matches
+12. 聚合生成 reference_summary
+13. 生成 item_price_hints 与 history_quality_flags
+14. 写入 retrieval_strategy
+15. 计算 confidence
+16. 输出结果
 ```
 
----
+## 11. 质量标记设计
 
-## 11. 示例
+当前实现支持以下 `history_quality_flags`：
 
-## 11.1 示例输入
+- `low_sample_size`
+- `weak_top_match`
+- `weak_item_overlap`
+- `context_only_match`
+- `broad_price_range`
+- `low_item_sample_size`
+- `broad_item_price_range`
+- `commercial_mismatch`
+- `semantic_only_match`
+
+这些标记会被下游用于更保守地消费历史参考。
+
+## 12. 对下游的价值
+
+当前历史 Skill 对下游的价值主要体现在：
+
+1. 为 `quote_pricing_skill` 提供 quote 级总价区间兜底
+2. 为 `quote_pricing_skill` 提供 item 级价格提示 `item_price_hints`
+3. 为 `quote_pricing_skill` 提供 `charge_item_hints`，辅助补充附加费用项
+4. 为 `quote_pricing_skill` 提供 `option_style_hints`，辅助多方案建模
+5. 为 `quote_pricing_skill` 提供 `remark_patterns` 与 `remark_blocks`
+6. 为 `quote_review_output_skill` 提供更可解释的历史 trace 基础
+
+## 13. 示例
+
+### 13.1 示例输入
 
 ```json
 {
   "quote_request": {
+    "header_context": {
+      "vessel_type": "Tanker"
+    },
     "service_context": {
       "service_category": "service",
       "service_mode": "voyage_repair",
       "location_type": "port"
-    }
+    },
+    "spare_parts_context": {
+      "spare_parts_supply_mode": null
+    },
+    "candidate_items": [
+      {
+        "item_id": "svc-1",
+        "item_type": "service",
+        "title": "AE-1 crankshaft trueness checks in place",
+        "description": "Working time abt 15 hours",
+        "work_scope": [
+          "2pcs M/B lower bearing remove"
+        ],
+        "labor_hint": [
+          "1 supervisor",
+          "2 fitters"
+        ],
+        "pricing_clues": [
+          "mechanical",
+          "crankshaft"
+        ]
+      }
+    ]
   },
   "quotable_items": [
     {
       "item_id": "svc-1",
       "item_type": "service",
-      "title": "AE-1 crankshaft trueness checks in place"
+      "title": "AE-1 crankshaft trueness checks in place",
+      "decision": "quotable",
+      "reason": "服务项标题和范围已基本明确，可进入报价。",
+      "blocking_fields": [],
+      "suggested_status": "chargeable",
+      "source": "quote_request.candidate_items"
     }
   ]
 }
 ```
 
-## 11.2 示例输出
+### 13.2 示例输出
 
 ```json
 {
   "matches": [
     {
       "quote_id": "hist-001",
-      "similarity": 0.82,
-      "reason": "服务模式、地点类型和核心服务项高度相似。",
+      "similarity": 0.74,
+      "reason": "核心项目工作范围、文本语义与服务场景相似。",
       "matched_features": [
+        "service_category: service",
         "service_mode: voyage_repair",
         "location_type: port",
-        "item_title: AE-1 crankshaft trueness checks"
+        "vessel_type_normalized: tanker",
+        "item_type: service",
+        "item_type_match: service",
+        "item_title: AE-1 crankshaft trueness checks in place",
+        "work_scope_match: AE-1 crankshaft trueness checks in place",
+        "pricing_clue_match: AE-1 crankshaft trueness checks in place",
+        "labor_hint_match: AE-1 crankshaft trueness checks in place"
       ],
       "reference_items": [
-        "AE-1 crankshaft trueness checks in place",
-        "M/B lower bearing remove"
+        "AE-1 crankshaft trueness checks in place"
       ],
       "reference_remarks": [
         "Other repair if needed to be charged extra"
-      ]
+      ],
+      "match_level": "strong_item_match",
+      "matched_item_pairs": [
+        {
+          "query_item_id": "svc-1",
+          "query_title": "AE-1 crankshaft trueness checks in place",
+          "reference_item_id": "hist-001-svc-1",
+          "reference_title": "AE-1 crankshaft trueness checks in place",
+          "similarity": 0.65,
+          "matched_signals": [
+            "item_type_match: service",
+            "item_title: AE-1 crankshaft trueness checks in place",
+            "work_scope_match: AE-1 crankshaft trueness checks in place",
+            "pricing_clue_match: AE-1 crankshaft trueness checks in place",
+            "labor_hint_match: AE-1 crankshaft trueness checks in place"
+          ]
+        }
+      ],
+      "commercial_fit": {
+        "spare_parts_supply_mode_match": false,
+        "option_style_overlap": [
+          "standard_vs_discount"
+        ]
+      },
+      "prefilter_score": 0.85,
+      "semantic_score": 0.89,
+      "rerank_stage": "hybrid"
     }
   ],
   "reference_summary": {
     "price_range_hint": {
       "currency": "USD",
       "min": 3200.0,
-      "max": 3800.0,
-      "sample_size": 2
+      "max": 9800.0,
+      "sample_size": 3
     },
     "common_items": [
-      "AE-1 crankshaft trueness checks in place",
-      "M/B lower bearing remove"
+      "AE-1 crankshaft trueness checks in place"
     ],
     "remark_patterns": [
       "Other repair if needed to be charged extra"
     ],
     "recommended_reference_ids": [
       "hist-001"
-    ]
+    ],
+    "item_clusters": [],
+    "remark_blocks": [],
+    "charge_item_hints": [],
+    "option_style_hints": [],
+    "history_quality_flags": [
+      "broad_price_range",
+      "broad_item_price_range",
+      "commercial_mismatch"
+    ],
+    "item_price_hints": [
+      {
+        "query_item_id": "svc-1",
+        "query_title": "AE-1 crankshaft trueness checks in place",
+        "currency": "USD",
+        "min": 3200.0,
+        "max": 9800.0,
+        "median": 3500.0,
+        "sample_size": 3,
+        "matched_reference_item_ids": [
+          "hist-001-svc-1",
+          "hist-002-svc-1",
+          "hist-003-svc-1"
+        ],
+        "source_quote_ids": [
+          "hist-001",
+          "hist-002",
+          "hist-003"
+        ]
+      }
+    ],
+    "retrieval_strategy": "rule_prefilter+tfidf_rerank"
   },
-  "confidence": 0.82
+  "confidence": 1.0
 }
 ```
 
----
+## 14. MVP 与当前实现边界
 
-## 12. MVP 开发建议
+当前版本已经不再是最初的“仅标题规则匹配”，而是一个“规则预筛 + 阿里云 embedding 重排，失败时回退 TF-IDF”的混合检索实现。
 
-第一版建议先做以下能力：
+当前仍然没有做：
 
-1. 基于本地 JSON 样本库做规则式历史匹配
-2. 输出 Top N `matches`
-3. 输出价格区间提示、常见项和 remark 模式摘要
-4. 输出保守的 `confidence`
+- 学习排序模型
+- 成交/未成交历史价值区分
 
-第一版可以暂不做：
+## 15. 后续优化方向
 
-- 向量检索
-- 语义召回模型
-- 高级重排序模型
-- 历史成交/未成交经验细分建模
+建议下一阶段按以下顺序优化：
 
----
+1. 增加更稳定的 `service_port_region` 归一化与消费
+2. 把 `matched_item_pairs` 更深度接入定价逻辑
+3. 如果需要更高检索精度，可从 OpenAI 兼容接口切换到 DashScope 原生接口，以支持 `text_type`、`instruct`、`dense&sparse`
+4. 区分成交案例、失败案例和仅参考案例
+5. 提升商业条件建模，例如备件归属、付款方式、报价方案类型
 
-## 13. 验收标准
+## 16. 验收标准
 
-当本 Skill 达到以下效果时，可视为设计目标基本满足：
+当本 Skill 满足以下条件时，可视为与当前设计一致：
 
 1. 能稳定消费 `quote_request` 和 `quotable_items`
-2. 能输出结构化 `matches`
-3. 能输出可供后续定价使用的 `reference_summary`
-4. 能输出合理且保守的 `confidence`
-5. 不越界生成最终定价结论或报价文档
-
----
-
-## 14. 后续优化与增强建议
-
-- 用配置化权重替代固定相似度规则
-- 引入更丰富的历史样本特征字段
-- 增加向量化或语义检索能力
-- 区分成交案例与未成交案例的参考价值
-- 对 remark 模板做更细粒度归类
-
----
-
-## 15. 历史样本字段不可扩展时的优化方向
-
-### 15.1 当前约束
-
-当前历史样本库字段不可新增。已知可用字段只有这类基础信息：
-
-- `quote_id`
-- `service_category`
-- `service_mode`
-- `location_type`
-- `vessel_type`
-- `currency`
-- `total_amount`
-- `items`
-- `remarks`
-
-因此，本 Skill 的增强方向不能依赖“给历史数据库补新字段”，而应基于现有字段做更强的结构化提炼。
-
-### 15.2 可在本 Skill 内新增的派生摘要
-
-在不修改历史样本原始字段的前提下，后续版本可在 `reference_summary` 中增加以下派生结构：
-
-1. `item_clusters`
-- 基于历史 `items` 做去重、归一化和关键词聚类。
-- 目标：提升“历史常见项”对下游的可消费性，而不是只返回原始标题列表。
-
-2. `remark_blocks`
-- 基于历史 `remarks` 做规则归类，例如：
-  - `commercial`
-  - `warranty`
-  - `waiting`
-  - `safety`
-  - `payment_term`
-  - `exclusion`
-- 目标：让下游不再只拿自由文本 remark，而是能按类型组装最终 remark。
-
-3. `charge_item_hints`
-- 不新增历史字段，而是从 `items` 与 `remarks` 文本中推断常见附加费用线索。
-- 例如识别：
-  - `transportation`
-  - `accommodation`
-  - `dockyard_management`
-  - `maritime_reporting`
-  - `freight`
-  - `delivery`
-- 输出应保持“hint”定位，而不是金额结论。
-
-4. `option_style_hints`
-- 从历史 remark 与 item 组合中推断是否存在常见方案风格，例如：
-  - `standard_vs_discount`
-  - `service_only`
-  - `owner_supply_spares`
-  - `spares_tbc`
-- 目标：服务下游多方案建模，但不在本 Skill 直接生成方案。
-
-5. `history_quality_flags`
-- 对历史参考质量做结构化标记，例如：
-  - `low_sample_size`
-  - `weak_item_overlap`
-  - `remark_only_match`
-  - `broad_price_range`
-- 目标：让下游知道“历史参考是否足够可信”。
-
-### 15.3 推荐实现原则
-
-1. 仍然保持“历史参考是辅助，不是替代”
-- 不在本 Skill 内输出最终金额建议。
-- 不在本 Skill 内输出 `quotation_options`。
-
-2. 新增字段必须是“派生摘要”，不是“伪造业务事实”
-- 例如可以输出“历史上常见存在 dockyard management 线索”，不能输出“本次一定收 200 USD”。
-
-3. 相似性和摘要都要可解释
-- 派生出的 hint 必须说明来源是历史 `items`、`remarks` 还是价格区间。
-
-### 15.4 对下游的价值
-
-在字段不可扩展的前提下，本 Skill 后续最现实的价值提升是：
-
-- 让 `quote_pricing_skill` 更容易判断“是否应该生成某类附加费用行”
-- 让 `quote_pricing_skill` 更容易判断“某类复杂备件更适合 pending / by_owner / service only”
-- 让 `quote_review_output_skill` 更容易生成更像历史习惯的 remark 与 trace
-
-### 15.5 分阶段建议
-
-第一阶段：
-- 增加 `remark_blocks`
-- 增加 `history_quality_flags`
-
-第二阶段：
-- 增加 `charge_item_hints`
-- 增加 `option_style_hints`
-
-第三阶段：
-- 增加 `item_clusters`
-- 优化基于 item/remark 的规则式归类
+2. 能输出包含 `match_level`、`matched_item_pairs`、`commercial_fit` 的 `matches`
+3. 能输出包含 `item_price_hints` 的 `reference_summary`
+4. 能输出可解释且保守的 `history_quality_flags`
+5. 能输出保守合理的 `confidence`
+6. 不越界输出最终定价结论或报价文档

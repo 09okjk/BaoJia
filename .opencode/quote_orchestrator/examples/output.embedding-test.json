@@ -1,0 +1,1506 @@
+{
+  "prepare_result": {
+    "quote_request": {
+      "request_meta": {
+        "request_id": "qr-assess-001",
+        "source": "assessment_report",
+        "prepared_at": "2026-04-13T09:56:58.120126+00:00",
+        "language": "zh-CN"
+      },
+      "header_context": {
+        "currency": "USD",
+        "vessel_name": "MV EXAMPLE",
+        "imo_no": "1234567",
+        "vessel_type": "Tanker",
+        "customer_name": "ABC Shipping",
+        "service_port": "Zhapu Port, China",
+        "service_date": "2026-04-09",
+        "attention": "Jessica",
+        "customer_ref_no": null
+      },
+      "service_context": {
+        "service_category": "mechanical",
+        "service_mode": "voyage_repair",
+        "location_type": "port",
+        "needs_multi_option": true,
+        "option_hints": [
+          "Option A Standard quotation",
+          "Option B 5% discount quotation"
+        ],
+        "urgency": null
+      },
+      "candidate_items": [
+        {
+          "item_id": "svc-1",
+          "item_type": "service",
+          "title": "AE-1 crankshaft trueness checks in place",
+          "description": "Working time abt 15 hours",
+          "work_scope": [
+            "2pcs M/B lower bearing remove",
+            "Crankshaft run-out check by magnetic gauge"
+          ],
+          "quantity_hint": 1,
+          "unit_hint": "job",
+          "labor_hint": [
+            "1 supervisor",
+            "2 fitters"
+          ],
+          "pricing_clues": [],
+          "status_hint": null,
+          "source": "assessment_report"
+        },
+        {
+          "item_id": "oth-2",
+          "item_type": "other",
+          "title": "Transportation and accommodation",
+          "description": "Travel and hotel arrangement for service attendance",
+          "work_scope": [],
+          "quantity_hint": 2,
+          "unit_hint": "person-day",
+          "labor_hint": [],
+          "pricing_clues": [
+            "travel",
+            "hotel"
+          ],
+          "status_hint": null,
+          "source": "assessment_report"
+        },
+        {
+          "item_id": "spr-3",
+          "item_type": "spare_parts",
+          "title": "Main bearing spare parts",
+          "description": "Subject to final spare parts confirmation",
+          "work_scope": [],
+          "quantity_hint": null,
+          "unit_hint": null,
+          "labor_hint": [],
+          "pricing_clues": [],
+          "status_hint": null,
+          "source": "assessment_report"
+        }
+      ],
+      "spare_parts_context": {
+        "has_spare_parts": true,
+        "spare_parts_supply_mode": null,
+        "spare_parts_items": [
+          {
+            "item_id": "spr-1",
+            "item_type": "spare_parts",
+            "title": "Main bearing spare parts",
+            "description": "Subject to final spare parts confirmation",
+            "work_scope": [],
+            "quantity_hint": null,
+            "unit_hint": null,
+            "labor_hint": [],
+            "pricing_clues": [],
+            "status_hint": null,
+            "source": "assessment_report"
+          }
+        ]
+      },
+      "risk_context": {
+        "risks": [],
+        "pending_confirmations": [
+          "Whether spare parts are owner supply"
+        ],
+        "assumptions": []
+      },
+      "commercial_context": {
+        "preferred_currency": "USD",
+        "pricing_expectation": null,
+        "special_terms": [
+          "Any additional repair not listed above will be charged extra.",
+          "Payment within 30 days upon invoice date."
+        ]
+      },
+      "source_refs": {
+        "assessment_report_id": "assess-001",
+        "customer_context_ref": null,
+        "business_context_ref": null
+      }
+    },
+    "normalization_flags": [
+      {
+        "flag_code": "normalized_service_category",
+        "field": "service_context.service_category",
+        "from": "轮机",
+        "to": "mechanical",
+        "reason": "统一服务类别表达。"
+      },
+      {
+        "flag_code": "normalized_service_mode",
+        "field": "service_context.service_mode",
+        "from": "voyage repair",
+        "to": "voyage_repair",
+        "reason": "统一服务模式枚举。"
+      },
+      {
+        "flag_code": "normalized_location_type",
+        "field": "service_context.location_type",
+        "from": "Zhapu Port, China",
+        "to": "port",
+        "reason": "基于显式地点文本推断地点类型。"
+      }
+    ],
+    "missing_fields": []
+  },
+  "feasibility_result": {
+    "can_quote": true,
+    "quote_scope": "partial",
+    "quotable_items": [
+      {
+        "item_id": "svc-1",
+        "item_type": "service",
+        "title": "AE-1 crankshaft trueness checks in place",
+        "decision": "quotable",
+        "reason": "服务项标题和范围已基本明确，可进入报价。",
+        "blocking_fields": [],
+        "suggested_status": "chargeable",
+        "source": "quote_request.candidate_items"
+      }
+    ],
+    "tbc_items": [
+      {
+        "item_id": "oth-2",
+        "item_type": "other",
+        "title": "Transportation and accommodation",
+        "decision": "tbc",
+        "reason": "工作范围不明确，当前只能待确认。",
+        "blocking_fields": [
+          "candidate_items[oth-2].work_scope"
+        ],
+        "suggested_status": "pending",
+        "source": "quote_request.candidate_items"
+      },
+      {
+        "item_id": "spr-3",
+        "item_type": "spare_parts",
+        "title": "Main bearing spare parts",
+        "decision": "tbc",
+        "reason": "备件供货责任未确认，当前只能待确认。",
+        "blocking_fields": [
+          "spare_parts_context.spare_parts_supply_mode"
+        ],
+        "suggested_status": "pending",
+        "source": "quote_request.candidate_items"
+      }
+    ],
+    "exclusions": [],
+    "missing_fields": [
+      {
+        "field": "candidate_items[oth-2].work_scope",
+        "required_for": [
+          "feasibility_check",
+          "pricing"
+        ],
+        "severity": "medium",
+        "reason": "项目工作范围未确认，当前无法稳定报价。",
+        "suggested_source": "assessment_report"
+      },
+      {
+        "field": "spare_parts_context.spare_parts_supply_mode",
+        "required_for": [
+          "feasibility_check",
+          "pricing"
+        ],
+        "severity": "medium",
+        "reason": "备件供货责任未确认，影响是否纳入报价。",
+        "suggested_source": "customer_context"
+      }
+    ],
+    "questions_for_user": [
+      {
+        "question_id": "q-oth-2",
+        "target": "customer",
+        "topic": "work_scope",
+        "question": "请进一步确认 Transportation and accommodation 的具体工作范围是否已完整列明。",
+        "related_item_ids": [
+          "oth-2"
+        ]
+      },
+      {
+        "question_id": "q-spr-3",
+        "target": "customer",
+        "topic": "spare_parts_supply_mode",
+        "question": "Main bearing spare parts 由船东提供还是由我司供货？",
+        "related_item_ids": [
+          "spr-3"
+        ]
+      }
+    ],
+    "review_flags": [
+      {
+        "flag_code": "partial_quote_scope",
+        "severity": "medium",
+        "message": "当前仅部分项目具备报价条件。",
+        "related_item_ids": [
+          "svc-1",
+          "oth-2",
+          "spr-3"
+        ]
+      }
+    ]
+  },
+  "historical_reference": {
+    "matches": [
+      {
+        "quote_id": "hist-001",
+        "similarity": 0.71,
+        "reason": "核心项目工作范围、文本语义与服务场景相似。",
+        "matched_features": [
+          "service_mode: voyage_repair",
+          "location_type: port",
+          "vessel_type_normalized: tanker",
+          "item_type: service",
+          "item_type_match: service",
+          "item_title: AE-1 crankshaft trueness checks in place",
+          "work_scope_match: AE-1 crankshaft trueness checks in place",
+          "labor_hint_match: AE-1 crankshaft trueness checks in place",
+          "option_style: standard_vs_discount"
+        ],
+        "reference_items": [
+          "AE-1 crankshaft trueness checks in place"
+        ],
+        "reference_remarks": [
+          "Other repair if needed to be charged extra"
+        ],
+        "match_level": "strong_item_match",
+        "matched_item_pairs": [
+          {
+            "query_item_id": "svc-1",
+            "query_title": "AE-1 crankshaft trueness checks in place",
+            "reference_item_id": "hist-001-svc-1",
+            "reference_title": "AE-1 crankshaft trueness checks in place",
+            "similarity": 0.57,
+            "matched_signals": [
+              "item_type_match: service",
+              "item_title: AE-1 crankshaft trueness checks in place",
+              "work_scope_match: AE-1 crankshaft trueness checks in place",
+              "labor_hint_match: AE-1 crankshaft trueness checks in place"
+            ]
+          }
+        ],
+        "commercial_fit": {
+          "spare_parts_supply_mode_match": false,
+          "option_style_overlap": [
+            "standard_vs_discount"
+          ]
+        },
+        "prefilter_score": 0.75,
+        "semantic_score": 0.95,
+        "rerank_stage": "hybrid"
+      },
+      {
+        "quote_id": "hist-002",
+        "similarity": 0.61,
+        "reason": "核心项目工作范围、文本语义与服务场景相似。",
+        "matched_features": [
+          "service_mode: voyage_repair",
+          "location_type: port",
+          "item_type: service",
+          "item_type_match: service",
+          "item_title: AE-1 crankshaft trueness checks in place",
+          "work_scope_match: AE-1 crankshaft trueness checks in place",
+          "labor_hint_match: AE-1 crankshaft trueness checks in place",
+          "option_style: standard_vs_discount"
+        ],
+        "reference_items": [
+          "AE-1 crankshaft trueness checks in place"
+        ],
+        "reference_remarks": [
+          "Other repair if needed to be charged extra"
+        ],
+        "match_level": "item_and_context",
+        "matched_item_pairs": [
+          {
+            "query_item_id": "svc-1",
+            "query_title": "AE-1 crankshaft trueness checks in place",
+            "reference_item_id": "hist-002-svc-1",
+            "reference_title": "AE-1 crankshaft trueness checks in place",
+            "similarity": 0.57,
+            "matched_signals": [
+              "item_type_match: service",
+              "item_title: AE-1 crankshaft trueness checks in place",
+              "work_scope_match: AE-1 crankshaft trueness checks in place",
+              "labor_hint_match: AE-1 crankshaft trueness checks in place"
+            ]
+          }
+        ],
+        "commercial_fit": {
+          "spare_parts_supply_mode_match": false,
+          "option_style_overlap": [
+            "standard_vs_discount"
+          ]
+        },
+        "prefilter_score": 0.65,
+        "semantic_score": 0.85,
+        "rerank_stage": "hybrid"
+      }
+    ],
+    "reference_summary": {
+      "price_range_hint": {
+        "currency": "USD",
+        "min": 3200.0,
+        "max": 3500.0,
+        "sample_size": 2
+      },
+      "common_items": [
+        "AE-1 crankshaft trueness checks in place"
+      ],
+      "remark_patterns": [
+        "Other repair if needed to be charged extra"
+      ],
+      "recommended_reference_ids": [
+        "hist-001",
+        "hist-002"
+      ],
+      "item_clusters": [
+        {
+          "cluster_key": "crankshaft trueness checks place",
+          "sample_size": 2,
+          "examples": [
+            "AE-1 crankshaft trueness checks in place"
+          ]
+        }
+      ],
+      "remark_blocks": [
+        {
+          "remark_type": "commercial",
+          "texts": [
+            "Other repair if needed to be charged extra"
+          ],
+          "sample_size": 2
+        }
+      ],
+      "charge_item_hints": [],
+      "option_style_hints": [
+        {
+          "style_type": "standard_vs_discount",
+          "source": "history_text",
+          "sample_size": 1,
+          "examples": [
+            "standard_vs_discount"
+          ]
+        }
+      ],
+      "history_quality_flags": [
+        "commercial_mismatch"
+      ],
+      "item_price_hints": [
+        {
+          "query_item_id": "svc-1",
+          "query_title": "AE-1 crankshaft trueness checks in place",
+          "currency": "USD",
+          "min": 3200.0,
+          "max": 3500.0,
+          "median": 3350.0,
+          "sample_size": 2,
+          "matched_reference_item_ids": [
+            "hist-001-svc-1",
+            "hist-002-svc-1"
+          ],
+          "source_quote_ids": [
+            "hist-001",
+            "hist-002"
+          ]
+        }
+      ],
+      "retrieval_strategy": "rule_prefilter+aliyun_embedding_rerank"
+    },
+    "confidence": 0.96
+  },
+  "pricing_result": {
+    "quotation_options": [
+      {
+        "option_id": "option-a",
+        "title": "Option A Standard quotation",
+        "sections": [
+          {
+            "section_id": "option-a-section-service",
+            "section_type": "service",
+            "title": "Service",
+            "groups": [
+              {
+                "group_id": "option-a-group-svc-1",
+                "group_no": "1",
+                "title": "AE-1 crankshaft trueness checks in place",
+                "description": "服务项标题和范围已基本明确，可进入报价。",
+                "lines": [
+                  {
+                    "line_id": "option-a-line-svc-1",
+                    "item": "1",
+                    "line_no": "1",
+                    "line_type": "priced",
+                    "description": "AE-1 crankshaft trueness checks in place Working time abt 15 hours",
+                    "pricing_mode": "lump_sum",
+                    "unit_price": 1875.0,
+                    "unit_price_display": "1,875.00",
+                    "unit": "job",
+                    "qty": 1,
+                    "qty_display": "1",
+                    "discount": null,
+                    "amount": 1875.0,
+                    "amount_display": "1,875.00",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "workflow_service_rate",
+                    "conditions": [],
+                    "notes": [
+                      "服务项标题和范围已基本明确，可进入报价。",
+                      "Working time abt 15 hours"
+                    ]
+                  },
+                  {
+                    "line_id": "option-a-line-svc-1-scope-1",
+                    "item": "",
+                    "line_no": "",
+                    "line_type": "scope_note",
+                    "description": "2pcs M/B lower bearing remove",
+                    "pricing_mode": "text_only",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "included_scope",
+                    "conditions": [],
+                    "notes": []
+                  },
+                  {
+                    "line_id": "option-a-line-svc-1-scope-2",
+                    "item": "",
+                    "line_no": "",
+                    "line_type": "scope_note",
+                    "description": "Crankshaft run-out check by magnetic gauge",
+                    "pricing_mode": "text_only",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "included_scope",
+                    "conditions": [],
+                    "notes": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "section_id": "option-a-section-spare_parts",
+            "section_type": "spare_parts",
+            "title": "Spare Parts",
+            "groups": [
+              {
+                "group_id": "option-a-group-spr-3",
+                "group_no": "1",
+                "title": "Main bearing spare parts",
+                "description": "备件供货责任未确认，当前只能待确认。",
+                "lines": [
+                  {
+                    "line_id": "option-a-line-spr-3",
+                    "item": "1",
+                    "line_no": "1",
+                    "line_type": "pending",
+                    "description": "Main bearing spare parts Subject to final spare parts confirmation",
+                    "pricing_mode": "pending",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "LS",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "Pending",
+                    "currency": "USD",
+                    "status": "pending",
+                    "basis": "historical_price_range",
+                    "conditions": [
+                      "Subject to confirmation"
+                    ],
+                    "notes": [
+                      "备件供货责任未确认，当前只能待确认。",
+                      "Subject to final spare parts confirmation",
+                      "Whether spare parts are owner supply"
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "section_id": "option-a-section-other",
+            "section_type": "other",
+            "title": "Other",
+            "groups": [
+              {
+                "group_id": "option-a-group-oth-2",
+                "group_no": "1",
+                "title": "Transportation and accommodation",
+                "description": "工作范围不明确，当前只能待确认。",
+                "lines": [
+                  {
+                    "line_id": "option-a-line-oth-2",
+                    "item": "1",
+                    "line_no": "1",
+                    "line_type": "pending",
+                    "description": "Transportation and accommodation Travel and hotel arrangement for service attendance",
+                    "pricing_mode": "pending",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "person-day",
+                    "qty": 2,
+                    "qty_display": "2",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "Pending",
+                    "currency": "USD",
+                    "status": "pending",
+                    "basis": "workflow_logistics_rule",
+                    "conditions": [
+                      "Subject to confirmation"
+                    ],
+                    "notes": [
+                      "工作范围不明确，当前只能待确认。",
+                      "Travel and hotel arrangement for service attendance"
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "summary": {
+          "service_charge": {
+            "value_type": "amount",
+            "amount": 1875.0,
+            "display": "1,875.00",
+            "currency": "USD",
+            "status": "chargeable"
+          },
+          "spare_parts_fee": {
+            "value_type": "status",
+            "amount": null,
+            "display": "Pending",
+            "currency": "USD",
+            "status": "pending"
+          },
+          "other": {
+            "value_type": "status",
+            "amount": null,
+            "display": "Pending",
+            "currency": "USD",
+            "status": "pending"
+          },
+          "total": {
+            "value_type": "status",
+            "amount": null,
+            "display": "Pending",
+            "currency": "USD",
+            "status": "pending"
+          }
+        },
+        "remarks": [
+          {
+            "type": "commercial",
+            "text": "Other repair if needed to be charged extra"
+          }
+        ]
+      },
+      {
+        "option_id": "option-b",
+        "title": "Option B 5% discount quotation",
+        "sections": [
+          {
+            "section_id": "option-b-section-service",
+            "section_type": "service",
+            "title": "Service",
+            "groups": [
+              {
+                "group_id": "option-b-group-svc-1",
+                "group_no": "1",
+                "title": "AE-1 crankshaft trueness checks in place",
+                "description": "服务项标题和范围已基本明确，可进入报价。",
+                "lines": [
+                  {
+                    "line_id": "option-b-line-svc-1",
+                    "item": "1",
+                    "line_no": "1",
+                    "line_type": "priced",
+                    "description": "AE-1 crankshaft trueness checks in place Working time abt 15 hours",
+                    "pricing_mode": "lump_sum",
+                    "unit_price": 1875.0,
+                    "unit_price_display": "1,875.00",
+                    "unit": "job",
+                    "qty": 1,
+                    "qty_display": "1",
+                    "discount": {
+                      "type": "percentage",
+                      "value": 5.0,
+                      "display": "5%"
+                    },
+                    "amount": 1781.25,
+                    "amount_display": "1,781.25",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "workflow_service_rate",
+                    "conditions": [],
+                    "notes": [
+                      "服务项标题和范围已基本明确，可进入报价。",
+                      "Working time abt 15 hours"
+                    ],
+                    "relation": {
+                      "type": "alternative_to",
+                      "target_line_id": "option-a-line-svc-1"
+                    }
+                  },
+                  {
+                    "line_id": "option-b-line-svc-1-scope-1",
+                    "item": "",
+                    "line_no": "",
+                    "line_type": "scope_note",
+                    "description": "2pcs M/B lower bearing remove",
+                    "pricing_mode": "text_only",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "included_scope",
+                    "conditions": [],
+                    "notes": []
+                  },
+                  {
+                    "line_id": "option-b-line-svc-1-scope-2",
+                    "item": "",
+                    "line_no": "",
+                    "line_type": "scope_note",
+                    "description": "Crankshaft run-out check by magnetic gauge",
+                    "pricing_mode": "text_only",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "included_scope",
+                    "conditions": [],
+                    "notes": []
+                  },
+                  {
+                    "line_id": "option-b-line-svc-1-discount-note",
+                    "item": "",
+                    "line_no": "",
+                    "line_type": "commercial_note",
+                    "description": "Commercial discount 5% applied within approved authority.",
+                    "pricing_mode": "text_only",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "discount_authority",
+                    "conditions": [],
+                    "notes": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "section_id": "option-b-section-spare_parts",
+            "section_type": "spare_parts",
+            "title": "Spare Parts",
+            "groups": [
+              {
+                "group_id": "option-b-group-spr-3",
+                "group_no": "1",
+                "title": "Main bearing spare parts",
+                "description": "备件供货责任未确认，当前只能待确认。",
+                "lines": [
+                  {
+                    "line_id": "option-b-line-spr-3",
+                    "item": "1",
+                    "line_no": "1",
+                    "line_type": "pending",
+                    "description": "Main bearing spare parts Subject to final spare parts confirmation",
+                    "pricing_mode": "pending",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "LS",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "Pending",
+                    "currency": "USD",
+                    "status": "pending",
+                    "basis": "historical_price_range",
+                    "conditions": [
+                      "Subject to confirmation"
+                    ],
+                    "notes": [
+                      "备件供货责任未确认，当前只能待确认。",
+                      "Subject to final spare parts confirmation",
+                      "Whether spare parts are owner supply"
+                    ],
+                    "relation": {
+                      "type": "alternative_to",
+                      "target_line_id": "option-a-line-spr-3"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "section_id": "option-b-section-other",
+            "section_type": "other",
+            "title": "Other",
+            "groups": [
+              {
+                "group_id": "option-b-group-oth-2",
+                "group_no": "1",
+                "title": "Transportation and accommodation",
+                "description": "工作范围不明确，当前只能待确认。",
+                "lines": [
+                  {
+                    "line_id": "option-b-line-oth-2",
+                    "item": "1",
+                    "line_no": "1",
+                    "line_type": "pending",
+                    "description": "Transportation and accommodation Travel and hotel arrangement for service attendance",
+                    "pricing_mode": "pending",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "person-day",
+                    "qty": 2,
+                    "qty_display": "2",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "Pending",
+                    "currency": "USD",
+                    "status": "pending",
+                    "basis": "workflow_logistics_rule",
+                    "conditions": [
+                      "Subject to confirmation"
+                    ],
+                    "notes": [
+                      "工作范围不明确，当前只能待确认。",
+                      "Travel and hotel arrangement for service attendance"
+                    ],
+                    "relation": {
+                      "type": "alternative_to",
+                      "target_line_id": "option-a-line-oth-2"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "summary": {
+          "service_charge": {
+            "value_type": "amount",
+            "amount": 1781.25,
+            "display": "1,781.25",
+            "currency": "USD",
+            "status": "chargeable"
+          },
+          "spare_parts_fee": {
+            "value_type": "status",
+            "amount": null,
+            "display": "Pending",
+            "currency": "USD",
+            "status": "pending"
+          },
+          "other": {
+            "value_type": "status",
+            "amount": null,
+            "display": "Pending",
+            "currency": "USD",
+            "status": "pending"
+          },
+          "total": {
+            "value_type": "status",
+            "amount": null,
+            "display": "Pending",
+            "currency": "USD",
+            "status": "pending"
+          }
+        },
+        "remarks": [
+          {
+            "type": "commercial",
+            "text": "Other repair if needed to be charged extra"
+          },
+          {
+            "type": "commercial",
+            "text": "Commercial discount 5% applied within operator authority."
+          }
+        ]
+      }
+    ]
+  },
+  "quote_document": {
+    "document_type": "quotation",
+    "document_version": "1.1",
+    "header": {
+      "currency": "USD",
+      "vessel_name": "MV EXAMPLE",
+      "date": "2026-04-09",
+      "imo_no": "1234567",
+      "vessel_type": "Tanker",
+      "customer_name": "ABC Shipping",
+      "service_port": "Zhapu Port, China",
+      "attention": "Jessica",
+      "wk_offer_no": "WK-assess-001",
+      "your_ref_no": "",
+      "quotation_validity": "30 days",
+      "po_no": "",
+      "pic_of_winkong": "Jessica"
+    },
+    "table_schema": {
+      "columns": [
+        {
+          "key": "item",
+          "label": "Item"
+        },
+        {
+          "key": "description",
+          "label": "Description"
+        },
+        {
+          "key": "unit_price",
+          "label": "Unit Price"
+        },
+        {
+          "key": "unit",
+          "label": "Unit"
+        },
+        {
+          "key": "qty",
+          "label": "Q'ty"
+        },
+        {
+          "key": "discount",
+          "label": "Discount"
+        },
+        {
+          "key": "amount",
+          "label": "Amount"
+        }
+      ]
+    },
+    "quotation_options": [
+      {
+        "option_id": "option-a",
+        "title": "Option A Standard quotation",
+        "sections": [
+          {
+            "section_id": "option-a-section-service",
+            "section_type": "service",
+            "title": "Service",
+            "groups": [
+              {
+                "group_id": "option-a-group-svc-1",
+                "group_no": "1",
+                "title": "AE-1 crankshaft trueness checks in place",
+                "description": "服务项标题和范围已基本明确，可进入报价。",
+                "lines": [
+                  {
+                    "line_id": "option-a-line-svc-1",
+                    "item": "1",
+                    "line_no": "1",
+                    "line_type": "priced",
+                    "description": "AE-1 crankshaft trueness checks in place Working time abt 15 hours",
+                    "pricing_mode": "lump_sum",
+                    "unit_price": 1875.0,
+                    "unit_price_display": "1,875.00",
+                    "unit": "job",
+                    "qty": 1,
+                    "qty_display": "1",
+                    "discount": null,
+                    "amount": 1875.0,
+                    "amount_display": "1,875.00",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "workflow_service_rate",
+                    "conditions": [],
+                    "notes": [
+                      "服务项标题和范围已基本明确，可进入报价。",
+                      "Working time abt 15 hours"
+                    ]
+                  },
+                  {
+                    "line_id": "option-a-line-svc-1-scope-1",
+                    "item": "",
+                    "line_no": "",
+                    "line_type": "scope_note",
+                    "description": "2pcs M/B lower bearing remove",
+                    "pricing_mode": "text_only",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "included_scope",
+                    "conditions": [],
+                    "notes": []
+                  },
+                  {
+                    "line_id": "option-a-line-svc-1-scope-2",
+                    "item": "",
+                    "line_no": "",
+                    "line_type": "scope_note",
+                    "description": "Crankshaft run-out check by magnetic gauge",
+                    "pricing_mode": "text_only",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "included_scope",
+                    "conditions": [],
+                    "notes": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "section_id": "option-a-section-spare_parts",
+            "section_type": "spare_parts",
+            "title": "Spare Parts",
+            "groups": [
+              {
+                "group_id": "option-a-group-spr-3",
+                "group_no": "1",
+                "title": "Main bearing spare parts",
+                "description": "备件供货责任未确认，当前只能待确认。",
+                "lines": [
+                  {
+                    "line_id": "option-a-line-spr-3",
+                    "item": "1",
+                    "line_no": "1",
+                    "line_type": "pending",
+                    "description": "Main bearing spare parts Subject to final spare parts confirmation",
+                    "pricing_mode": "pending",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "LS",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "Pending",
+                    "currency": "USD",
+                    "status": "pending",
+                    "basis": "historical_price_range",
+                    "conditions": [
+                      "Subject to confirmation"
+                    ],
+                    "notes": [
+                      "备件供货责任未确认，当前只能待确认。",
+                      "Subject to final spare parts confirmation",
+                      "Whether spare parts are owner supply"
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "section_id": "option-a-section-other",
+            "section_type": "other",
+            "title": "Other",
+            "groups": [
+              {
+                "group_id": "option-a-group-oth-2",
+                "group_no": "1",
+                "title": "Transportation and accommodation",
+                "description": "工作范围不明确，当前只能待确认。",
+                "lines": [
+                  {
+                    "line_id": "option-a-line-oth-2",
+                    "item": "1",
+                    "line_no": "1",
+                    "line_type": "pending",
+                    "description": "Transportation and accommodation Travel and hotel arrangement for service attendance",
+                    "pricing_mode": "pending",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "person-day",
+                    "qty": 2,
+                    "qty_display": "2",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "Pending",
+                    "currency": "USD",
+                    "status": "pending",
+                    "basis": "workflow_logistics_rule",
+                    "conditions": [
+                      "Subject to confirmation"
+                    ],
+                    "notes": [
+                      "工作范围不明确，当前只能待确认。",
+                      "Travel and hotel arrangement for service attendance"
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "summary": {
+          "service_charge": {
+            "value_type": "amount",
+            "amount": 1875.0,
+            "display": "1,875.00",
+            "currency": "USD",
+            "status": "chargeable"
+          },
+          "spare_parts_fee": {
+            "value_type": "status",
+            "amount": null,
+            "display": "Pending",
+            "currency": "USD",
+            "status": "pending"
+          },
+          "other": {
+            "value_type": "status",
+            "amount": null,
+            "display": "Pending",
+            "currency": "USD",
+            "status": "pending"
+          },
+          "total": {
+            "value_type": "status",
+            "amount": null,
+            "display": "Pending",
+            "currency": "USD",
+            "status": "pending"
+          }
+        },
+        "remarks": [
+          {
+            "type": "commercial",
+            "text": "Other repair if needed to be charged extra"
+          }
+        ]
+      },
+      {
+        "option_id": "option-b",
+        "title": "Option B 5% discount quotation",
+        "sections": [
+          {
+            "section_id": "option-b-section-service",
+            "section_type": "service",
+            "title": "Service",
+            "groups": [
+              {
+                "group_id": "option-b-group-svc-1",
+                "group_no": "1",
+                "title": "AE-1 crankshaft trueness checks in place",
+                "description": "服务项标题和范围已基本明确，可进入报价。",
+                "lines": [
+                  {
+                    "line_id": "option-b-line-svc-1",
+                    "item": "1",
+                    "line_no": "1",
+                    "line_type": "priced",
+                    "description": "AE-1 crankshaft trueness checks in place Working time abt 15 hours",
+                    "pricing_mode": "lump_sum",
+                    "unit_price": 1875.0,
+                    "unit_price_display": "1,875.00",
+                    "unit": "job",
+                    "qty": 1,
+                    "qty_display": "1",
+                    "discount": {
+                      "type": "percentage",
+                      "value": 5.0,
+                      "display": "5%"
+                    },
+                    "amount": 1781.25,
+                    "amount_display": "1,781.25",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "workflow_service_rate",
+                    "conditions": [],
+                    "notes": [
+                      "服务项标题和范围已基本明确，可进入报价。",
+                      "Working time abt 15 hours"
+                    ],
+                    "relation": {
+                      "type": "alternative_to",
+                      "target_line_id": "option-a-line-svc-1"
+                    }
+                  },
+                  {
+                    "line_id": "option-b-line-svc-1-scope-1",
+                    "item": "",
+                    "line_no": "",
+                    "line_type": "scope_note",
+                    "description": "2pcs M/B lower bearing remove",
+                    "pricing_mode": "text_only",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "included_scope",
+                    "conditions": [],
+                    "notes": []
+                  },
+                  {
+                    "line_id": "option-b-line-svc-1-scope-2",
+                    "item": "",
+                    "line_no": "",
+                    "line_type": "scope_note",
+                    "description": "Crankshaft run-out check by magnetic gauge",
+                    "pricing_mode": "text_only",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "included_scope",
+                    "conditions": [],
+                    "notes": []
+                  },
+                  {
+                    "line_id": "option-b-line-svc-1-discount-note",
+                    "item": "",
+                    "line_no": "",
+                    "line_type": "commercial_note",
+                    "description": "Commercial discount 5% applied within approved authority.",
+                    "pricing_mode": "text_only",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "discount_authority",
+                    "conditions": [],
+                    "notes": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "section_id": "option-b-section-spare_parts",
+            "section_type": "spare_parts",
+            "title": "Spare Parts",
+            "groups": [
+              {
+                "group_id": "option-b-group-spr-3",
+                "group_no": "1",
+                "title": "Main bearing spare parts",
+                "description": "备件供货责任未确认，当前只能待确认。",
+                "lines": [
+                  {
+                    "line_id": "option-b-line-spr-3",
+                    "item": "1",
+                    "line_no": "1",
+                    "line_type": "pending",
+                    "description": "Main bearing spare parts Subject to final spare parts confirmation",
+                    "pricing_mode": "pending",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "LS",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "Pending",
+                    "currency": "USD",
+                    "status": "pending",
+                    "basis": "historical_price_range",
+                    "conditions": [
+                      "Subject to confirmation"
+                    ],
+                    "notes": [
+                      "备件供货责任未确认，当前只能待确认。",
+                      "Subject to final spare parts confirmation",
+                      "Whether spare parts are owner supply"
+                    ],
+                    "relation": {
+                      "type": "alternative_to",
+                      "target_line_id": "option-a-line-spr-3"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "section_id": "option-b-section-other",
+            "section_type": "other",
+            "title": "Other",
+            "groups": [
+              {
+                "group_id": "option-b-group-oth-2",
+                "group_no": "1",
+                "title": "Transportation and accommodation",
+                "description": "工作范围不明确，当前只能待确认。",
+                "lines": [
+                  {
+                    "line_id": "option-b-line-oth-2",
+                    "item": "1",
+                    "line_no": "1",
+                    "line_type": "pending",
+                    "description": "Transportation and accommodation Travel and hotel arrangement for service attendance",
+                    "pricing_mode": "pending",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "person-day",
+                    "qty": 2,
+                    "qty_display": "2",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "Pending",
+                    "currency": "USD",
+                    "status": "pending",
+                    "basis": "workflow_logistics_rule",
+                    "conditions": [
+                      "Subject to confirmation"
+                    ],
+                    "notes": [
+                      "工作范围不明确，当前只能待确认。",
+                      "Travel and hotel arrangement for service attendance"
+                    ],
+                    "relation": {
+                      "type": "alternative_to",
+                      "target_line_id": "option-a-line-oth-2"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "summary": {
+          "service_charge": {
+            "value_type": "amount",
+            "amount": 1781.25,
+            "display": "1,781.25",
+            "currency": "USD",
+            "status": "chargeable"
+          },
+          "spare_parts_fee": {
+            "value_type": "status",
+            "amount": null,
+            "display": "Pending",
+            "currency": "USD",
+            "status": "pending"
+          },
+          "other": {
+            "value_type": "status",
+            "amount": null,
+            "display": "Pending",
+            "currency": "USD",
+            "status": "pending"
+          },
+          "total": {
+            "value_type": "status",
+            "amount": null,
+            "display": "Pending",
+            "currency": "USD",
+            "status": "pending"
+          }
+        },
+        "remarks": [
+          {
+            "type": "commercial",
+            "text": "Other repair if needed to be charged extra"
+          },
+          {
+            "type": "commercial",
+            "text": "Commercial discount 5% applied within operator authority."
+          }
+        ]
+      }
+    ],
+    "footer": {
+      "summary": {
+        "service_charge": {
+          "value_type": "amount",
+          "amount": 1875.0,
+          "display": "1,875.00",
+          "currency": "USD",
+          "status": "chargeable"
+        },
+        "spare_parts_fee": {
+          "value_type": "status",
+          "amount": null,
+          "display": "Pending",
+          "currency": "USD",
+          "status": "pending"
+        },
+        "other": {
+          "value_type": "status",
+          "amount": null,
+          "display": "Pending",
+          "currency": "USD",
+          "status": "pending"
+        },
+        "total": {
+          "value_type": "status",
+          "amount": null,
+          "display": "Pending",
+          "currency": "USD",
+          "status": "pending"
+        }
+      },
+      "remark": {
+        "title": "Remark",
+        "items": [
+          {
+            "type": "commercial",
+            "text": "Other repair if needed to be charged extra"
+          },
+          {
+            "type": "commercial",
+            "text": "Commercial discount 5% applied within operator authority."
+          },
+          {
+            "type": "commercial",
+            "text": "Any additional repair not listed above will be charged extra."
+          },
+          {
+            "type": "payment_term",
+            "text": "Payment within 30 days upon invoice date."
+          },
+          {
+            "type": "warranty",
+            "text": "Spare parts warranty period shall follow supplier confirmation."
+          },
+          {
+            "type": "warranty",
+            "text": "Service warranty is 6 months from completion unless otherwise agreed."
+          },
+          {
+            "type": "compensation",
+            "text": "Warranty Compensate Amount: 5 times of the service cost at max."
+          }
+        ]
+      },
+      "service_payment_terms": {
+        "title": "Service Payment Terms",
+        "content": "Payment within 30 days upon invoice date."
+      }
+    },
+    "review_result": {
+      "review_flags": [
+        "当前仅部分项目具备报价条件。",
+        "当前报价包含多方案，提交审核时需确认推荐方案。",
+        "当前报价包含待确认或按条件收费内容，提交前需再次核对。"
+      ],
+      "risk_flags": [
+        "当前仅部分项目具备报价条件。",
+        "项目工作范围未确认，当前无法稳定报价。",
+        "备件供货责任未确认，影响是否纳入报价。"
+      ],
+      "approval_level": "manager"
+    },
+    "trace": {
+      "historical_references": [
+        {
+          "quote_id": "hist-001",
+          "similarity": 0.71,
+          "reason": "核心项目工作范围、文本语义与服务场景相似。"
+        },
+        {
+          "quote_id": "hist-002",
+          "similarity": 0.61,
+          "reason": "核心项目工作范围、文本语义与服务场景相似。"
+        }
+      ],
+      "pricing_basis": [
+        "workflow_service_rate",
+        "included_scope",
+        "historical_price_range",
+        "workflow_logistics_rule",
+        "discount_authority",
+        "historical_remark_block",
+        "historical_option_style_hint",
+        "history_quality:commercial_mismatch"
+      ],
+      "rule_versions": [
+        "quote_pricing_skill:v2",
+        "quote_review_output_skill:v2",
+        "multi_option_footer_strategy:v1",
+        "historical_remark_blocks:v1",
+        "historical_option_style_hints:v1"
+      ]
+    }
+  },
+  "render_result": {
+    "document_type": "quotation",
+    "document_version": "1.1",
+    "outputs": [
+      {
+        "language": "zh",
+        "html_path": "E:\\PythonProjects\\BaoJia\\quotation-pdf\\out\\报价单-WK-assess-001-zh.html",
+        "pdf_path": "E:\\PythonProjects\\BaoJia\\quotation-pdf\\out\\报价单-WK-assess-001-zh.pdf",
+        "status": "success"
+      },
+      {
+        "language": "en",
+        "html_path": "E:\\PythonProjects\\BaoJia\\quotation-pdf\\out\\报价单-WK-assess-001-en.html",
+        "pdf_path": "E:\\PythonProjects\\BaoJia\\quotation-pdf\\out\\报价单-WK-assess-001-en.pdf",
+        "status": "success"
+      }
+    ]
+  }
+}

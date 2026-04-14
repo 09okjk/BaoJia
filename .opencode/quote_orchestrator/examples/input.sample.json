@@ -100,5 +100,13 @@
         "boarding_travel_base": 180.0
       }
     }
+  },
+  "render_options": {
+    "enabled": true,
+    "languages": [
+      "zh",
+      "en"
+    ],
+    "output_dir": "quotation-pdf/out"
   }
 }

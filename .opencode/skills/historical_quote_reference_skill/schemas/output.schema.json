@@ -38,6 +38,42 @@
     "nullableString": {
       "type": ["string", "null"]
     },
+    "matchPair": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "query_item_id",
+        "query_title",
+        "reference_item_id",
+        "reference_title",
+        "similarity",
+        "matched_signals"
+      ],
+      "properties": {
+        "query_item_id": { "type": "string" },
+        "query_title": { "type": "string" },
+        "reference_item_id": { "type": "string" },
+        "reference_title": { "type": "string" },
+        "similarity": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "matched_signals": { "$ref": "#/$defs/stringArray" }
+      }
+    },
+    "commercialFit": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "spare_parts_supply_mode_match",
+        "option_style_overlap"
+      ],
+      "properties": {
+        "spare_parts_supply_mode_match": { "type": "boolean" },
+        "option_style_overlap": { "$ref": "#/$defs/stringArray" }
+      }
+    },
     "match": {
       "type": "object",
       "additionalProperties": false,
@@ -47,7 +83,13 @@
         "reason",
         "matched_features",
         "reference_items",
-        "reference_remarks"
+        "reference_remarks",
+        "match_level",
+        "matched_item_pairs",
+        "commercial_fit",
+        "prefilter_score",
+        "semantic_score",
+        "rerank_stage"
       ],
       "properties": {
         "quote_id": {
@@ -69,6 +111,29 @@
         },
         "reference_remarks": {
           "$ref": "#/$defs/stringArray"
+        },
+        "match_level": {
+          "type": "string",
+          "enum": ["context_only", "item_and_context", "strong_item_match"]
+        },
+        "matched_item_pairs": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/matchPair" }
+        },
+        "commercial_fit": { "$ref": "#/$defs/commercialFit" },
+        "prefilter_score": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "semantic_score": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "rerank_stage": {
+          "type": "string",
+          "enum": ["hybrid"]
         }
       }
     },
@@ -153,6 +218,32 @@
         "examples": { "$ref": "#/$defs/stringArray" }
       }
     },
+    "itemPriceHint": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "query_item_id",
+        "query_title",
+        "currency",
+        "min",
+        "max",
+        "median",
+        "sample_size",
+        "matched_reference_item_ids",
+        "source_quote_ids"
+      ],
+      "properties": {
+        "query_item_id": { "type": "string" },
+        "query_title": { "type": "string" },
+        "currency": { "$ref": "#/$defs/nullableString" },
+        "min": { "$ref": "#/$defs/nullableNumber" },
+        "max": { "$ref": "#/$defs/nullableNumber" },
+        "median": { "$ref": "#/$defs/nullableNumber" },
+        "sample_size": { "type": "integer", "minimum": 0 },
+        "matched_reference_item_ids": { "$ref": "#/$defs/stringArray" },
+        "source_quote_ids": { "$ref": "#/$defs/stringArray" }
+      }
+    },
     "referenceSummary": {
       "type": "object",
       "additionalProperties": false,
@@ -165,7 +256,9 @@
         "remark_blocks",
         "charge_item_hints",
         "option_style_hints",
-        "history_quality_flags"
+        "history_quality_flags",
+        "item_price_hints",
+        "retrieval_strategy"
       ],
       "properties": {
         "price_range_hint": {
@@ -198,6 +291,17 @@
         },
         "history_quality_flags": {
           "$ref": "#/$defs/stringArray"
+        },
+        "item_price_hints": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/itemPriceHint" }
+        },
+        "retrieval_strategy": {
+          "type": "string",
+          "enum": [
+            "rule_prefilter+aliyun_embedding_rerank",
+            "rule_prefilter+tfidf_fallback"
+          ]
         }
       }
     }

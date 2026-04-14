@@ -5,6 +5,9 @@
     "service_mode": "voyage_repair",
     "location_type": "port",
     "vessel_type": "Tanker",
+    "vessel_type_normalized": "tanker",
+    "service_port_region": "china_east",
+    "spare_parts_supply_mode": null,
     "currency": "USD",
     "total_amount": 3500.0,
     "items": [
@@ -13,6 +16,36 @@
     ],
     "remarks": [
       "Other repair if needed to be charged extra"
+    ],
+    "commercial_terms": [
+      "Payment within 30 days upon invoice date."
+    ],
+    "option_style_tags": [
+      "standard_vs_discount"
+    ],
+    "charge_item_tags": [],
+    "item_details": [
+      {
+        "item_id": "hist-001-svc-1",
+        "item_type": "service",
+        "title": "AE-1 crankshaft trueness checks in place",
+        "description": "Working time abt 15 hours",
+        "work_scope": [
+          "2pcs M/B lower bearing remove",
+          "Crankshaft run-out check by magnetic gauge"
+        ],
+        "labor_hint": [
+          "1 supervisor",
+          "2 fitters"
+        ],
+        "pricing_clues": [
+          "mechanical",
+          "crankshaft"
+        ],
+        "amount": 3500.0,
+        "currency": "USD",
+        "status": "chargeable"
+      }
     ]
   },
   {
@@ -21,6 +54,9 @@
     "service_mode": "voyage_repair",
     "location_type": "port",
     "vessel_type": "Bulk Carrier",
+    "vessel_type_normalized": "bulk_carrier",
+    "service_port_region": "china_east",
+    "spare_parts_supply_mode": null,
     "currency": "USD",
     "total_amount": 3200.0,
     "items": [
@@ -29,6 +65,35 @@
     ],
     "remarks": [
       "Other repair if needed to be charged extra"
+    ],
+    "commercial_terms": [
+      "Payment within 30 days upon invoice date."
+    ],
+    "option_style_tags": [
+      "standard_vs_discount"
+    ],
+    "charge_item_tags": [],
+    "item_details": [
+      {
+        "item_id": "hist-002-svc-1",
+        "item_type": "service",
+        "title": "AE-1 crankshaft trueness checks in place",
+        "description": "Working time abt 14 hours",
+        "work_scope": [
+          "Crankshaft run-out check"
+        ],
+        "labor_hint": [
+          "1 supervisor",
+          "2 fitters"
+        ],
+        "pricing_clues": [
+          "mechanical",
+          "crankshaft"
+        ],
+        "amount": 3200.0,
+        "currency": "USD",
+        "status": "chargeable"
+      }
     ]
   },
   {
@@ -37,6 +102,9 @@
     "service_mode": "dock_repair",
     "location_type": "shipyard",
     "vessel_type": "Tanker",
+    "vessel_type_normalized": "tanker",
+    "service_port_region": "china_north",
+    "spare_parts_supply_mode": "owner_supply",
     "currency": "USD",
     "total_amount": 9800.0,
     "items": [
@@ -44,6 +112,181 @@
     ],
     "remarks": [
       "Spares supply by shipside"
+    ],
+    "commercial_terms": [
+      "Payment within 30 days upon invoice date."
+    ],
+    "option_style_tags": [
+      "owner_supply_spares"
+    ],
+    "charge_item_tags": [
+      "dockyard_management"
+    ],
+    "item_details": [
+      {
+        "item_id": "hist-003-svc-1",
+        "item_type": "service",
+        "title": "AE resilient mountings renewal",
+        "description": "Renewal works during dock repair attendance",
+        "work_scope": [
+          "Resilient mounting renewal",
+          "Alignment check"
+        ],
+        "labor_hint": [
+          "1 supervisor",
+          "4 fitters"
+        ],
+        "pricing_clues": [
+          "mechanical",
+          "dock repair"
+        ],
+        "amount": 9800.0,
+        "currency": "USD",
+        "status": "chargeable"
+      }
+    ]
+  },
+  {
+    "quote_id": "hist-004",
+    "service_category": "service",
+    "service_mode": "dock_repair",
+    "location_type": "port",
+    "vessel_type": "Kamsarmax Bulk Carrier",
+    "vessel_type_normalized": "bulk_carrier",
+    "service_port_region": "china_region",
+    "spare_parts_supply_mode": null,
+    "currency": "USD",
+    "total_amount": 2550.0,
+    "items": [
+      "HCU system overhaul",
+      "ELFI valve overhaul",
+      "Multiway valve overhaul"
+    ],
+    "remarks": [
+      "Other repair if needed to be charged extra",
+      "Spares subject to separate confirmation"
+    ],
+    "commercial_terms": [
+      "Payment within 30 days upon invoice date."
+    ],
+    "option_style_tags": [
+      "spares_tbc"
+    ],
+    "charge_item_tags": [
+      "dockyard_management",
+      "transportation",
+      "accommodation"
+    ],
+    "item_details": [
+      {
+        "item_id": "hist-004-svc-1",
+        "item_type": "service",
+        "title": "HCU system overhaul",
+        "description": "64k running hours overhaul scope",
+        "work_scope": [
+          "Overhaul ELFI valve and Multiway valve units",
+          "Accumulator overhauling and refill with nitrogen",
+          "Maintenance and overhauling of HPS"
+        ],
+        "labor_hint": [
+          "1 supervisor 8 hours",
+          "7 fitters 8 hours"
+        ],
+        "pricing_clues": [
+          "mechanical",
+          "dock repair",
+          "high pressure system"
+        ],
+        "amount": 2550.0,
+        "currency": "USD",
+        "status": "chargeable"
+      },
+      {
+        "item_id": "hist-004-oth-1",
+        "item_type": "other",
+        "title": "Dockyard management fee",
+        "description": "Dockyard coordination during repair attendance",
+        "work_scope": [],
+        "labor_hint": [],
+        "pricing_clues": [
+          "dockyard",
+          "management fee"
+        ],
+        "amount": 240.0,
+        "currency": "USD",
+        "status": "as_actual"
+      }
+    ]
+  },
+  {
+    "quote_id": "hist-005",
+    "service_category": "service",
+    "service_mode": "dock_repair",
+    "location_type": "port",
+    "vessel_type": "82,000 mt Kamsarmax Bulk Carrier",
+    "vessel_type_normalized": "bulk_carrier",
+    "service_port_region": "china_region",
+    "spare_parts_supply_mode": null,
+    "currency": "USD",
+    "total_amount": 2400.0,
+    "items": [
+      "HCU system overhaul",
+      "Accumulator overhaul",
+      "Transportation and accommodation"
+    ],
+    "remarks": [
+      "Other repair if needed to be charged extra",
+      "Spares supply to be confirmed"
+    ],
+    "commercial_terms": [
+      "Payment within 30 days upon invoice date."
+    ],
+    "option_style_tags": [
+      "spares_tbc"
+    ],
+    "charge_item_tags": [
+      "transportation",
+      "accommodation",
+      "maritime_reporting"
+    ],
+    "item_details": [
+      {
+        "item_id": "hist-005-svc-1",
+        "item_type": "service",
+        "title": "HCU system overhaul",
+        "description": "Port repair attendance for HCU overhaul",
+        "work_scope": [
+          "Overhaul ELFI valve and Multiway valve units",
+          "Accumulator overhauling and refill with nitrogen"
+        ],
+        "labor_hint": [
+          "1 supervisor 8 hours",
+          "6 fitters 8 hours"
+        ],
+        "pricing_clues": [
+          "mechanical",
+          "dock repair",
+          "high pressure system"
+        ],
+        "amount": 2400.0,
+        "currency": "USD",
+        "status": "chargeable"
+      },
+      {
+        "item_id": "hist-005-oth-1",
+        "item_type": "other",
+        "title": "Transportation and accommodation",
+        "description": "Travel and hotel arrangement for repair attendance",
+        "work_scope": [],
+        "labor_hint": [],
+        "pricing_clues": [
+          "travel",
+          "hotel"
+        ],
+        "amount": 540.0,
+        "currency": "USD",
+        "status": "chargeable"
+      }
     ]
   }
 ]

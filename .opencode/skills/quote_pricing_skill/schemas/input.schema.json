@@ -173,25 +173,38 @@
     "historicalMatch": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["quote_id", "similarity", "reason", "matched_features", "reference_items", "reference_remarks"],
+      "required": ["quote_id", "similarity", "reason", "matched_features", "reference_items", "reference_remarks", "match_level", "matched_item_pairs", "commercial_fit", "prefilter_score", "semantic_score", "rerank_stage"],
       "properties": {
         "quote_id": { "type": "string" },
         "similarity": { "type": "number", "minimum": 0, "maximum": 1 },
         "reason": { "type": "string" },
         "matched_features": { "$ref": "#/$defs/stringArray" },
         "reference_items": { "$ref": "#/$defs/stringArray" },
-        "reference_remarks": { "$ref": "#/$defs/stringArray" }
+        "reference_remarks": { "$ref": "#/$defs/stringArray" },
+        "match_level": { "type": "string" },
+        "matched_item_pairs": { "type": "array" },
+        "commercial_fit": { "type": "object" },
+        "prefilter_score": { "type": "number", "minimum": 0, "maximum": 1 },
+        "semantic_score": { "type": "number", "minimum": 0, "maximum": 1 },
+        "rerank_stage": { "type": "string" }
       }
     },
     "referenceSummary": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["price_range_hint", "common_items", "remark_patterns", "recommended_reference_ids"],
+      "required": ["price_range_hint", "common_items", "remark_patterns", "recommended_reference_ids", "item_clusters", "remark_blocks", "charge_item_hints", "option_style_hints", "history_quality_flags", "item_price_hints", "retrieval_strategy"],
       "properties": {
         "price_range_hint": { "type": "object" },
         "common_items": { "$ref": "#/$defs/stringArray" },
         "remark_patterns": { "$ref": "#/$defs/stringArray" },
-        "recommended_reference_ids": { "$ref": "#/$defs/stringArray" }
+        "recommended_reference_ids": { "$ref": "#/$defs/stringArray" },
+        "item_clusters": { "type": "array" },
+        "remark_blocks": { "type": "array" },
+        "charge_item_hints": { "type": "array" },
+        "option_style_hints": { "type": "array" },
+        "history_quality_flags": { "$ref": "#/$defs/stringArray" },
+        "item_price_hints": { "type": "array" },
+        "retrieval_strategy": { "type": "string" }
       }
     },
     "historicalReference": {

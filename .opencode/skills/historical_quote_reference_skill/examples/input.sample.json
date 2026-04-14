@@ -25,7 +25,30 @@
       "option_hints": [],
       "urgency": null
     },
-    "candidate_items": [],
+    "candidate_items": [
+      {
+        "item_id": "svc-1",
+        "item_type": "service",
+        "title": "AE-1 crankshaft trueness checks in place",
+        "description": "Working time abt 15 hours",
+        "work_scope": [
+          "2pcs M/B lower bearing remove",
+          "Crankshaft run-out check by magnetic gauge"
+        ],
+        "quantity_hint": 1,
+        "unit_hint": "job",
+        "labor_hint": [
+          "1 supervisor",
+          "2 fitters"
+        ],
+        "pricing_clues": [
+          "mechanical",
+          "crankshaft"
+        ],
+        "status_hint": null,
+        "source": "assessment_report"
+      }
+    ],
     "spare_parts_context": {
       "has_spare_parts": true,
       "spare_parts_supply_mode": null,

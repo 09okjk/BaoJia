@@ -1,0 +1,20 @@
+{
+  "render_result": {
+    "document_type": "quotation",
+    "document_version": "1.1",
+    "outputs": [
+      {
+        "language": "zh",
+        "html_path": "E:\\PythonProjects\\BaoJia\\.opencode\\skills\\quote_pdf_render_skill\\out\\报价单-WK-demo-001-zh.html",
+        "pdf_path": "E:\\PythonProjects\\BaoJia\\.opencode\\skills\\quote_pdf_render_skill\\out\\报价单-WK-demo-001-zh.pdf",
+        "status": "success"
+      },
+      {
+        "language": "en",
+        "html_path": "E:\\PythonProjects\\BaoJia\\.opencode\\skills\\quote_pdf_render_skill\\out\\报价单-WK-demo-001-en.html",
+        "pdf_path": "E:\\PythonProjects\\BaoJia\\.opencode\\skills\\quote_pdf_render_skill\\out\\报价单-WK-demo-001-en.pdf",
+        "status": "success"
+      }
+    ]
+  }
+}

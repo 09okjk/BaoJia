@@ -690,6 +690,10 @@ def _resolve_amount(
     if isinstance(service_rates.get(str(item.get("item_type") or "")), (int, float)):
         return float(service_rates[str(item.get("item_type") or "")])
 
+    historical_amount = _historical_item_amount(item_id, historical_reference, currency)
+    if historical_amount is not None:
+        return historical_amount
+
     historical_amount = _historical_mid_amount(historical_reference, currency)
     if historical_amount is not None and section_type == "service":
         return historical_amount
@@ -1213,6 +1217,39 @@ def _historical_mid_amount(
     max_value = price_range_hint.get("max")
     if isinstance(min_value, (int, float)) and isinstance(max_value, (int, float)):
         return round((float(min_value) + float(max_value)) / 2, 2)
+    return None
+
+
+def _historical_item_amount(
+    item_id: str, historical_reference: dict[str, Any], currency: str
+) -> float | None:
+    if not item_id:
+        return None
+    reference_summary = (
+        historical_reference.get("reference_summary")
+        if isinstance(historical_reference.get("reference_summary"), dict)
+        else {}
+    )
+    item_price_hints = (
+        reference_summary.get("item_price_hints")
+        if isinstance(reference_summary.get("item_price_hints"), list)
+        else []
+    )
+    for hint in item_price_hints:
+        if not isinstance(hint, dict):
+            continue
+        if str(hint.get("query_item_id") or "").strip() != item_id:
+            continue
+        hint_currency = str(hint.get("currency") or "").strip()
+        if currency and hint_currency and hint_currency != currency:
+            continue
+        median_value = hint.get("median")
+        if isinstance(median_value, (int, float)):
+            return round(float(median_value), 2)
+        min_value = hint.get("min")
+        max_value = hint.get("max")
+        if isinstance(min_value, (int, float)) and isinstance(max_value, (int, float)):
+            return round((float(min_value) + float(max_value)) / 2, 2)
     return None
 
 

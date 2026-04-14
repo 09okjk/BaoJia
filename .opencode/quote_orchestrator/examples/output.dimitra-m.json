@@ -4,7 +4,7 @@
       "request_meta": {
         "request_id": "qr-dimitra-m-20260401",
         "source": "assessment_report",
-        "prepared_at": "2026-04-10T08:00:22.136820+00:00",
+        "prepared_at": "2026-04-13T08:31:12.035202+00:00",
         "language": "zh-CN"
       },
       "header_context": {
@@ -675,102 +675,167 @@
   "historical_reference": {
     "matches": [
       {
-        "quote_id": "hist-003",
-        "similarity": 0.45,
-        "reason": "存在多个关键特征匹配。",
+        "quote_id": "hist-004",
+        "similarity": 0.65,
+        "reason": "核心项目工作范围与服务场景相似。",
         "matched_features": [
           "service_category: service",
-          "service_mode: dock_repair"
+          "service_mode: dock_repair",
+          "location_type: port",
+          "vessel_type_normalized: bulk_carrier",
+          "item_type: service",
+          "item_type_match: service",
+          "item_title: HCU system overhaul",
+          "option_style: spares_tbc"
         ],
         "reference_items": [
-          "AE resilient mountings renewal"
+          "HCU system overhaul",
+          "Dockyard management fee"
         ],
         "reference_remarks": [
-          "Spares supply by shipside"
-        ]
+          "Other repair if needed to be charged extra",
+          "Spares subject to separate confirmation"
+        ],
+        "match_level": "item_and_context",
+        "matched_item_pairs": [
+          {
+            "query_item_id": "svc-1",
+            "query_title": "HCU system overhaul",
+            "reference_item_id": "hist-004-svc-1",
+            "reference_title": "HCU system overhaul",
+            "similarity": 0.35,
+            "matched_signals": [
+              "item_type_match: service",
+              "item_title: HCU system overhaul"
+            ]
+          }
+        ],
+        "commercial_fit": {
+          "spare_parts_supply_mode_match": false,
+          "option_style_overlap": [
+            "spares_tbc"
+          ]
+        }
       },
       {
-        "quote_id": "hist-001",
-        "similarity": 0.35,
-        "reason": "存在多个关键特征匹配。",
+        "quote_id": "hist-005",
+        "similarity": 0.65,
+        "reason": "核心项目工作范围与服务场景相似。",
         "matched_features": [
           "service_category: service",
-          "location_type: port"
+          "service_mode: dock_repair",
+          "location_type: port",
+          "vessel_type_normalized: bulk_carrier",
+          "item_type: service",
+          "item_type_match: service",
+          "item_title: HCU system overhaul",
+          "option_style: spares_tbc"
         ],
         "reference_items": [
-          "AE-1 crankshaft trueness checks in place",
-          "M/B lower bearing remove"
+          "HCU system overhaul",
+          "Transportation and accommodation"
         ],
         "reference_remarks": [
-          "Other repair if needed to be charged extra"
-        ]
+          "Other repair if needed to be charged extra",
+          "Spares supply to be confirmed"
+        ],
+        "match_level": "item_and_context",
+        "matched_item_pairs": [
+          {
+            "query_item_id": "svc-1",
+            "query_title": "HCU system overhaul",
+            "reference_item_id": "hist-005-svc-1",
+            "reference_title": "HCU system overhaul",
+            "similarity": 0.35,
+            "matched_signals": [
+              "item_type_match: service",
+              "item_title: HCU system overhaul"
+            ]
+          }
+        ],
+        "commercial_fit": {
+          "spare_parts_supply_mode_match": false,
+          "option_style_overlap": [
+            "spares_tbc"
+          ]
+        }
       },
       {
         "quote_id": "hist-002",
-        "similarity": 0.35,
-        "reason": "存在多个关键特征匹配。",
+        "similarity": 0.25,
+        "reason": "服务模式、地点类型和上下文特征存在相似性。",
         "matched_features": [
           "service_category: service",
-          "location_type: port"
+          "location_type: port",
+          "vessel_type_normalized: bulk_carrier",
+          "option_style: standard_vs_discount"
         ],
         "reference_items": [
-          "AE-1 crankshaft trueness checks in place",
-          "Crankshaft run-out check"
+          "AE-1 crankshaft trueness checks in place"
         ],
         "reference_remarks": [
           "Other repair if needed to be charged extra"
-        ]
+        ],
+        "match_level": "context_only",
+        "matched_item_pairs": [],
+        "commercial_fit": {
+          "spare_parts_supply_mode_match": false,
+          "option_style_overlap": [
+            "standard_vs_discount"
+          ]
+        }
       }
     ],
     "reference_summary": {
       "price_range_hint": {
         "currency": "USD",
-        "min": 3200.0,
-        "max": 9800.0,
+        "min": 2400.0,
+        "max": 3200.0,
         "sample_size": 3
       },
       "common_items": [
-        "AE-1 crankshaft trueness checks in place",
-        "AE resilient mountings renewal",
-        "M/B lower bearing remove",
-        "Crankshaft run-out check"
+        "HCU system overhaul",
+        "Dockyard management fee",
+        "Transportation and accommodation",
+        "AE-1 crankshaft trueness checks in place"
       ],
       "remark_patterns": [
         "Other repair if needed to be charged extra",
-        "Spares supply by shipside"
+        "Spares subject to separate confirmation",
+        "Spares supply to be confirmed"
       ],
       "recommended_reference_ids": [
-        "hist-003",
-        "hist-001",
+        "hist-004",
+        "hist-005",
         "hist-002"
       ],
       "item_clusters": [
         {
-          "cluster_key": "crankshaft trueness checks place",
+          "cluster_key": "hcu system overhaul",
           "sample_size": 2,
           "examples": [
+            "HCU system overhaul"
+          ]
+        },
+        {
+          "cluster_key": "dockyard management fee",
+          "sample_size": 1,
+          "examples": [
+            "Dockyard management fee"
+          ]
+        },
+        {
+          "cluster_key": "transportation and accommodation",
+          "sample_size": 1,
+          "examples": [
+            "Transportation and accommodation"
+          ]
+        },
+        {
+          "cluster_key": "crankshaft trueness checks place",
+          "sample_size": 1,
+          "examples": [
             "AE-1 crankshaft trueness checks in place"
-          ]
-        },
-        {
-          "cluster_key": "resilient mountings renewal",
-          "sample_size": 1,
-          "examples": [
-            "AE resilient mountings renewal"
-          ]
-        },
-        {
-          "cluster_key": "lower bearing remove",
-          "sample_size": 1,
-          "examples": [
-            "M/B lower bearing remove"
-          ]
-        },
-        {
-          "cluster_key": "crankshaft run out check",
-          "sample_size": 1,
-          "examples": [
-            "Crankshaft run-out check"
           ]
         }
       ],
@@ -779,30 +844,92 @@
           "remark_type": "commercial",
           "texts": [
             "Other repair if needed to be charged extra",
-            "Spares supply by shipside"
+            "Spares subject to separate confirmation",
+            "Spares supply to be confirmed"
           ],
-          "sample_size": 3
+          "sample_size": 5
         }
       ],
-      "charge_item_hints": [],
-      "option_style_hints": [
+      "charge_item_hints": [
         {
-          "style_type": "owner_supply_spares",
+          "hint_type": "transportation",
+          "source": "history_text",
+          "sample_size": 2,
+          "examples": [
+            "Transportation and accommodation",
+            "transportation"
+          ]
+        },
+        {
+          "hint_type": "accommodation",
+          "source": "history_text",
+          "sample_size": 2,
+          "examples": [
+            "Transportation and accommodation",
+            "accommodation"
+          ]
+        },
+        {
+          "hint_type": "dockyard_management",
+          "source": "history_text",
+          "sample_size": 2,
+          "examples": [
+            "Dockyard management fee",
+            "dockyard_management"
+          ]
+        },
+        {
+          "hint_type": "maritime_reporting",
           "source": "history_text",
           "sample_size": 1,
           "examples": [
-            "Spares supply by shipside"
+            "maritime_reporting"
+          ]
+        }
+      ],
+      "option_style_hints": [
+        {
+          "style_type": "standard_vs_discount",
+          "source": "history_text",
+          "sample_size": 1,
+          "examples": [
+            "standard_vs_discount"
+          ]
+        },
+        {
+          "style_type": "spares_tbc",
+          "source": "history_text",
+          "sample_size": 2,
+          "examples": [
+            "Spares supply to be confirmed",
+            "spares_tbc"
           ]
         }
       ],
       "history_quality_flags": [
-        "weak_top_match",
-        "weak_item_overlap",
-        "broad_price_range",
-        "context_only_match"
+        "commercial_mismatch"
+      ],
+      "item_price_hints": [
+        {
+          "query_item_id": "svc-1",
+          "query_title": "HCU system overhaul",
+          "currency": "USD",
+          "min": 2400.0,
+          "max": 2550.0,
+          "median": 2475.0,
+          "sample_size": 2,
+          "matched_reference_item_ids": [
+            "hist-004-svc-1",
+            "hist-005-svc-1"
+          ],
+          "source_quote_ids": [
+            "hist-004",
+            "hist-005"
+          ]
+        }
       ]
     },
-    "confidence": 0.6
+    "confidence": 0.9
   },
   "pricing_result": {
     "quotation_options": [
@@ -1023,6 +1150,141 @@
                     "basis": "included_scope",
                     "conditions": [],
                     "notes": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "section_id": "option-a-section-other",
+            "section_type": "other",
+            "title": "Other",
+            "groups": [
+              {
+                "group_id": "option-a-group-hist-other-maritime_reporting",
+                "group_no": "1",
+                "title": "Maritime reporting / safety permit",
+                "description": "历史相似报价中存在报备或安全许可线索，建议保守纳入结构。",
+                "lines": [
+                  {
+                    "line_id": "option-a-line-hist-other-maritime_reporting",
+                    "item": "1",
+                    "line_no": "1",
+                    "line_type": "optional",
+                    "description": "Maritime reporting / safety permit",
+                    "pricing_mode": "conditional",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "If needed",
+                    "currency": "USD",
+                    "status": "if_needed",
+                    "basis": "historical_price_range",
+                    "conditions": [
+                      "Only chargeable if actually required during attendance"
+                    ],
+                    "notes": [
+                      "历史相似报价中存在报备或安全许可线索，建议保守纳入结构。"
+                    ]
+                  }
+                ]
+              },
+              {
+                "group_id": "option-a-group-hist-other-dockyard_management",
+                "group_no": "2",
+                "title": "Dockyard management fee",
+                "description": "历史相似报价中常见厂修管理相关费用，建议保守纳入报价结构。",
+                "lines": [
+                  {
+                    "line_id": "option-a-line-hist-other-dockyard_management",
+                    "item": "2",
+                    "line_no": "2",
+                    "line_type": "conditional",
+                    "description": "Dockyard management fee",
+                    "pricing_mode": "rate_as_actual",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "As actual",
+                    "currency": "USD",
+                    "status": "as_actual",
+                    "basis": "historical_price_range",
+                    "conditions": [],
+                    "notes": [
+                      "历史相似报价中常见厂修管理相关费用，建议保守纳入报价结构。"
+                    ]
+                  }
+                ]
+              },
+              {
+                "group_id": "option-a-group-hist-other-transportation",
+                "group_no": "3",
+                "title": "Transportation",
+                "description": "历史相似报价中常见交通费，建议保守纳入结构。",
+                "lines": [
+                  {
+                    "line_id": "option-a-line-hist-other-transportation",
+                    "item": "3",
+                    "line_no": "3",
+                    "line_type": "conditional",
+                    "description": "Transportation",
+                    "pricing_mode": "rate_as_actual",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "As actual",
+                    "currency": "USD",
+                    "status": "as_actual",
+                    "basis": "historical_price_range",
+                    "conditions": [],
+                    "notes": [
+                      "历史相似报价中常见交通费，建议保守纳入结构。"
+                    ]
+                  }
+                ]
+              },
+              {
+                "group_id": "option-a-group-hist-other-accommodation",
+                "group_no": "4",
+                "title": "Accommodation",
+                "description": "历史相似报价中常见住宿或食宿费，建议保守纳入结构。",
+                "lines": [
+                  {
+                    "line_id": "option-a-line-hist-other-accommodation",
+                    "item": "4",
+                    "line_no": "4",
+                    "line_type": "optional",
+                    "description": "Accommodation",
+                    "pricing_mode": "conditional",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "If needed",
+                    "currency": "USD",
+                    "status": "if_needed",
+                    "basis": "historical_price_range",
+                    "conditions": [
+                      "Only chargeable if actually required during attendance"
+                    ],
+                    "notes": [
+                      "历史相似报价中常见住宿或食宿费，建议保守纳入结构。"
+                    ]
                   }
                 ]
               }
@@ -1427,13 +1689,13 @@
           },
           {
             "type": "commercial",
-            "text": "Spares supply by shipside"
+            "text": "Spares subject to separate confirmation"
           }
         ]
       },
       {
         "option_id": "option-b",
-        "title": "Option B 5% discount quotation",
+        "title": "Option B Service only quotation",
         "sections": [
           {
             "section_id": "option-b-section-service",
@@ -1712,279 +1974,150 @@
             ]
           },
           {
-            "section_id": "option-b-section-spare_parts",
-            "section_type": "spare_parts",
-            "title": "Spare Parts",
+            "section_id": "option-b-section-other",
+            "section_type": "other",
+            "title": "Other",
             "groups": [
               {
-                "group_id": "option-b-group-spr-6",
+                "group_id": "option-b-group-hist-other-maritime_reporting",
                 "group_no": "1",
-                "title": "HPS accumulators repair kit",
-                "description": "备件供货责任未确认，当前只能待确认。",
+                "title": "Maritime reporting / safety permit",
+                "description": "历史相似报价中存在报备或安全许可线索，建议保守纳入结构。",
                 "lines": [
                   {
-                    "line_id": "option-b-line-spr-6",
+                    "line_id": "option-b-line-hist-other-maritime_reporting",
                     "item": "1",
                     "line_no": "1",
-                    "line_type": "pending",
-                    "description": "HPS accumulators repair kit 待确认备件归属与供货方式",
-                    "pricing_mode": "pending",
+                    "line_type": "optional",
+                    "description": "Maritime reporting / safety permit",
+                    "pricing_mode": "conditional",
                     "unit_price": null,
                     "unit_price_display": "",
-                    "unit": "LS",
+                    "unit": "",
                     "qty": null,
                     "qty_display": "",
                     "discount": null,
                     "amount": null,
-                    "amount_display": "Pending",
+                    "amount_display": "If needed",
                     "currency": "USD",
-                    "status": "pending",
+                    "status": "if_needed",
                     "basis": "historical_price_range",
                     "conditions": [
-                      "Subject to confirmation"
+                      "Only chargeable if actually required during attendance"
                     ],
                     "notes": [
-                      "备件供货责任未确认，当前只能待确认。",
-                      "待确认备件归属与供货方式",
-                      "HPS accumulators repair kit"
+                      "历史相似报价中存在报备或安全许可线索，建议保守纳入结构。"
                     ],
                     "relation": {
                       "type": "alternative_to",
-                      "target_line_id": "option-a-line-spr-6"
+                      "target_line_id": "option-a-line-hist-other-maritime_reporting"
                     }
                   }
                 ]
               },
               {
-                "group_id": "option-b-group-spr-7",
+                "group_id": "option-b-group-hist-other-dockyard_management",
                 "group_no": "2",
-                "title": "HCU accumulators repair kit",
-                "description": "备件供货责任未确认，当前只能待确认。",
+                "title": "Dockyard management fee",
+                "description": "历史相似报价中常见厂修管理相关费用，建议保守纳入报价结构。",
                 "lines": [
                   {
-                    "line_id": "option-b-line-spr-7",
+                    "line_id": "option-b-line-hist-other-dockyard_management",
                     "item": "2",
                     "line_no": "2",
-                    "line_type": "pending",
-                    "description": "HCU accumulators repair kit 待确认备件归属与供货方式",
-                    "pricing_mode": "pending",
+                    "line_type": "conditional",
+                    "description": "Dockyard management fee",
+                    "pricing_mode": "rate_as_actual",
                     "unit_price": null,
                     "unit_price_display": "",
-                    "unit": "LS",
+                    "unit": "",
                     "qty": null,
                     "qty_display": "",
                     "discount": null,
                     "amount": null,
-                    "amount_display": "Pending",
+                    "amount_display": "As actual",
                     "currency": "USD",
-                    "status": "pending",
+                    "status": "as_actual",
                     "basis": "historical_price_range",
-                    "conditions": [
-                      "Subject to confirmation"
-                    ],
+                    "conditions": [],
                     "notes": [
-                      "备件供货责任未确认，当前只能待确认。",
-                      "待确认备件归属与供货方式",
-                      "HCU accumulators repair kit"
+                      "历史相似报价中常见厂修管理相关费用，建议保守纳入报价结构。"
                     ],
                     "relation": {
                       "type": "alternative_to",
-                      "target_line_id": "option-a-line-spr-7"
+                      "target_line_id": "option-a-line-hist-other-dockyard_management"
                     }
                   }
                 ]
               },
               {
-                "group_id": "option-b-group-spr-8",
+                "group_id": "option-b-group-hist-other-transportation",
                 "group_no": "3",
-                "title": "Nitrogen for refilling",
-                "description": "备件供货责任未确认，当前只能待确认。",
+                "title": "Transportation",
+                "description": "历史相似报价中常见交通费，建议保守纳入结构。",
                 "lines": [
                   {
-                    "line_id": "option-b-line-spr-8",
+                    "line_id": "option-b-line-hist-other-transportation",
                     "item": "3",
                     "line_no": "3",
-                    "line_type": "pending",
-                    "description": "Nitrogen for refilling 待确认是否由我司提供",
-                    "pricing_mode": "pending",
+                    "line_type": "conditional",
+                    "description": "Transportation",
+                    "pricing_mode": "rate_as_actual",
                     "unit_price": null,
                     "unit_price_display": "",
-                    "unit": "LS",
+                    "unit": "",
                     "qty": null,
                     "qty_display": "",
                     "discount": null,
                     "amount": null,
-                    "amount_display": "Pending",
+                    "amount_display": "As actual",
                     "currency": "USD",
-                    "status": "pending",
+                    "status": "as_actual",
                     "basis": "historical_price_range",
-                    "conditions": [
-                      "Subject to confirmation"
-                    ],
+                    "conditions": [],
                     "notes": [
-                      "备件供货责任未确认，当前只能待确认。",
-                      "待确认是否由我司提供",
-                      "Nitrogen for refilling"
+                      "历史相似报价中常见交通费，建议保守纳入结构。"
                     ],
                     "relation": {
                       "type": "alternative_to",
-                      "target_line_id": "option-a-line-spr-8"
+                      "target_line_id": "option-a-line-hist-other-transportation"
                     }
                   }
                 ]
               },
               {
-                "group_id": "option-b-group-spr-9",
+                "group_id": "option-b-group-hist-other-accommodation",
                 "group_no": "4",
-                "title": "FIVA valves pilot valves",
-                "description": "备件供货责任未确认，当前只能待确认。",
+                "title": "Accommodation",
+                "description": "历史相似报价中常见住宿或食宿费，建议保守纳入结构。",
                 "lines": [
                   {
-                    "line_id": "option-b-line-spr-9",
+                    "line_id": "option-b-line-hist-other-accommodation",
                     "item": "4",
                     "line_no": "4",
-                    "line_type": "pending",
-                    "description": "FIVA valves pilot valves 待确认备件归属与供货方式",
-                    "pricing_mode": "pending",
+                    "line_type": "optional",
+                    "description": "Accommodation",
+                    "pricing_mode": "conditional",
                     "unit_price": null,
                     "unit_price_display": "",
-                    "unit": "LS",
+                    "unit": "",
                     "qty": null,
                     "qty_display": "",
                     "discount": null,
                     "amount": null,
-                    "amount_display": "Pending",
+                    "amount_display": "If needed",
                     "currency": "USD",
-                    "status": "pending",
+                    "status": "if_needed",
                     "basis": "historical_price_range",
                     "conditions": [
-                      "Subject to confirmation"
+                      "Only chargeable if actually required during attendance"
                     ],
                     "notes": [
-                      "备件供货责任未确认，当前只能待确认。",
-                      "待确认备件归属与供货方式",
-                      "FIVA valves pilot valves"
+                      "历史相似报价中常见住宿或食宿费，建议保守纳入结构。"
                     ],
                     "relation": {
                       "type": "alternative_to",
-                      "target_line_id": "option-a-line-spr-9"
-                    }
-                  }
-                ]
-              },
-              {
-                "group_id": "option-b-group-spr-10",
-                "group_no": "5",
-                "title": "Fuel booster units top covers and suction valves",
-                "description": "备件供货责任未确认，当前只能待确认。",
-                "lines": [
-                  {
-                    "line_id": "option-b-line-spr-10",
-                    "item": "5",
-                    "line_no": "5",
-                    "line_type": "pending",
-                    "description": "Fuel booster units top covers and suction valves 待确认备件归属与供货方式",
-                    "pricing_mode": "pending",
-                    "unit_price": null,
-                    "unit_price_display": "",
-                    "unit": "LS",
-                    "qty": null,
-                    "qty_display": "",
-                    "discount": null,
-                    "amount": null,
-                    "amount_display": "Pending",
-                    "currency": "USD",
-                    "status": "pending",
-                    "basis": "historical_price_range",
-                    "conditions": [
-                      "Subject to confirmation"
-                    ],
-                    "notes": [
-                      "备件供货责任未确认，当前只能待确认。",
-                      "待确认备件归属与供货方式",
-                      "Fuel booster units top covers and suction valves"
-                    ],
-                    "relation": {
-                      "type": "alternative_to",
-                      "target_line_id": "option-a-line-spr-10"
-                    }
-                  }
-                ]
-              },
-              {
-                "group_id": "option-b-group-spr-11",
-                "group_no": "6",
-                "title": "Exhaust valve actuators safety valves",
-                "description": "备件供货责任未确认，当前只能待确认。",
-                "lines": [
-                  {
-                    "line_id": "option-b-line-spr-11",
-                    "item": "6",
-                    "line_no": "6",
-                    "line_type": "pending",
-                    "description": "Exhaust valve actuators safety valves 待确认备件归属与供货方式",
-                    "pricing_mode": "pending",
-                    "unit_price": null,
-                    "unit_price_display": "",
-                    "unit": "LS",
-                    "qty": null,
-                    "qty_display": "",
-                    "discount": null,
-                    "amount": null,
-                    "amount_display": "Pending",
-                    "currency": "USD",
-                    "status": "pending",
-                    "basis": "historical_price_range",
-                    "conditions": [
-                      "Subject to confirmation"
-                    ],
-                    "notes": [
-                      "备件供货责任未确认，当前只能待确认。",
-                      "待确认备件归属与供货方式",
-                      "Exhaust valve actuators safety valves"
-                    ],
-                    "relation": {
-                      "type": "alternative_to",
-                      "target_line_id": "option-a-line-spr-11"
-                    }
-                  }
-                ]
-              },
-              {
-                "group_id": "option-b-group-spr-12",
-                "group_no": "7",
-                "title": "MPC & UPS batteries",
-                "description": "备件供货责任未确认，当前只能待确认。",
-                "lines": [
-                  {
-                    "line_id": "option-b-line-spr-12",
-                    "item": "7",
-                    "line_no": "7",
-                    "line_type": "pending",
-                    "description": "MPC & UPS batteries 待确认备件归属与供货方式",
-                    "pricing_mode": "pending",
-                    "unit_price": null,
-                    "unit_price_display": "",
-                    "unit": "LS",
-                    "qty": null,
-                    "qty_display": "",
-                    "discount": null,
-                    "amount": null,
-                    "amount_display": "Pending",
-                    "currency": "USD",
-                    "status": "pending",
-                    "basis": "historical_price_range",
-                    "conditions": [
-                      "Subject to confirmation"
-                    ],
-                    "notes": [
-                      "备件供货责任未确认，当前只能待确认。",
-                      "待确认备件归属与供货方式",
-                      "MPC & UPS batteries"
-                    ],
-                    "relation": {
-                      "type": "alternative_to",
-                      "target_line_id": "option-a-line-spr-12"
+                      "target_line_id": "option-a-line-hist-other-accommodation"
                     }
                   }
                 ]
@@ -2122,11 +2255,11 @@
             "status": "chargeable"
           },
           "spare_parts_fee": {
-            "value_type": "status",
-            "amount": null,
-            "display": "Pending",
+            "value_type": "amount",
+            "amount": 0.0,
+            "display": "0.00",
             "currency": "USD",
-            "status": "pending"
+            "status": "chargeable"
           },
           "other": {
             "value_type": "status",
@@ -2150,11 +2283,15 @@
           },
           {
             "type": "commercial",
-            "text": "Spares supply by shipside"
+            "text": "Spares subject to separate confirmation"
           },
           {
             "type": "commercial",
             "text": "Commercial discount 5% applied within operator authority."
+          },
+          {
+            "type": "tbc",
+            "text": "Spare parts are excluded from this option and remain subject to separate confirmation."
           }
         ]
       }
@@ -2434,6 +2571,141 @@
             ]
           },
           {
+            "section_id": "option-a-section-other",
+            "section_type": "other",
+            "title": "Other",
+            "groups": [
+              {
+                "group_id": "option-a-group-hist-other-maritime_reporting",
+                "group_no": "1",
+                "title": "Maritime reporting / safety permit",
+                "description": "历史相似报价中存在报备或安全许可线索，建议保守纳入结构。",
+                "lines": [
+                  {
+                    "line_id": "option-a-line-hist-other-maritime_reporting",
+                    "item": "1",
+                    "line_no": "1",
+                    "line_type": "optional",
+                    "description": "Maritime reporting / safety permit",
+                    "pricing_mode": "conditional",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "If needed",
+                    "currency": "USD",
+                    "status": "if_needed",
+                    "basis": "historical_price_range",
+                    "conditions": [
+                      "Only chargeable if actually required during attendance"
+                    ],
+                    "notes": [
+                      "历史相似报价中存在报备或安全许可线索，建议保守纳入结构。"
+                    ]
+                  }
+                ]
+              },
+              {
+                "group_id": "option-a-group-hist-other-dockyard_management",
+                "group_no": "2",
+                "title": "Dockyard management fee",
+                "description": "历史相似报价中常见厂修管理相关费用，建议保守纳入报价结构。",
+                "lines": [
+                  {
+                    "line_id": "option-a-line-hist-other-dockyard_management",
+                    "item": "2",
+                    "line_no": "2",
+                    "line_type": "conditional",
+                    "description": "Dockyard management fee",
+                    "pricing_mode": "rate_as_actual",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "As actual",
+                    "currency": "USD",
+                    "status": "as_actual",
+                    "basis": "historical_price_range",
+                    "conditions": [],
+                    "notes": [
+                      "历史相似报价中常见厂修管理相关费用，建议保守纳入报价结构。"
+                    ]
+                  }
+                ]
+              },
+              {
+                "group_id": "option-a-group-hist-other-transportation",
+                "group_no": "3",
+                "title": "Transportation",
+                "description": "历史相似报价中常见交通费，建议保守纳入结构。",
+                "lines": [
+                  {
+                    "line_id": "option-a-line-hist-other-transportation",
+                    "item": "3",
+                    "line_no": "3",
+                    "line_type": "conditional",
+                    "description": "Transportation",
+                    "pricing_mode": "rate_as_actual",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "As actual",
+                    "currency": "USD",
+                    "status": "as_actual",
+                    "basis": "historical_price_range",
+                    "conditions": [],
+                    "notes": [
+                      "历史相似报价中常见交通费，建议保守纳入结构。"
+                    ]
+                  }
+                ]
+              },
+              {
+                "group_id": "option-a-group-hist-other-accommodation",
+                "group_no": "4",
+                "title": "Accommodation",
+                "description": "历史相似报价中常见住宿或食宿费，建议保守纳入结构。",
+                "lines": [
+                  {
+                    "line_id": "option-a-line-hist-other-accommodation",
+                    "item": "4",
+                    "line_no": "4",
+                    "line_type": "optional",
+                    "description": "Accommodation",
+                    "pricing_mode": "conditional",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "If needed",
+                    "currency": "USD",
+                    "status": "if_needed",
+                    "basis": "historical_price_range",
+                    "conditions": [
+                      "Only chargeable if actually required during attendance"
+                    ],
+                    "notes": [
+                      "历史相似报价中常见住宿或食宿费，建议保守纳入结构。"
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
             "section_id": "option-a-section-spare_parts",
             "section_type": "spare_parts",
             "title": "Spare Parts",
@@ -2832,13 +3104,13 @@
           },
           {
             "type": "commercial",
-            "text": "Spares supply by shipside"
+            "text": "Spares subject to separate confirmation"
           }
         ]
       },
       {
         "option_id": "option-b",
-        "title": "Option B 5% discount quotation",
+        "title": "Option B Service only quotation",
         "sections": [
           {
             "section_id": "option-b-section-service",
@@ -3117,279 +3389,150 @@
             ]
           },
           {
-            "section_id": "option-b-section-spare_parts",
-            "section_type": "spare_parts",
-            "title": "Spare Parts",
+            "section_id": "option-b-section-other",
+            "section_type": "other",
+            "title": "Other",
             "groups": [
               {
-                "group_id": "option-b-group-spr-6",
+                "group_id": "option-b-group-hist-other-maritime_reporting",
                 "group_no": "1",
-                "title": "HPS accumulators repair kit",
-                "description": "备件供货责任未确认，当前只能待确认。",
+                "title": "Maritime reporting / safety permit",
+                "description": "历史相似报价中存在报备或安全许可线索，建议保守纳入结构。",
                 "lines": [
                   {
-                    "line_id": "option-b-line-spr-6",
+                    "line_id": "option-b-line-hist-other-maritime_reporting",
                     "item": "1",
                     "line_no": "1",
-                    "line_type": "pending",
-                    "description": "HPS accumulators repair kit 待确认备件归属与供货方式",
-                    "pricing_mode": "pending",
+                    "line_type": "optional",
+                    "description": "Maritime reporting / safety permit",
+                    "pricing_mode": "conditional",
                     "unit_price": null,
                     "unit_price_display": "",
-                    "unit": "LS",
+                    "unit": "",
                     "qty": null,
                     "qty_display": "",
                     "discount": null,
                     "amount": null,
-                    "amount_display": "Pending",
+                    "amount_display": "If needed",
                     "currency": "USD",
-                    "status": "pending",
+                    "status": "if_needed",
                     "basis": "historical_price_range",
                     "conditions": [
-                      "Subject to confirmation"
+                      "Only chargeable if actually required during attendance"
                     ],
                     "notes": [
-                      "备件供货责任未确认，当前只能待确认。",
-                      "待确认备件归属与供货方式",
-                      "HPS accumulators repair kit"
+                      "历史相似报价中存在报备或安全许可线索，建议保守纳入结构。"
                     ],
                     "relation": {
                       "type": "alternative_to",
-                      "target_line_id": "option-a-line-spr-6"
+                      "target_line_id": "option-a-line-hist-other-maritime_reporting"
                     }
                   }
                 ]
               },
               {
-                "group_id": "option-b-group-spr-7",
+                "group_id": "option-b-group-hist-other-dockyard_management",
                 "group_no": "2",
-                "title": "HCU accumulators repair kit",
-                "description": "备件供货责任未确认，当前只能待确认。",
+                "title": "Dockyard management fee",
+                "description": "历史相似报价中常见厂修管理相关费用，建议保守纳入报价结构。",
                 "lines": [
                   {
-                    "line_id": "option-b-line-spr-7",
+                    "line_id": "option-b-line-hist-other-dockyard_management",
                     "item": "2",
                     "line_no": "2",
-                    "line_type": "pending",
-                    "description": "HCU accumulators repair kit 待确认备件归属与供货方式",
-                    "pricing_mode": "pending",
+                    "line_type": "conditional",
+                    "description": "Dockyard management fee",
+                    "pricing_mode": "rate_as_actual",
                     "unit_price": null,
                     "unit_price_display": "",
-                    "unit": "LS",
+                    "unit": "",
                     "qty": null,
                     "qty_display": "",
                     "discount": null,
                     "amount": null,
-                    "amount_display": "Pending",
+                    "amount_display": "As actual",
                     "currency": "USD",
-                    "status": "pending",
+                    "status": "as_actual",
                     "basis": "historical_price_range",
-                    "conditions": [
-                      "Subject to confirmation"
-                    ],
+                    "conditions": [],
                     "notes": [
-                      "备件供货责任未确认，当前只能待确认。",
-                      "待确认备件归属与供货方式",
-                      "HCU accumulators repair kit"
+                      "历史相似报价中常见厂修管理相关费用，建议保守纳入报价结构。"
                     ],
                     "relation": {
                       "type": "alternative_to",
-                      "target_line_id": "option-a-line-spr-7"
+                      "target_line_id": "option-a-line-hist-other-dockyard_management"
                     }
                   }
                 ]
               },
               {
-                "group_id": "option-b-group-spr-8",
+                "group_id": "option-b-group-hist-other-transportation",
                 "group_no": "3",
-                "title": "Nitrogen for refilling",
-                "description": "备件供货责任未确认，当前只能待确认。",
+                "title": "Transportation",
+                "description": "历史相似报价中常见交通费，建议保守纳入结构。",
                 "lines": [
                   {
-                    "line_id": "option-b-line-spr-8",
+                    "line_id": "option-b-line-hist-other-transportation",
                     "item": "3",
                     "line_no": "3",
-                    "line_type": "pending",
-                    "description": "Nitrogen for refilling 待确认是否由我司提供",
-                    "pricing_mode": "pending",
+                    "line_type": "conditional",
+                    "description": "Transportation",
+                    "pricing_mode": "rate_as_actual",
                     "unit_price": null,
                     "unit_price_display": "",
-                    "unit": "LS",
+                    "unit": "",
                     "qty": null,
                     "qty_display": "",
                     "discount": null,
                     "amount": null,
-                    "amount_display": "Pending",
+                    "amount_display": "As actual",
                     "currency": "USD",
-                    "status": "pending",
+                    "status": "as_actual",
                     "basis": "historical_price_range",
-                    "conditions": [
-                      "Subject to confirmation"
-                    ],
+                    "conditions": [],
                     "notes": [
-                      "备件供货责任未确认，当前只能待确认。",
-                      "待确认是否由我司提供",
-                      "Nitrogen for refilling"
+                      "历史相似报价中常见交通费，建议保守纳入结构。"
                     ],
                     "relation": {
                       "type": "alternative_to",
-                      "target_line_id": "option-a-line-spr-8"
+                      "target_line_id": "option-a-line-hist-other-transportation"
                     }
                   }
                 ]
               },
               {
-                "group_id": "option-b-group-spr-9",
+                "group_id": "option-b-group-hist-other-accommodation",
                 "group_no": "4",
-                "title": "FIVA valves pilot valves",
-                "description": "备件供货责任未确认，当前只能待确认。",
+                "title": "Accommodation",
+                "description": "历史相似报价中常见住宿或食宿费，建议保守纳入结构。",
                 "lines": [
                   {
-                    "line_id": "option-b-line-spr-9",
+                    "line_id": "option-b-line-hist-other-accommodation",
                     "item": "4",
                     "line_no": "4",
-                    "line_type": "pending",
-                    "description": "FIVA valves pilot valves 待确认备件归属与供货方式",
-                    "pricing_mode": "pending",
+                    "line_type": "optional",
+                    "description": "Accommodation",
+                    "pricing_mode": "conditional",
                     "unit_price": null,
                     "unit_price_display": "",
-                    "unit": "LS",
+                    "unit": "",
                     "qty": null,
                     "qty_display": "",
                     "discount": null,
                     "amount": null,
-                    "amount_display": "Pending",
+                    "amount_display": "If needed",
                     "currency": "USD",
-                    "status": "pending",
+                    "status": "if_needed",
                     "basis": "historical_price_range",
                     "conditions": [
-                      "Subject to confirmation"
+                      "Only chargeable if actually required during attendance"
                     ],
                     "notes": [
-                      "备件供货责任未确认，当前只能待确认。",
-                      "待确认备件归属与供货方式",
-                      "FIVA valves pilot valves"
+                      "历史相似报价中常见住宿或食宿费，建议保守纳入结构。"
                     ],
                     "relation": {
                       "type": "alternative_to",
-                      "target_line_id": "option-a-line-spr-9"
-                    }
-                  }
-                ]
-              },
-              {
-                "group_id": "option-b-group-spr-10",
-                "group_no": "5",
-                "title": "Fuel booster units top covers and suction valves",
-                "description": "备件供货责任未确认，当前只能待确认。",
-                "lines": [
-                  {
-                    "line_id": "option-b-line-spr-10",
-                    "item": "5",
-                    "line_no": "5",
-                    "line_type": "pending",
-                    "description": "Fuel booster units top covers and suction valves 待确认备件归属与供货方式",
-                    "pricing_mode": "pending",
-                    "unit_price": null,
-                    "unit_price_display": "",
-                    "unit": "LS",
-                    "qty": null,
-                    "qty_display": "",
-                    "discount": null,
-                    "amount": null,
-                    "amount_display": "Pending",
-                    "currency": "USD",
-                    "status": "pending",
-                    "basis": "historical_price_range",
-                    "conditions": [
-                      "Subject to confirmation"
-                    ],
-                    "notes": [
-                      "备件供货责任未确认，当前只能待确认。",
-                      "待确认备件归属与供货方式",
-                      "Fuel booster units top covers and suction valves"
-                    ],
-                    "relation": {
-                      "type": "alternative_to",
-                      "target_line_id": "option-a-line-spr-10"
-                    }
-                  }
-                ]
-              },
-              {
-                "group_id": "option-b-group-spr-11",
-                "group_no": "6",
-                "title": "Exhaust valve actuators safety valves",
-                "description": "备件供货责任未确认，当前只能待确认。",
-                "lines": [
-                  {
-                    "line_id": "option-b-line-spr-11",
-                    "item": "6",
-                    "line_no": "6",
-                    "line_type": "pending",
-                    "description": "Exhaust valve actuators safety valves 待确认备件归属与供货方式",
-                    "pricing_mode": "pending",
-                    "unit_price": null,
-                    "unit_price_display": "",
-                    "unit": "LS",
-                    "qty": null,
-                    "qty_display": "",
-                    "discount": null,
-                    "amount": null,
-                    "amount_display": "Pending",
-                    "currency": "USD",
-                    "status": "pending",
-                    "basis": "historical_price_range",
-                    "conditions": [
-                      "Subject to confirmation"
-                    ],
-                    "notes": [
-                      "备件供货责任未确认，当前只能待确认。",
-                      "待确认备件归属与供货方式",
-                      "Exhaust valve actuators safety valves"
-                    ],
-                    "relation": {
-                      "type": "alternative_to",
-                      "target_line_id": "option-a-line-spr-11"
-                    }
-                  }
-                ]
-              },
-              {
-                "group_id": "option-b-group-spr-12",
-                "group_no": "7",
-                "title": "MPC & UPS batteries",
-                "description": "备件供货责任未确认，当前只能待确认。",
-                "lines": [
-                  {
-                    "line_id": "option-b-line-spr-12",
-                    "item": "7",
-                    "line_no": "7",
-                    "line_type": "pending",
-                    "description": "MPC & UPS batteries 待确认备件归属与供货方式",
-                    "pricing_mode": "pending",
-                    "unit_price": null,
-                    "unit_price_display": "",
-                    "unit": "LS",
-                    "qty": null,
-                    "qty_display": "",
-                    "discount": null,
-                    "amount": null,
-                    "amount_display": "Pending",
-                    "currency": "USD",
-                    "status": "pending",
-                    "basis": "historical_price_range",
-                    "conditions": [
-                      "Subject to confirmation"
-                    ],
-                    "notes": [
-                      "备件供货责任未确认，当前只能待确认。",
-                      "待确认备件归属与供货方式",
-                      "MPC & UPS batteries"
-                    ],
-                    "relation": {
-                      "type": "alternative_to",
-                      "target_line_id": "option-a-line-spr-12"
+                      "target_line_id": "option-a-line-hist-other-accommodation"
                     }
                   }
                 ]
@@ -3527,11 +3670,11 @@
             "status": "chargeable"
           },
           "spare_parts_fee": {
-            "value_type": "status",
-            "amount": null,
-            "display": "Pending",
+            "value_type": "amount",
+            "amount": 0.0,
+            "display": "0.00",
             "currency": "USD",
-            "status": "pending"
+            "status": "chargeable"
           },
           "other": {
             "value_type": "status",
@@ -3555,11 +3698,15 @@
           },
           {
             "type": "commercial",
-            "text": "Spares supply by shipside"
+            "text": "Spares subject to separate confirmation"
           },
           {
             "type": "commercial",
             "text": "Commercial discount 5% applied within operator authority."
+          },
+          {
+            "type": "tbc",
+            "text": "Spare parts are excluded from this option and remain subject to separate confirmation."
           }
         ]
       }
@@ -3604,7 +3751,15 @@
           },
           {
             "type": "commercial",
+            "text": "Spares subject to separate confirmation"
+          },
+          {
+            "type": "commercial",
             "text": "Commercial discount 5% applied within operator authority."
+          },
+          {
+            "type": "exclusion",
+            "text": "Spare parts are excluded from this option and remain subject to separate confirmation."
           },
           {
             "type": "payment_term",
@@ -3636,39 +3791,32 @@
     "review_result": {
       "review_flags": [
         "当前仅部分项目具备报价条件。",
-        "当前项目与历史案例最高匹配度偏弱，请人工复核。",
-        "当前项目与历史案例的明细项重合度较低，请人工确认。",
-        "历史价格区间较宽，不能直接据此判断最终价格。",
-        "当前历史参考主要依赖上下文匹配，缺少强明细项支撑。",
         "当前报价包含多方案，提交审核时需确认推荐方案。",
         "当前报价包含待确认或按条件收费内容，提交前需再次核对。"
       ],
       "risk_flags": [
         "当前仅部分项目具备报价条件。",
         "项目工作范围未确认，当前无法稳定报价。",
-        "备件供货责任未确认，影响是否纳入报价。",
-        "当前项目与历史案例最高匹配度偏弱，请人工复核。",
-        "当前项目与历史案例的明细项重合度较低，请人工确认。",
-        "当前历史参考主要依赖上下文匹配，缺少强明细项支撑。"
+        "备件供货责任未确认，影响是否纳入报价。"
       ],
       "approval_level": "manager"
     },
     "trace": {
       "historical_references": [
         {
-          "quote_id": "hist-003",
-          "similarity": 0.45,
-          "reason": "存在多个关键特征匹配。"
+          "quote_id": "hist-004",
+          "similarity": 0.65,
+          "reason": "核心项目工作范围与服务场景相似。"
         },
         {
-          "quote_id": "hist-001",
-          "similarity": 0.35,
-          "reason": "存在多个关键特征匹配。"
+          "quote_id": "hist-005",
+          "similarity": 0.65,
+          "reason": "核心项目工作范围与服务场景相似。"
         },
         {
           "quote_id": "hist-002",
-          "similarity": 0.35,
-          "reason": "存在多个关键特征匹配。"
+          "similarity": 0.25,
+          "reason": "服务模式、地点类型和上下文特征存在相似性。"
         }
       ],
       "pricing_basis": [
@@ -3680,17 +3828,16 @@
         "workflow_maritime_reporting_rule",
         "discount_authority",
         "historical_remark_block",
+        "historical_charge_item_hint",
         "historical_option_style_hint",
-        "history_quality:weak_top_match",
-        "history_quality:weak_item_overlap",
-        "history_quality:broad_price_range",
-        "history_quality:context_only_match"
+        "history_quality:commercial_mismatch"
       ],
       "rule_versions": [
         "quote_pricing_skill:v2",
         "quote_review_output_skill:v2",
         "multi_option_footer_strategy:v1",
         "historical_remark_blocks:v1",
+        "historical_charge_item_hints:v1",
         "historical_option_style_hints:v1"
       ]
     }

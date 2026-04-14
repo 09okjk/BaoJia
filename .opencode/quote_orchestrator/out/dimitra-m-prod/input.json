@@ -1,0 +1,124 @@
+{
+  "assessment_report": {
+    "report_id": "dimitra-m-2026-04-01-prod",
+    "vessel_name": "M/V DIMITRA M",
+    "vessel_type": "82,000 mt Kamsarmax Bulk Carrier",
+    "service_port": "中国区域（中/南部）港口",
+    "service_date": "2025-12 / 2026-01",
+    "service_mode": "dock repair",
+    "service_category": "综合",
+    "location_type": "港口",
+    "needs_multi_option": false,
+    "attention": "",
+    "service_items": [
+      {
+        "title": "HCU system overhaul and calibration",
+        "description": "64k running hours overhaul scope for HCU system on MAN B&W 6S60ME-C8.2.",
+        "work_scope": [
+          "Overhaul ELFI valve and multiway valve units",
+          "Overhaul exhaust valve actuator and fuel oil pressure booster",
+          "Overhaul cylinder lubricator system",
+          "Overhaul accumulator and refill with nitrogen",
+          "Maintenance and overhaul of HPS"
+        ],
+        "labor_hint": [
+          "1 MT5 mechanical engineer",
+          "7 FP5 fitters"
+        ],
+        "quantity": 1,
+        "unit": "set",
+        "price_hints": [
+          "64k overhaul",
+          "dock repair",
+          "high pressure system"
+        ]
+      },
+      {
+        "title": "MPC system inspection and health check",
+        "description": "64k running hours inspection scope for MPC system on MAN B&W 6S60ME-C8.2.",
+        "work_scope": [
+          "MPC health check",
+          "Inspection of MPC status and replacement readiness",
+          "Check UPS battery related condition"
+        ],
+        "labor_hint": [
+          "1 ET5 electrical engineer",
+          "1 ET3 electrical engineer"
+        ],
+        "quantity": 1,
+        "unit": "set",
+        "price_hints": [
+          "64k inspection",
+          "electrical",
+          "MPC",
+          "UPS battery"
+        ]
+      }
+    ],
+    "spare_parts_items": [
+      {
+        "title": "HPS accumulators repair kit",
+        "description": "Pending ownership and final confirmation"
+      },
+      {
+        "title": "HCU accumulators repair kit",
+        "description": "Pending ownership and final confirmation"
+      },
+      {
+        "title": "Nitrogen for refilling",
+        "description": "Pending ownership and final confirmation"
+      },
+      {
+        "title": "FIVA valves pilot valves",
+        "description": "Pending ownership and final confirmation"
+      },
+      {
+        "title": "Fuel booster units top covers and suction valves",
+        "description": "Pending ownership and final confirmation"
+      },
+      {
+        "title": "Exhaust valve actuators safety valves",
+        "description": "Pending ownership and final confirmation"
+      },
+      {
+        "title": "MPC & UPS batteries",
+        "description": "Pending ownership and final confirmation"
+      }
+    ],
+    "pending_items": [
+      "Confirm whether HPS and HCU accumulator repair kits are owner supply or company supply",
+      "Confirm whether FIVA valves pilot valves are owner supply or company supply",
+      "Confirm whether fuel booster unit top covers and suction valves are owner supply or company supply",
+      "Confirm whether exhaust valve actuator safety valves are owner supply or company supply",
+      "Confirm whether MPC and UPS batteries are owner supply or company supply",
+      "Confirm other consumables and sealing items",
+      "Confirm drydock work window in 2025-12 / 2026-01",
+      "Confirm final work location in China central/south area",
+      "Confirm shipyard cross-operation arrangement",
+      "Confirm hot work permit requirement",
+      "Confirm enclosed space permit requirement",
+      "Confirm high pressure system safety procedure"
+    ],
+    "risks": [
+      "Shipyard cross-operation may delay schedule",
+      "Waiting for critical spare parts may interrupt execution",
+      "Safety approval or hot work restriction may affect schedule"
+    ],
+    "assumptions": [
+      "Assessment report is for quotation preparation only and not final execution plan",
+      "Actual work scope may be adjusted according to onsite condition"
+    ]
+  },
+  "customer_context": {},
+  "business_context": {
+    "multi_option": false
+  },
+  "render_options": {
+    "enabled": true,
+    "languages": [
+      "zh",
+      "en"
+    ],
+    "output_dir": ".opencode/quote_orchestrator/out/dimitra-m-prod"
+  }
+}

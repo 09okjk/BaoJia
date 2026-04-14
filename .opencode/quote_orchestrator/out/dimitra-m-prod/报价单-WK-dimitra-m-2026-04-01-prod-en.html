@@ -1,0 +1,297 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Engineering Quotation</title>
+    <style>
+@page {
+  size: A4;
+  margin: 30px;
+  margin-top: 110px;
+}
+
+@page {
+  @top-center {
+    content: element(headerRunningEngineering);
+  }
+  @bottom-right {
+    padding-bottom: 20px;
+  }
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  line-height: 1.2;
+}
+
+body {
+  font-family: Arial, "Microsoft YaHei", sans-serif;
+}
+
+.engineering-pdf {
+  page: engineeringPdf;
+}
+
+.currencyName {
+  text-align: right;
+  font-size: 14px;
+  font-weight: normal;
+  margin-bottom: 5px;
+}
+
+table {
+  margin-top: -1px;
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+  color: #000;
+}
+
+table tr {
+  break-inside: avoid;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+
+table tr td {
+  padding: 3px 6px !important;
+  border: 1px solid #000;
+  white-space: normal;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-all;
+  break-inside: avoid;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+
+table .bold {
+  font-weight: 700;
+}
+
+.header {
+  position: running(headerRunningEngineering);
+  width: 100%;
+  text-align: start;
+}
+
+.header .info_header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header .info_header .winkong_marinsmart_logo {
+  width: 140px;
+}
+
+.header .info_header .aeo_box {
+  margin-right: 20px;
+  width: 100px;
+  height: 68px;
+}
+
+.header .info_header .aeo_box .aeo {
+  display: block;
+  width: 100%;
+}
+
+.header .info_header .title-box {
+  color: #05328e;
+  text-align: center;
+  font-weight: 500;
+}
+
+.header .info_header .title-box .size-big {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.header .info_header .title-box .size-middle {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.header .info_header .title-box .small-box p {
+  font-size: 12px;
+}
+
+.content .bottom-img {
+  display: block;
+  width: 720px;
+  height: 161px;
+}
+
+.content .table-blue thead {
+  background-color: #0066cc;
+  color: #fff;
+}
+
+.content .pre-line {
+  white-space: pre-line;
+}
+
+.content .en-word-line {
+  word-break: break-word;
+}
+
+.content .title {
+  margin: 0 auto 10px;
+  width: 100%;
+  word-break: normal;
+  font-size: 20px;
+  text-align: center;
+  font-weight: 700;
+}
+
+.content .table-bg {
+  background-color: #ededed;
+}
+
+.content .table-bg td:nth-child(odd) {
+  width: 25%;
+}
+
+.content .table-bg td:nth-child(even) {
+  width: 25%;
+}
+    </style>
+  </head>
+  <body>
+    <div class="engineering-pdf">
+      <header class="header">
+        <div class="info_header">
+          <img alt="img" class="winkong_marinsmart_logo" src="file:///E:/PythonProjects/BaoJia/.opencode/skills/quote_pdf_render_skill/assets/winkong_marinsmart_logo.png" title="logo" />
+          <div class="title-box">
+            <p class="size-big">青 岛 儒 海 船 舶 股 份 有 限 公 司</p>
+            <p class="size-big">WinKong Marine Engineering Co.，Ltd.</p>
+            <p class="size-middle">贻贝MarinSmart船海服务互联网平台</p>
+            <p class="size-middle">MARINSMART PLATFORM</p>
+          </div>
+          <div class="aeo_box">
+            <img alt="img" class="aeo" src="file:///E:/PythonProjects/BaoJia/.opencode/skills/quote_pdf_render_skill/assets/aeo-logo.png" title="aeo-logo" />
+          </div>
+        </div>
+      </header>
+
+      <section class="content">
+        <h1 class="title">Quotation</h1>
+        <h2 class="currencyName"><span>币种 Currency：</span> <span></span></h2>
+
+        <table class="table-bg">
+          <tbody>
+            <tr>
+              <td class="bold"><p>船名</p><p>Vessel Name</p></td>
+              <td>M/V DIMITRA M</td>
+              <td class="bold"><p>日期</p><p>Date</p></td>
+              <td>2025-12 / 2026-01</td>
+            </tr>
+            <tr>
+              <td class="bold"><p>IMO No.</p></td>
+              <td></td>
+              <td class="bold"><p>船型</p><p>Vessel Type</p></td>
+              <td>82,000 mt Kamsarmax Bulk Carrier</td>
+            </tr>
+            <tr>
+              <td class="bold"><p>客户名称</p><p>Customer Name</p></td>
+              <td></td>
+              <td class="bold"><p>港口</p><p>Service Port</p></td>
+              <td>中国区域（中/南部）港口</td>
+            </tr>
+            <tr>
+              <td class="bold"><p>联系人</p><p>Attention</p></td>
+              <td></td>
+              <td class="bold"><p>我方报价号</p><p>WK Offer No.</p></td>
+              <td>WK-dimitra-m-2026-04-01-prod</td>
+            </tr>
+            <tr>
+              <td class="bold"><p>询价号</p><p>Your Ref No.</p></td>
+              <td></td>
+              <td class="bold"><p>报价有效期</p><p>Quotation Validity</p></td>
+              <td>30 days</td>
+            </tr>
+            <tr>
+              <td class="bold"><p>确认号</p><p>PO No.</p></td>
+              <td></td>
+              <td class="bold"><p>询价发起人</p><p>PIC of WinKong</p></td>
+              <td>Winkong</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <table class="table-blue">
+          <thead>
+            <tr class="bold">
+              <td style="min-width: 42px"><p>序号</p><p>Item</p></td>
+              <td style="min-width: 100px"><p>项目内容</p><p>Description</p></td>
+              <td style="min-width: 72px"><p>单价</p><p>Unit Price</p></td>
+              <td style="min-width: 42px"><p>单位</p><p>Unit</p></td>
+              <td style="min-width: 42px"><p>数量</p><p>Q'ty</p></td>
+              <td style="min-width: 72px"><p>折扣</p><p>Discount</p></td>
+              <td style="min-width: 72px"><p>合计</p><p>Amount</p></td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>1</td><td class="pre-line en-word-line">HCU system overhaul and calibration</td><td class=""></td><td></td><td></td><td></td><td class=""></td></tr><tr><td>1.1</td><td class="pre-line en-word-line">64k running hours overhaul scope for HCU system on MAN B&amp;W 6S60ME-C8.2.</td><td class="">3,500.00</td><td>set</td><td>1</td><td></td><td class="">3,500.00</td></tr><tr><td></td><td class="pre-line en-word-line">Overhaul ELFI valve and multiway valve units</td><td class=""></td><td></td><td></td><td></td><td class=""></td></tr><tr><td></td><td class="pre-line en-word-line">Overhaul exhaust valve actuator and fuel oil pressure booster</td><td class=""></td><td></td><td></td><td></td><td class=""></td></tr><tr><td></td><td class="pre-line en-word-line">Overhaul cylinder lubricator system</td><td class=""></td><td></td><td></td><td></td><td class=""></td></tr><tr><td></td><td class="pre-line en-word-line">Overhaul accumulator and refill with nitrogen</td><td class=""></td><td></td><td></td><td></td><td class=""></td></tr><tr><td></td><td class="pre-line en-word-line">Maintenance and overhaul of HPS</td><td class=""></td><td></td><td></td><td></td><td class=""></td></tr><tr><td>2</td><td class="pre-line en-word-line">MPC system inspection and health check</td><td class=""></td><td></td><td></td><td></td><td class=""></td></tr><tr><td>2.1</td><td class="pre-line en-word-line">64k running hours inspection scope for MPC system on MAN B&amp;W 6S60ME-C8.2.</td><td class="">3,500.00</td><td>set</td><td>1</td><td></td><td class="">3,500.00</td></tr><tr><td></td><td class="pre-line en-word-line">MPC health check</td><td class=""></td><td></td><td></td><td></td><td class=""></td></tr><tr><td></td><td class="pre-line en-word-line">Inspection of MPC status and replacement readiness</td><td class=""></td><td></td><td></td><td></td><td class=""></td></tr><tr><td></td><td class="pre-line en-word-line">Check UPS battery related condition</td><td class=""></td><td></td><td></td><td></td><td class=""></td></tr><tr><td></td><td class="pre-line en-word-line">Dockyard management fee</td><td class=""></td><td></td><td></td><td></td><td class=""></td></tr><tr><td></td><td class="pre-line en-word-line">Accommodation</td><td class=""></td><td></td><td></td><td></td><td class=""></td></tr><tr><td></td><td class="pre-line en-word-line">Transportation</td><td class=""></td><td></td><td></td><td></td><td class=""></td></tr><tr><td></td><td class="pre-line en-word-line">HPS accumulators repair kit (Pending confirmation)</td><td class=""></td><td></td><td></td><td></td><td class="">Pending</td></tr><tr><td></td><td class="pre-line en-word-line">HCU accumulators repair kit (Pending confirmation)</td><td class=""></td><td></td><td></td><td></td><td class="">Pending</td></tr><tr><td></td><td class="pre-line en-word-line">Nitrogen for refilling (Pending confirmation)</td><td class=""></td><td></td><td></td><td></td><td class="">Pending</td></tr><tr><td></td><td class="pre-line en-word-line">FIVA valves pilot valves (Pending confirmation)</td><td class=""></td><td></td><td></td><td></td><td class="">Pending</td></tr><tr><td></td><td class="pre-line en-word-line">Fuel booster units top covers and suction valves (Pending confirmation)</td><td class=""></td><td></td><td></td><td></td><td class="">Pending</td></tr><tr><td></td><td class="pre-line en-word-line">Exhaust valve actuators safety valves (Pending confirmation)</td><td class=""></td><td></td><td></td><td></td><td class="">Pending</td></tr><tr><td></td><td class="pre-line en-word-line">MPC &amp; UPS batteries (Pending confirmation)</td><td class=""></td><td></td><td></td><td></td><td class="">Pending</td></tr><tr><td></td><td class="pre-line en-word-line">Option Summary - Option 1</td><td class="">USD 7,000.00</td><td></td><td></td><td></td><td class="">Pending</td></tr>
+          </tbody>
+        </table>
+
+        <table>
+          <thead>
+            <tr>
+              <td colspan="4" class="bold">总结 Summary</td>
+            </tr>
+            <tr>
+              <td class="bold"><p>服务费</p><p>Service Charge</p></td>
+              <td class="bold"><p>备件费</p><p>Spare Parts Fee</p></td>
+              <td class="bold"><p>其它</p><p>Other</p></td>
+              <td class="bold"><p>总计</p><p>Total</p></td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>USD 7,000.00</td>
+              <td>Pending</td>
+              <td>Pending</td>
+              <td>Pending</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <table>
+          <tbody>
+            <tr>
+              <td class="bold">备注Remark</td>
+            </tr>
+            <tr>
+              <td><p>[Option 1] If the FIVA valve need to overhaul at workshop, the cost will charged extra</p><p>[Option 1] repair kits for FIVA valve</p><p>[Option 1] Warranty Compensate Amount: 5times of the service cost at max.</p><p>Spare parts warranty period shall follow supplier confirmation.</p><p>Inspection and troubleshooting items carry no service warranty.</p><p>Warranty Compensate Amount: 5 times of the service cost at max.</p></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <table>
+          <tbody>
+            <tr>
+              <td class="bold">服务支付条款 Service Payment Terms</td>
+            </tr>
+            <tr>
+              <td><p>Payment within 30 days upon invoice date.</p></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <table>
+          <tbody>
+            <tr>
+              <td>
+                <img alt="img" class="bottom-img" src="file:///E:/PythonProjects/BaoJia/.opencode/skills/quote_pdf_render_skill/assets/cooperative-brand.png" title="cooperative-brand" />
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+    </div>
+  </body>
+</html>

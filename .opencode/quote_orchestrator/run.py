@@ -3,6 +3,7 @@ from __future__ import annotations
 import argparse
 import importlib.util
 import json
+import sys
 from pathlib import Path
 from typing import Any
 
@@ -49,6 +50,9 @@ def _validate_quote_document(payload: dict[str, Any]) -> None:
 
 def _load_skill_module(skill_name: str):
     skill_path = SKILLS_DIR / skill_name / "skill.py"
+    skill_dir = str(skill_path.parent)
+    if skill_dir not in sys.path:
+        sys.path.insert(0, skill_dir)
     spec = importlib.util.spec_from_file_location(f"{skill_name}_module", skill_path)
     if spec is None or spec.loader is None:
         raise RuntimeError(f"Unable to load skill module: {skill_name}")
@@ -124,6 +128,7 @@ def orchestrate_quote(payload: dict[str, Any]) -> dict[str, Any]:
     historical_module = _load_skill_module("historical_quote_reference_skill")
     pricing_module = _load_skill_module("quote_pricing_skill")
     review_module = _load_skill_module("quote_review_output_skill")
+    pdf_render_module = _load_skill_module("quote_pdf_render_skill")
 
     prepare_result = prepare_module.prepare_quote_request(payload)
     quote_request = prepare_result["quote_request"]
@@ -153,13 +158,44 @@ def orchestrate_quote(payload: dict[str, Any]) -> dict[str, Any]:
             "pricing_result": pricing_result,
         }
     )
-    return {
+    result = {
         "prepare_result": prepare_result,
         "feasibility_result": feasibility_result,
         "historical_reference": historical_reference,
         "pricing_result": pricing_result,
         "quote_document": review_output.get("quote_document", {}),
     }
+
+    render_options = payload.get("render_options")
+    if isinstance(render_options, dict) and _should_render_files(render_options):
+        render_payload = {
+            "quote_document": result["quote_document"],
+            "render_options": _normalized_render_options(render_options),
+        }
+        render_result = pdf_render_module.build_render_result(render_payload)
+        result["render_result"] = render_result.get("render_result", {})
+
+    return result
+
+
+def _should_render_files(render_options: dict[str, Any]) -> bool:
+    if render_options.get("enabled") is True:
+        return True
+    languages = render_options.get("languages")
+    return isinstance(languages, list) and len(languages) > 0
+
+
+def _normalized_render_options(render_options: dict[str, Any]) -> dict[str, Any]:
+    normalized: dict[str, Any] = {}
+    languages = render_options.get("languages")
+    if isinstance(languages, list):
+        valid_languages = [item for item in languages if item in {"zh", "en"}]
+        if valid_languages:
+            normalized["languages"] = valid_languages
+    output_dir = render_options.get("output_dir")
+    if isinstance(output_dir, str) and output_dir.strip():
+        normalized["output_dir"] = output_dir.strip()
+    return normalized
 
 
 def main() -> None:

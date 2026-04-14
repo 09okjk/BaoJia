@@ -16,6 +16,27 @@
     },
     "business_context": {
       "type": "object"
+    },
+    "render_options": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "enabled": {
+          "type": "boolean"
+        },
+        "languages": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": ["zh", "en"]
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "output_dir": {
+          "type": "string"
+        }
+      }
     }
   }
 }

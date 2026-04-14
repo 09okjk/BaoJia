@@ -149,8 +149,8 @@
     "matches": [
       {
         "quote_id": "hist-001",
-        "similarity": 0.82,
-        "reason": "服务模式、地点类型和核心服务项高度相似。",
+        "similarity": 0.74,
+        "reason": "核心项目工作范围、文本语义与服务场景相似。",
         "matched_features": [
           "service_mode: voyage_repair"
         ],
@@ -159,7 +159,30 @@
         ],
         "reference_remarks": [
           "Other repair if needed to be charged extra"
-        ]
+        ],
+        "match_level": "strong_item_match",
+        "matched_item_pairs": [
+          {
+            "query_item_id": "svc-1",
+            "query_title": "AE-1 crankshaft trueness checks in place",
+            "reference_item_id": "hist-001-svc-1",
+            "reference_title": "AE-1 crankshaft trueness checks in place",
+            "similarity": 0.57,
+            "matched_signals": [
+              "item_type_match: service",
+              "item_title: AE-1 crankshaft trueness checks in place"
+            ]
+          }
+        ],
+        "commercial_fit": {
+          "spare_parts_supply_mode_match": false,
+          "option_style_overlap": [
+            "standard_vs_discount"
+          ]
+        },
+        "prefilter_score": 0.85,
+        "semantic_score": 0.89,
+        "rerank_stage": "hybrid"
       }
     ],
     "reference_summary": {
@@ -177,7 +200,34 @@
       ],
       "recommended_reference_ids": [
         "hist-001"
-      ]
+      ],
+      "item_clusters": [],
+      "remark_blocks": [],
+      "charge_item_hints": [],
+      "option_style_hints": [],
+      "history_quality_flags": [
+        "low_item_sample_size"
+      ],
+      "item_price_hints": [
+        {
+          "query_item_id": "svc-1",
+          "query_title": "AE-1 crankshaft trueness checks in place",
+          "currency": "USD",
+          "min": 3200.0,
+          "max": 3500.0,
+          "median": 3350.0,
+          "sample_size": 2,
+          "matched_reference_item_ids": [
+            "hist-001-svc-1",
+            "hist-002-svc-1"
+          ],
+          "source_quote_ids": [
+            "hist-001",
+            "hist-002"
+          ]
+        }
+      ],
+      "retrieval_strategy": "rule_prefilter+tfidf_fallback"
     },
     "confidence": 0.82
   },
