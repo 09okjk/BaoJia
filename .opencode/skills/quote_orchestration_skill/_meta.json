@@ -1,0 +1,6 @@
+{
+  "name": "quote-orchestration-skill",
+  "version": "1.0.0",
+  "author": "BaoJia Team",
+  "description": "统一封装完整智能报价流程，面向 Agent 暴露单一工作流入口。"
+}

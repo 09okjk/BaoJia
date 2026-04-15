@@ -3,8 +3,9 @@ from __future__ import annotations
 import argparse
 import json
 from pathlib import Path
+from typing import Any
 
-from jsonschema import Draft202012Validator, RefResolver, ValidationError, validate
+from jsonschema import ValidationError, validate
 
 from skill import build_render_result, dump_json, load_json
 
@@ -16,23 +17,46 @@ QUOTE_DOCUMENT_SCHEMA_PATH = BASE_DIR.parent.parent / "quote-document-v1.1.schem
 
 
 def _load_schema(path: Path) -> dict:
-    return json.loads(path.read_text(encoding="utf-8"))
+    return _resolve_local_refs(
+        json.loads(path.read_text(encoding="utf-8")), path.parent
+    )
+
+
+def _resolve_local_refs(value: Any, base_dir: Path) -> Any:
+    if isinstance(value, dict):
+        ref = value.get("$ref")
+        if isinstance(ref, str) and (ref.startswith("../") or ref.startswith("./")):
+            ref_path = (base_dir / ref).resolve()
+            return _resolve_local_refs(
+                json.loads(ref_path.read_text(encoding="utf-8")), ref_path.parent
+            )
+        return {key: _resolve_local_refs(item, base_dir) for key, item in value.items()}
+    if isinstance(value, list):
+        return [_resolve_local_refs(item, base_dir) for item in value]
+    return value
+
+
+def _inline_quote_document_schema(schema: Any, quote_document_schema: dict) -> Any:
+    if isinstance(schema, dict):
+        if schema.get("$ref") == "../../../quote-document-v1.1.schema.json":
+            return quote_document_schema
+        return {
+            key: _inline_quote_document_schema(value, quote_document_schema)
+            for key, value in schema.items()
+        }
+    if isinstance(schema, list):
+        return [
+            _inline_quote_document_schema(item, quote_document_schema)
+            for item in schema
+        ]
+    return schema
 
 
 def _validate_input(payload: dict) -> None:
     schema = _load_schema(INPUT_SCHEMA_PATH)
     quote_document_schema = _load_schema(QUOTE_DOCUMENT_SCHEMA_PATH)
-    resolver = RefResolver(
-        base_uri=INPUT_SCHEMA_PATH.resolve().as_uri(),
-        referrer=schema,
-        store={
-            quote_document_schema["$id"]: quote_document_schema,
-            QUOTE_DOCUMENT_SCHEMA_PATH.resolve().as_uri(): quote_document_schema,
-            "https://example.local/quote-document-v1.1.schema.json": quote_document_schema,
-        },
-    )
     try:
-        Draft202012Validator(schema, resolver=resolver).validate(payload)
+        validate(payload, _inline_quote_document_schema(schema, quote_document_schema))
     except ValidationError as exc:
         raise ValueError(f"input schema validation failed: {exc.message}") from exc
 

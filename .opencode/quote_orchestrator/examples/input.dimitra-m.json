@@ -119,6 +119,6 @@
       "zh",
       "en"
     ],
-    "output_dir": ".opencode/quote_orchestrator/out/dimitra-m"
+    "output_dir": ".opencode/out/quotes"
   }
 }

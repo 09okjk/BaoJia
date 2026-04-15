@@ -1,0 +1,35 @@
+@import '../common-pdf.less';
+@page {
+  size: A4;
+  margin: 30px;
+  margin-top: 150px;
+}
+.laboratory-pdf {
+  page: laboratoryPdf;
+}
+@page {
+  @top-center {
+    content: element(headerRunningLaboratory);
+  }
+  @bottom-right {
+    padding-bottom: 20px;
+    // content: counter(page) '/' counter(pages);
+  }
+}
+.header {
+  position: running(headerRunningLaboratory);
+}
+.rainbow {
+  width: 100%;
+  img {
+    width: 100%;
+  }
+}
+.table-white {
+  background-color: #fff;
+}
+
+.table-gray thead {
+  background-color: #d9d9d9;
+  color: #000;
+}

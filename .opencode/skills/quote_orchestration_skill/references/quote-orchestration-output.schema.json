@@ -1,0 +1,5 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.local/opencode/skills/quote-orchestration-skill/references/quote-orchestration-output.schema.json",
+  "$ref": "../workflow/schemas/output.schema.json"
+}

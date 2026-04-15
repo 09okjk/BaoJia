@@ -1,0 +1,357 @@
+{
+  "template_selection_result": {
+    "template_type": "valva",
+    "confidence": 0.74,
+    "candidate_templates": [
+      "valva",
+      "engineering-service"
+    ],
+    "rule_scores": {
+      "engineering-service": 6.0,
+      "digital-product": 0.0,
+      "laboratory": 0.0,
+      "man-hour": 0.0,
+      "product": 0.0,
+      "supercharger": 0.0,
+      "valva": 8.0
+    },
+    "reasons": [
+      "规则命中 valva 相关特征词。",
+      "命中信号：\\bvalve\\b，来源：assessment_report.spare_parts_items[0].title。",
+      "命中信号：\\brepair kit\\b，来源：assessment_report.spare_parts_items[0].title。",
+      "当前与 engineering-service 存在一定相似性。"
+    ],
+    "matched_signals": [
+      {
+        "signal": "\\binspection\\b",
+        "source": "assessment_report.service_items[0].title",
+        "weight": 3.0,
+        "supports": [
+          "engineering-service"
+        ]
+      },
+      {
+        "signal": "\\binspection\\b",
+        "source": "assessment_report.service_items[0].description",
+        "weight": 3.0,
+        "supports": [
+          "engineering-service"
+        ]
+      },
+      {
+        "signal": "\\bvalve\\b",
+        "source": "assessment_report.spare_parts_items[0].title",
+        "weight": 4.0,
+        "supports": [
+          "valva"
+        ]
+      },
+      {
+        "signal": "\\brepair kit\\b",
+        "source": "assessment_report.spare_parts_items[0].title",
+        "weight": 4.0,
+        "supports": [
+          "valva"
+        ]
+      }
+    ],
+    "needs_manual_confirmation": true,
+    "questions_for_user": [
+      "当前模板候选为 valva, engineering-service，请确认最终报价类型。"
+    ],
+    "review_flags": [
+      "模板识别置信度较低，建议人工确认。"
+    ]
+  },
+  "prepare_result": {
+    "quote_request": {
+      "request_meta": {
+        "request_id": "qr-interactive-pause-001",
+        "source": "assessment_report",
+        "prepared_at": "2026-04-15T03:55:09.835676+00:00",
+        "language": "zh-CN"
+      },
+      "header_context": {
+        "currency": null,
+        "vessel_name": "M/V TEST PAUSE",
+        "imo_no": null,
+        "vessel_type": "Bulk Carrier",
+        "customer_name": null,
+        "service_port": "Shanghai",
+        "service_date": "2026-04-20",
+        "attention": null,
+        "customer_ref_no": null
+      },
+      "service_context": {
+        "service_category": "integrated",
+        "service_mode": "dock_repair",
+        "location_type": null,
+        "needs_multi_option": false,
+        "option_hints": [],
+        "urgency": null
+      },
+      "candidate_items": [
+        {
+          "item_id": "svc-1",
+          "item_type": "service",
+          "title": "Main engine inspection",
+          "description": "General inspection before quotation.",
+          "work_scope": [
+            "Inspect main engine condition"
+          ],
+          "quantity_hint": 1,
+          "unit_hint": "set",
+          "labor_hint": [],
+          "pricing_clues": [],
+          "status_hint": null,
+          "source": "assessment_report"
+        },
+        {
+          "item_id": "spr-2",
+          "item_type": "spare_parts",
+          "title": "Fuel valve repair kit",
+          "description": "Pending ownership confirmation",
+          "work_scope": [],
+          "quantity_hint": null,
+          "unit_hint": null,
+          "labor_hint": [],
+          "pricing_clues": [],
+          "status_hint": null,
+          "source": "assessment_report"
+        }
+      ],
+      "spare_parts_context": {
+        "has_spare_parts": true,
+        "spare_parts_supply_mode": null,
+        "spare_parts_items": [
+          {
+            "item_id": "spr-1",
+            "item_type": "spare_parts",
+            "title": "Fuel valve repair kit",
+            "description": "Pending ownership confirmation",
+            "work_scope": [],
+            "quantity_hint": null,
+            "unit_hint": null,
+            "labor_hint": [],
+            "pricing_clues": [],
+            "status_hint": null,
+            "source": "assessment_report"
+          }
+        ]
+      },
+      "risk_context": {
+        "risks": [],
+        "pending_confirmations": [],
+        "assumptions": []
+      },
+      "commercial_context": {
+        "preferred_currency": null,
+        "pricing_expectation": null,
+        "special_terms": []
+      },
+      "source_refs": {
+        "assessment_report_id": "interactive-pause-001",
+        "customer_context_ref": null,
+        "business_context_ref": null
+      }
+    },
+    "normalization_flags": [
+      {
+        "flag_code": "normalized_service_category",
+        "field": "service_context.service_category",
+        "from": "综合",
+        "to": "integrated",
+        "reason": "统一服务类别表达。"
+      },
+      {
+        "flag_code": "normalized_service_mode",
+        "field": "service_context.service_mode",
+        "from": "dock repair",
+        "to": "dock_repair",
+        "reason": "统一服务模式枚举。"
+      }
+    ],
+    "missing_fields": [
+      {
+        "field": "header_context.currency",
+        "required_for": [
+          "pricing",
+          "quote_document"
+        ],
+        "severity": "medium",
+        "reason": "缺少币种，影响金额展示与表头补齐。",
+        "suggested_source": "customer_context"
+      },
+      {
+        "field": "header_context.customer_name",
+        "required_for": [
+          "quote_document"
+        ],
+        "severity": "medium",
+        "reason": "缺少客户名称，影响表头完整性。",
+        "suggested_source": "assessment_report"
+      }
+    ]
+  },
+  "feasibility_result": {
+    "can_quote": true,
+    "quote_scope": "partial",
+    "quotable_items": [
+      {
+        "item_id": "svc-1",
+        "item_type": "service",
+        "title": "Main engine inspection",
+        "decision": "quotable",
+        "reason": "服务项标题和范围已基本明确，可进入报价。",
+        "blocking_fields": [],
+        "suggested_status": "chargeable",
+        "source": "quote_request.candidate_items"
+      }
+    ],
+    "tbc_items": [
+      {
+        "item_id": "spr-2",
+        "item_type": "spare_parts",
+        "title": "Fuel valve repair kit",
+        "decision": "tbc",
+        "reason": "备件供货责任未确认，当前只能待确认。",
+        "blocking_fields": [
+          "spare_parts_context.spare_parts_supply_mode"
+        ],
+        "suggested_status": "pending",
+        "source": "quote_request.candidate_items"
+      }
+    ],
+    "exclusions": [],
+    "missing_fields": [
+      {
+        "field": "spare_parts_context.spare_parts_supply_mode",
+        "required_for": [
+          "feasibility_check",
+          "pricing"
+        ],
+        "severity": "medium",
+        "reason": "备件供货责任未确认，影响是否纳入报价。",
+        "suggested_source": "customer_context"
+      }
+    ],
+    "questions_for_user": [
+      {
+        "question_id": "q-spr-2",
+        "target": "customer",
+        "topic": "spare_parts_supply_mode",
+        "question": "Fuel valve repair kit 由船东提供还是由我司供货？",
+        "related_item_ids": [
+          "spr-2"
+        ]
+      }
+    ],
+    "review_flags": [
+      {
+        "flag_code": "partial_quote_scope",
+        "severity": "medium",
+        "message": "当前仅部分项目具备报价条件。",
+        "related_item_ids": [
+          "svc-1",
+          "spr-2"
+        ]
+      }
+    ]
+  },
+  "historical_reference": {},
+  "pricing_result": {},
+  "quote_document": {},
+  "orchestration_status": "paused",
+  "execution_trace": [
+    {
+      "skill_name": "quote_template_select_skill",
+      "decision_type": "required",
+      "reason": "required stage: template_select"
+    },
+    {
+      "skill_name": "quote_request_prepare_skill",
+      "decision_type": "required",
+      "reason": "required stage: prepare"
+    },
+    {
+      "skill_name": "quote_feasibility_check_skill",
+      "decision_type": "required",
+      "reason": "required stage: feasibility"
+    }
+  ],
+  "planner_trace": [
+    {
+      "action": "run_skill",
+      "skill_name": "quote_template_select_skill",
+      "reason": "required stage: template_select",
+      "decision_type": "required",
+      "planner_notes": []
+    },
+    {
+      "action": "run_skill",
+      "skill_name": "quote_request_prepare_skill",
+      "reason": "required stage: prepare",
+      "decision_type": "required",
+      "planner_notes": []
+    },
+    {
+      "action": "run_skill",
+      "skill_name": "quote_feasibility_check_skill",
+      "reason": "required stage: feasibility",
+      "decision_type": "required",
+      "planner_notes": []
+    },
+    {
+      "action": "pause",
+      "skill_name": null,
+      "reason": "manual confirmation required before pricing",
+      "decision_type": "required",
+      "planner_notes": [
+        "feasibility_result indicates not_ready or blocking questions"
+      ]
+    }
+  ],
+  "skipped_skills": [],
+  "applied_planner_strategies": [],
+  "pause_reason": "manual confirmation required before pricing",
+  "questions_for_user": [
+    {
+      "question_id": "q-spr-2",
+      "target": "customer",
+      "topic": "spare_parts_supply_mode",
+      "question": "Fuel valve repair kit 由船东提供还是由我司供货？",
+      "related_item_ids": [
+        "spr-2"
+      ]
+    }
+  ],
+  "review_flags": [
+    {
+      "flag_code": "partial_quote_scope",
+      "severity": "medium",
+      "message": "当前仅部分项目具备报价条件。",
+      "related_item_ids": [
+        "svc-1",
+        "spr-2"
+      ]
+    }
+  ],
+  "clarification_context": {
+    "resume_supported": true,
+    "missing_fields": [
+      {
+        "field": "spare_parts_context.spare_parts_supply_mode",
+        "required_for": [
+          "feasibility_check",
+          "pricing"
+        ],
+        "severity": "medium",
+        "reason": "备件供货责任未确认，影响是否纳入报价。",
+        "suggested_source": "customer_context"
+      }
+    ],
+    "question_topics": [
+      "spare_parts_supply_mode"
+    ]
+  }
+}

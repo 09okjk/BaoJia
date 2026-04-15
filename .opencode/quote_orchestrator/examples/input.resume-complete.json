@@ -1,0 +1,229 @@
+{
+  "assessment_report": {
+    "report_id": "interactive-pause-001",
+    "vessel_name": "M/V TEST PAUSE",
+    "vessel_type": "Bulk Carrier",
+    "service_port": "Shanghai",
+    "service_date": "2026-04-20",
+    "service_mode": "dock repair",
+    "service_category": "综合",
+    "service_items": [
+      {
+        "title": "Main engine inspection",
+        "description": "General inspection before quotation.",
+        "work_scope": [
+          "Inspect main engine condition"
+        ],
+        "quantity": 1,
+        "unit": "set"
+      }
+    ],
+    "spare_parts_items": [
+      {
+        "title": "Fuel valve repair kit",
+        "description": "Pending ownership confirmation"
+      }
+    ]
+  },
+  "customer_context": {
+    "confirmed_answers": {
+      "spare_parts_supply_mode": "company_supply",
+      "work_scope": {
+        "spr-2": [
+          "Supply fuel valve repair kit",
+          "Deliver repair kit to vessel side"
+        ]
+      }
+    }
+  },
+  "business_context": {
+    "interactive_mode": true,
+    "resume_from": "paused_output"
+  },
+  "resume_payload": {
+    "template_selection_result": {
+      "template_type": "engineering-service"
+    },
+    "prepare_result": {
+      "quote_request": {
+        "request_meta": {
+          "request_id": "qr-interactive-pause-001",
+          "source": "assessment_report",
+          "prepared_at": "2026-04-15T00:00:00+00:00",
+          "language": "zh-CN"
+        },
+        "header_context": {
+          "currency": "USD",
+          "vessel_name": "M/V TEST PAUSE",
+          "imo_no": null,
+          "vessel_type": "Bulk Carrier",
+          "customer_name": null,
+          "service_port": "Shanghai",
+          "service_date": "2026-04-20",
+          "attention": null,
+          "customer_ref_no": null
+        },
+        "service_context": {
+          "service_category": "integrated",
+          "service_mode": "dock_repair",
+          "location_type": "port",
+          "needs_multi_option": false,
+          "option_hints": [],
+          "urgency": null
+        },
+        "candidate_items": [
+          {
+            "item_id": "svc-1",
+            "item_type": "service",
+            "title": "Main engine inspection",
+            "description": "General inspection before quotation.",
+            "work_scope": [
+              "Inspect main engine condition"
+            ],
+            "quantity_hint": 1,
+            "unit_hint": "set",
+            "labor_hint": [],
+            "pricing_clues": [],
+            "status_hint": null,
+            "source": "assessment_report"
+          },
+          {
+            "item_id": "spr-2",
+            "item_type": "spare_parts",
+            "title": "Fuel valve repair kit",
+            "description": "Pending ownership confirmation",
+            "work_scope": [],
+            "quantity_hint": null,
+            "unit_hint": null,
+            "labor_hint": [],
+            "pricing_clues": [],
+            "status_hint": null,
+            "source": "assessment_report"
+          }
+        ],
+        "spare_parts_context": {
+          "has_spare_parts": true,
+          "spare_parts_supply_mode": null,
+          "spare_parts_items": [
+            {
+              "item_id": "spr-1",
+              "item_type": "spare_parts",
+              "title": "Fuel valve repair kit",
+              "description": "Pending ownership confirmation",
+              "work_scope": [],
+              "quantity_hint": null,
+              "unit_hint": null,
+              "labor_hint": [],
+              "pricing_clues": [],
+              "status_hint": null,
+              "source": "assessment_report"
+            }
+          ]
+        },
+        "risk_context": {
+          "risks": [],
+          "pending_confirmations": [],
+          "assumptions": []
+        },
+        "commercial_context": {
+          "preferred_currency": "USD",
+          "pricing_expectation": null,
+          "special_terms": []
+        },
+        "source_refs": {
+          "assessment_report_id": "interactive-pause-001",
+          "customer_context_ref": null,
+          "business_context_ref": null
+        }
+      },
+      "normalization_flags": [],
+      "missing_fields": []
+    },
+    "feasibility_result": {
+      "can_quote": true,
+      "quote_scope": "partial",
+      "quotable_items": [
+        {
+          "item_id": "svc-1",
+          "item_type": "service",
+          "title": "Main engine inspection",
+          "decision": "quotable",
+          "reason": "服务项标题和范围已基本明确，可进入报价。",
+          "blocking_fields": [],
+          "suggested_status": "chargeable",
+          "source": "quote_request.candidate_items"
+        }
+      ],
+      "tbc_items": [
+        {
+          "item_id": "spr-2",
+          "item_type": "spare_parts",
+          "title": "Fuel valve repair kit",
+          "decision": "tbc",
+          "reason": "备件供货责任未确认，当前只能待确认。",
+          "blocking_fields": [
+            "spare_parts_context.spare_parts_supply_mode"
+          ],
+          "suggested_status": "pending",
+          "source": "quote_request.candidate_items"
+        }
+      ],
+      "exclusions": [],
+      "missing_fields": [
+        {
+          "field": "spare_parts_context.spare_parts_supply_mode",
+          "required_for": [
+            "feasibility_check",
+            "pricing"
+          ],
+          "severity": "medium",
+          "reason": "备件供货责任未确认，影响是否纳入报价。",
+          "suggested_source": "customer_context"
+        }
+      ],
+      "questions_for_user": [
+        {
+          "question_id": "q-spr-2",
+          "target": "customer",
+          "topic": "spare_parts_supply_mode",
+          "question": "Fuel valve repair kit 由船东提供还是由我司供货？",
+          "related_item_ids": [
+            "spr-2"
+          ]
+        }
+      ],
+      "review_flags": [
+        {
+          "flag_code": "partial_quote_scope",
+          "severity": "medium",
+          "message": "当前仅部分项目具备报价条件。",
+          "related_item_ids": [
+            "svc-1",
+            "spr-2"
+          ]
+        }
+      ]
+    },
+    "execution_trace": [
+      {
+        "skill_name": "quote_template_select_skill",
+        "decision_type": "required",
+        "reason": "required stage: S0"
+      },
+      {
+        "skill_name": "quote_request_prepare_skill",
+        "decision_type": "required",
+        "reason": "required stage: S1"
+      },
+      {
+        "skill_name": "quote_feasibility_check_skill",
+        "decision_type": "required",
+        "reason": "required stage: S2"
+      }
+    ],
+    "planner_trace": [],
+    "skipped_skills": [],
+    "applied_planner_strategies": []
+  },
+  "render_options": {}
+}

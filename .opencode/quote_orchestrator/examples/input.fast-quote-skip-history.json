@@ -1,0 +1,38 @@
+{
+  "assessment_report": {
+    "report_id": "fast-quote-001",
+    "vessel_name": "M/V FAST QUOTE",
+    "vessel_type": "General Cargo Vessel",
+    "service_port": "Singapore",
+    "service_date": "2026-05-01",
+    "service_mode": "inspection",
+    "service_category": "mechanical",
+    "service_items": [
+      {
+        "title": "Main air compressor inspection",
+        "description": "Routine inspection for main air compressor.",
+        "work_scope": [
+          "Inspect compressor running condition",
+          "Check leakage and abnormal vibration"
+        ],
+        "labor_hint": [
+          "1 mechanical engineer"
+        ],
+        "quantity": 1,
+        "unit": "set",
+        "price_hints": [
+          "inspection",
+          "mechanical"
+        ]
+      }
+    ]
+  },
+  "customer_context": {
+    "currency": "USD"
+  },
+  "business_context": {
+    "prefer_fast_quote": true,
+    "multi_option": false
+  },
+  "render_options": {}
+}

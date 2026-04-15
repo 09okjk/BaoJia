@@ -1,0 +1,6 @@
+{
+  "name": "quote-pdf-render-skill",
+  "version": "1.0.0",
+  "author": "BaoJia Team",
+  "description": "基于最终 quote_document 渲染 HTML/PDF 报价文件。"
+}

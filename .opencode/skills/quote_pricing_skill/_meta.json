@@ -1,0 +1,6 @@
+{
+  "name": "quote-pricing-skill",
+  "version": "1.0.0",
+  "author": "BaoJia Team",
+  "description": "生成符合固定模板中间结构的 quotation_options。"
+}

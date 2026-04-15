@@ -1,0 +1,31 @@
+{
+  "assessment_report": {
+    "report_id": "sample-supercharger-001",
+    "vessel_name": "MV SAMPLE",
+    "vessel_type": "Bulk Carrier",
+    "service_port": "Qingdao",
+    "service_mode": "port service",
+    "service_items": [
+      {
+        "title": "Turbocharger routine overhaul",
+        "description": "Turbocharger inspection and overhaul for VTR unit with running hours reference",
+        "work_scope": [
+          "Turbocharger dismantling",
+          "Inspection according to running hours",
+          "Routine overhaul and re-assembly"
+        ],
+        "labor_hint": [
+          "2 engineers",
+          "16 man-hours"
+        ]
+      }
+    ],
+    "pending_items": [
+      "Confirm turbocharger type and exact running hours"
+    ]
+  },
+  "customer_context": {},
+  "business_context": {
+    "force_template_type": null
+  }
+}

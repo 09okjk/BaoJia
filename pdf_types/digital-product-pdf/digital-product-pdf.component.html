@@ -1,0 +1,261 @@
+<div class="digital-product-pdf">
+  <header class="header">
+    <div class="info_header">
+      <img
+        alt="img"
+        class="winkong_marinsmart_logo"
+        src="https://winkong-frontend.oss-cn-qingdao.aliyuncs.com/images/wk-mhc-ui/winkong_marinsmart_logo.png"
+        title="logo"
+      />
+      <div class="title-box">
+        <p class="size-big">青 岛 儒 海 船 舶 股 份 有 限 公 司</p>
+        <p class="size-big">WinKong Marine Engineering Co.，Ltd.</p>
+        <p class="size-middle">贻贝MarinSmart船海服务互联网平台</p>
+        <p class="size-middle">MARINSMART PLATFORM</p>
+      </div>
+      <div class="aeo_box">
+        <img
+          alt="img"
+          class="aeo"
+          src="https://winkong-frontend.oss-cn-qingdao.aliyuncs.com/images/wk-mhc-ui/print/aeo-logo.png"
+          title="aeo-logo"
+        />
+      </div>
+    </div>
+  </header>
+  <section class="content">
+    <h1 class="title">Quotation</h1>
+    <h2 class="currencyName">
+      <span>币种 Currency：</span>
+      <span>{{ currencyName }}</span>
+    </h2>
+    <table class="table-bg">
+      <tbody>
+        <tr>
+          <td class="bold">
+            <p>船名</p>
+            <p>Vessel Name</p>
+          </td>
+          <td>{{ formData?.vesselName }}</td>
+          <td class="bold">
+            <p>日期</p>
+            <p>Date</p>
+          </td>
+          <td>{{ formData?.date | date : 'yyyy/MM/dd' }}</td>
+        </tr>
+        <tr>
+          <td class="bold">
+            <p>客户名称</p>
+            <p>Customer Name</p>
+          </td>
+          <td>{{ formData?.customerName }}</td>
+          <td class="bold">
+            <p>港口</p>
+            <p>Service Port</p>
+          </td>
+          <td>{{ formData?.servicePort }}</td>
+        </tr>
+        <tr>
+          <td class="bold">
+            <p>联系人</p>
+            <p>Attention</p>
+          </td>
+          <td>{{ formData?.attention }}</td>
+          <td class="bold">
+            <p>我方报价号</p>
+            <p>WK Offer No.</p>
+          </td>
+          <td>{{ formData?.wkOfferNo }}</td>
+        </tr>
+        <tr>
+          <td class="bold">
+            <p>询价号</p>
+            <p>Your Ref No.</p>
+          </td>
+          <td>{{ formData?.youRefNo }}</td>
+          <td class="bold">
+            <p>报价有效期</p>
+            <p>Quotation Validity</p>
+          </td>
+          <td>{{ formData?.quotationValidity }}</td>
+        </tr>
+        <tr>
+          <td class="bold">
+            <p>确认号</p>
+            <p>PO No.</p>
+          </td>
+          <td>{{ formData?.poNo }}</td>
+          <td class="bold">
+            <p>付款方式</p>
+            <p>Payment Terms</p>
+          </td>
+          <td>{{ formData?.paymentTerms }}</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <table
+      class="table-blue"
+      *ngIf="formData?.descriptions && formData.descriptions.length > 0"
+    >
+      <thead>
+        <tr class="bold">
+          <td style="min-width: 42px">
+            <p>序号</p>
+            <p>Item</p>
+          </td>
+          <td style="min-width: 100px">
+            <p>项目内容</p>
+            <p>Description</p>
+          </td>
+          <td style="min-width: 72px">
+            <p>单价</p>
+            <p>Unit Price</p>
+          </td>
+          <td style="min-width: 42px">
+            <p>单位</p>
+            <p>Unit</p>
+          </td>
+          <td style="min-width: 42px">
+            <p>数量</p>
+            <p>Q'ty</p>
+          </td>
+          <td style="min-width: 72px" *ngIf="displayDiscounts === 1">
+            <p>折扣</p>
+            <p>Discount</p>
+          </td>
+          <td style="min-width: 72px">
+            <p>合计</p>
+            <p>Amount</p>
+          </td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of formData?.descriptions">
+          <td>{{ item?.index }}</td>
+          <td class="pre-line en-word-line">{{ item?.content }}</td>
+          <td
+            [ngClass]="{
+              blue: item?.fixedAppendFlag,
+              'line-through': item?.discountType === 2 && !item?.fixedAppendFlag
+            }"
+          >
+            {{ item?.price | permilTransform }}
+          </td>
+          <td>{{ item?.unit }}</td>
+          <td>{{ item?.qty }}</td>
+          <td *ngIf="displayDiscounts === 1">{{ item?.discount }}</td>
+          <td
+            [ngClass]="{
+              blue: item?.fixedAppendFlag,
+              'line-through': item?.discountType === 2 && !item?.fixedAppendFlag
+            }"
+          >
+            {{ item?.amount | permilTransform }}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <table *ngIf="formData?.summary && formData.summary.length > 0">
+      <tbody>
+        <tr class="bold">
+          <td [colSpan]="taxRate ? 5 : 3">总结 Summary</td>
+        </tr>
+        <tr class="bold">
+          <td>
+            <p>
+              产品{{
+                formData?.summary[0]?.productTaxRate
+                  ? '(' + formData.summary[0].productTaxRate + 'VAT)'
+                  : ''
+              }}
+            </p>
+            <p>Product</p>
+          </td>
+          <td>
+            <p>
+              其它{{
+                formData?.summary[0]?.serviceTaxRate
+                  ? '(' + formData.summary[0].serviceTaxRate + 'VAT)'
+                  : ''
+              }}
+            </p>
+            <p>Other</p>
+          </td>
+          <td>
+            <p>总计</p>
+            <p>Total</p>
+          </td>
+        </tr>
+        <tr *ngFor="let item of formData?.summary">
+          <td>
+            {{ item?.product | permilTransform }}
+          </td>
+          <td>
+            {{ item?.other | permilTransform }}
+          </td>
+          <td>
+            {{ item?.total | permilTransform }}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <table *ngIf="formData?.remarks && formData.remarks.length > 0">
+      <tbody>
+        <tr class="bold">
+          <td>备注Remark</td>
+        </tr>
+        <tr>
+          <td class="remark_td">
+            <p *ngFor="let item of formData?.remarks">{{ item }}</p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <table
+      *ngIf="
+        formData?.paymentTermsForSpareParts &&
+        formData.paymentTermsForSpareParts.length > 0
+      "
+    >
+      <tbody>
+        <tr>
+          <td class="bold">支付条款 Payment Terms For Spare Parts</td>
+        </tr>
+        <tr>
+          <td>
+            <p *ngFor="let item of formData?.paymentTermsForSpareParts">
+              {{ item }}
+            </p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <table *ngIf="formData?.inscribe">
+      <tbody>
+        <tr>
+          <td>
+            <p class="pre-line">{{ formData?.inscribe }}</p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <table>
+      <tbody>
+        <tr>
+          <td>
+            <img
+              alt="img"
+              class="bottom-img"
+              src="http://winkong-frontend.oss-cn-qingdao.aliyuncs.com/images/wk-mhc-ui/print/cooperative-brand.png"
+              title="cooperative-brand"
+            />
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+</div>

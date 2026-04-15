@@ -1,0 +1,372 @@
+<div class="valva-pdf">
+  <header
+    [class]="
+      quotationTemplate === 1 ? 'header headerHigh' : 'header headerShort'
+    "
+  >
+    <div class="info_header">
+      <img
+        alt="img"
+        class="winkong_marinsmart_logo"
+        src="https://winkong-frontend.oss-cn-qingdao.aliyuncs.com/images/wk-mhc-ui/winkong_marinsmart_logo.png"
+        title="logo"
+      />
+      <div class="title-box">
+        <ng-container *ngIf="quotationTemplate === 1">
+          <p class="size-big">青 岛 儒 海 船 舶 股 份 有 限 公 司</p>
+          <p class="size-big">WinKong Marine Engineering Co.，Ltd.</p>
+          <div class="small-box">
+            <p>
+              17F, Zhongxin Building, No.263 LiaoningRoad,Qingdao,P. R.China
+              266012
+            </p>
+            <p>
+              Tel: +86 532 83829109/83836759/83800536; Fax: +86 532 83776955
+            </p>
+            <p>
+              E-mail: biz&#64;winkong.net/winkong&#64;vip.sohu.com
+              Website:www.winkong.net
+            </p>
+          </div>
+          <p class="size-middle">贻贝MarinSmart船海服务互联网平台</p>
+          <p class="size-middle">MARINSMART PLATFORM</p>
+        </ng-container>
+
+        <ng-container *ngIf="quotationTemplate === 2">
+          <p class="size-big">MARINSMART GLOBAL SERVICE PTE LTD</p>
+          <p class="size-middle">
+            2 Venture Drive, #08-16 Vision Exchange, Singapore 608526
+          </p>
+          <p class="size-middle">
+            +65 86476020Company Registration: 202142747G
+          </p>
+        </ng-container>
+      </div>
+      <div class="aeo_box">
+        <img
+          *ngIf="quotationTemplate === 1"
+          alt="img"
+          class="aeo"
+          src="https://winkong-frontend.oss-cn-qingdao.aliyuncs.com/images/wk-mhc-ui/print/aeo-logo.png"
+          title="aeo-logo"
+        />
+      </div>
+    </div>
+  </header>
+  <section class="content">
+    <h1 class="title pre-line">{{ formData?.title }}</h1>
+    <p class="time">
+      <span style="margin-right: 20px">币种 Currency：{{ currencyName }}</span>
+      <span>Date：{{ formData?.date | date : 'yyyy/MM/dd' }}</span>
+    </p>
+    <table class="table-bg">
+      <tbody>
+        <tr>
+          <td class="bold">
+            <p>Vessel Name</p>
+          </td>
+          <td>{{ formData?.vesselName }}</td>
+          <td class="bold">
+            <p>ENGINE MAKER/TYPE</p>
+          </td>
+          <td>{{ formData?.engineMakerType }}</td>
+        </tr>
+        <tr>
+          <td class="bold">
+            <p>BUILT YEAR</p>
+          </td>
+          <td>{{ formData?.builtYear }}</td>
+          <td class="bold">
+            <p>BUIT YARD</p>
+          </td>
+          <td>{{ formData?.buitYard }}</td>
+        </tr>
+        <tr>
+          <td class="bold">
+            <p>DREW BY</p>
+          </td>
+          <td colspan="3">{{ formData?.drewBy }}</td>
+        </tr>
+        <tr>
+          <td class="bold">
+            <p>Valve list refered to</p>
+          </td>
+          <td colspan="3">{{ formData?.valveListReferedTo }}</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <ng-container
+      *ngIf="
+        formData?.quotationForRepairKit &&
+        formData.quotationForRepairKit.length > 0
+      "
+    >
+      <div class="introduce-text">
+        <p>Quotation for Repair Kit</p>
+      </div>
+
+      <table class="table-blue">
+        <thead>
+          <tr class="bold">
+            <td style="min-width: 40px">
+              <p>NO.</p>
+            </td>
+            <td style="min-width: 40px">
+              <p>Model</p>
+            </td>
+
+            <td style="min-width: 100px">
+              <p>POSITION NO.</p>
+            </td>
+            <td style="min-width: 40px">
+              <p>Q'ty</p>
+            </td>
+            <td style="min-width: 60px">
+              <p>Service</p>
+            </td>
+            <td style="min-width: 74px">
+              <p>Unit Price</p>
+            </td>
+            <td style="min-width: 68px" *ngIf="displayDiscounts === 1">
+              <p>Discount</p>
+            </td>
+            <td style="min-width: 50px">
+              <p>Total</p>
+            </td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of formData?.quotationForRepairKit">
+            <td>{{ item?.no }}</td>
+            <td>{{ item?.model }}</td>
+            <td>{{ item?.positionNo }}</td>
+            <td>{{ item?.qty }}</td>
+            <td>
+              <i *ngIf="item?.service === 1">
+                <svg
+                  class="icon"
+                  viewBox="0 0 1024 1024"
+                  xmlns="http://www.w3.org/2000/svg"
+                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                >
+                  <path
+                    d="M576 512l277.333333 277.333333-64 64-277.333333-277.333333L234.666667 853.333333 170.666667 789.333333l277.333333-277.333333L170.666667 234.666667 234.666667 170.666667l277.333333 277.333333L789.333333 170.666667 853.333333 234.666667 576 512z"
+                  ></path>
+                </svg>
+              </i>
+              <i *ngIf="item?.service === 2">
+                <svg
+                  class="icon"
+                  viewBox="0 0 1024 1024"
+                  xmlns="http://www.w3.org/2000/svg"
+                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                >
+                  <path
+                    d="M512 64C264.576 64 64 264.576 64 512s200.576 448 448 448 448-200.576 448-448S759.424 64 512 64z m0 96c194.4 0 352 157.6 352 352s-157.6 352-352 352S160 706.4 160 512 317.6 160 512 160z"
+                  ></path>
+                </svg>
+              </i>
+              <i *ngIf="item?.service === 3">
+                <svg
+                  class="icon"
+                  viewBox="0 0 1164 1024"
+                  xmlns="http://www.w3.org/2000/svg"
+                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                >
+                  <path
+                    d="M582.111606 128.001186l462.982917 801.881292h-926.116421L581.885724 128.001186m0-127.999831a59.482274 59.482274 0 0 0-52.10346 30.117607L8.070013 933.647178a60.235214 60.235214 0 0 0 52.178755 90.352822h1043.575089a60.235214 60.235214 0 0 0 52.10346-90.352822L634.290361 30.118962a59.557568 59.557568 0 0 0-52.178755-30.117607z"
+                  ></path>
+                </svg>
+              </i>
+            </td>
+            <td
+              [ngClass]="{
+                blue: item?.fixedAppendFlag,
+                'line-through':
+                  item?.discountType === 2 && !item?.fixedAppendFlag
+              }"
+            >
+              {{ item?.unitPrice | permilTransform }}
+            </td>
+            <td *ngIf="displayDiscounts === 1">{{ item?.discount }}</td>
+            <td
+              [ngClass]="{
+                blue: item?.fixedAppendFlag,
+                'line-through':
+                  item?.discountType === 2 && !item?.fixedAppendFlag
+              }"
+            >
+              {{ item?.total | permilTransform }}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </ng-container>
+
+    <ng-container
+      *ngIf="formData?.completeValve && formData.completeValve.length > 0"
+    >
+      <div class="introduce-text">
+        <p>Complete valve</p>
+      </div>
+
+      <table class="table-blue">
+        <thead>
+          <tr class="bold">
+            <td style="min-width: 40px">
+              <p>NO.</p>
+            </td>
+            <td style="min-width: 40px">
+              <p>Model</p>
+            </td>
+            <td style="min-width: 100px">
+              <p>POSITION NO.</p>
+            </td>
+            <td style="min-width: 40px">
+              <p>Q'ty</p>
+            </td>
+            <td style="min-width: 60px">
+              <p>Service</p>
+            </td>
+            <td style="min-width: 74px">
+              <p>Unit Price</p>
+            </td>
+            <td style="min-width: 68px" *ngIf="displayDiscounts === 1">
+              <p>Discount</p>
+            </td>
+            <td style="min-width: 50px">
+              <p>Total</p>
+            </td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of formData?.completeValve">
+            <td>{{ item?.no }}</td>
+            <td>{{ item?.model }}</td>
+            <td>{{ item?.positionNo }}</td>
+            <td>{{ item?.qty }}</td>
+            <td>
+              <i *ngIf="item?.service === 1">
+                <svg
+                  class="icon"
+                  viewBox="0 0 1024 1024"
+                  xmlns="http://www.w3.org/2000/svg"
+                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                >
+                  <path
+                    d="M576 512l277.333333 277.333333-64 64-277.333333-277.333333L234.666667 853.333333 170.666667 789.333333l277.333333-277.333333L170.666667 234.666667 234.666667 170.666667l277.333333 277.333333L789.333333 170.666667 853.333333 234.666667 576 512z"
+                  ></path>
+                </svg>
+              </i>
+              <i *ngIf="item?.service === 2">
+                <svg
+                  class="icon"
+                  viewBox="0 0 1024 1024"
+                  xmlns="http://www.w3.org/2000/svg"
+                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                >
+                  <path
+                    d="M512 64C264.576 64 64 264.576 64 512s200.576 448 448 448 448-200.576 448-448S759.424 64 512 64z m0 96c194.4 0 352 157.6 352 352s-157.6 352-352 352S160 706.4 160 512 317.6 160 512 160z"
+                  ></path>
+                </svg>
+              </i>
+              <i *ngIf="item?.service === 3">
+                <svg
+                  class="icon"
+                  viewBox="0 0 1164 1024"
+                  xmlns="http://www.w3.org/2000/svg"
+                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                >
+                  <path
+                    d="M582.111606 128.001186l462.982917 801.881292h-926.116421L581.885724 128.001186m0-127.999831a59.482274 59.482274 0 0 0-52.10346 30.117607L8.070013 933.647178a60.235214 60.235214 0 0 0 52.178755 90.352822h1043.575089a60.235214 60.235214 0 0 0 52.10346-90.352822L634.290361 30.118962a59.557568 59.557568 0 0 0-52.178755-30.117607z"
+                  ></path>
+                </svg>
+              </i>
+            </td>
+            <td
+              [ngClass]="{
+                blue: item?.fixedAppendFlag,
+                'line-through':
+                  item?.discountType === 2 && !item?.fixedAppendFlag
+              }"
+            >
+              {{ item?.unitPrice | permilTransform }}
+            </td>
+            <td *ngIf="displayDiscounts === 1">{{ item?.discount }}</td>
+            <td
+              [ngClass]="{
+                blue: item?.fixedAppendFlag,
+                'line-through':
+                  item?.discountType === 2 && !item?.fixedAppendFlag
+              }"
+            >
+              {{ item?.total | permilTransform }}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </ng-container>
+    <p class="total">Total：{{ formData?.totalPrice | permilTransform }}</p>
+    <table>
+      <tbody>
+        <tr>
+          <td>
+            <p>
+              <svg
+                class="icon"
+                viewBox="0 0 1024 1024"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+              >
+                <path
+                  d="M584.379834 510.246626l424.519445-422.617738A51.316823 51.316823 0 0 0 1009.074821 15.129978a51.170538 51.170538 0 0 0-72.469653-0.175542L512.027209 437.630688 91.164892 15.100721A51.199795 51.199795 0 1 0 18.665982 87.51186L439.499042 509.954056 15.125882 932.279224a51.287566 51.287566 0 0 0 72.20634 72.762223L511.793153 582.51148l424.694987 426.391895c9.976646 10.093674 23.11305 15.096625 36.307969 15.096625a51.287566 51.287566 0 0 0 36.249455-87.507764L584.379834 510.246626z"
+                ></path>
+              </svg>
+
+              Change
+            </p>
+            <p>
+              <svg
+                class="icon"
+                viewBox="0 0 1024 1024"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+              >
+                <path
+                  d="M512 64C264.576 64 64 264.576 64 512s200.576 448 448 448 448-200.576 448-448S759.424 64 512 64z m0 96c194.4 0 352 157.6 352 352s-157.6 352-352 352S160 706.4 160 512 317.6 160 512 160z"
+                ></path>
+              </svg>
+              Repair(O/H Inspection)
+            </p>
+            <p>
+              <svg
+                class="icon"
+                viewBox="0 0 1164 1024"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+              >
+                <path
+                  d="M582.111606 128.001186l462.982917 801.881292h-926.116421L581.885724 128.001186m0-127.999831a59.482274 59.482274 0 0 0-52.10346 30.117607L8.070013 933.647178a60.235214 60.235214 0 0 0 52.178755 90.352822h1043.575089a60.235214 60.235214 0 0 0 52.10346-90.352822L634.290361 30.118962a59.557568 59.557568 0 0 0-52.178755-30.117607z"
+                ></path>
+              </svg>
+              Change after checking the condition
+            </p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <table *ngIf="formData?.remarks && formData.remarks.length > 0">
+      <tbody>
+        <tr class="bold">
+          <td>REMARK:</td>
+        </tr>
+        <tr>
+          <td>
+            <p *ngFor="let item of formData?.remarks">{{ item }}</p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+</div>

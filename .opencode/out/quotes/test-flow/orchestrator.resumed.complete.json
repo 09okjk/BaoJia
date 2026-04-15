@@ -1,0 +1,1415 @@
+{
+  "template_selection_result": {
+    "template_type": "engineering-service"
+  },
+  "prepare_result": {
+    "quote_request": {
+      "request_meta": {
+        "request_id": "qr-interactive-pause-001",
+        "source": "assessment_report",
+        "prepared_at": "2026-04-15T00:00:00+00:00",
+        "language": "zh-CN"
+      },
+      "header_context": {
+        "currency": "USD",
+        "vessel_name": "M/V TEST PAUSE",
+        "imo_no": null,
+        "vessel_type": "Bulk Carrier",
+        "customer_name": null,
+        "service_port": "Shanghai",
+        "service_date": "2026-04-20",
+        "attention": null,
+        "customer_ref_no": null
+      },
+      "service_context": {
+        "service_category": "integrated",
+        "service_mode": "dock_repair",
+        "location_type": "port",
+        "needs_multi_option": false,
+        "option_hints": [],
+        "urgency": null
+      },
+      "candidate_items": [
+        {
+          "item_id": "svc-1",
+          "item_type": "service",
+          "title": "Main engine inspection",
+          "description": "General inspection before quotation.",
+          "work_scope": [
+            "Inspect main engine condition"
+          ],
+          "quantity_hint": 1,
+          "unit_hint": "set",
+          "labor_hint": [],
+          "pricing_clues": [],
+          "status_hint": null,
+          "source": "assessment_report"
+        },
+        {
+          "item_id": "spr-2",
+          "item_type": "spare_parts",
+          "title": "Fuel valve repair kit",
+          "description": "Pending ownership confirmation",
+          "work_scope": [
+            "Supply fuel valve repair kit",
+            "Deliver repair kit to vessel side"
+          ],
+          "quantity_hint": null,
+          "unit_hint": null,
+          "labor_hint": [],
+          "pricing_clues": [],
+          "status_hint": null,
+          "source": "assessment_report"
+        }
+      ],
+      "spare_parts_context": {
+        "has_spare_parts": true,
+        "spare_parts_supply_mode": "company_supply",
+        "spare_parts_items": [
+          {
+            "item_id": "spr-1",
+            "item_type": "spare_parts",
+            "title": "Fuel valve repair kit",
+            "description": "Pending ownership confirmation",
+            "work_scope": [],
+            "quantity_hint": null,
+            "unit_hint": null,
+            "labor_hint": [],
+            "pricing_clues": [],
+            "status_hint": null,
+            "source": "assessment_report"
+          }
+        ]
+      },
+      "risk_context": {
+        "risks": [],
+        "pending_confirmations": [],
+        "assumptions": []
+      },
+      "commercial_context": {
+        "preferred_currency": "USD",
+        "pricing_expectation": null,
+        "special_terms": []
+      },
+      "source_refs": {
+        "assessment_report_id": "interactive-pause-001",
+        "customer_context_ref": null,
+        "business_context_ref": null
+      }
+    },
+    "normalization_flags": [],
+    "missing_fields": []
+  },
+  "feasibility_result": {
+    "can_quote": true,
+    "quote_scope": "full",
+    "quotable_items": [
+      {
+        "item_id": "svc-1",
+        "item_type": "service",
+        "title": "Main engine inspection",
+        "decision": "quotable",
+        "reason": "服务项标题和范围已基本明确，可进入报价。",
+        "blocking_fields": [],
+        "suggested_status": "chargeable",
+        "source": "quote_request.candidate_items"
+      },
+      {
+        "item_id": "spr-2",
+        "item_type": "spare_parts",
+        "title": "Fuel valve repair kit",
+        "decision": "quotable",
+        "reason": "服务项标题和范围已基本明确，可进入报价。",
+        "blocking_fields": [],
+        "suggested_status": "chargeable",
+        "source": "quote_request.candidate_items"
+      }
+    ],
+    "tbc_items": [],
+    "exclusions": [],
+    "missing_fields": [],
+    "questions_for_user": [],
+    "review_flags": []
+  },
+  "historical_reference": {
+    "matches": [
+      {
+        "quote_id": "ERH-2025-003765",
+        "similarity": 0.6,
+        "reason": "核心项目工作范围、文本语义与服务场景相似。",
+        "matched_features": [
+          "service_mode: dock_repair",
+          "location_type: port",
+          "vessel_type_normalized: bulk_carrier",
+          "item_type: spare_parts",
+          "item_type_match: spare_parts",
+          "item_title: Fuel valve repair kit"
+        ],
+        "reference_items": [
+          "Hydraulic Cylinder Unit",
+          "Overhaul fuel booster unit",
+          "Overhaul exh. Actuator",
+          "Overhaul & Cleaning FIVA valve with replacement proportional valve",
+          "repair kits for FIVA valve",
+          "Replace level switch of HCU",
+          "Replace O-ring of retrun pipe",
+          "Clean distributor block",
+          "Membrane Accumulator",
+          "Overhaul and re-charge of accumulator and quick coupling",
+          "Replace repair kit",
+          "Overhaul Alpha lubricator",
+          "Replace Hyd. flexible Hoses and compensators at HPS",
+          "Replace Hydraulic power supply pump",
+          "Hydraulic system",
+          "Carry out safety test",
+          "Replace #310, #311 cartridge with cover",
+          "Auto filter of hydraulic system, safety valve, leakage test",
+          "L O flushing of hydraulic system (HCU, HPS line)",
+          "Overhaul main starting air valve with slow turn valve",
+          "Replace repair kit of pneumatic system",
+          "Angle encoder overhaul",
+          "Insection",
+          "MPC including ECS parameter",
+          "Power Supply Unit.",
+          "Cabling inspection and low insulation",
+          "HCU (FIVA ,inductive sensor)",
+          "Tacho system",
+          "Installation of Sandwich filters on HCU and HPS",
+          "Interlock test",
+          "Hydraulic (Build up time, leakage test)",
+          "Safety test (Slow down, Shut down)",
+          "Function test for HCU,HPS,Tacho",
+          "HPS Pump workshop recondition/overhaul",
+          "Dismantle and reassemble for HPS pump and FIVA valve",
+          "Confirm trial",
+          "Transportation & accommodation for engineers",
+          "Shipyard management fee if needed to be charged as actual",
+          "Maintenance for ELFI with proportional valve",
+          "EILFI valve repair kit",
+          "EIFI valve offland sevice cost",
+          "Transportation cost",
+          "To replace diaphragm between ME crankcase and sump tank on-board"
+        ],
+        "reference_remarks": [
+          "If the FIVA valve need to overhaul at workshop, the cost will charged extra",
+          "repair kits for FIVA valve",
+          "Additional service as below:",
+          "Warranty Compensate Amount: 5times of the service cost at max.",
+          "Other spares if needed to be charged extra",
+          "Other repair if needed to be charged extra"
+        ],
+        "match_level": "item_and_context",
+        "matched_item_pairs": [
+          {
+            "query_item_id": "spr-2",
+            "query_title": "Fuel valve repair kit",
+            "reference_item_id": "doc-2632-line-40",
+            "reference_title": "EILFI valve repair kit",
+            "similarity": 0.28,
+            "matched_signals": [
+              "item_type_match: spare_parts",
+              "item_title: Fuel valve repair kit"
+            ]
+          }
+        ],
+        "commercial_fit": {
+          "spare_parts_supply_mode_match": false,
+          "option_style_overlap": []
+        },
+        "prefilter_score": 0.75,
+        "semantic_score": 0.62,
+        "rerank_stage": "hybrid"
+      },
+      {
+        "quote_id": "BRH-2025-003765",
+        "similarity": 0.6,
+        "reason": "核心项目工作范围、文本语义与服务场景相似。",
+        "matched_features": [
+          "service_mode: dock_repair",
+          "location_type: port",
+          "vessel_type_normalized: bulk_carrier",
+          "item_type: spare_parts",
+          "item_type_match: spare_parts",
+          "item_title: Fuel valve repair kit"
+        ],
+        "reference_items": [
+          "Hydraulic Cylinder Unit",
+          "Overhaul fuel booster unit",
+          "Overhaul exh. Actuator",
+          "Overhaul & Cleaning FIVA valve with replacement proportional valve",
+          "repair kits for FIVA valve",
+          "Replace level switch of HCU",
+          "Replace O-ring of retrun pipe",
+          "Clean distributor block",
+          "Membrane Accumulator",
+          "Overhaul and re-charge of accumulator and quick coupling",
+          "Replace repair kit",
+          "Overhaul Alpha lubricator",
+          "Replace Hyd. flexible Hoses and compensators at HPS",
+          "Replace Hydraulic power supply pump",
+          "Hydraulic system",
+          "Carry out safety test",
+          "Replace #310, #311 cartridge with cover",
+          "Auto filter of hydraulic system, safety valve, leakage test",
+          "L.O flushing of hydraulic system (HCU, HPS line)",
+          "Overhaul main starting air valve with slow turn valve",
+          "Replace repair kit of pneumatic system",
+          "Angle encoder overhaul",
+          "Insection",
+          "MPC including ECS parameter",
+          "Power Supply Unit.",
+          "Cabling inspection and low insulation",
+          "HCU (FIVA ,inductive sensor)",
+          "Tacho system",
+          "Installation of Sandwich filters on HCU and HPS",
+          "Function test",
+          "Interlock test",
+          "Hydraulic (Build up time, leakage test)",
+          "Safety test (Slow down, Shut down)",
+          "Function test for HCU,HPS,Tacho",
+          "HPS Pump workshop recondition/overhaul",
+          "Dismantle and reassemble for HPS pump and FIVA valve",
+          "Confirm trial",
+          "Transportation & accommodation for engineers",
+          "Shipyard management fee if needed to be charged as actual",
+          "Maintenance for ELFI with proportional valve",
+          "EILFI valve repair kit",
+          "EIFI valve offland sevice cost",
+          "Transportation cost"
+        ],
+        "reference_remarks": [
+          "If the FIVA valve need to overhaul at workshop, the cost will charged extra",
+          "repair kits for FIVA valve",
+          "Additional service as below:",
+          "Transportation cost",
+          "Other spares if needed to be charged extra",
+          "Other repair if needed to be charged extra",
+          "Warranty Compensate Amount: 5times of the service cost at max."
+        ],
+        "match_level": "item_and_context",
+        "matched_item_pairs": [
+          {
+            "query_item_id": "spr-2",
+            "query_title": "Fuel valve repair kit",
+            "reference_item_id": "doc-2631-line-41",
+            "reference_title": "EILFI valve repair kit",
+            "similarity": 0.28,
+            "matched_signals": [
+              "item_type_match: spare_parts",
+              "item_title: Fuel valve repair kit"
+            ]
+          }
+        ],
+        "commercial_fit": {
+          "spare_parts_supply_mode_match": false,
+          "option_style_overlap": []
+        },
+        "prefilter_score": 0.75,
+        "semantic_score": 0.61,
+        "rerank_stage": "hybrid"
+      },
+      {
+        "quote_id": "GRH-2025-003765",
+        "similarity": 0.59,
+        "reason": "核心项目工作范围、文本语义与服务场景相似。",
+        "matched_features": [
+          "service_mode: dock_repair",
+          "location_type: port",
+          "vessel_type_normalized: bulk_carrier",
+          "item_type: spare_parts",
+          "item_type_match: spare_parts",
+          "item_title: Fuel valve repair kit"
+        ],
+        "reference_items": [
+          "Hydraulic Cylinder Unit",
+          "Overhaul of hydraulic cylinder unit",
+          "Overhaul fuel booster unit",
+          "Overhaul exh. Actuator",
+          "Overhaul & Cleaning FIVA valve with replacement proportional valve",
+          "Replace level switch of HCU",
+          "Replace O-ring of retrun pipe",
+          "Clean distributor block",
+          "Membrane Accumulator",
+          "Overhaul and re-charge of accumulator and quick coupling",
+          "Replace repair kit",
+          "Overhaul Alpha lubricator",
+          "Replace Hyd. flexible Hoses and compensators at HPS",
+          "Replace Hydraulic power supply pump",
+          "Hydraulic system",
+          "Carry out safety test",
+          "Replace #310, #311 cartridge with cover",
+          "Auto filter of hydraulic system, safety valve, leakage test",
+          "L.O flushing of hydraulic system (HCU, HPS line)",
+          "Overhaul main starting air valve with slow turn valve",
+          "Replace repair kit of pneumatic system",
+          "Angle encoder overhaul",
+          "Insejection",
+          "MPC including ECS parameter",
+          "Power Supply Unit.",
+          "Cabling inspection and low insulation",
+          "HCU (FIVA ,inductive sensor)",
+          "Tacho system",
+          "Installation of Sandwich filters on HCU and HPS",
+          "Interlock test",
+          "Hydraulic (Build up time, leakage test)",
+          "Safety test (Slow down, Shut down)",
+          "Function test for HCU,HPS,Tacho",
+          "HPS Pump workshop recondition/overhaul",
+          "Dismantle and reassemble for HPS pump and FIVA valve",
+          "Confirm trial",
+          "Shipyard management fee",
+          "Maintenance for-ELFI with-proportional-valve",
+          "EILFI-valve-repair-kit",
+          "EIFI-valve-offland-sevice-cost",
+          "Transportation cost",
+          "To replace-diaphragm-between-ME-crankcase-and-sump-tank-on-board",
+          "Electrical hydraulic pump",
+          "Transportation cost to Shenzhen for above pump and ELFI valve",
+          "Membrane for Accumulator",
+          "Customs clearance from bonded warehouse",
+          "Spares for lubricator",
+          "611H-14 O ring",
+          "611H-15 O ring",
+          "611H-44 Non return valve",
+          "611H-45 O ring",
+          "611H-13 O ring",
+          "611H-29 Sealing ring",
+          "611H-36 O ring",
+          "611H-37 Inductive sensor",
+          "611H-47 O ring",
+          "611H-6 Solenoid valve complete",
+          "231E NO.51 O-RING",
+          "Pos.117&Pos26 567/231",
+          "Bearing complete",
+          "ROTAYR ENCODER",
+          "SPRING WAHER",
+          "U-UNT",
+          "PISTON RING",
+          "SEALING RING",
+          "SQUARE-SECTION SEALING RING",
+          "PRESS RELIEF",
+          "Press relief valve cartridge Pos.212",
+          "Press relief valve cartridge Pos.213",
+          "Cartridge valve",
+          "Seal ring",
+          "Level switch",
+          "Gasket",
+          "O ring"
+        ],
+        "reference_remarks": [
+          "If the FIVA valve need to overhaul at workshop, the cost will charged extra",
+          "repair kits for FIVA valve",
+          "Additional service as below:",
+          "Additional spares needed as below:",
+          "Spares added on 2025.10.25",
+          "Other spares if needed to be charged extra",
+          "Other repair if needed to be charged extra"
+        ],
+        "match_level": "item_and_context",
+        "matched_item_pairs": [
+          {
+            "query_item_id": "spr-2",
+            "query_title": "Fuel valve repair kit",
+            "reference_item_id": "doc-2635-line-40",
+            "reference_title": "EILFI-valve-repair-kit",
+            "similarity": 0.28,
+            "matched_signals": [
+              "item_type_match: spare_parts",
+              "item_title: Fuel valve repair kit"
+            ]
+          }
+        ],
+        "commercial_fit": {
+          "spare_parts_supply_mode_match": false,
+          "option_style_overlap": []
+        },
+        "prefilter_score": 0.75,
+        "semantic_score": 0.59,
+        "rerank_stage": "hybrid"
+      }
+    ],
+    "reference_summary": {
+      "price_range_hint": {
+        "currency": "USD",
+        "min": 37890.0,
+        "max": 45990.0,
+        "sample_size": 3
+      },
+      "common_items": [
+        "Hydraulic Cylinder Unit",
+        "Overhaul fuel booster unit",
+        "Overhaul exh. Actuator",
+        "Overhaul & Cleaning FIVA valve with replacement proportional valve",
+        "Replace level switch of HCU"
+      ],
+      "remark_patterns": [
+        "If the FIVA valve need to overhaul at workshop, the cost will charged extra",
+        "repair kits for FIVA valve",
+        "Additional service as below:",
+        "Other spares if needed to be charged extra",
+        "Other repair if needed to be charged extra"
+      ],
+      "recommended_reference_ids": [
+        "ERH-2025-003765",
+        "BRH-2025-003765",
+        "GRH-2025-003765"
+      ],
+      "item_clusters": [
+        {
+          "cluster_key": "611h ring",
+          "sample_size": 6,
+          "examples": [
+            "611H-14 O ring",
+            "611H-15 O ring",
+            "611H-45 O ring"
+          ]
+        },
+        {
+          "cluster_key": "hydraulic cylinder unit",
+          "sample_size": 3,
+          "examples": [
+            "Hydraulic Cylinder Unit"
+          ]
+        },
+        {
+          "cluster_key": "overhaul fuel booster unit",
+          "sample_size": 3,
+          "examples": [
+            "Overhaul fuel booster unit"
+          ]
+        },
+        {
+          "cluster_key": "overhaul exh actuator",
+          "sample_size": 3,
+          "examples": [
+            "Overhaul exh. Actuator"
+          ]
+        },
+        {
+          "cluster_key": "overhaul cleaning fiva valve",
+          "sample_size": 3,
+          "examples": [
+            "Overhaul & Cleaning FIVA valve with replacement proportional valve"
+          ]
+        }
+      ],
+      "remark_blocks": [
+        {
+          "remark_type": "commercial",
+          "texts": [
+            "If the FIVA valve need to overhaul at workshop, the cost will charged extra",
+            "repair kits for FIVA valve",
+            "Additional service as below:"
+          ],
+          "sample_size": 18
+        },
+        {
+          "remark_type": "warranty",
+          "texts": [
+            "Warranty Compensate Amount: 5times of the service cost at max."
+          ],
+          "sample_size": 2
+        }
+      ],
+      "charge_item_hints": [
+        {
+          "hint_type": "transportation",
+          "source": "history_text",
+          "sample_size": 4,
+          "examples": [
+            "Transportation & accommodation for engineers",
+            "Transportation cost",
+            "Transportation cost to Shenzhen for above pump and ELFI valve"
+          ]
+        },
+        {
+          "hint_type": "accommodation",
+          "source": "history_text",
+          "sample_size": 2,
+          "examples": [
+            "Transportation & accommodation for engineers",
+            "accommodation"
+          ]
+        },
+        {
+          "hint_type": "dockyard_management",
+          "source": "history_text",
+          "sample_size": 3,
+          "examples": [
+            "Shipyard management fee if needed to be charged as actual",
+            "Shipyard management fee",
+            "dockyard_management"
+          ]
+        }
+      ],
+      "option_style_hints": [],
+      "history_quality_flags": [
+        "commercial_mismatch"
+      ],
+      "item_price_hints": [
+        {
+          "query_item_id": "spr-2",
+          "query_title": "Fuel valve repair kit",
+          "currency": null,
+          "min": 1200.0,
+          "max": 1200.0,
+          "median": 1200.0,
+          "sample_size": 3,
+          "matched_reference_item_ids": [
+            "doc-2632-line-40",
+            "doc-2631-line-41",
+            "doc-2635-line-40"
+          ],
+          "source_quote_ids": [
+            "ERH-2025-003765",
+            "BRH-2025-003765",
+            "GRH-2025-003765"
+          ]
+        }
+      ],
+      "retrieval_strategy": "rule_prefilter+aliyun_embedding_rerank"
+    },
+    "confidence": 0.9
+  },
+  "pricing_result": {
+    "quotation_options": [
+      {
+        "option_id": "option-1",
+        "title": "Option 1",
+        "sections": [
+          {
+            "section_id": "option-1-section-service",
+            "section_type": "service",
+            "title": "Service",
+            "groups": [
+              {
+                "group_id": "option-1-group-svc-1",
+                "group_no": "1",
+                "title": "Main engine inspection",
+                "description": "服务项标题和范围已基本明确，可进入报价。",
+                "lines": [
+                  {
+                    "line_id": "option-1-line-svc-1",
+                    "item": "1",
+                    "line_no": "1",
+                    "line_type": "priced",
+                    "description": "Main engine inspection General inspection before quotation.",
+                    "pricing_mode": "lump_sum",
+                    "unit_price": 3500.0,
+                    "unit_price_display": "3,500.00",
+                    "unit": "set",
+                    "qty": 1,
+                    "qty_display": "1",
+                    "discount": null,
+                    "amount": 3500.0,
+                    "amount_display": "3,500.00",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "historical_price_range",
+                    "conditions": [],
+                    "notes": [
+                      "服务项标题和范围已基本明确，可进入报价。",
+                      "General inspection before quotation."
+                    ]
+                  },
+                  {
+                    "line_id": "option-1-line-svc-1-scope-1",
+                    "item": "",
+                    "line_no": "",
+                    "line_type": "scope_note",
+                    "description": "Inspect main engine condition",
+                    "pricing_mode": "text_only",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "included_scope",
+                    "conditions": [],
+                    "notes": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "section_id": "option-1-section-spare_parts",
+            "section_type": "spare_parts",
+            "title": "Spare Parts",
+            "groups": [
+              {
+                "group_id": "option-1-group-spr-2",
+                "group_no": "1",
+                "title": "Fuel valve repair kit",
+                "description": "服务项标题和范围已基本明确，可进入报价。",
+                "lines": [
+                  {
+                    "line_id": "option-1-line-spr-2",
+                    "item": "1",
+                    "line_no": "1",
+                    "line_type": "priced",
+                    "description": "Fuel valve repair kit Pending ownership confirmation",
+                    "pricing_mode": "lump_sum",
+                    "unit_price": 405.0,
+                    "unit_price_display": "405.00",
+                    "unit": "LS",
+                    "qty": 1,
+                    "qty_display": "1",
+                    "discount": null,
+                    "amount": 405.0,
+                    "amount_display": "405.00",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "historical_price_range",
+                    "conditions": [],
+                    "notes": [
+                      "服务项标题和范围已基本明确，可进入报价。",
+                      "Pending ownership confirmation"
+                    ]
+                  },
+                  {
+                    "line_id": "option-1-line-spr-2-scope-1",
+                    "item": "",
+                    "line_no": "",
+                    "line_type": "scope_note",
+                    "description": "Supply fuel valve repair kit",
+                    "pricing_mode": "text_only",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "included_scope",
+                    "conditions": [],
+                    "notes": []
+                  },
+                  {
+                    "line_id": "option-1-line-spr-2-scope-2",
+                    "item": "",
+                    "line_no": "",
+                    "line_type": "scope_note",
+                    "description": "Deliver repair kit to vessel side",
+                    "pricing_mode": "text_only",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "included_scope",
+                    "conditions": [],
+                    "notes": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "section_id": "option-1-section-other",
+            "section_type": "other",
+            "title": "Other",
+            "groups": [
+              {
+                "group_id": "option-1-group-hist-other-transportation",
+                "group_no": "1",
+                "title": "Transportation",
+                "description": "历史相似报价中常见交通费，建议保守纳入结构。",
+                "lines": [
+                  {
+                    "line_id": "option-1-line-hist-other-transportation",
+                    "item": "1",
+                    "line_no": "1",
+                    "line_type": "conditional",
+                    "description": "Transportation",
+                    "pricing_mode": "rate_as_actual",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "As actual",
+                    "currency": "USD",
+                    "status": "as_actual",
+                    "basis": "historical_price_range",
+                    "conditions": [],
+                    "notes": [
+                      "历史相似报价中常见交通费，建议保守纳入结构。"
+                    ]
+                  }
+                ]
+              },
+              {
+                "group_id": "option-1-group-hist-other-dockyard_management",
+                "group_no": "2",
+                "title": "Dockyard management fee",
+                "description": "历史相似报价中常见厂修管理相关费用，建议保守纳入报价结构。",
+                "lines": [
+                  {
+                    "line_id": "option-1-line-hist-other-dockyard_management",
+                    "item": "2",
+                    "line_no": "2",
+                    "line_type": "conditional",
+                    "description": "Dockyard management fee",
+                    "pricing_mode": "rate_as_actual",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "As actual",
+                    "currency": "USD",
+                    "status": "as_actual",
+                    "basis": "historical_price_range",
+                    "conditions": [],
+                    "notes": [
+                      "历史相似报价中常见厂修管理相关费用，建议保守纳入报价结构。"
+                    ]
+                  }
+                ]
+              },
+              {
+                "group_id": "option-1-group-hist-other-accommodation",
+                "group_no": "3",
+                "title": "Accommodation",
+                "description": "历史相似报价中常见住宿或食宿费，建议保守纳入结构。",
+                "lines": [
+                  {
+                    "line_id": "option-1-line-hist-other-accommodation",
+                    "item": "3",
+                    "line_no": "3",
+                    "line_type": "optional",
+                    "description": "Accommodation",
+                    "pricing_mode": "conditional",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "If needed",
+                    "currency": "USD",
+                    "status": "if_needed",
+                    "basis": "historical_price_range",
+                    "conditions": [
+                      "Only chargeable if actually required during attendance"
+                    ],
+                    "notes": [
+                      "历史相似报价中常见住宿或食宿费，建议保守纳入结构。"
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "summary": {
+          "service_charge": {
+            "value_type": "amount",
+            "amount": 3500.0,
+            "display": "3,500.00",
+            "currency": "USD",
+            "status": "chargeable"
+          },
+          "spare_parts_fee": {
+            "value_type": "amount",
+            "amount": 405.0,
+            "display": "405.00",
+            "currency": "USD",
+            "status": "chargeable"
+          },
+          "other": {
+            "value_type": "status",
+            "amount": null,
+            "display": "Pending",
+            "currency": "USD",
+            "status": "pending"
+          },
+          "total": {
+            "value_type": "status",
+            "amount": null,
+            "display": "Pending",
+            "currency": "USD",
+            "status": "pending"
+          }
+        },
+        "remarks": [
+          {
+            "type": "commercial",
+            "text": "If the FIVA valve need to overhaul at workshop, the cost will charged extra"
+          },
+          {
+            "type": "commercial",
+            "text": "repair kits for FIVA valve"
+          },
+          {
+            "type": "warranty",
+            "text": "Warranty Compensate Amount: 5times of the service cost at max."
+          }
+        ]
+      }
+    ]
+  },
+  "quote_document": {
+    "document_type": "quotation",
+    "document_version": "1.1",
+    "header": {
+      "currency": "USD",
+      "vessel_name": "M/V TEST PAUSE",
+      "date": "2026-04-20",
+      "imo_no": "",
+      "vessel_type": "Bulk Carrier",
+      "customer_name": "",
+      "service_port": "Shanghai",
+      "attention": "",
+      "wk_offer_no": "WK-interactive-pause-001",
+      "your_ref_no": "",
+      "quotation_validity": "30 days",
+      "po_no": "",
+      "pic_of_winkong": "Winkong"
+    },
+    "table_schema": {
+      "columns": [
+        {
+          "key": "item",
+          "label": "Item"
+        },
+        {
+          "key": "description",
+          "label": "Description"
+        },
+        {
+          "key": "unit_price",
+          "label": "Unit Price"
+        },
+        {
+          "key": "unit",
+          "label": "Unit"
+        },
+        {
+          "key": "qty",
+          "label": "Q'ty"
+        },
+        {
+          "key": "discount",
+          "label": "Discount"
+        },
+        {
+          "key": "amount",
+          "label": "Amount"
+        }
+      ]
+    },
+    "quotation_options": [
+      {
+        "option_id": "option-1",
+        "title": "Option 1",
+        "sections": [
+          {
+            "section_id": "option-1-section-service",
+            "section_type": "service",
+            "title": "Service",
+            "groups": [
+              {
+                "group_id": "option-1-group-svc-1",
+                "group_no": "1",
+                "title": "Main engine inspection",
+                "description": "服务项标题和范围已基本明确，可进入报价。",
+                "lines": [
+                  {
+                    "line_id": "option-1-line-svc-1",
+                    "item": "1",
+                    "line_no": "1",
+                    "line_type": "priced",
+                    "description": "Main engine inspection General inspection before quotation.",
+                    "pricing_mode": "lump_sum",
+                    "unit_price": 3500.0,
+                    "unit_price_display": "3,500.00",
+                    "unit": "set",
+                    "qty": 1,
+                    "qty_display": "1",
+                    "discount": null,
+                    "amount": 3500.0,
+                    "amount_display": "3,500.00",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "historical_price_range",
+                    "conditions": [],
+                    "notes": [
+                      "服务项标题和范围已基本明确，可进入报价。",
+                      "General inspection before quotation."
+                    ]
+                  },
+                  {
+                    "line_id": "option-1-line-svc-1-scope-1",
+                    "item": "",
+                    "line_no": "",
+                    "line_type": "scope_note",
+                    "description": "Inspect main engine condition",
+                    "pricing_mode": "text_only",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "included_scope",
+                    "conditions": [],
+                    "notes": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "section_id": "option-1-section-spare_parts",
+            "section_type": "spare_parts",
+            "title": "Spare Parts",
+            "groups": [
+              {
+                "group_id": "option-1-group-spr-2",
+                "group_no": "1",
+                "title": "Fuel valve repair kit",
+                "description": "服务项标题和范围已基本明确，可进入报价。",
+                "lines": [
+                  {
+                    "line_id": "option-1-line-spr-2",
+                    "item": "1",
+                    "line_no": "1",
+                    "line_type": "priced",
+                    "description": "Fuel valve repair kit Pending ownership confirmation",
+                    "pricing_mode": "lump_sum",
+                    "unit_price": 405.0,
+                    "unit_price_display": "405.00",
+                    "unit": "LS",
+                    "qty": 1,
+                    "qty_display": "1",
+                    "discount": null,
+                    "amount": 405.0,
+                    "amount_display": "405.00",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "historical_price_range",
+                    "conditions": [],
+                    "notes": [
+                      "服务项标题和范围已基本明确，可进入报价。",
+                      "Pending ownership confirmation"
+                    ]
+                  },
+                  {
+                    "line_id": "option-1-line-spr-2-scope-1",
+                    "item": "",
+                    "line_no": "",
+                    "line_type": "scope_note",
+                    "description": "Supply fuel valve repair kit",
+                    "pricing_mode": "text_only",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "included_scope",
+                    "conditions": [],
+                    "notes": []
+                  },
+                  {
+                    "line_id": "option-1-line-spr-2-scope-2",
+                    "item": "",
+                    "line_no": "",
+                    "line_type": "scope_note",
+                    "description": "Deliver repair kit to vessel side",
+                    "pricing_mode": "text_only",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "included_scope",
+                    "conditions": [],
+                    "notes": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "section_id": "option-1-section-other",
+            "section_type": "other",
+            "title": "Other",
+            "groups": [
+              {
+                "group_id": "option-1-group-hist-other-transportation",
+                "group_no": "1",
+                "title": "Transportation",
+                "description": "历史相似报价中常见交通费，建议保守纳入结构。",
+                "lines": [
+                  {
+                    "line_id": "option-1-line-hist-other-transportation",
+                    "item": "1",
+                    "line_no": "1",
+                    "line_type": "conditional",
+                    "description": "Transportation",
+                    "pricing_mode": "rate_as_actual",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "As actual",
+                    "currency": "USD",
+                    "status": "as_actual",
+                    "basis": "historical_price_range",
+                    "conditions": [],
+                    "notes": [
+                      "历史相似报价中常见交通费，建议保守纳入结构。"
+                    ]
+                  }
+                ]
+              },
+              {
+                "group_id": "option-1-group-hist-other-dockyard_management",
+                "group_no": "2",
+                "title": "Dockyard management fee",
+                "description": "历史相似报价中常见厂修管理相关费用，建议保守纳入报价结构。",
+                "lines": [
+                  {
+                    "line_id": "option-1-line-hist-other-dockyard_management",
+                    "item": "2",
+                    "line_no": "2",
+                    "line_type": "conditional",
+                    "description": "Dockyard management fee",
+                    "pricing_mode": "rate_as_actual",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "As actual",
+                    "currency": "USD",
+                    "status": "as_actual",
+                    "basis": "historical_price_range",
+                    "conditions": [],
+                    "notes": [
+                      "历史相似报价中常见厂修管理相关费用，建议保守纳入报价结构。"
+                    ]
+                  }
+                ]
+              },
+              {
+                "group_id": "option-1-group-hist-other-accommodation",
+                "group_no": "3",
+                "title": "Accommodation",
+                "description": "历史相似报价中常见住宿或食宿费，建议保守纳入结构。",
+                "lines": [
+                  {
+                    "line_id": "option-1-line-hist-other-accommodation",
+                    "item": "3",
+                    "line_no": "3",
+                    "line_type": "optional",
+                    "description": "Accommodation",
+                    "pricing_mode": "conditional",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "If needed",
+                    "currency": "USD",
+                    "status": "if_needed",
+                    "basis": "historical_price_range",
+                    "conditions": [
+                      "Only chargeable if actually required during attendance"
+                    ],
+                    "notes": [
+                      "历史相似报价中常见住宿或食宿费，建议保守纳入结构。"
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "summary": {
+          "service_charge": {
+            "value_type": "amount",
+            "amount": 3500.0,
+            "display": "3,500.00",
+            "currency": "USD",
+            "status": "chargeable"
+          },
+          "spare_parts_fee": {
+            "value_type": "amount",
+            "amount": 405.0,
+            "display": "405.00",
+            "currency": "USD",
+            "status": "chargeable"
+          },
+          "other": {
+            "value_type": "status",
+            "amount": null,
+            "display": "Pending",
+            "currency": "USD",
+            "status": "pending"
+          },
+          "total": {
+            "value_type": "status",
+            "amount": null,
+            "display": "Pending",
+            "currency": "USD",
+            "status": "pending"
+          }
+        },
+        "remarks": [
+          {
+            "type": "commercial",
+            "text": "If the FIVA valve need to overhaul at workshop, the cost will charged extra"
+          },
+          {
+            "type": "commercial",
+            "text": "repair kits for FIVA valve"
+          },
+          {
+            "type": "warranty",
+            "text": "Warranty Compensate Amount: 5times of the service cost at max."
+          }
+        ]
+      }
+    ],
+    "footer": {
+      "summary": {
+        "service_charge": {
+          "value_type": "amount",
+          "amount": 3500.0,
+          "display": "3,500.00",
+          "currency": "USD",
+          "status": "chargeable"
+        },
+        "spare_parts_fee": {
+          "value_type": "amount",
+          "amount": 405.0,
+          "display": "405.00",
+          "currency": "USD",
+          "status": "chargeable"
+        },
+        "other": {
+          "value_type": "status",
+          "amount": null,
+          "display": "Pending",
+          "currency": "USD",
+          "status": "pending"
+        },
+        "total": {
+          "value_type": "status",
+          "amount": null,
+          "display": "Pending",
+          "currency": "USD",
+          "status": "pending"
+        }
+      },
+      "remark": {
+        "title": "Remark",
+        "items": [
+          {
+            "type": "commercial",
+            "text": "If the FIVA valve need to overhaul at workshop, the cost will charged extra"
+          },
+          {
+            "type": "commercial",
+            "text": "repair kits for FIVA valve"
+          },
+          {
+            "type": "warranty",
+            "text": "Warranty Compensate Amount: 5times of the service cost at max."
+          },
+          {
+            "type": "warranty",
+            "text": "Spare parts warranty period shall follow supplier confirmation."
+          },
+          {
+            "type": "warranty",
+            "text": "Inspection and troubleshooting items carry no service warranty."
+          },
+          {
+            "type": "compensation",
+            "text": "Warranty Compensate Amount: 5 times of the service cost at max."
+          }
+        ]
+      },
+      "service_payment_terms": {
+        "title": "Service Payment Terms",
+        "content": "Payment within 30 days upon invoice date."
+      }
+    },
+    "review_result": {
+      "review_flags": [
+        "当前报价包含待确认或按条件收费内容，提交前需再次核对。"
+      ],
+      "risk_flags": [],
+      "approval_level": "manager"
+    },
+    "trace": {
+      "historical_references": [
+        {
+          "quote_id": "ERH-2025-003765",
+          "similarity": 0.6,
+          "reason": "核心项目工作范围、文本语义与服务场景相似。"
+        },
+        {
+          "quote_id": "BRH-2025-003765",
+          "similarity": 0.6,
+          "reason": "核心项目工作范围、文本语义与服务场景相似。"
+        },
+        {
+          "quote_id": "GRH-2025-003765",
+          "similarity": 0.59,
+          "reason": "核心项目工作范围、文本语义与服务场景相似。"
+        }
+      ],
+      "pricing_basis": [
+        "historical_price_range",
+        "included_scope",
+        "historical_remark_block",
+        "historical_charge_item_hint",
+        "history_quality:commercial_mismatch"
+      ],
+      "rule_versions": [
+        "quote_pricing_skill:v2",
+        "quote_review_output_skill:v2",
+        "historical_remark_blocks:v1",
+        "historical_charge_item_hints:v1"
+      ]
+    }
+  },
+  "orchestration_status": "completed",
+  "execution_trace": [
+    {
+      "skill_name": "quote_template_select_skill",
+      "decision_type": "required",
+      "reason": "required stage: S0"
+    },
+    {
+      "skill_name": "quote_request_prepare_skill",
+      "decision_type": "required",
+      "reason": "required stage: S1"
+    },
+    {
+      "skill_name": "quote_feasibility_check_skill",
+      "decision_type": "required",
+      "reason": "required stage: S2"
+    },
+    {
+      "skill_name": "quote_feasibility_check_skill",
+      "decision_type": "required",
+      "reason": "required stage: feasibility"
+    },
+    {
+      "skill_name": "historical_quote_reference_skill",
+      "decision_type": "optional",
+      "reason": "optional stage chosen: historical_reference"
+    },
+    {
+      "skill_name": "quote_pricing_skill",
+      "decision_type": "required",
+      "reason": "required stage: pricing"
+    },
+    {
+      "skill_name": "quote_review_output_skill",
+      "decision_type": "required",
+      "reason": "required stage: review_output"
+    }
+  ],
+  "planner_trace": [
+    {
+      "action": "run_skill",
+      "skill_name": "quote_feasibility_check_skill",
+      "reason": "required stage: feasibility",
+      "decision_type": "required",
+      "planner_notes": []
+    },
+    {
+      "action": "run_skill",
+      "skill_name": "historical_quote_reference_skill",
+      "reason": "optional stage chosen: historical_reference",
+      "decision_type": "optional",
+      "planner_notes": []
+    },
+    {
+      "action": "run_skill",
+      "skill_name": "quote_pricing_skill",
+      "reason": "required stage: pricing",
+      "decision_type": "required",
+      "planner_notes": []
+    },
+    {
+      "action": "run_skill",
+      "skill_name": "quote_review_output_skill",
+      "reason": "required stage: review_output",
+      "decision_type": "required",
+      "planner_notes": []
+    },
+    {
+      "action": "finish",
+      "skill_name": null,
+      "reason": "rendering not requested",
+      "decision_type": "optional",
+      "planner_notes": []
+    }
+  ],
+  "skipped_skills": [],
+  "applied_planner_strategies": [
+    {
+      "strategy_type": "clarification_applied",
+      "reason": "applied confirmed spare parts supply mode during resume",
+      "payload": {
+        "spare_parts_supply_mode": "company_supply"
+      }
+    },
+    {
+      "strategy_type": "clarification_applied",
+      "reason": "applied confirmed work scope details during resume",
+      "payload": {
+        "work_scope_item_ids": [
+          "spr-2"
+        ]
+      }
+    }
+  ]
+}

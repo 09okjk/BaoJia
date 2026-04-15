@@ -1,26 +1,5 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://example.local/opencode/skills/quote_request_prepare_skill/input.schema.json",
-  "title": "quote_request_prepare_skill input",
-  "type": "object",
-  "additionalProperties": false,
-  "required": [
-    "assessment_report"
-  ],
-  "properties": {
-    "assessment_report": {
-      "$ref": "#/$defs/openObject"
-    },
-    "customer_context": {
-      "$ref": "#/$defs/openObject"
-    },
-    "business_context": {
-      "$ref": "#/$defs/openObject"
-    }
-  },
-  "$defs": {
-    "openObject": {
-      "type": "object"
-    }
-  }
+  "$ref": "../references/quote-request-prepare-input.schema.json"
 }

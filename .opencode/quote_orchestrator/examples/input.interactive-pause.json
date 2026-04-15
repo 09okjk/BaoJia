@@ -1,0 +1,34 @@
+{
+  "assessment_report": {
+    "report_id": "interactive-pause-001",
+    "vessel_name": "M/V TEST PAUSE",
+    "vessel_type": "Bulk Carrier",
+    "service_port": "Shanghai",
+    "service_date": "2026-04-20",
+    "service_mode": "dock repair",
+    "service_category": "综合",
+    "service_items": [
+      {
+        "title": "Main engine inspection",
+        "description": "General inspection before quotation.",
+        "work_scope": [
+          "Inspect main engine condition"
+        ],
+        "quantity": 1,
+        "unit": "set"
+      }
+    ],
+    "spare_parts_items": [
+      {
+        "title": "Fuel valve repair kit",
+        "description": "Pending ownership confirmation"
+      }
+    ]
+  },
+  "customer_context": {},
+  "business_context": {
+    "interactive_mode": true,
+    "multi_option": false
+  },
+  "render_options": {}
+}

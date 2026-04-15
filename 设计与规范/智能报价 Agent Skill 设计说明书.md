@@ -101,10 +101,12 @@
 - 自动对外发送客户邮件
 - 自动发起审批流
 - 自动调用采购系统实时询价
-- 自动输出最终 PDF / Word 文件
+- 自动输出最终 Word 文件
 - 成单后全链路自动跟单
 
 这些能力可作为后续扩展，但不应混入本期 Skill 核心设计。
+
+补充说明：当前仓库实现已包含可选的 `quote_pdf_render_skill`，可在 `QuoteDocument JSON` 生成后继续输出 HTML/PDF 文件。该能力属于后处理渲染层，不改变前述“报价核心链路以 QuoteDocument 为主产物”的设计边界。
 
 ---
 
@@ -909,22 +911,28 @@ Summary 需要支持的不仅是数值，还要支持待定、按实际、文本
 
 ---
 
-## 15.6 `quote_orchestrator`
+## 15.6 `quote_orchestration_skill`
 
 ### 目标
-负责编排各 Skill 的执行顺序，输出最终报价文档。
+作为智能报价 Agent 的唯一对外 workflow 入口，统一接收整单报价请求并输出最终报价文档。
+
+### 定位
+
+- Agent 做整单报价时，应调用 `quote_orchestration_skill`
+- 该 Skill 内部封装现有 Hybrid 编排实现
+- `quote_orchestrator` 仅作为内部实现层存在，不再作为对外独立入口暴露
 
 ### 推荐流程
 ```text
-quote_request_prepare_skill
-  ↓
-quote_feasibility_check_skill
-  ↓
-historical_quote_reference_skill
-  ↓
-quote_pricing_skill
-  ↓
-quote_review_output_skill
+quote_orchestration_skill
+  └─ 内部调用 Hybrid workflow
+      ├─ quote_template_select_skill（可选）
+      ├─ quote_request_prepare_skill
+      ├─ quote_feasibility_check_skill
+      ├─ historical_quote_reference_skill（可选）
+      ├─ quote_pricing_skill
+      ├─ quote_review_output_skill
+      └─ quote_pdf_render_skill（可选）
 ```
 
 ---
@@ -1027,7 +1035,7 @@ quote_review_output_skill
 - `historical_quote_reference_skill`
 - `quote_pricing_skill`
 - `quote_review_output_skill`
-- `quote_orchestrator`
+- `quote_orchestration_skill`
 
 ---
 

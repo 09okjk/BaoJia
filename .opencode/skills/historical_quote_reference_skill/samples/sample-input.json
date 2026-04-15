@@ -1,0 +1,85 @@
+{
+  "quote_request": {
+    "request_meta": {
+      "request_id": "qr-demo-001",
+      "source": "assessment_report",
+      "prepared_at": "2026-04-09T06:39:59.068439+00:00",
+      "language": "zh-CN"
+    },
+    "header_context": {
+      "currency": "USD",
+      "vessel_name": "MV EXAMPLE",
+      "imo_no": "1234567",
+      "vessel_type": "Tanker",
+      "customer_name": "ABC Shipping",
+      "service_port": "Zhapu Port, China",
+      "service_date": null,
+      "attention": null,
+      "customer_ref_no": null
+    },
+    "service_context": {
+      "service_category": "service",
+      "service_mode": "voyage_repair",
+      "location_type": "port",
+      "needs_multi_option": false,
+      "option_hints": [],
+      "urgency": null
+    },
+    "candidate_items": [
+      {
+        "item_id": "svc-1",
+        "item_type": "service",
+        "title": "AE-1 crankshaft trueness checks in place",
+        "description": "Working time abt 15 hours",
+        "work_scope": [
+          "2pcs M/B lower bearing remove",
+          "Crankshaft run-out check by magnetic gauge"
+        ],
+        "quantity_hint": 1,
+        "unit_hint": "job",
+        "labor_hint": [
+          "1 supervisor",
+          "2 fitters"
+        ],
+        "pricing_clues": [
+          "mechanical",
+          "crankshaft"
+        ],
+        "status_hint": null,
+        "source": "assessment_report"
+      }
+    ],
+    "spare_parts_context": {
+      "has_spare_parts": true,
+      "spare_parts_supply_mode": null,
+      "spare_parts_items": []
+    },
+    "risk_context": {
+      "risks": [],
+      "pending_confirmations": [],
+      "assumptions": []
+    },
+    "commercial_context": {
+      "preferred_currency": "USD",
+      "pricing_expectation": null,
+      "special_terms": []
+    },
+    "source_refs": {
+      "assessment_report_id": "demo-001",
+      "customer_context_ref": null,
+      "business_context_ref": null
+    }
+  },
+  "quotable_items": [
+    {
+      "item_id": "svc-1",
+      "item_type": "service",
+      "title": "AE-1 crankshaft trueness checks in place",
+      "decision": "quotable",
+      "reason": "服务项标题和范围已基本明确，可进入报价。",
+      "blocking_fields": [],
+      "suggested_status": "chargeable",
+      "source": "quote_request.candidate_items"
+    }
+  ]
+}

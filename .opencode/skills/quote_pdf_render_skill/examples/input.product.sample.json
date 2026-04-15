@@ -1,0 +1,172 @@
+{
+  "quote_document": {
+    "document_type": "quotation",
+    "document_version": "1.1",
+    "header": {
+      "currency": "USD",
+      "vessel_name": "M/V EXAMPLE",
+      "date": "2026-04-09",
+      "imo_no": "1234567",
+      "vessel_type": "Bulk Carrier",
+      "customer_name": "ABC Shipping",
+      "service_port": "Qingdao",
+      "attention": "Purchasing Department",
+      "wk_offer_no": "WK-product-001",
+      "your_ref_no": "REF-PD-001",
+      "quotation_validity": "30 days",
+      "po_no": "",
+      "pic_of_winkong": "Winkong"
+    },
+    "table_schema": {
+      "columns": [
+        { "key": "item", "label": "Item" },
+        { "key": "description", "label": "Description" },
+        { "key": "unit_price", "label": "Unit Price" },
+        { "key": "unit", "label": "Unit" },
+        { "key": "qty", "label": "Q'ty" },
+        { "key": "discount", "label": "Discount" },
+        { "key": "amount", "label": "Amount" }
+      ]
+    },
+    "quotation_options": [
+      {
+        "option_id": "option-a",
+        "title": "Option A Standard quotation",
+        "sections": [
+          {
+            "section_id": "spare-section",
+            "section_type": "spare_parts",
+            "title": "Spare Parts",
+            "groups": [
+              {
+                "group_id": "grp-1",
+                "group_no": "1",
+                "title": "Fuel oil pump spare parts",
+                "description": "Supply spare parts only",
+                "lines": [
+                  {
+                    "line_id": "line-1",
+                    "item": "1",
+                    "line_no": "1",
+                    "line_type": "priced",
+                    "description": "Pump repair kit set",
+                    "pricing_mode": "unit_price",
+                    "unit_price": 250.0,
+                    "unit_price_display": "250.00",
+                    "unit": "pcs",
+                    "qty": 4,
+                    "qty_display": "4",
+                    "discount": null,
+                    "amount": 1000.0,
+                    "amount_display": "1,000.00",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "supplier_quote",
+                    "conditions": [],
+                    "notes": []
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "summary": {
+          "service_charge": {
+            "value_type": "amount",
+            "amount": 0.0,
+            "display": "0.00",
+            "currency": "USD",
+            "status": "chargeable"
+          },
+          "spare_parts_fee": {
+            "value_type": "amount",
+            "amount": 1000.0,
+            "display": "1,000.00",
+            "currency": "USD",
+            "status": "chargeable"
+          },
+          "other": {
+            "value_type": "amount",
+            "amount": 150.0,
+            "display": "150.00",
+            "currency": "USD",
+            "status": "chargeable"
+          },
+          "total": {
+            "value_type": "amount",
+            "amount": 1150.0,
+            "display": "1,150.00",
+            "currency": "USD",
+            "status": "chargeable"
+          }
+        },
+        "remarks": [
+          {
+            "type": "commercial",
+            "text": "Packing and inland logistics to be charged if required."
+          }
+        ]
+      }
+    ],
+    "footer": {
+      "summary": {
+        "service_charge": {
+          "value_type": "amount",
+          "amount": 0.0,
+          "display": "0.00",
+          "currency": "USD",
+          "status": "chargeable"
+        },
+        "spare_parts_fee": {
+          "value_type": "amount",
+          "amount": 1000.0,
+          "display": "1,000.00",
+          "currency": "USD",
+          "status": "chargeable"
+        },
+        "other": {
+          "value_type": "amount",
+          "amount": 150.0,
+          "display": "150.00",
+          "currency": "USD",
+          "status": "chargeable"
+        },
+        "total": {
+          "value_type": "amount",
+          "amount": 1150.0,
+          "display": "1,150.00",
+          "currency": "USD",
+          "status": "chargeable"
+        }
+      },
+      "remark": {
+        "title": "Remark",
+        "items": [
+          {
+            "type": "commercial",
+            "text": "Packing and inland logistics to be charged if required."
+          }
+        ]
+      },
+      "service_payment_terms": {
+        "title": "Service Payment Terms",
+        "content": "Payment within 30 days upon invoice date."
+      }
+    },
+    "review_result": {
+      "review_flags": [],
+      "risk_flags": [],
+      "approval_level": "standard"
+    },
+    "trace": {
+      "historical_references": [],
+      "pricing_basis": ["supplier_quote"],
+      "rule_versions": ["quote_pdf_render_skill:product-v1"]
+    }
+  },
+  "render_options": {
+    "languages": ["zh", "en"],
+    "template_type": "product",
+    "output_dir": ".opencode/out/quotes"
+  }
+}

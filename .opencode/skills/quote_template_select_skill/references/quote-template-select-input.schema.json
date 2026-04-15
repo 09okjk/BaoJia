@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.local/opencode/skills/quote-template-select-skill/references/quote-template-select-input.schema.json",
+  "title": "quote_template_select_skill input",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "assessment_report"
+  ],
+  "properties": {
+    "assessment_report": {
+      "type": "object"
+    },
+    "customer_context": {
+      "type": "object"
+    },
+    "business_context": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "force_template_type": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "enum": [
+            "engineering-service",
+            "digital-product",
+            "laboratory",
+            "man-hour",
+            "product",
+            "supercharger",
+            "valva",
+            null
+          ]
+        }
+      }
+    }
+  }
+}

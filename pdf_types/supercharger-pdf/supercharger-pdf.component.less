@@ -1,0 +1,21 @@
+@import '../common-pdf.less';
+@page {
+  size: A4;
+  margin: 10px;
+  margin-top: 150px;
+}
+.main-supercharger-pdf {
+  page: superchargerPdf;
+}
+@page {
+  @top-center {
+    content: element(headerRunningSupercharger);
+  }
+  @bottom-right {
+    padding-bottom: 20px;
+    // content: counter(page) '/' counter(pages);
+  }
+}
+.header {
+  position: running(headerRunningSupercharger);
+}

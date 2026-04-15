@@ -279,6 +279,6 @@
       "zh",
       "en"
     ],
-    "output_dir": ".opencode/skills/quote_pdf_render_skill/out"
+    "output_dir": ".opencode/out/quotes"
   }
 }

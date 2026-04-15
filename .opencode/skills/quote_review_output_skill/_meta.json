@@ -1,0 +1,6 @@
+{
+  "name": "quote-review-output-skill",
+  "version": "1.0.0",
+  "author": "BaoJia Team",
+  "description": "基于上游结果生成最终 quote_document。"
+}

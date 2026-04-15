@@ -1,0 +1,22 @@
+@import '../common-pdf.less';
+@page {
+  size: A4;
+  margin: 30px;
+  margin-top: 130px;
+}
+.man-hour-pdf {
+  page: manHourPdf;
+}
+@page {
+  @top-center {
+    content: element(headerRunningManHour);
+  }
+  @bottom-right {
+    padding-bottom: 20px;
+    // content: counter(page) '/' counter(pages);
+  }
+}
+.header {
+  position: running(headerRunningManHour);
+  height: 60px;
+}

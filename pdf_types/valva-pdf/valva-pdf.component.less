@@ -1,0 +1,32 @@
+@import '../common-pdf.less';
+@page {
+  size: A4;
+  margin: 30px;
+  margin-top: 180px;
+}
+.valva-pdf {
+  page: valvaPdf;
+}
+@page {
+  @top-center {
+    content: element(headerRunningValva);
+  }
+  @bottom-right {
+    padding-bottom: 20px;
+    // content: counter(page) '/' counter(pages);
+  }
+}
+.header {
+  position: running(headerRunningValva);
+}
+headerShort {
+  height: 60px;
+}
+headerHigh {
+  height: 130px;
+}
+.icon {
+  font-size: 12px;
+  width: 12px;
+  height: 12px;
+}

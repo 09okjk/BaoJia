@@ -1,0 +1,2725 @@
+{
+  "template_selection_result": {
+    "template_type": "engineering-service",
+    "confidence": 0.93,
+    "candidate_templates": [
+      "engineering-service"
+    ],
+    "rule_scores": {
+      "engineering-service": 43.0,
+      "digital-product": 0.0,
+      "laboratory": 0.0,
+      "man-hour": 10.0,
+      "product": 3.0,
+      "supercharger": 4.0,
+      "valva": 25.0
+    },
+    "reasons": [
+      "规则命中 engineering-service 相关特征词。",
+      "命中信号：\\boverhaul\\b，来源：assessment_report.service_items[0].title。",
+      "命中信号：\\bcalibration\\b，来源：assessment_report.service_items[0].title。",
+      "命中信号：\\boverhaul\\b，来源：assessment_report.service_items[0].description。"
+    ],
+    "matched_signals": [
+      {
+        "signal": "\\boverhaul\\b",
+        "source": "assessment_report.service_items[0].title",
+        "weight": 3.0,
+        "supports": [
+          "engineering-service"
+        ]
+      },
+      {
+        "signal": "\\bcalibration\\b",
+        "source": "assessment_report.service_items[0].title",
+        "weight": 3.0,
+        "supports": [
+          "engineering-service"
+        ]
+      },
+      {
+        "signal": "\\brunning hours\\b",
+        "source": "assessment_report.service_items[0].description",
+        "weight": 2.0,
+        "supports": [
+          "supercharger"
+        ]
+      },
+      {
+        "signal": "\\bdays\\b|\\bhours\\b",
+        "source": "assessment_report.service_items[0].description",
+        "weight": 2.0,
+        "supports": [
+          "man-hour"
+        ]
+      },
+      {
+        "signal": "\\boverhaul\\b",
+        "source": "assessment_report.service_items[0].description",
+        "weight": 3.0,
+        "supports": [
+          "engineering-service"
+        ]
+      },
+      {
+        "signal": "\\bvalve\\b",
+        "source": "assessment_report.service_items[0].work_scope[0]",
+        "weight": 4.0,
+        "supports": [
+          "valva"
+        ]
+      },
+      {
+        "signal": "\\boverhaul\\b",
+        "source": "assessment_report.service_items[0].work_scope[0]",
+        "weight": 3.0,
+        "supports": [
+          "engineering-service"
+        ]
+      },
+      {
+        "signal": "\\bvalve\\b",
+        "source": "assessment_report.service_items[0].work_scope[1]",
+        "weight": 4.0,
+        "supports": [
+          "valva"
+        ]
+      },
+      {
+        "signal": "\\boverhaul\\b",
+        "source": "assessment_report.service_items[0].work_scope[1]",
+        "weight": 3.0,
+        "supports": [
+          "engineering-service"
+        ]
+      },
+      {
+        "signal": "\\boverhaul\\b",
+        "source": "assessment_report.service_items[0].work_scope[2]",
+        "weight": 3.0,
+        "supports": [
+          "engineering-service"
+        ]
+      },
+      {
+        "signal": "\\boverhaul\\b",
+        "source": "assessment_report.service_items[0].work_scope[3]",
+        "weight": 3.0,
+        "supports": [
+          "engineering-service"
+        ]
+      },
+      {
+        "signal": "\\boverhaul\\b",
+        "source": "assessment_report.service_items[0].work_scope[4]",
+        "weight": 3.0,
+        "supports": [
+          "engineering-service"
+        ]
+      },
+      {
+        "signal": "\\bmaintenance\\b",
+        "source": "assessment_report.service_items[0].work_scope[4]",
+        "weight": 3.0,
+        "supports": [
+          "engineering-service"
+        ]
+      },
+      {
+        "signal": "\\bengineer\\b",
+        "source": "assessment_report.service_items[0].labor_hint[0]",
+        "weight": 2.0,
+        "supports": [
+          "man-hour"
+        ]
+      },
+      {
+        "signal": "\\boverhaul\\b",
+        "source": "assessment_report.service_items[0].price_hints[0]",
+        "weight": 3.0,
+        "supports": [
+          "engineering-service"
+        ]
+      },
+      {
+        "signal": "\\binspection\\b",
+        "source": "assessment_report.service_items[1].title",
+        "weight": 3.0,
+        "supports": [
+          "engineering-service"
+        ]
+      },
+      {
+        "signal": "\\brunning hours\\b",
+        "source": "assessment_report.service_items[1].description",
+        "weight": 2.0,
+        "supports": [
+          "supercharger"
+        ]
+      },
+      {
+        "signal": "\\bdays\\b|\\bhours\\b",
+        "source": "assessment_report.service_items[1].description",
+        "weight": 2.0,
+        "supports": [
+          "man-hour"
+        ]
+      },
+      {
+        "signal": "\\binspection\\b",
+        "source": "assessment_report.service_items[1].description",
+        "weight": 3.0,
+        "supports": [
+          "engineering-service"
+        ]
+      },
+      {
+        "signal": "\\binspection\\b",
+        "source": "assessment_report.service_items[1].work_scope[1]",
+        "weight": 3.0,
+        "supports": [
+          "engineering-service"
+        ]
+      },
+      {
+        "signal": "\\bengineer\\b",
+        "source": "assessment_report.service_items[1].labor_hint[0]",
+        "weight": 2.0,
+        "supports": [
+          "man-hour"
+        ]
+      },
+      {
+        "signal": "\\bengineer\\b",
+        "source": "assessment_report.service_items[1].labor_hint[1]",
+        "weight": 2.0,
+        "supports": [
+          "man-hour"
+        ]
+      },
+      {
+        "signal": "\\binspection\\b",
+        "source": "assessment_report.service_items[1].price_hints[0]",
+        "weight": 3.0,
+        "supports": [
+          "engineering-service"
+        ]
+      },
+      {
+        "signal": "\\brepair kit\\b",
+        "source": "assessment_report.spare_parts_items[0].title",
+        "weight": 4.0,
+        "supports": [
+          "valva"
+        ]
+      },
+      {
+        "signal": "\\brepair kit\\b",
+        "source": "assessment_report.spare_parts_items[1].title",
+        "weight": 4.0,
+        "supports": [
+          "valva"
+        ]
+      },
+      {
+        "signal": "\\bvalve\\b",
+        "source": "assessment_report.spare_parts_items[5].title",
+        "weight": 4.0,
+        "supports": [
+          "valva"
+        ]
+      },
+      {
+        "signal": "\\bvalve\\b",
+        "source": "assessment_report.pending_items[3]",
+        "weight": 4.0,
+        "supports": [
+          "valva"
+        ]
+      },
+      {
+        "signal": "\\bspare parts\\b",
+        "source": "assessment_report.risks[1]",
+        "weight": 4.0,
+        "supports": [
+          "product"
+        ]
+      }
+    ],
+    "needs_manual_confirmation": false,
+    "questions_for_user": [],
+    "review_flags": []
+  },
+  "prepare_result": {
+    "quote_request": {
+      "request_meta": {
+        "request_id": "qr-dimitra-m-2026-04-01",
+        "source": "assessment_report",
+        "prepared_at": "2026-04-15T03:43:07.608032+00:00",
+        "language": "zh-CN"
+      },
+      "header_context": {
+        "currency": null,
+        "vessel_name": "M/V DIMITRA M",
+        "imo_no": null,
+        "vessel_type": "82,000 mt Kamsarmax Bulk Carrier",
+        "customer_name": null,
+        "service_port": "China central/south ports",
+        "service_date": "2025-12 / 2026-01",
+        "attention": null,
+        "customer_ref_no": null
+      },
+      "service_context": {
+        "service_category": "integrated",
+        "service_mode": "dock_repair",
+        "location_type": "port",
+        "needs_multi_option": false,
+        "option_hints": [],
+        "urgency": null
+      },
+      "candidate_items": [
+        {
+          "item_id": "svc-1",
+          "item_type": "service",
+          "title": "HCU system overhaul and calibration",
+          "description": "64k running hours overhaul scope for HCU system on MAN B&W 6S60ME-C8.2.",
+          "work_scope": [
+            "Overhaul ELFI valve and multiway valve units",
+            "Overhaul exhaust valve actuator and fuel oil pressure booster",
+            "Overhaul cylinder lubricator system",
+            "Overhaul accumulator and refill with nitrogen",
+            "Maintenance and overhaul of HPS"
+          ],
+          "quantity_hint": 1,
+          "unit_hint": "set",
+          "labor_hint": [
+            "1 MT5 mechanical engineer",
+            "7 FP5 fitters"
+          ],
+          "pricing_clues": [
+            "64k overhaul",
+            "dock repair",
+            "high pressure system"
+          ],
+          "status_hint": null,
+          "source": "assessment_report"
+        },
+        {
+          "item_id": "svc-2",
+          "item_type": "service",
+          "title": "MPC system inspection and health check",
+          "description": "64k running hours inspection scope for MPC system on MAN B&W 6S60ME-C8.2.",
+          "work_scope": [
+            "MPC health check",
+            "Inspection of MPC status and replacement readiness",
+            "Check UPS battery related condition"
+          ],
+          "quantity_hint": 1,
+          "unit_hint": "set",
+          "labor_hint": [
+            "1 ET5 electrical engineer",
+            "1 ET3 electrical engineer"
+          ],
+          "pricing_clues": [
+            "64k inspection",
+            "electrical",
+            "MPC",
+            "UPS battery"
+          ],
+          "status_hint": null,
+          "source": "assessment_report"
+        },
+        {
+          "item_id": "spr-3",
+          "item_type": "spare_parts",
+          "title": "HPS accumulators repair kit",
+          "description": "Pending ownership and final confirmation",
+          "work_scope": [],
+          "quantity_hint": null,
+          "unit_hint": null,
+          "labor_hint": [],
+          "pricing_clues": [],
+          "status_hint": null,
+          "source": "assessment_report"
+        },
+        {
+          "item_id": "spr-4",
+          "item_type": "spare_parts",
+          "title": "HCU accumulators repair kit",
+          "description": "Pending ownership and final confirmation",
+          "work_scope": [],
+          "quantity_hint": null,
+          "unit_hint": null,
+          "labor_hint": [],
+          "pricing_clues": [],
+          "status_hint": null,
+          "source": "assessment_report"
+        },
+        {
+          "item_id": "spr-5",
+          "item_type": "spare_parts",
+          "title": "Nitrogen for refilling",
+          "description": "Pending ownership and final confirmation",
+          "work_scope": [],
+          "quantity_hint": null,
+          "unit_hint": null,
+          "labor_hint": [],
+          "pricing_clues": [],
+          "status_hint": null,
+          "source": "assessment_report"
+        },
+        {
+          "item_id": "spr-6",
+          "item_type": "spare_parts",
+          "title": "FIVA valves pilot valves",
+          "description": "Pending ownership and final confirmation",
+          "work_scope": [],
+          "quantity_hint": null,
+          "unit_hint": null,
+          "labor_hint": [],
+          "pricing_clues": [],
+          "status_hint": null,
+          "source": "assessment_report"
+        },
+        {
+          "item_id": "spr-7",
+          "item_type": "spare_parts",
+          "title": "Fuel booster units top covers and suction valves",
+          "description": "Pending ownership and final confirmation",
+          "work_scope": [],
+          "quantity_hint": null,
+          "unit_hint": null,
+          "labor_hint": [],
+          "pricing_clues": [],
+          "status_hint": null,
+          "source": "assessment_report"
+        },
+        {
+          "item_id": "spr-8",
+          "item_type": "spare_parts",
+          "title": "Exhaust valve actuators safety valves",
+          "description": "Pending ownership and final confirmation",
+          "work_scope": [],
+          "quantity_hint": null,
+          "unit_hint": null,
+          "labor_hint": [],
+          "pricing_clues": [],
+          "status_hint": null,
+          "source": "assessment_report"
+        },
+        {
+          "item_id": "spr-9",
+          "item_type": "spare_parts",
+          "title": "MPC and UPS batteries",
+          "description": "Pending ownership and final confirmation",
+          "work_scope": [],
+          "quantity_hint": null,
+          "unit_hint": null,
+          "labor_hint": [],
+          "pricing_clues": [],
+          "status_hint": null,
+          "source": "assessment_report"
+        }
+      ],
+      "spare_parts_context": {
+        "has_spare_parts": true,
+        "spare_parts_supply_mode": null,
+        "spare_parts_items": [
+          {
+            "item_id": "spr-1",
+            "item_type": "spare_parts",
+            "title": "HPS accumulators repair kit",
+            "description": "Pending ownership and final confirmation",
+            "work_scope": [],
+            "quantity_hint": null,
+            "unit_hint": null,
+            "labor_hint": [],
+            "pricing_clues": [],
+            "status_hint": null,
+            "source": "assessment_report"
+          },
+          {
+            "item_id": "spr-2",
+            "item_type": "spare_parts",
+            "title": "HCU accumulators repair kit",
+            "description": "Pending ownership and final confirmation",
+            "work_scope": [],
+            "quantity_hint": null,
+            "unit_hint": null,
+            "labor_hint": [],
+            "pricing_clues": [],
+            "status_hint": null,
+            "source": "assessment_report"
+          },
+          {
+            "item_id": "spr-3",
+            "item_type": "spare_parts",
+            "title": "Nitrogen for refilling",
+            "description": "Pending ownership and final confirmation",
+            "work_scope": [],
+            "quantity_hint": null,
+            "unit_hint": null,
+            "labor_hint": [],
+            "pricing_clues": [],
+            "status_hint": null,
+            "source": "assessment_report"
+          },
+          {
+            "item_id": "spr-4",
+            "item_type": "spare_parts",
+            "title": "FIVA valves pilot valves",
+            "description": "Pending ownership and final confirmation",
+            "work_scope": [],
+            "quantity_hint": null,
+            "unit_hint": null,
+            "labor_hint": [],
+            "pricing_clues": [],
+            "status_hint": null,
+            "source": "assessment_report"
+          },
+          {
+            "item_id": "spr-5",
+            "item_type": "spare_parts",
+            "title": "Fuel booster units top covers and suction valves",
+            "description": "Pending ownership and final confirmation",
+            "work_scope": [],
+            "quantity_hint": null,
+            "unit_hint": null,
+            "labor_hint": [],
+            "pricing_clues": [],
+            "status_hint": null,
+            "source": "assessment_report"
+          },
+          {
+            "item_id": "spr-6",
+            "item_type": "spare_parts",
+            "title": "Exhaust valve actuators safety valves",
+            "description": "Pending ownership and final confirmation",
+            "work_scope": [],
+            "quantity_hint": null,
+            "unit_hint": null,
+            "labor_hint": [],
+            "pricing_clues": [],
+            "status_hint": null,
+            "source": "assessment_report"
+          },
+          {
+            "item_id": "spr-7",
+            "item_type": "spare_parts",
+            "title": "MPC and UPS batteries",
+            "description": "Pending ownership and final confirmation",
+            "work_scope": [],
+            "quantity_hint": null,
+            "unit_hint": null,
+            "labor_hint": [],
+            "pricing_clues": [],
+            "status_hint": null,
+            "source": "assessment_report"
+          }
+        ]
+      },
+      "risk_context": {
+        "risks": [
+          "Shipyard cross-operation may delay schedule",
+          "Waiting for critical spare parts may interrupt execution",
+          "Safety approval or hot work restriction may affect schedule"
+        ],
+        "pending_confirmations": [
+          "Confirm whether HPS and HCU accumulator repair kits are owner supply or company supply",
+          "Confirm whether FIVA valves pilot valves are owner supply or company supply",
+          "Confirm whether fuel booster unit top covers and suction valves are owner supply or company supply",
+          "Confirm whether exhaust valve actuator safety valves are owner supply or company supply",
+          "Confirm whether MPC and UPS batteries are owner supply or company supply",
+          "Confirm other consumables and sealing items",
+          "Confirm drydock work window in 2025-12 / 2026-01",
+          "Confirm final work location in China central/south area",
+          "Confirm shipyard cross-operation arrangement",
+          "Confirm hot work permit requirement",
+          "Confirm enclosed space permit requirement",
+          "Confirm high pressure system safety procedure"
+        ],
+        "assumptions": [
+          "Assessment report is for quotation preparation only and not final execution plan",
+          "Actual work scope may be adjusted according to onsite condition"
+        ]
+      },
+      "commercial_context": {
+        "preferred_currency": null,
+        "pricing_expectation": null,
+        "special_terms": []
+      },
+      "source_refs": {
+        "assessment_report_id": "dimitra-m-2026-04-01",
+        "customer_context_ref": null,
+        "business_context_ref": null
+      }
+    },
+    "normalization_flags": [
+      {
+        "flag_code": "normalized_service_category",
+        "field": "service_context.service_category",
+        "from": "综合",
+        "to": "integrated",
+        "reason": "统一服务类别表达。"
+      },
+      {
+        "flag_code": "normalized_service_mode",
+        "field": "service_context.service_mode",
+        "from": "dock repair",
+        "to": "dock_repair",
+        "reason": "统一服务模式枚举。"
+      },
+      {
+        "flag_code": "normalized_location_type",
+        "field": "service_context.location_type",
+        "from": "港口",
+        "to": "port",
+        "reason": "统一地点类型表达。"
+      }
+    ],
+    "missing_fields": [
+      {
+        "field": "header_context.currency",
+        "required_for": [
+          "pricing",
+          "quote_document"
+        ],
+        "severity": "medium",
+        "reason": "缺少币种，影响金额展示与表头补齐。",
+        "suggested_source": "customer_context"
+      },
+      {
+        "field": "header_context.customer_name",
+        "required_for": [
+          "quote_document"
+        ],
+        "severity": "medium",
+        "reason": "缺少客户名称，影响表头完整性。",
+        "suggested_source": "assessment_report"
+      }
+    ]
+  },
+  "feasibility_result": {
+    "can_quote": true,
+    "quote_scope": "partial",
+    "quotable_items": [
+      {
+        "item_id": "svc-1",
+        "item_type": "service",
+        "title": "HCU system overhaul and calibration",
+        "decision": "quotable",
+        "reason": "服务项标题和范围已基本明确，可进入报价。",
+        "blocking_fields": [],
+        "suggested_status": "chargeable",
+        "source": "quote_request.candidate_items"
+      },
+      {
+        "item_id": "svc-2",
+        "item_type": "service",
+        "title": "MPC system inspection and health check",
+        "decision": "quotable",
+        "reason": "服务项标题和范围已基本明确，可进入报价。",
+        "blocking_fields": [],
+        "suggested_status": "chargeable",
+        "source": "quote_request.candidate_items"
+      }
+    ],
+    "tbc_items": [
+      {
+        "item_id": "spr-3",
+        "item_type": "spare_parts",
+        "title": "HPS accumulators repair kit",
+        "decision": "tbc",
+        "reason": "备件供货责任未确认，当前只能待确认。",
+        "blocking_fields": [
+          "spare_parts_context.spare_parts_supply_mode"
+        ],
+        "suggested_status": "pending",
+        "source": "quote_request.candidate_items"
+      },
+      {
+        "item_id": "spr-4",
+        "item_type": "spare_parts",
+        "title": "HCU accumulators repair kit",
+        "decision": "tbc",
+        "reason": "备件供货责任未确认，当前只能待确认。",
+        "blocking_fields": [
+          "spare_parts_context.spare_parts_supply_mode"
+        ],
+        "suggested_status": "pending",
+        "source": "quote_request.candidate_items"
+      },
+      {
+        "item_id": "spr-5",
+        "item_type": "spare_parts",
+        "title": "Nitrogen for refilling",
+        "decision": "tbc",
+        "reason": "备件供货责任未确认，当前只能待确认。",
+        "blocking_fields": [
+          "spare_parts_context.spare_parts_supply_mode"
+        ],
+        "suggested_status": "pending",
+        "source": "quote_request.candidate_items"
+      },
+      {
+        "item_id": "spr-6",
+        "item_type": "spare_parts",
+        "title": "FIVA valves pilot valves",
+        "decision": "tbc",
+        "reason": "备件供货责任未确认，当前只能待确认。",
+        "blocking_fields": [
+          "spare_parts_context.spare_parts_supply_mode"
+        ],
+        "suggested_status": "pending",
+        "source": "quote_request.candidate_items"
+      },
+      {
+        "item_id": "spr-7",
+        "item_type": "spare_parts",
+        "title": "Fuel booster units top covers and suction valves",
+        "decision": "tbc",
+        "reason": "备件供货责任未确认，当前只能待确认。",
+        "blocking_fields": [
+          "spare_parts_context.spare_parts_supply_mode"
+        ],
+        "suggested_status": "pending",
+        "source": "quote_request.candidate_items"
+      },
+      {
+        "item_id": "spr-8",
+        "item_type": "spare_parts",
+        "title": "Exhaust valve actuators safety valves",
+        "decision": "tbc",
+        "reason": "备件供货责任未确认，当前只能待确认。",
+        "blocking_fields": [
+          "spare_parts_context.spare_parts_supply_mode"
+        ],
+        "suggested_status": "pending",
+        "source": "quote_request.candidate_items"
+      },
+      {
+        "item_id": "spr-9",
+        "item_type": "spare_parts",
+        "title": "MPC and UPS batteries",
+        "decision": "tbc",
+        "reason": "备件供货责任未确认，当前只能待确认。",
+        "blocking_fields": [
+          "spare_parts_context.spare_parts_supply_mode"
+        ],
+        "suggested_status": "pending",
+        "source": "quote_request.candidate_items"
+      }
+    ],
+    "exclusions": [],
+    "missing_fields": [
+      {
+        "field": "spare_parts_context.spare_parts_supply_mode",
+        "required_for": [
+          "feasibility_check",
+          "pricing"
+        ],
+        "severity": "medium",
+        "reason": "备件供货责任未确认，影响是否纳入报价。",
+        "suggested_source": "customer_context"
+      }
+    ],
+    "questions_for_user": [
+      {
+        "question_id": "q-spr-3",
+        "target": "customer",
+        "topic": "spare_parts_supply_mode",
+        "question": "HPS accumulators repair kit 由船东提供还是由我司供货？",
+        "related_item_ids": [
+          "spr-3"
+        ]
+      },
+      {
+        "question_id": "q-spr-4",
+        "target": "customer",
+        "topic": "spare_parts_supply_mode",
+        "question": "HCU accumulators repair kit 由船东提供还是由我司供货？",
+        "related_item_ids": [
+          "spr-4"
+        ]
+      },
+      {
+        "question_id": "q-spr-5",
+        "target": "customer",
+        "topic": "spare_parts_supply_mode",
+        "question": "Nitrogen for refilling 由船东提供还是由我司供货？",
+        "related_item_ids": [
+          "spr-5"
+        ]
+      },
+      {
+        "question_id": "q-spr-6",
+        "target": "customer",
+        "topic": "spare_parts_supply_mode",
+        "question": "FIVA valves pilot valves 由船东提供还是由我司供货？",
+        "related_item_ids": [
+          "spr-6"
+        ]
+      },
+      {
+        "question_id": "q-spr-7",
+        "target": "customer",
+        "topic": "spare_parts_supply_mode",
+        "question": "Fuel booster units top covers and suction valves 由船东提供还是由我司供货？",
+        "related_item_ids": [
+          "spr-7"
+        ]
+      },
+      {
+        "question_id": "q-spr-8",
+        "target": "customer",
+        "topic": "spare_parts_supply_mode",
+        "question": "Exhaust valve actuators safety valves 由船东提供还是由我司供货？",
+        "related_item_ids": [
+          "spr-8"
+        ]
+      },
+      {
+        "question_id": "q-spr-9",
+        "target": "customer",
+        "topic": "spare_parts_supply_mode",
+        "question": "MPC and UPS batteries 由船东提供还是由我司供货？",
+        "related_item_ids": [
+          "spr-9"
+        ]
+      }
+    ],
+    "review_flags": [
+      {
+        "flag_code": "partial_quote_scope",
+        "severity": "medium",
+        "message": "当前仅部分项目具备报价条件。",
+        "related_item_ids": [
+          "svc-1",
+          "svc-2",
+          "spr-3",
+          "spr-4",
+          "spr-5",
+          "spr-6",
+          "spr-7",
+          "spr-8",
+          "spr-9"
+        ]
+      }
+    ]
+  },
+  "historical_reference": {
+    "matches": [
+      {
+        "quote_id": "RH-2025-001725",
+        "similarity": 0.54,
+        "reason": "核心项目工作范围、文本语义与服务场景相似。",
+        "matched_features": [
+          "service_mode: dock_repair",
+          "vessel_type_normalized: bulk_carrier",
+          "item_type: service",
+          "item_type_match: service",
+          "item_title: MPC system inspection and health check"
+        ],
+        "reference_items": [
+          "Central air condition units inspection and health check",
+          "Provision refrigerator system inspection and health check",
+          "Air condition units in ECR inspection and health check",
+          "Air condition units in galley room inspection and health check",
+          "Provision refrigerator No.2 compressor oil pressure issue troubleshooting",
+          "Old compressor dismantal and repair",
+          "crankshaft",
+          "piston",
+          "connecting rod",
+          "connecting rod bearing",
+          "piston ring",
+          "Main shaft sleeve and thrust shaft sleeve",
+          "galley air conditioning system repair",
+          "Transportation and accommodation depend on actual shipyard"
+        ],
+        "reference_remarks": [
+          "Warranty Compensate Amount: 5times of the service cost at max.",
+          "Port entrance fee /Other cost if needed to be charged as actual.",
+          "Shipyard management fee/Boarding pass/Crane cost if needed to be charged as actual.",
+          "Other Spares if needed to be charged extra.",
+          "Other repair if needed to be charged extra."
+        ],
+        "match_level": "item_and_context",
+        "matched_item_pairs": [
+          {
+            "query_item_id": "svc-2",
+            "query_title": "MPC system inspection and health check",
+            "reference_item_id": "doc-2796-line-2",
+            "reference_title": "Provision refrigerator system inspection and health check",
+            "similarity": 0.28,
+            "matched_signals": [
+              "item_type_match: service",
+              "item_title: MPC system inspection and health check"
+            ]
+          }
+        ],
+        "commercial_fit": {
+          "spare_parts_supply_mode_match": false,
+          "option_style_overlap": []
+        },
+        "prefilter_score": 0.65,
+        "semantic_score": 0.59,
+        "rerank_stage": "hybrid"
+      },
+      {
+        "quote_id": "ERH-2025-003765",
+        "similarity": 0.34,
+        "reason": "规则预筛通过后，文本语义与场景特征存在相似性。",
+        "matched_features": [
+          "service_mode: dock_repair",
+          "location_type: port",
+          "vessel_type_normalized: bulk_carrier"
+        ],
+        "reference_items": [
+          "Hydraulic Cylinder Unit",
+          "Overhaul fuel booster unit",
+          "Overhaul exh. Actuator",
+          "Overhaul & Cleaning FIVA valve with replacement proportional valve",
+          "repair kits for FIVA valve",
+          "Replace level switch of HCU",
+          "Replace O-ring of retrun pipe",
+          "Clean distributor block",
+          "Membrane Accumulator",
+          "Overhaul and re-charge of accumulator and quick coupling",
+          "Replace repair kit",
+          "Overhaul Alpha lubricator",
+          "Replace Hyd. flexible Hoses and compensators at HPS",
+          "Replace Hydraulic power supply pump",
+          "Hydraulic system",
+          "Carry out safety test",
+          "Replace #310, #311 cartridge with cover",
+          "Auto filter of hydraulic system, safety valve, leakage test",
+          "L O flushing of hydraulic system (HCU, HPS line)",
+          "Overhaul main starting air valve with slow turn valve",
+          "Replace repair kit of pneumatic system",
+          "Angle encoder overhaul",
+          "Insection",
+          "MPC including ECS parameter",
+          "Power Supply Unit.",
+          "Cabling inspection and low insulation",
+          "HCU (FIVA ,inductive sensor)",
+          "Tacho system",
+          "Installation of Sandwich filters on HCU and HPS",
+          "Interlock test",
+          "Hydraulic (Build up time, leakage test)",
+          "Safety test (Slow down, Shut down)",
+          "Function test for HCU,HPS,Tacho",
+          "HPS Pump workshop recondition/overhaul",
+          "Dismantle and reassemble for HPS pump and FIVA valve",
+          "Confirm trial",
+          "Transportation & accommodation for engineers",
+          "Shipyard management fee if needed to be charged as actual",
+          "Maintenance for ELFI with proportional valve",
+          "EILFI valve repair kit",
+          "EIFI valve offland sevice cost",
+          "Transportation cost",
+          "To replace diaphragm between ME crankcase and sump tank on-board"
+        ],
+        "reference_remarks": [
+          "If the FIVA valve need to overhaul at workshop, the cost will charged extra",
+          "repair kits for FIVA valve",
+          "Additional service as below:",
+          "Warranty Compensate Amount: 5times of the service cost at max.",
+          "Other spares if needed to be charged extra",
+          "Other repair if needed to be charged extra"
+        ],
+        "match_level": "context_only",
+        "matched_item_pairs": [],
+        "commercial_fit": {
+          "spare_parts_supply_mode_match": false,
+          "option_style_overlap": []
+        },
+        "prefilter_score": 0.6,
+        "semantic_score": 0.75,
+        "rerank_stage": "hybrid"
+      },
+      {
+        "quote_id": "BRH-2025-003765",
+        "similarity": 0.34,
+        "reason": "规则预筛通过后，文本语义与场景特征存在相似性。",
+        "matched_features": [
+          "service_mode: dock_repair",
+          "location_type: port",
+          "vessel_type_normalized: bulk_carrier"
+        ],
+        "reference_items": [
+          "Hydraulic Cylinder Unit",
+          "Overhaul fuel booster unit",
+          "Overhaul exh. Actuator",
+          "Overhaul & Cleaning FIVA valve with replacement proportional valve",
+          "repair kits for FIVA valve",
+          "Replace level switch of HCU",
+          "Replace O-ring of retrun pipe",
+          "Clean distributor block",
+          "Membrane Accumulator",
+          "Overhaul and re-charge of accumulator and quick coupling",
+          "Replace repair kit",
+          "Overhaul Alpha lubricator",
+          "Replace Hyd. flexible Hoses and compensators at HPS",
+          "Replace Hydraulic power supply pump",
+          "Hydraulic system",
+          "Carry out safety test",
+          "Replace #310, #311 cartridge with cover",
+          "Auto filter of hydraulic system, safety valve, leakage test",
+          "L.O flushing of hydraulic system (HCU, HPS line)",
+          "Overhaul main starting air valve with slow turn valve",
+          "Replace repair kit of pneumatic system",
+          "Angle encoder overhaul",
+          "Insection",
+          "MPC including ECS parameter",
+          "Power Supply Unit.",
+          "Cabling inspection and low insulation",
+          "HCU (FIVA ,inductive sensor)",
+          "Tacho system",
+          "Installation of Sandwich filters on HCU and HPS",
+          "Function test",
+          "Interlock test",
+          "Hydraulic (Build up time, leakage test)",
+          "Safety test (Slow down, Shut down)",
+          "Function test for HCU,HPS,Tacho",
+          "HPS Pump workshop recondition/overhaul",
+          "Dismantle and reassemble for HPS pump and FIVA valve",
+          "Confirm trial",
+          "Transportation & accommodation for engineers",
+          "Shipyard management fee if needed to be charged as actual",
+          "Maintenance for ELFI with proportional valve",
+          "EILFI valve repair kit",
+          "EIFI valve offland sevice cost",
+          "Transportation cost"
+        ],
+        "reference_remarks": [
+          "If the FIVA valve need to overhaul at workshop, the cost will charged extra",
+          "repair kits for FIVA valve",
+          "Additional service as below:",
+          "Transportation cost",
+          "Other spares if needed to be charged extra",
+          "Other repair if needed to be charged extra",
+          "Warranty Compensate Amount: 5times of the service cost at max."
+        ],
+        "match_level": "context_only",
+        "matched_item_pairs": [],
+        "commercial_fit": {
+          "spare_parts_supply_mode_match": false,
+          "option_style_overlap": []
+        },
+        "prefilter_score": 0.6,
+        "semantic_score": 0.75,
+        "rerank_stage": "hybrid"
+      }
+    ],
+    "reference_summary": {
+      "price_range_hint": {
+        "currency": "USD",
+        "min": 6770.0,
+        "max": 45990.0,
+        "sample_size": 3
+      },
+      "common_items": [
+        "Hydraulic Cylinder Unit",
+        "Overhaul fuel booster unit",
+        "Overhaul exh. Actuator",
+        "Overhaul & Cleaning FIVA valve with replacement proportional valve",
+        "repair kits for FIVA valve"
+      ],
+      "remark_patterns": [
+        "Warranty Compensate Amount: 5times of the service cost at max.",
+        "If the FIVA valve need to overhaul at workshop, the cost will charged extra",
+        "repair kits for FIVA valve",
+        "Additional service as below:",
+        "Other spares if needed to be charged extra"
+      ],
+      "recommended_reference_ids": [
+        "RH-2025-001725",
+        "ERH-2025-003765",
+        "BRH-2025-003765"
+      ],
+      "item_clusters": [
+        {
+          "cluster_key": "hydraulic cylinder unit",
+          "sample_size": 2,
+          "examples": [
+            "Hydraulic Cylinder Unit"
+          ]
+        },
+        {
+          "cluster_key": "overhaul fuel booster unit",
+          "sample_size": 2,
+          "examples": [
+            "Overhaul fuel booster unit"
+          ]
+        },
+        {
+          "cluster_key": "overhaul exh actuator",
+          "sample_size": 2,
+          "examples": [
+            "Overhaul exh. Actuator"
+          ]
+        },
+        {
+          "cluster_key": "overhaul cleaning fiva valve",
+          "sample_size": 2,
+          "examples": [
+            "Overhaul & Cleaning FIVA valve with replacement proportional valve"
+          ]
+        },
+        {
+          "cluster_key": "repair kits for fiva",
+          "sample_size": 2,
+          "examples": [
+            "repair kits for FIVA valve"
+          ]
+        }
+      ],
+      "remark_blocks": [
+        {
+          "remark_type": "commercial",
+          "texts": [
+            "If the FIVA valve need to overhaul at workshop, the cost will charged extra",
+            "repair kits for FIVA valve",
+            "Additional service as below:"
+          ],
+          "sample_size": 15
+        },
+        {
+          "remark_type": "warranty",
+          "texts": [
+            "Warranty Compensate Amount: 5times of the service cost at max."
+          ],
+          "sample_size": 3
+        }
+      ],
+      "charge_item_hints": [
+        {
+          "hint_type": "transportation",
+          "source": "history_text",
+          "sample_size": 4,
+          "examples": [
+            "Transportation and accommodation depend on actual shipyard",
+            "Transportation & accommodation for engineers",
+            "Transportation cost"
+          ]
+        },
+        {
+          "hint_type": "accommodation",
+          "source": "history_text",
+          "sample_size": 3,
+          "examples": [
+            "Transportation and accommodation depend on actual shipyard",
+            "Transportation & accommodation for engineers",
+            "accommodation"
+          ]
+        },
+        {
+          "hint_type": "dockyard_management",
+          "source": "history_text",
+          "sample_size": 4,
+          "examples": [
+            "Transportation and accommodation depend on actual shipyard",
+            "Shipyard management fee if needed to be charged as actual",
+            "Shipyard management fee/Boarding pass/Crane cost if needed to be charged as actual."
+          ]
+        }
+      ],
+      "option_style_hints": [],
+      "history_quality_flags": [
+        "broad_price_range",
+        "low_item_sample_size",
+        "commercial_mismatch",
+        "semantic_only_match"
+      ],
+      "item_price_hints": [
+        {
+          "query_item_id": "svc-2",
+          "query_title": "MPC system inspection and health check",
+          "currency": null,
+          "min": 1000.0,
+          "max": 1000.0,
+          "median": 1000.0,
+          "sample_size": 1,
+          "matched_reference_item_ids": [
+            "doc-2796-line-2"
+          ],
+          "source_quote_ids": [
+            "RH-2025-001725"
+          ]
+        }
+      ],
+      "retrieval_strategy": "rule_prefilter+aliyun_embedding_rerank"
+    },
+    "confidence": 0.84
+  },
+  "pricing_result": {
+    "quotation_options": [
+      {
+        "option_id": "option-1",
+        "title": "Option 1",
+        "sections": [
+          {
+            "section_id": "option-1-section-service",
+            "section_type": "service",
+            "title": "Service",
+            "groups": [
+              {
+                "group_id": "option-1-group-svc-1",
+                "group_no": "1",
+                "title": "HCU system overhaul and calibration",
+                "description": "服务项标题和范围已基本明确，可进入报价。",
+                "lines": [
+                  {
+                    "line_id": "option-1-line-svc-1",
+                    "item": "1",
+                    "line_no": "1",
+                    "line_type": "priced",
+                    "description": "HCU system overhaul and calibration 64k running hours overhaul scope for HCU system on MAN B&W 6S60ME-C8.2.",
+                    "pricing_mode": "lump_sum",
+                    "unit_price": 3500.0,
+                    "unit_price_display": "3,500.00",
+                    "unit": "set",
+                    "qty": 1,
+                    "qty_display": "1",
+                    "discount": null,
+                    "amount": 3500.0,
+                    "amount_display": "3,500.00",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "historical_price_range",
+                    "conditions": [],
+                    "notes": [
+                      "服务项标题和范围已基本明确，可进入报价。",
+                      "64k running hours overhaul scope for HCU system on MAN B&W 6S60ME-C8.2."
+                    ]
+                  },
+                  {
+                    "line_id": "option-1-line-svc-1-scope-1",
+                    "item": "",
+                    "line_no": "",
+                    "line_type": "scope_note",
+                    "description": "Overhaul ELFI valve and multiway valve units",
+                    "pricing_mode": "text_only",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "included_scope",
+                    "conditions": [],
+                    "notes": []
+                  },
+                  {
+                    "line_id": "option-1-line-svc-1-scope-2",
+                    "item": "",
+                    "line_no": "",
+                    "line_type": "scope_note",
+                    "description": "Overhaul exhaust valve actuator and fuel oil pressure booster",
+                    "pricing_mode": "text_only",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "included_scope",
+                    "conditions": [],
+                    "notes": []
+                  },
+                  {
+                    "line_id": "option-1-line-svc-1-scope-3",
+                    "item": "",
+                    "line_no": "",
+                    "line_type": "scope_note",
+                    "description": "Overhaul cylinder lubricator system",
+                    "pricing_mode": "text_only",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "included_scope",
+                    "conditions": [],
+                    "notes": []
+                  },
+                  {
+                    "line_id": "option-1-line-svc-1-scope-4",
+                    "item": "",
+                    "line_no": "",
+                    "line_type": "scope_note",
+                    "description": "Overhaul accumulator and refill with nitrogen",
+                    "pricing_mode": "text_only",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "included_scope",
+                    "conditions": [],
+                    "notes": []
+                  },
+                  {
+                    "line_id": "option-1-line-svc-1-scope-5",
+                    "item": "",
+                    "line_no": "",
+                    "line_type": "scope_note",
+                    "description": "Maintenance and overhaul of HPS",
+                    "pricing_mode": "text_only",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "included_scope",
+                    "conditions": [],
+                    "notes": []
+                  }
+                ]
+              },
+              {
+                "group_id": "option-1-group-svc-2",
+                "group_no": "2",
+                "title": "MPC system inspection and health check",
+                "description": "服务项标题和范围已基本明确，可进入报价。",
+                "lines": [
+                  {
+                    "line_id": "option-1-line-svc-2",
+                    "item": "2",
+                    "line_no": "2",
+                    "line_type": "priced",
+                    "description": "MPC system inspection and health check 64k running hours inspection scope for MPC system on MAN B&W 6S60ME-C8.2.",
+                    "pricing_mode": "lump_sum",
+                    "unit_price": 3500.0,
+                    "unit_price_display": "3,500.00",
+                    "unit": "set",
+                    "qty": 1,
+                    "qty_display": "1",
+                    "discount": null,
+                    "amount": 3500.0,
+                    "amount_display": "3,500.00",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "historical_price_range",
+                    "conditions": [],
+                    "notes": [
+                      "服务项标题和范围已基本明确，可进入报价。",
+                      "64k running hours inspection scope for MPC system on MAN B&W 6S60ME-C8.2."
+                    ]
+                  },
+                  {
+                    "line_id": "option-1-line-svc-2-scope-1",
+                    "item": "",
+                    "line_no": "",
+                    "line_type": "scope_note",
+                    "description": "MPC health check",
+                    "pricing_mode": "text_only",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "included_scope",
+                    "conditions": [],
+                    "notes": []
+                  },
+                  {
+                    "line_id": "option-1-line-svc-2-scope-2",
+                    "item": "",
+                    "line_no": "",
+                    "line_type": "scope_note",
+                    "description": "Inspection of MPC status and replacement readiness",
+                    "pricing_mode": "text_only",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "included_scope",
+                    "conditions": [],
+                    "notes": []
+                  },
+                  {
+                    "line_id": "option-1-line-svc-2-scope-3",
+                    "item": "",
+                    "line_no": "",
+                    "line_type": "scope_note",
+                    "description": "Check UPS battery related condition",
+                    "pricing_mode": "text_only",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "included_scope",
+                    "conditions": [],
+                    "notes": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "section_id": "option-1-section-other",
+            "section_type": "other",
+            "title": "Other",
+            "groups": [
+              {
+                "group_id": "option-1-group-hist-other-transportation",
+                "group_no": "1",
+                "title": "Transportation",
+                "description": "历史相似报价中常见交通费，建议保守纳入结构。",
+                "lines": [
+                  {
+                    "line_id": "option-1-line-hist-other-transportation",
+                    "item": "1",
+                    "line_no": "1",
+                    "line_type": "conditional",
+                    "description": "Transportation",
+                    "pricing_mode": "rate_as_actual",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "As actual",
+                    "currency": "USD",
+                    "status": "as_actual",
+                    "basis": "historical_price_range",
+                    "conditions": [],
+                    "notes": [
+                      "历史相似报价中常见交通费，建议保守纳入结构。"
+                    ]
+                  }
+                ]
+              },
+              {
+                "group_id": "option-1-group-hist-other-accommodation",
+                "group_no": "2",
+                "title": "Accommodation",
+                "description": "历史相似报价中常见住宿或食宿费，建议保守纳入结构。",
+                "lines": [
+                  {
+                    "line_id": "option-1-line-hist-other-accommodation",
+                    "item": "2",
+                    "line_no": "2",
+                    "line_type": "optional",
+                    "description": "Accommodation",
+                    "pricing_mode": "conditional",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "If needed",
+                    "currency": "USD",
+                    "status": "if_needed",
+                    "basis": "historical_price_range",
+                    "conditions": [
+                      "Only chargeable if actually required during attendance"
+                    ],
+                    "notes": [
+                      "历史相似报价中常见住宿或食宿费，建议保守纳入结构。"
+                    ]
+                  }
+                ]
+              },
+              {
+                "group_id": "option-1-group-hist-other-dockyard_management",
+                "group_no": "3",
+                "title": "Dockyard management fee",
+                "description": "历史相似报价中常见厂修管理相关费用，建议保守纳入报价结构。",
+                "lines": [
+                  {
+                    "line_id": "option-1-line-hist-other-dockyard_management",
+                    "item": "3",
+                    "line_no": "3",
+                    "line_type": "conditional",
+                    "description": "Dockyard management fee",
+                    "pricing_mode": "rate_as_actual",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "As actual",
+                    "currency": "USD",
+                    "status": "as_actual",
+                    "basis": "historical_price_range",
+                    "conditions": [],
+                    "notes": [
+                      "历史相似报价中常见厂修管理相关费用，建议保守纳入报价结构。"
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "section_id": "option-1-section-spare_parts",
+            "section_type": "spare_parts",
+            "title": "Spare Parts",
+            "groups": [
+              {
+                "group_id": "option-1-group-spr-3",
+                "group_no": "1",
+                "title": "HPS accumulators repair kit",
+                "description": "备件供货责任未确认，当前只能待确认。",
+                "lines": [
+                  {
+                    "line_id": "option-1-line-spr-3",
+                    "item": "1",
+                    "line_no": "1",
+                    "line_type": "pending",
+                    "description": "HPS accumulators repair kit Pending ownership and final confirmation",
+                    "pricing_mode": "pending",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "LS",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "Pending",
+                    "currency": "USD",
+                    "status": "pending",
+                    "basis": "historical_price_range",
+                    "conditions": [
+                      "Subject to confirmation"
+                    ],
+                    "notes": [
+                      "备件供货责任未确认，当前只能待确认。",
+                      "Pending ownership and final confirmation",
+                      "Confirm whether HPS and HCU accumulator repair kits are owner supply or company supply"
+                    ]
+                  }
+                ]
+              },
+              {
+                "group_id": "option-1-group-spr-4",
+                "group_no": "2",
+                "title": "HCU accumulators repair kit",
+                "description": "备件供货责任未确认，当前只能待确认。",
+                "lines": [
+                  {
+                    "line_id": "option-1-line-spr-4",
+                    "item": "2",
+                    "line_no": "2",
+                    "line_type": "pending",
+                    "description": "HCU accumulators repair kit Pending ownership and final confirmation",
+                    "pricing_mode": "pending",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "LS",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "Pending",
+                    "currency": "USD",
+                    "status": "pending",
+                    "basis": "historical_price_range",
+                    "conditions": [
+                      "Subject to confirmation"
+                    ],
+                    "notes": [
+                      "备件供货责任未确认，当前只能待确认。",
+                      "Pending ownership and final confirmation",
+                      "Confirm whether HPS and HCU accumulator repair kits are owner supply or company supply"
+                    ]
+                  }
+                ]
+              },
+              {
+                "group_id": "option-1-group-spr-5",
+                "group_no": "3",
+                "title": "Nitrogen for refilling",
+                "description": "备件供货责任未确认，当前只能待确认。",
+                "lines": [
+                  {
+                    "line_id": "option-1-line-spr-5",
+                    "item": "3",
+                    "line_no": "3",
+                    "line_type": "pending",
+                    "description": "Nitrogen for refilling Pending ownership and final confirmation",
+                    "pricing_mode": "pending",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "LS",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "Pending",
+                    "currency": "USD",
+                    "status": "pending",
+                    "basis": "historical_price_range",
+                    "conditions": [
+                      "Subject to confirmation"
+                    ],
+                    "notes": [
+                      "备件供货责任未确认，当前只能待确认。",
+                      "Pending ownership and final confirmation",
+                      "Confirm whether HPS and HCU accumulator repair kits are owner supply or company supply"
+                    ]
+                  }
+                ]
+              },
+              {
+                "group_id": "option-1-group-spr-6",
+                "group_no": "4",
+                "title": "FIVA valves pilot valves",
+                "description": "备件供货责任未确认，当前只能待确认。",
+                "lines": [
+                  {
+                    "line_id": "option-1-line-spr-6",
+                    "item": "4",
+                    "line_no": "4",
+                    "line_type": "pending",
+                    "description": "FIVA valves pilot valves Pending ownership and final confirmation",
+                    "pricing_mode": "pending",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "LS",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "Pending",
+                    "currency": "USD",
+                    "status": "pending",
+                    "basis": "historical_price_range",
+                    "conditions": [
+                      "Subject to confirmation"
+                    ],
+                    "notes": [
+                      "备件供货责任未确认，当前只能待确认。",
+                      "Pending ownership and final confirmation",
+                      "Confirm whether HPS and HCU accumulator repair kits are owner supply or company supply"
+                    ]
+                  }
+                ]
+              },
+              {
+                "group_id": "option-1-group-spr-7",
+                "group_no": "5",
+                "title": "Fuel booster units top covers and suction valves",
+                "description": "备件供货责任未确认，当前只能待确认。",
+                "lines": [
+                  {
+                    "line_id": "option-1-line-spr-7",
+                    "item": "5",
+                    "line_no": "5",
+                    "line_type": "pending",
+                    "description": "Fuel booster units top covers and suction valves Pending ownership and final confirmation",
+                    "pricing_mode": "pending",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "LS",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "Pending",
+                    "currency": "USD",
+                    "status": "pending",
+                    "basis": "historical_price_range",
+                    "conditions": [
+                      "Subject to confirmation"
+                    ],
+                    "notes": [
+                      "备件供货责任未确认，当前只能待确认。",
+                      "Pending ownership and final confirmation",
+                      "Confirm whether HPS and HCU accumulator repair kits are owner supply or company supply"
+                    ]
+                  }
+                ]
+              },
+              {
+                "group_id": "option-1-group-spr-8",
+                "group_no": "6",
+                "title": "Exhaust valve actuators safety valves",
+                "description": "备件供货责任未确认，当前只能待确认。",
+                "lines": [
+                  {
+                    "line_id": "option-1-line-spr-8",
+                    "item": "6",
+                    "line_no": "6",
+                    "line_type": "pending",
+                    "description": "Exhaust valve actuators safety valves Pending ownership and final confirmation",
+                    "pricing_mode": "pending",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "LS",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "Pending",
+                    "currency": "USD",
+                    "status": "pending",
+                    "basis": "historical_price_range",
+                    "conditions": [
+                      "Subject to confirmation"
+                    ],
+                    "notes": [
+                      "备件供货责任未确认，当前只能待确认。",
+                      "Pending ownership and final confirmation",
+                      "Confirm whether HPS and HCU accumulator repair kits are owner supply or company supply"
+                    ]
+                  }
+                ]
+              },
+              {
+                "group_id": "option-1-group-spr-9",
+                "group_no": "7",
+                "title": "MPC and UPS batteries",
+                "description": "备件供货责任未确认，当前只能待确认。",
+                "lines": [
+                  {
+                    "line_id": "option-1-line-spr-9",
+                    "item": "7",
+                    "line_no": "7",
+                    "line_type": "pending",
+                    "description": "MPC and UPS batteries Pending ownership and final confirmation",
+                    "pricing_mode": "pending",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "LS",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "Pending",
+                    "currency": "USD",
+                    "status": "pending",
+                    "basis": "historical_price_range",
+                    "conditions": [
+                      "Subject to confirmation"
+                    ],
+                    "notes": [
+                      "备件供货责任未确认，当前只能待确认。",
+                      "Pending ownership and final confirmation",
+                      "Confirm whether HPS and HCU accumulator repair kits are owner supply or company supply"
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "summary": {
+          "service_charge": {
+            "value_type": "amount",
+            "amount": 7000.0,
+            "display": "7,000.00",
+            "currency": "USD",
+            "status": "chargeable"
+          },
+          "spare_parts_fee": {
+            "value_type": "status",
+            "amount": null,
+            "display": "Pending",
+            "currency": "USD",
+            "status": "pending"
+          },
+          "other": {
+            "value_type": "status",
+            "amount": null,
+            "display": "Pending",
+            "currency": "USD",
+            "status": "pending"
+          },
+          "total": {
+            "value_type": "status",
+            "amount": null,
+            "display": "Pending",
+            "currency": "USD",
+            "status": "pending"
+          }
+        },
+        "remarks": [
+          {
+            "type": "commercial",
+            "text": "If the FIVA valve need to overhaul at workshop, the cost will charged extra"
+          },
+          {
+            "type": "commercial",
+            "text": "repair kits for FIVA valve"
+          },
+          {
+            "type": "warranty",
+            "text": "Warranty Compensate Amount: 5times of the service cost at max."
+          }
+        ]
+      }
+    ]
+  },
+  "quote_document": {
+    "document_type": "quotation",
+    "document_version": "1.1",
+    "header": {
+      "currency": "",
+      "vessel_name": "M/V DIMITRA M",
+      "date": "2025-12 / 2026-01",
+      "imo_no": "",
+      "vessel_type": "82,000 mt Kamsarmax Bulk Carrier",
+      "customer_name": "",
+      "service_port": "China central/south ports",
+      "attention": "",
+      "wk_offer_no": "WK-dimitra-m-2026-04-01",
+      "your_ref_no": "",
+      "quotation_validity": "30 days",
+      "po_no": "",
+      "pic_of_winkong": "Winkong"
+    },
+    "table_schema": {
+      "columns": [
+        {
+          "key": "item",
+          "label": "Item"
+        },
+        {
+          "key": "description",
+          "label": "Description"
+        },
+        {
+          "key": "unit_price",
+          "label": "Unit Price"
+        },
+        {
+          "key": "unit",
+          "label": "Unit"
+        },
+        {
+          "key": "qty",
+          "label": "Q'ty"
+        },
+        {
+          "key": "discount",
+          "label": "Discount"
+        },
+        {
+          "key": "amount",
+          "label": "Amount"
+        }
+      ]
+    },
+    "quotation_options": [
+      {
+        "option_id": "option-1",
+        "title": "Option 1",
+        "sections": [
+          {
+            "section_id": "option-1-section-service",
+            "section_type": "service",
+            "title": "Service",
+            "groups": [
+              {
+                "group_id": "option-1-group-svc-1",
+                "group_no": "1",
+                "title": "HCU system overhaul and calibration",
+                "description": "服务项标题和范围已基本明确，可进入报价。",
+                "lines": [
+                  {
+                    "line_id": "option-1-line-svc-1",
+                    "item": "1",
+                    "line_no": "1",
+                    "line_type": "priced",
+                    "description": "HCU system overhaul and calibration 64k running hours overhaul scope for HCU system on MAN B&W 6S60ME-C8.2.",
+                    "pricing_mode": "lump_sum",
+                    "unit_price": 3500.0,
+                    "unit_price_display": "3,500.00",
+                    "unit": "set",
+                    "qty": 1,
+                    "qty_display": "1",
+                    "discount": null,
+                    "amount": 3500.0,
+                    "amount_display": "3,500.00",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "historical_price_range",
+                    "conditions": [],
+                    "notes": [
+                      "服务项标题和范围已基本明确，可进入报价。",
+                      "64k running hours overhaul scope for HCU system on MAN B&W 6S60ME-C8.2."
+                    ]
+                  },
+                  {
+                    "line_id": "option-1-line-svc-1-scope-1",
+                    "item": "",
+                    "line_no": "",
+                    "line_type": "scope_note",
+                    "description": "Overhaul ELFI valve and multiway valve units",
+                    "pricing_mode": "text_only",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "included_scope",
+                    "conditions": [],
+                    "notes": []
+                  },
+                  {
+                    "line_id": "option-1-line-svc-1-scope-2",
+                    "item": "",
+                    "line_no": "",
+                    "line_type": "scope_note",
+                    "description": "Overhaul exhaust valve actuator and fuel oil pressure booster",
+                    "pricing_mode": "text_only",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "included_scope",
+                    "conditions": [],
+                    "notes": []
+                  },
+                  {
+                    "line_id": "option-1-line-svc-1-scope-3",
+                    "item": "",
+                    "line_no": "",
+                    "line_type": "scope_note",
+                    "description": "Overhaul cylinder lubricator system",
+                    "pricing_mode": "text_only",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "included_scope",
+                    "conditions": [],
+                    "notes": []
+                  },
+                  {
+                    "line_id": "option-1-line-svc-1-scope-4",
+                    "item": "",
+                    "line_no": "",
+                    "line_type": "scope_note",
+                    "description": "Overhaul accumulator and refill with nitrogen",
+                    "pricing_mode": "text_only",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "included_scope",
+                    "conditions": [],
+                    "notes": []
+                  },
+                  {
+                    "line_id": "option-1-line-svc-1-scope-5",
+                    "item": "",
+                    "line_no": "",
+                    "line_type": "scope_note",
+                    "description": "Maintenance and overhaul of HPS",
+                    "pricing_mode": "text_only",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "included_scope",
+                    "conditions": [],
+                    "notes": []
+                  }
+                ]
+              },
+              {
+                "group_id": "option-1-group-svc-2",
+                "group_no": "2",
+                "title": "MPC system inspection and health check",
+                "description": "服务项标题和范围已基本明确，可进入报价。",
+                "lines": [
+                  {
+                    "line_id": "option-1-line-svc-2",
+                    "item": "2",
+                    "line_no": "2",
+                    "line_type": "priced",
+                    "description": "MPC system inspection and health check 64k running hours inspection scope for MPC system on MAN B&W 6S60ME-C8.2.",
+                    "pricing_mode": "lump_sum",
+                    "unit_price": 3500.0,
+                    "unit_price_display": "3,500.00",
+                    "unit": "set",
+                    "qty": 1,
+                    "qty_display": "1",
+                    "discount": null,
+                    "amount": 3500.0,
+                    "amount_display": "3,500.00",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "historical_price_range",
+                    "conditions": [],
+                    "notes": [
+                      "服务项标题和范围已基本明确，可进入报价。",
+                      "64k running hours inspection scope for MPC system on MAN B&W 6S60ME-C8.2."
+                    ]
+                  },
+                  {
+                    "line_id": "option-1-line-svc-2-scope-1",
+                    "item": "",
+                    "line_no": "",
+                    "line_type": "scope_note",
+                    "description": "MPC health check",
+                    "pricing_mode": "text_only",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "included_scope",
+                    "conditions": [],
+                    "notes": []
+                  },
+                  {
+                    "line_id": "option-1-line-svc-2-scope-2",
+                    "item": "",
+                    "line_no": "",
+                    "line_type": "scope_note",
+                    "description": "Inspection of MPC status and replacement readiness",
+                    "pricing_mode": "text_only",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "included_scope",
+                    "conditions": [],
+                    "notes": []
+                  },
+                  {
+                    "line_id": "option-1-line-svc-2-scope-3",
+                    "item": "",
+                    "line_no": "",
+                    "line_type": "scope_note",
+                    "description": "Check UPS battery related condition",
+                    "pricing_mode": "text_only",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "included_scope",
+                    "conditions": [],
+                    "notes": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "section_id": "option-1-section-other",
+            "section_type": "other",
+            "title": "Other",
+            "groups": [
+              {
+                "group_id": "option-1-group-hist-other-transportation",
+                "group_no": "1",
+                "title": "Transportation",
+                "description": "历史相似报价中常见交通费，建议保守纳入结构。",
+                "lines": [
+                  {
+                    "line_id": "option-1-line-hist-other-transportation",
+                    "item": "1",
+                    "line_no": "1",
+                    "line_type": "conditional",
+                    "description": "Transportation",
+                    "pricing_mode": "rate_as_actual",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "As actual",
+                    "currency": "USD",
+                    "status": "as_actual",
+                    "basis": "historical_price_range",
+                    "conditions": [],
+                    "notes": [
+                      "历史相似报价中常见交通费，建议保守纳入结构。"
+                    ]
+                  }
+                ]
+              },
+              {
+                "group_id": "option-1-group-hist-other-accommodation",
+                "group_no": "2",
+                "title": "Accommodation",
+                "description": "历史相似报价中常见住宿或食宿费，建议保守纳入结构。",
+                "lines": [
+                  {
+                    "line_id": "option-1-line-hist-other-accommodation",
+                    "item": "2",
+                    "line_no": "2",
+                    "line_type": "optional",
+                    "description": "Accommodation",
+                    "pricing_mode": "conditional",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "If needed",
+                    "currency": "USD",
+                    "status": "if_needed",
+                    "basis": "historical_price_range",
+                    "conditions": [
+                      "Only chargeable if actually required during attendance"
+                    ],
+                    "notes": [
+                      "历史相似报价中常见住宿或食宿费，建议保守纳入结构。"
+                    ]
+                  }
+                ]
+              },
+              {
+                "group_id": "option-1-group-hist-other-dockyard_management",
+                "group_no": "3",
+                "title": "Dockyard management fee",
+                "description": "历史相似报价中常见厂修管理相关费用，建议保守纳入报价结构。",
+                "lines": [
+                  {
+                    "line_id": "option-1-line-hist-other-dockyard_management",
+                    "item": "3",
+                    "line_no": "3",
+                    "line_type": "conditional",
+                    "description": "Dockyard management fee",
+                    "pricing_mode": "rate_as_actual",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "As actual",
+                    "currency": "USD",
+                    "status": "as_actual",
+                    "basis": "historical_price_range",
+                    "conditions": [],
+                    "notes": [
+                      "历史相似报价中常见厂修管理相关费用，建议保守纳入报价结构。"
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "section_id": "option-1-section-spare_parts",
+            "section_type": "spare_parts",
+            "title": "Spare Parts",
+            "groups": [
+              {
+                "group_id": "option-1-group-spr-3",
+                "group_no": "1",
+                "title": "HPS accumulators repair kit",
+                "description": "备件供货责任未确认，当前只能待确认。",
+                "lines": [
+                  {
+                    "line_id": "option-1-line-spr-3",
+                    "item": "1",
+                    "line_no": "1",
+                    "line_type": "pending",
+                    "description": "HPS accumulators repair kit Pending ownership and final confirmation",
+                    "pricing_mode": "pending",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "LS",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "Pending",
+                    "currency": "USD",
+                    "status": "pending",
+                    "basis": "historical_price_range",
+                    "conditions": [
+                      "Subject to confirmation"
+                    ],
+                    "notes": [
+                      "备件供货责任未确认，当前只能待确认。",
+                      "Pending ownership and final confirmation",
+                      "Confirm whether HPS and HCU accumulator repair kits are owner supply or company supply"
+                    ]
+                  }
+                ]
+              },
+              {
+                "group_id": "option-1-group-spr-4",
+                "group_no": "2",
+                "title": "HCU accumulators repair kit",
+                "description": "备件供货责任未确认，当前只能待确认。",
+                "lines": [
+                  {
+                    "line_id": "option-1-line-spr-4",
+                    "item": "2",
+                    "line_no": "2",
+                    "line_type": "pending",
+                    "description": "HCU accumulators repair kit Pending ownership and final confirmation",
+                    "pricing_mode": "pending",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "LS",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "Pending",
+                    "currency": "USD",
+                    "status": "pending",
+                    "basis": "historical_price_range",
+                    "conditions": [
+                      "Subject to confirmation"
+                    ],
+                    "notes": [
+                      "备件供货责任未确认，当前只能待确认。",
+                      "Pending ownership and final confirmation",
+                      "Confirm whether HPS and HCU accumulator repair kits are owner supply or company supply"
+                    ]
+                  }
+                ]
+              },
+              {
+                "group_id": "option-1-group-spr-5",
+                "group_no": "3",
+                "title": "Nitrogen for refilling",
+                "description": "备件供货责任未确认，当前只能待确认。",
+                "lines": [
+                  {
+                    "line_id": "option-1-line-spr-5",
+                    "item": "3",
+                    "line_no": "3",
+                    "line_type": "pending",
+                    "description": "Nitrogen for refilling Pending ownership and final confirmation",
+                    "pricing_mode": "pending",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "LS",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "Pending",
+                    "currency": "USD",
+                    "status": "pending",
+                    "basis": "historical_price_range",
+                    "conditions": [
+                      "Subject to confirmation"
+                    ],
+                    "notes": [
+                      "备件供货责任未确认，当前只能待确认。",
+                      "Pending ownership and final confirmation",
+                      "Confirm whether HPS and HCU accumulator repair kits are owner supply or company supply"
+                    ]
+                  }
+                ]
+              },
+              {
+                "group_id": "option-1-group-spr-6",
+                "group_no": "4",
+                "title": "FIVA valves pilot valves",
+                "description": "备件供货责任未确认，当前只能待确认。",
+                "lines": [
+                  {
+                    "line_id": "option-1-line-spr-6",
+                    "item": "4",
+                    "line_no": "4",
+                    "line_type": "pending",
+                    "description": "FIVA valves pilot valves Pending ownership and final confirmation",
+                    "pricing_mode": "pending",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "LS",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "Pending",
+                    "currency": "USD",
+                    "status": "pending",
+                    "basis": "historical_price_range",
+                    "conditions": [
+                      "Subject to confirmation"
+                    ],
+                    "notes": [
+                      "备件供货责任未确认，当前只能待确认。",
+                      "Pending ownership and final confirmation",
+                      "Confirm whether HPS and HCU accumulator repair kits are owner supply or company supply"
+                    ]
+                  }
+                ]
+              },
+              {
+                "group_id": "option-1-group-spr-7",
+                "group_no": "5",
+                "title": "Fuel booster units top covers and suction valves",
+                "description": "备件供货责任未确认，当前只能待确认。",
+                "lines": [
+                  {
+                    "line_id": "option-1-line-spr-7",
+                    "item": "5",
+                    "line_no": "5",
+                    "line_type": "pending",
+                    "description": "Fuel booster units top covers and suction valves Pending ownership and final confirmation",
+                    "pricing_mode": "pending",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "LS",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "Pending",
+                    "currency": "USD",
+                    "status": "pending",
+                    "basis": "historical_price_range",
+                    "conditions": [
+                      "Subject to confirmation"
+                    ],
+                    "notes": [
+                      "备件供货责任未确认，当前只能待确认。",
+                      "Pending ownership and final confirmation",
+                      "Confirm whether HPS and HCU accumulator repair kits are owner supply or company supply"
+                    ]
+                  }
+                ]
+              },
+              {
+                "group_id": "option-1-group-spr-8",
+                "group_no": "6",
+                "title": "Exhaust valve actuators safety valves",
+                "description": "备件供货责任未确认，当前只能待确认。",
+                "lines": [
+                  {
+                    "line_id": "option-1-line-spr-8",
+                    "item": "6",
+                    "line_no": "6",
+                    "line_type": "pending",
+                    "description": "Exhaust valve actuators safety valves Pending ownership and final confirmation",
+                    "pricing_mode": "pending",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "LS",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "Pending",
+                    "currency": "USD",
+                    "status": "pending",
+                    "basis": "historical_price_range",
+                    "conditions": [
+                      "Subject to confirmation"
+                    ],
+                    "notes": [
+                      "备件供货责任未确认，当前只能待确认。",
+                      "Pending ownership and final confirmation",
+                      "Confirm whether HPS and HCU accumulator repair kits are owner supply or company supply"
+                    ]
+                  }
+                ]
+              },
+              {
+                "group_id": "option-1-group-spr-9",
+                "group_no": "7",
+                "title": "MPC and UPS batteries",
+                "description": "备件供货责任未确认，当前只能待确认。",
+                "lines": [
+                  {
+                    "line_id": "option-1-line-spr-9",
+                    "item": "7",
+                    "line_no": "7",
+                    "line_type": "pending",
+                    "description": "MPC and UPS batteries Pending ownership and final confirmation",
+                    "pricing_mode": "pending",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "LS",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "Pending",
+                    "currency": "USD",
+                    "status": "pending",
+                    "basis": "historical_price_range",
+                    "conditions": [
+                      "Subject to confirmation"
+                    ],
+                    "notes": [
+                      "备件供货责任未确认，当前只能待确认。",
+                      "Pending ownership and final confirmation",
+                      "Confirm whether HPS and HCU accumulator repair kits are owner supply or company supply"
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "summary": {
+          "service_charge": {
+            "value_type": "amount",
+            "amount": 7000.0,
+            "display": "7,000.00",
+            "currency": "USD",
+            "status": "chargeable"
+          },
+          "spare_parts_fee": {
+            "value_type": "status",
+            "amount": null,
+            "display": "Pending",
+            "currency": "USD",
+            "status": "pending"
+          },
+          "other": {
+            "value_type": "status",
+            "amount": null,
+            "display": "Pending",
+            "currency": "USD",
+            "status": "pending"
+          },
+          "total": {
+            "value_type": "status",
+            "amount": null,
+            "display": "Pending",
+            "currency": "USD",
+            "status": "pending"
+          }
+        },
+        "remarks": [
+          {
+            "type": "commercial",
+            "text": "If the FIVA valve need to overhaul at workshop, the cost will charged extra"
+          },
+          {
+            "type": "commercial",
+            "text": "repair kits for FIVA valve"
+          },
+          {
+            "type": "warranty",
+            "text": "Warranty Compensate Amount: 5times of the service cost at max."
+          }
+        ]
+      }
+    ],
+    "footer": {
+      "summary": {
+        "service_charge": {
+          "value_type": "amount",
+          "amount": 7000.0,
+          "display": "7,000.00",
+          "currency": "USD",
+          "status": "chargeable"
+        },
+        "spare_parts_fee": {
+          "value_type": "status",
+          "amount": null,
+          "display": "Pending",
+          "currency": "USD",
+          "status": "pending"
+        },
+        "other": {
+          "value_type": "status",
+          "amount": null,
+          "display": "Pending",
+          "currency": "USD",
+          "status": "pending"
+        },
+        "total": {
+          "value_type": "status",
+          "amount": null,
+          "display": "Pending",
+          "currency": "USD",
+          "status": "pending"
+        }
+      },
+      "remark": {
+        "title": "Remark",
+        "items": [
+          {
+            "type": "commercial",
+            "text": "If the FIVA valve need to overhaul at workshop, the cost will charged extra"
+          },
+          {
+            "type": "commercial",
+            "text": "repair kits for FIVA valve"
+          },
+          {
+            "type": "warranty",
+            "text": "Warranty Compensate Amount: 5times of the service cost at max."
+          },
+          {
+            "type": "warranty",
+            "text": "Spare parts warranty period shall follow supplier confirmation."
+          },
+          {
+            "type": "warranty",
+            "text": "Inspection and troubleshooting items carry no service warranty."
+          },
+          {
+            "type": "compensation",
+            "text": "Warranty Compensate Amount: 5 times of the service cost at max."
+          }
+        ]
+      },
+      "service_payment_terms": {
+        "title": "Service Payment Terms",
+        "content": "Payment within 30 days upon invoice date."
+      }
+    },
+    "review_result": {
+      "review_flags": [
+        "当前仅部分项目具备报价条件。",
+        "历史价格区间较宽，不能直接据此判断最终价格。",
+        "当前报价包含待确认或按条件收费内容，提交前需再次核对。"
+      ],
+      "risk_flags": [
+        "当前仅部分项目具备报价条件。",
+        "备件供货责任未确认，影响是否纳入报价。"
+      ],
+      "approval_level": "manager"
+    },
+    "trace": {
+      "historical_references": [
+        {
+          "quote_id": "RH-2025-001725",
+          "similarity": 0.54,
+          "reason": "核心项目工作范围、文本语义与服务场景相似。"
+        },
+        {
+          "quote_id": "ERH-2025-003765",
+          "similarity": 0.34,
+          "reason": "规则预筛通过后，文本语义与场景特征存在相似性。"
+        },
+        {
+          "quote_id": "BRH-2025-003765",
+          "similarity": 0.34,
+          "reason": "规则预筛通过后，文本语义与场景特征存在相似性。"
+        }
+      ],
+      "pricing_basis": [
+        "historical_price_range",
+        "included_scope",
+        "historical_remark_block",
+        "historical_charge_item_hint",
+        "history_quality:broad_price_range",
+        "history_quality:low_item_sample_size",
+        "history_quality:commercial_mismatch",
+        "history_quality:semantic_only_match"
+      ],
+      "rule_versions": [
+        "quote_pricing_skill:v2",
+        "quote_review_output_skill:v2",
+        "historical_remark_blocks:v1",
+        "historical_charge_item_hints:v1"
+      ]
+    }
+  },
+  "orchestration_status": "completed",
+  "execution_trace": [
+    {
+      "skill_name": "quote_template_select_skill",
+      "decision_type": "required",
+      "reason": "required stage: template_select"
+    },
+    {
+      "skill_name": "quote_request_prepare_skill",
+      "decision_type": "required",
+      "reason": "required stage: prepare"
+    },
+    {
+      "skill_name": "quote_feasibility_check_skill",
+      "decision_type": "required",
+      "reason": "required stage: feasibility"
+    },
+    {
+      "skill_name": "historical_quote_reference_skill",
+      "decision_type": "optional",
+      "reason": "optional stage chosen: historical_reference"
+    },
+    {
+      "skill_name": "quote_pricing_skill",
+      "decision_type": "required",
+      "reason": "required stage: pricing"
+    },
+    {
+      "skill_name": "quote_review_output_skill",
+      "decision_type": "required",
+      "reason": "required stage: review_output"
+    },
+    {
+      "skill_name": "quote_pdf_render_skill",
+      "decision_type": "optional",
+      "reason": "optional stage chosen: pdf_render"
+    }
+  ],
+  "planner_trace": [
+    {
+      "action": "run_skill",
+      "skill_name": "quote_template_select_skill",
+      "reason": "required stage: template_select",
+      "decision_type": "required",
+      "planner_notes": []
+    },
+    {
+      "action": "run_skill",
+      "skill_name": "quote_request_prepare_skill",
+      "reason": "required stage: prepare",
+      "decision_type": "required",
+      "planner_notes": []
+    },
+    {
+      "action": "run_skill",
+      "skill_name": "quote_feasibility_check_skill",
+      "reason": "required stage: feasibility",
+      "decision_type": "required",
+      "planner_notes": []
+    },
+    {
+      "action": "run_skill",
+      "skill_name": "historical_quote_reference_skill",
+      "reason": "optional stage chosen: historical_reference",
+      "decision_type": "optional",
+      "planner_notes": []
+    },
+    {
+      "action": "run_skill",
+      "skill_name": "quote_pricing_skill",
+      "reason": "required stage: pricing",
+      "decision_type": "required",
+      "planner_notes": []
+    },
+    {
+      "action": "run_skill",
+      "skill_name": "quote_review_output_skill",
+      "reason": "required stage: review_output",
+      "decision_type": "required",
+      "planner_notes": []
+    },
+    {
+      "action": "run_skill",
+      "skill_name": "quote_pdf_render_skill",
+      "reason": "optional stage chosen: pdf_render",
+      "decision_type": "optional",
+      "planner_notes": []
+    },
+    {
+      "action": "finish",
+      "skill_name": null,
+      "reason": "workflow complete",
+      "decision_type": "required",
+      "planner_notes": []
+    }
+  ],
+  "skipped_skills": [],
+  "render_result": {
+    "document_type": "quotation",
+    "document_version": "1.1",
+    "outputs": [
+      {
+        "language": "zh",
+        "html_path": "E:\\PythonProjects\\BaoJia\\.opencode\\out\\quotes\\报价单-WK-dimitra-m-2026-04-01-zh.html",
+        "pdf_path": "E:\\PythonProjects\\BaoJia\\.opencode\\out\\quotes\\报价单-WK-dimitra-m-2026-04-01-zh.pdf",
+        "status": "success"
+      },
+      {
+        "language": "en",
+        "html_path": "E:\\PythonProjects\\BaoJia\\.opencode\\out\\quotes\\报价单-WK-dimitra-m-2026-04-01-en.html",
+        "pdf_path": "E:\\PythonProjects\\BaoJia\\.opencode\\out\\quotes\\报价单-WK-dimitra-m-2026-04-01-en.pdf",
+        "status": "success"
+      }
+    ]
+  }
+}

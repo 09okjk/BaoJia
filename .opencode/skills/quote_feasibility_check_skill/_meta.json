@@ -1,0 +1,6 @@
+{
+  "name": "quote-feasibility-check-skill",
+  "version": "1.0.0",
+  "author": "BaoJia Team",
+  "description": "基于标准化后的 quote_request 判断可报价、待确认和排除范围。"
+}

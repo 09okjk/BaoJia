@@ -1,0 +1,13 @@
+{
+  "template_selection_result": {},
+  "prepare_result": {},
+  "feasibility_result": {},
+  "historical_reference": {},
+  "pricing_result": {},
+  "quote_document": {},
+  "orchestration_status": "completed",
+  "execution_trace": [],
+  "planner_trace": [],
+  "skipped_skills": [],
+  "applied_planner_strategies": []
+}

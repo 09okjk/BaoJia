@@ -1,0 +1,115 @@
+{
+  "quote_request": {
+    "request_meta": {
+      "request_id": "qr-demo-001",
+      "source": "assessment_report",
+      "prepared_at": "2026-04-09T06:52:15.596255+00:00",
+      "language": "zh-CN"
+    },
+    "header_context": {
+      "currency": "USD",
+      "vessel_name": "MV EXAMPLE",
+      "imo_no": "1234567",
+      "vessel_type": null,
+      "customer_name": "ABC Shipping",
+      "service_port": "Zhapu Port, China",
+      "service_date": null,
+      "attention": null,
+      "customer_ref_no": null
+    },
+    "service_context": {
+      "service_category": "service",
+      "service_mode": "voyage_repair",
+      "location_type": "port",
+      "needs_multi_option": false,
+      "option_hints": [],
+      "urgency": null
+    },
+    "candidate_items": [
+      {
+        "item_id": "svc-1",
+        "item_type": "service",
+        "title": "AE-1 crankshaft trueness checks in place",
+        "description": "",
+        "work_scope": [
+          "Working time abt 15 hours",
+          "2pcs M/B lower bearing remove",
+          "Crankshaft run-out check by magnetic gauge"
+        ],
+        "quantity_hint": null,
+        "unit_hint": null,
+        "labor_hint": [],
+        "pricing_clues": [],
+        "status_hint": null,
+        "source": "assessment_report"
+      }
+    ],
+    "spare_parts_context": {
+      "has_spare_parts": null,
+      "spare_parts_supply_mode": null,
+      "spare_parts_items": []
+    },
+    "risk_context": {
+      "risks": [],
+      "pending_confirmations": [
+        "Whether spare parts are owner supply"
+      ],
+      "assumptions": []
+    },
+    "commercial_context": {
+      "preferred_currency": "USD",
+      "pricing_expectation": null,
+      "special_terms": []
+    },
+    "source_refs": {
+      "assessment_report_id": "demo-001",
+      "customer_context_ref": null,
+      "business_context_ref": null
+    }
+  },
+  "normalization_flags": [
+    {
+      "flag_code": "normalized_currency_code",
+      "field": "header_context.currency",
+      "from": "usd",
+      "to": "USD",
+      "reason": "统一币种编码。"
+    },
+    {
+      "flag_code": "normalized_service_mode",
+      "field": "service_context.service_mode",
+      "from": "voyage repair",
+      "to": "voyage_repair",
+      "reason": "统一服务模式枚举。"
+    },
+    {
+      "flag_code": "normalized_location_type",
+      "field": "service_context.location_type",
+      "from": "Zhapu Port, China",
+      "to": "port",
+      "reason": "基于显式地点文本推断地点类型。"
+    }
+  ],
+  "missing_fields": [
+    {
+      "field": "header_context.vessel_type",
+      "required_for": [
+        "pricing",
+        "quote_document"
+      ],
+      "severity": "medium",
+      "reason": "缺少船型，可能影响历史参考和表头完整性。",
+      "suggested_source": "assessment_report"
+    },
+    {
+      "field": "header_context.service_date",
+      "required_for": [
+        "pricing",
+        "quote_document"
+      ],
+      "severity": "medium",
+      "reason": "缺少服务日期，影响部分费用判断和表头补齐。",
+      "suggested_source": "customer_context"
+    }
+  ]
+}

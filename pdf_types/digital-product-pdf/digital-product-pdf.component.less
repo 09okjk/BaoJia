@@ -1,0 +1,21 @@
+@import '../common-pdf.less';
+@page {
+  size: A4;
+  margin: 30px;
+  margin-top: 150px;
+}
+.digital-product-pdf {
+  page: digitalProductPdf;
+}
+@page {
+  @top-center {
+    content: element(headerRunningDigitalProduct);
+  }
+  @bottom-right {
+    padding-bottom: 20px;
+    // content: counter(page) '/' counter(pages);
+  }
+}
+.header {
+  position: running(headerRunningDigitalProduct);
+}

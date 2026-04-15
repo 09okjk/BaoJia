@@ -1,0 +1,52 @@
+{
+  "template_selection_result": {
+    "template_type": "supercharger",
+    "confidence": 0.93,
+    "candidate_templates": [
+      "supercharger"
+    ],
+    "rule_scores": {
+      "engineering-service": 3.0,
+      "digital-product": 0.0,
+      "laboratory": 0.0,
+      "man-hour": 2.0,
+      "product": 0.0,
+      "supercharger": 18.0,
+      "valva": 0.0
+    },
+    "reasons": [
+      "规则命中 supercharger 相关特征词。",
+      "命中信号：\\bturbocharger\\b，来源：assessment_report.service_items[0].title。",
+      "命中信号：\\brunning hours\\b，来源：assessment_report.service_items[0].description。"
+    ],
+    "matched_signals": [
+      {
+        "signal": "\\bturbocharger\\b",
+        "source": "assessment_report.service_items[0].title",
+        "weight": 6.0,
+        "supports": [
+          "supercharger"
+        ]
+      },
+      {
+        "signal": "\\bturbocharger\\b",
+        "source": "assessment_report.service_items[0].description",
+        "weight": 6.0,
+        "supports": [
+          "supercharger"
+        ]
+      },
+      {
+        "signal": "\\brunning hours\\b",
+        "source": "assessment_report.service_items[0].description",
+        "weight": 2.0,
+        "supports": [
+          "supercharger"
+        ]
+      }
+    ],
+    "needs_manual_confirmation": false,
+    "questions_for_user": [],
+    "review_flags": []
+  }
+}

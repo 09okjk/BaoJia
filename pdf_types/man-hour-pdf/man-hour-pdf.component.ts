@@ -1,0 +1,12 @@
+import { Component, Input } from '@angular/core';
+@Component({
+  selector: 'wk-trade-ui-man-hour-pdf',
+  templateUrl: './man-hour-pdf.component.html',
+  styleUrls: ['./man-hour-pdf.component.less'],
+})
+export class ManHourPdfComponent {
+  @Input() formData: any; //报价单数据
+  @Input() quotationTemplate: number; //报价单模板
+  @Input() displayDiscounts: number; //是否显示折扣
+  @Input() currencyName: string; //币种名称;
+}

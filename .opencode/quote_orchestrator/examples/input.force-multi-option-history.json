@@ -1,0 +1,54 @@
+{
+  "assessment_report": {
+    "report_id": "multi-option-001",
+    "vessel_name": "M/V OPTION TEST",
+    "vessel_type": "Bulk Carrier",
+    "service_port": "Guangzhou",
+    "service_date": "2026-05-10",
+    "service_mode": "dock repair",
+    "service_category": "综合",
+    "service_items": [
+      {
+        "title": "Fuel system overhaul",
+        "description": "Overhaul of fuel related components.",
+        "work_scope": [
+          "Inspect fuel valves",
+          "Overhaul related assemblies"
+        ],
+        "labor_hint": [
+          "1 supervisor",
+          "2 technicians"
+        ],
+        "quantity": 1,
+        "unit": "set",
+        "price_hints": [
+          "overhaul",
+          "dock repair"
+        ]
+      }
+    ],
+    "spare_parts_items": [
+      {
+        "title": "Fuel valve repair kit",
+        "description": "Company supplied repair kit",
+        "work_scope": [
+          "Supply repair kit",
+          "Deliver to vessel"
+        ]
+      }
+    ]
+  },
+  "customer_context": {
+    "currency": "USD",
+    "spare_parts_supply_mode": "company_supply"
+  },
+  "business_context": {
+    "prefer_fast_quote": true,
+    "force_multi_option": true,
+    "option_hints": [
+      "Option A Standard quotation",
+      "Option B Service only quotation"
+    ]
+  },
+  "render_options": {}
+}

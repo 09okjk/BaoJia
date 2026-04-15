@@ -1,0 +1,6 @@
+{
+  "name": "historical-quote-reference-skill",
+  "version": "1.0.0",
+  "author": "BaoJia Team",
+  "description": "基于 quote_request 和 quotable_items 检索相似历史报价案例。"
+}

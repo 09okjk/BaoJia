@@ -1,0 +1,65 @@
+{
+  "can_quote": true,
+  "quote_scope": "partial",
+  "quotable_items": [
+    {
+      "item_id": "svc-1",
+      "item_type": "service",
+      "title": "AE-1 crankshaft trueness checks in place",
+      "decision": "quotable",
+      "reason": "服务项标题和范围已基本明确，可进入报价。",
+      "blocking_fields": [],
+      "suggested_status": "chargeable",
+      "source": "quote_request.candidate_items"
+    }
+  ],
+  "tbc_items": [
+    {
+      "item_id": "spr-1",
+      "item_type": "spare_parts",
+      "title": "Main bearing spare parts",
+      "decision": "tbc",
+      "reason": "备件供货责任未确认，当前只能待确认。",
+      "blocking_fields": [
+        "spare_parts_context.spare_parts_supply_mode"
+      ],
+      "suggested_status": "pending",
+      "source": "quote_request.candidate_items"
+    }
+  ],
+  "exclusions": [],
+  "missing_fields": [
+    {
+      "field": "spare_parts_context.spare_parts_supply_mode",
+      "required_for": [
+        "feasibility_check",
+        "pricing"
+      ],
+      "severity": "medium",
+      "reason": "备件供货责任未确认，影响是否纳入报价。",
+      "suggested_source": "customer_context"
+    }
+  ],
+  "questions_for_user": [
+    {
+      "question_id": "q-spr-1",
+      "target": "customer",
+      "topic": "spare_parts_supply_mode",
+      "question": "Main bearing spare parts 由船东提供还是由我司供货？",
+      "related_item_ids": [
+        "spr-1"
+      ]
+    }
+  ],
+  "review_flags": [
+    {
+      "flag_code": "partial_quote_scope",
+      "severity": "medium",
+      "message": "当前仅部分项目具备报价条件。",
+      "related_item_ids": [
+        "svc-1",
+        "spr-1"
+      ]
+    }
+  ]
+}

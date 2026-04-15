@@ -1,0 +1,172 @@
+{
+  "quote_document": {
+    "document_type": "quotation",
+    "document_version": "1.1",
+    "header": {
+      "currency": "USD",
+      "vessel_name": "M/V EXAMPLE",
+      "date": "2026-04-09",
+      "imo_no": "1234567",
+      "vessel_type": "Bulk Carrier",
+      "customer_name": "ABC Shipping",
+      "service_port": "Qingdao",
+      "attention": "Technical Department",
+      "wk_offer_no": "WK-supercharger-001",
+      "your_ref_no": "REF-SC-001",
+      "quotation_validity": "30 days",
+      "po_no": "",
+      "pic_of_winkong": "Winkong"
+    },
+    "table_schema": {
+      "columns": [
+        { "key": "item", "label": "Item" },
+        { "key": "description", "label": "Description" },
+        { "key": "unit_price", "label": "Unit Price" },
+        { "key": "unit", "label": "Unit" },
+        { "key": "qty", "label": "Q'ty" },
+        { "key": "discount", "label": "Discount" },
+        { "key": "amount", "label": "Amount" }
+      ]
+    },
+    "quotation_options": [
+      {
+        "option_id": "option-a",
+        "title": "Option A Standard quotation",
+        "sections": [
+          {
+            "section_id": "svc-section",
+            "section_type": "service",
+            "title": "Service",
+            "groups": [
+              {
+                "group_id": "grp-1",
+                "group_no": "1",
+                "title": "VTR turbocharger overhaul",
+                "description": "Routine overhaul for turbocharger unit",
+                "lines": [
+                  {
+                    "line_id": "line-1",
+                    "item": "1",
+                    "line_no": "1",
+                    "line_type": "priced",
+                    "description": "Turbocharger routine overhaul for VTR unit at 64k running hours",
+                    "pricing_mode": "lump_sum",
+                    "unit_price": 3000.0,
+                    "unit_price_display": "3,000.00",
+                    "unit": "job",
+                    "qty": 1,
+                    "qty_display": "1",
+                    "discount": null,
+                    "amount": 3000.0,
+                    "amount_display": "3,000.00",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "turbocharger_service_rate",
+                    "conditions": [],
+                    "notes": []
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "summary": {
+          "service_charge": {
+            "value_type": "amount",
+            "amount": 3000.0,
+            "display": "3,000.00",
+            "currency": "USD",
+            "status": "chargeable"
+          },
+          "spare_parts_fee": {
+            "value_type": "amount",
+            "amount": 0.0,
+            "display": "0.00",
+            "currency": "USD",
+            "status": "chargeable"
+          },
+          "other": {
+            "value_type": "amount",
+            "amount": 0.0,
+            "display": "0.00",
+            "currency": "USD",
+            "status": "chargeable"
+          },
+          "total": {
+            "value_type": "amount",
+            "amount": 3000.0,
+            "display": "3,000.00",
+            "currency": "USD",
+            "status": "chargeable"
+          }
+        },
+        "remarks": [
+          {
+            "type": "commercial",
+            "text": "Workshop repair and balancing, if required, will be charged additionally."
+          }
+        ]
+      }
+    ],
+    "footer": {
+      "summary": {
+        "service_charge": {
+          "value_type": "amount",
+          "amount": 3000.0,
+          "display": "3,000.00",
+          "currency": "USD",
+          "status": "chargeable"
+        },
+        "spare_parts_fee": {
+          "value_type": "amount",
+          "amount": 0.0,
+          "display": "0.00",
+          "currency": "USD",
+          "status": "chargeable"
+        },
+        "other": {
+          "value_type": "amount",
+          "amount": 0.0,
+          "display": "0.00",
+          "currency": "USD",
+          "status": "chargeable"
+        },
+        "total": {
+          "value_type": "amount",
+          "amount": 3000.0,
+          "display": "3,000.00",
+          "currency": "USD",
+          "status": "chargeable"
+        }
+      },
+      "remark": {
+        "title": "Remark",
+        "items": [
+          {
+            "type": "commercial",
+            "text": "Workshop repair and balancing, if required, will be charged additionally."
+          }
+        ]
+      },
+      "service_payment_terms": {
+        "title": "Service Payment Terms",
+        "content": "Payment within 30 days upon invoice date."
+      }
+    },
+    "review_result": {
+      "review_flags": [],
+      "risk_flags": [],
+      "approval_level": "standard"
+    },
+    "trace": {
+      "historical_references": [],
+      "pricing_basis": ["turbocharger_service_rate"],
+      "rule_versions": ["quote_pdf_render_skill:supercharger-v1"]
+    }
+  },
+  "render_options": {
+    "languages": ["zh", "en"],
+    "template_type": "supercharger",
+    "output_dir": ".opencode/out/quotes"
+  }
+}

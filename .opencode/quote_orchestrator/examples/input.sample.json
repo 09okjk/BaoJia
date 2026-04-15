@@ -107,6 +107,6 @@
       "zh",
       "en"
     ],
-    "output_dir": "quotation-pdf/out"
+    "output_dir": ".opencode/out/quotes"
   }
 }

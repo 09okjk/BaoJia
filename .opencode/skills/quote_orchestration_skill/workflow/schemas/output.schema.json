@@ -1,0 +1,77 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.local/opencode/skills/quote-orchestration-skill/workflow/output.schema.json",
+  "title": "quote_orchestration_skill workflow output",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "template_selection_result",
+    "prepare_result",
+    "feasibility_result",
+    "historical_reference",
+    "pricing_result",
+    "quote_document",
+    "orchestration_status",
+    "execution_trace",
+    "planner_trace",
+    "skipped_skills",
+    "applied_planner_strategies"
+  ],
+  "properties": {
+    "template_selection_result": {
+      "type": "object"
+    },
+    "prepare_result": {
+      "type": "object"
+    },
+    "feasibility_result": {
+      "type": "object"
+    },
+    "historical_reference": {
+      "type": "object"
+    },
+    "pricing_result": {
+      "type": "object"
+    },
+    "quote_document": {
+      "type": "object"
+    },
+    "orchestration_status": {
+      "type": "string",
+      "enum": ["completed", "paused", "running"]
+    },
+    "pause_reason": {
+      "type": "string"
+    },
+    "execution_trace": {
+      "type": "array",
+      "items": {"type": "object"}
+    },
+    "planner_trace": {
+      "type": "array",
+      "items": {"type": "object"}
+    },
+    "skipped_skills": {
+      "type": "array",
+      "items": {"type": "object"}
+    },
+    "applied_planner_strategies": {
+      "type": "array",
+      "items": {"type": "object"}
+    },
+    "questions_for_user": {
+      "type": "array",
+      "items": {}
+    },
+    "review_flags": {
+      "type": "array",
+      "items": {}
+    },
+    "clarification_context": {
+      "type": "object"
+    },
+    "render_result": {
+      "type": "object"
+    }
+  }
+}

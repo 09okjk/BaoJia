@@ -1,0 +1,6 @@
+{
+  "name": "quote-template-select-skill",
+  "version": "1.0.0",
+  "author": "BaoJia Team",
+  "description": "在报价链路前根据评估单选择 template_type。"
+}

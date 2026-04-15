@@ -7,13 +7,18 @@
 
 ## 实际工作流
 - 不要从仓库根目录臆造 `pytest`、`ruff`、`mypy`、`npm`、`make` 或 CI 命令。仓库根目录没有已验证的 manifest、任务运行器或工作流配置。
-- 当前已实现的链路是 `.opencode/skills/` 下的五个本地 skill：`quote_request_prepare_skill` -> `quote_feasibility_check_skill` -> `historical_quote_reference_skill` -> `quote_pricing_skill` -> `quote_review_output_skill`。
-- 修改某个 skill 前，先读该 skill 的 `SKILL.md`、`schemas/`、`examples/` 和 `run.py`。这些文件定义了契约和准确的 CLI 入口。
+- 当前唯一对外 workflow 入口是 `.opencode/skills/quote_orchestration_skill/`。
+- `quote_orchestration_skill` 内部 workflow 实现在 `.opencode/skills/quote_orchestration_skill/workflow/`，这是当前唯一维护中的编排实现。
+- `.opencode/quote_orchestrator/` 仅保留兼容层和历史样例，不再是维护主目录。
+- 修改某个 skill 前，先读该 skill 的 `SKILL.md`、`references/`、`samples/`、`run.py` 和必要的内部实现目录。`quote_orchestration_skill` 还应优先看 `workflow/`。
 
 ## 已验证命令
 - 使用仓库自带解释器：`& ".opencode/.venv/Scripts/python.exe" ...`。
 - 单个 skill 的样例契约校验：`& ".opencode/.venv/Scripts/python.exe" ".opencode/skills/<skill_name>/validate_samples.py"`
-- 单个 skill 的定向手动运行：`& ".opencode/.venv/Scripts/python.exe" ".opencode/skills/<skill_name>/run.py" --input ".opencode/skills/<skill_name>/examples/input.sample.json"`
+- 单个 skill 的定向手动运行：`& ".opencode/.venv/Scripts/python.exe" ".opencode/skills/<skill_name>/run.py" --input ".opencode/skills/<skill_name>/samples/sample-input.json"`
+- 顶层 workflow skill 的样例契约校验：`& ".opencode/.venv/Scripts/python.exe" ".opencode/skills/quote_orchestration_skill/validate_samples.py"`
+- 顶层 workflow skill 的定向手动运行：`& ".opencode/.venv/Scripts/python.exe" ".opencode/skills/quote_orchestration_skill/run.py" --input ".opencode/skills/quote_orchestration_skill/samples/sample-input.json"`
+- 兼容层入口仍可运行，但仅用于兼容旧路径：`& ".opencode/.venv/Scripts/python.exe" ".opencode/quote_orchestrator/run.py" --input ".opencode/quote_orchestrator/examples/input.dimitra-m.json"`
 - `run.py` 默认会校验输入和输出 schema；存在 `--skip-schema-validation`，所以不要把默认运行当成“无校验”。
 - `quote_pricing_skill` 的输出校验还会解析 `.opencode/quote-document-v1.1.schema.json` 引用；如果改了 pricing 输出，要验证这个 skill，不要只看它本地的 schema 文件。
 
@@ -35,6 +40,7 @@
 
 ## 仓库特有注意点
 - 文档优先级低于可执行契约。如果 prose、example 和 schema 冲突，以 `.opencode/quote-document-v1.1.schema.json` 以及各 skill 的 schema/run 脚本为准。
-- 各 skill 的 `SKILL.md` 里仍然用的是简化版详细设计文档名；`设计与规范/` 下真实文件名是 `S1-...` 到 `S5-...`。
+- `quote_orchestration_skill` 的真实内部实现位于 `.opencode/skills/quote_orchestration_skill/workflow/`；不要再把 `.opencode/quote_orchestrator/` 当成主实现目录修改。
+- 各 skill 的 `SKILL.md` 里仍可能引用较旧的详细设计命名；以 `设计与规范/` 中现有实际文件名和对应 skill 目录为准。
 - `.opencode/.env` 是本地敏感文件，而且 `.gitignore` 没有忽略它；不要提交。
 - 除非任务明确与本地环境有关，否则避免搜索或编辑 `.opencode/.venv/` 和 `.ruff_cache/`。

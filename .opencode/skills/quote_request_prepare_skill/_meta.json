@@ -1,0 +1,6 @@
+{
+  "name": "quote-request-prepare-skill",
+  "version": "1.0.0",
+  "author": "BaoJia Team",
+  "description": "将智能评估单、客户补充信息、业务补充信息标准化为统一的 quote_request。"
+}

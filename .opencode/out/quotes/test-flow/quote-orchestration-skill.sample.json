@@ -1,0 +1,661 @@
+{
+  "template_selection_result": {
+    "template_type": "engineering-service",
+    "confidence": 0.93,
+    "candidate_templates": [
+      "engineering-service"
+    ],
+    "rule_scores": {
+      "engineering-service": 13.0,
+      "digital-product": 0.0,
+      "laboratory": 0.0,
+      "man-hour": 2.0,
+      "product": 0.0,
+      "supercharger": 0.0,
+      "valva": 0.0
+    },
+    "reasons": [
+      "规则命中 engineering-service 相关特征词。",
+      "命中信号：\\binspection\\b，来源：assessment_report.service_mode。",
+      "命中信号：\\binspection\\b，来源：assessment_report.service_items[0].title。",
+      "命中信号：\\binspection\\b，来源：assessment_report.service_items[0].description。"
+    ],
+    "matched_signals": [
+      {
+        "signal": "\\binspection\\b",
+        "source": "assessment_report.service_mode",
+        "weight": 3.0,
+        "supports": [
+          "engineering-service"
+        ]
+      },
+      {
+        "signal": "\\binspection\\b",
+        "source": "assessment_report.service_items[0].title",
+        "weight": 3.0,
+        "supports": [
+          "engineering-service"
+        ]
+      },
+      {
+        "signal": "\\binspection\\b",
+        "source": "assessment_report.service_items[0].description",
+        "weight": 3.0,
+        "supports": [
+          "engineering-service"
+        ]
+      },
+      {
+        "signal": "\\bengineer\\b",
+        "source": "assessment_report.service_items[0].labor_hint[0]",
+        "weight": 2.0,
+        "supports": [
+          "man-hour"
+        ]
+      },
+      {
+        "signal": "\\binspection\\b",
+        "source": "assessment_report.service_items[0].price_hints[0]",
+        "weight": 3.0,
+        "supports": [
+          "engineering-service"
+        ]
+      }
+    ],
+    "needs_manual_confirmation": false,
+    "questions_for_user": [],
+    "review_flags": []
+  },
+  "prepare_result": {
+    "quote_request": {
+      "request_meta": {
+        "request_id": "qr-workflow-sample-001",
+        "source": "assessment_report",
+        "prepared_at": "2026-04-15T07:55:25.647444+00:00",
+        "language": "zh-CN"
+      },
+      "header_context": {
+        "currency": "USD",
+        "vessel_name": "M/V WORKFLOW SAMPLE",
+        "imo_no": null,
+        "vessel_type": "General Cargo Vessel",
+        "customer_name": null,
+        "service_port": "Singapore",
+        "service_date": "2026-05-01",
+        "attention": null,
+        "customer_ref_no": null
+      },
+      "service_context": {
+        "service_category": "mechanical",
+        "service_mode": "inspection",
+        "location_type": null,
+        "needs_multi_option": false,
+        "option_hints": [],
+        "urgency": null
+      },
+      "candidate_items": [
+        {
+          "item_id": "svc-1",
+          "item_type": "service",
+          "title": "Main air compressor inspection",
+          "description": "Routine inspection for main air compressor.",
+          "work_scope": [
+            "Inspect compressor running condition",
+            "Check leakage and abnormal vibration"
+          ],
+          "quantity_hint": 1,
+          "unit_hint": "set",
+          "labor_hint": [
+            "1 mechanical engineer"
+          ],
+          "pricing_clues": [
+            "inspection",
+            "mechanical"
+          ],
+          "status_hint": null,
+          "source": "assessment_report"
+        }
+      ],
+      "spare_parts_context": {
+        "has_spare_parts": null,
+        "spare_parts_supply_mode": null,
+        "spare_parts_items": []
+      },
+      "risk_context": {
+        "risks": [],
+        "pending_confirmations": [],
+        "assumptions": []
+      },
+      "commercial_context": {
+        "preferred_currency": "USD",
+        "pricing_expectation": null,
+        "special_terms": []
+      },
+      "source_refs": {
+        "assessment_report_id": "workflow-sample-001",
+        "customer_context_ref": null,
+        "business_context_ref": null
+      }
+    },
+    "normalization_flags": [],
+    "missing_fields": [
+      {
+        "field": "header_context.customer_name",
+        "required_for": [
+          "quote_document"
+        ],
+        "severity": "medium",
+        "reason": "缺少客户名称，影响表头完整性。",
+        "suggested_source": "assessment_report"
+      }
+    ]
+  },
+  "feasibility_result": {
+    "can_quote": true,
+    "quote_scope": "full",
+    "quotable_items": [
+      {
+        "item_id": "svc-1",
+        "item_type": "service",
+        "title": "Main air compressor inspection",
+        "decision": "quotable",
+        "reason": "服务项标题和范围已基本明确，可进入报价。",
+        "blocking_fields": [],
+        "suggested_status": "chargeable",
+        "source": "quote_request.candidate_items"
+      }
+    ],
+    "tbc_items": [],
+    "exclusions": [],
+    "missing_fields": [],
+    "questions_for_user": [],
+    "review_flags": []
+  },
+  "historical_reference": {
+    "matches": [],
+    "reference_summary": {
+      "price_range_hint": {
+        "currency": null,
+        "min": null,
+        "max": null,
+        "sample_size": 0
+      },
+      "common_items": [],
+      "remark_patterns": [],
+      "recommended_reference_ids": [],
+      "item_clusters": [],
+      "remark_blocks": [],
+      "charge_item_hints": [],
+      "option_style_hints": [],
+      "history_quality_flags": [
+        "skipped_by_planner"
+      ],
+      "item_price_hints": [],
+      "retrieval_strategy": "skipped_by_planner"
+    },
+    "confidence": 0.0
+  },
+  "pricing_result": {
+    "quotation_options": [
+      {
+        "option_id": "option-1",
+        "title": "Option 1",
+        "sections": [
+          {
+            "section_id": "option-1-section-service",
+            "section_type": "service",
+            "title": "Service",
+            "groups": [
+              {
+                "group_id": "option-1-group-svc-1",
+                "group_no": "1",
+                "title": "Main air compressor inspection",
+                "description": "服务项标题和范围已基本明确，可进入报价。",
+                "lines": [
+                  {
+                    "line_id": "option-1-line-svc-1",
+                    "item": "1",
+                    "line_no": "1",
+                    "line_type": "priced",
+                    "description": "Main air compressor inspection Routine inspection for main air compressor.",
+                    "pricing_mode": "lump_sum",
+                    "unit_price": 3500.0,
+                    "unit_price_display": "3,500.00",
+                    "unit": "set",
+                    "qty": 1,
+                    "qty_display": "1",
+                    "discount": null,
+                    "amount": 3500.0,
+                    "amount_display": "3,500.00",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "default_rule",
+                    "conditions": [],
+                    "notes": [
+                      "服务项标题和范围已基本明确，可进入报价。",
+                      "Routine inspection for main air compressor."
+                    ]
+                  },
+                  {
+                    "line_id": "option-1-line-svc-1-scope-1",
+                    "item": "",
+                    "line_no": "",
+                    "line_type": "scope_note",
+                    "description": "Inspect compressor running condition",
+                    "pricing_mode": "text_only",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "included_scope",
+                    "conditions": [],
+                    "notes": []
+                  },
+                  {
+                    "line_id": "option-1-line-svc-1-scope-2",
+                    "item": "",
+                    "line_no": "",
+                    "line_type": "scope_note",
+                    "description": "Check leakage and abnormal vibration",
+                    "pricing_mode": "text_only",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "included_scope",
+                    "conditions": [],
+                    "notes": []
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "summary": {
+          "service_charge": {
+            "value_type": "amount",
+            "amount": 3500.0,
+            "display": "3,500.00",
+            "currency": "USD",
+            "status": "chargeable"
+          },
+          "spare_parts_fee": {
+            "value_type": "amount",
+            "amount": 0.0,
+            "display": "0.00",
+            "currency": "USD",
+            "status": "chargeable"
+          },
+          "other": {
+            "value_type": "amount",
+            "amount": 0.0,
+            "display": "0.00",
+            "currency": "USD",
+            "status": "chargeable"
+          },
+          "total": {
+            "value_type": "amount",
+            "amount": 3500.0,
+            "display": "3,500.00",
+            "currency": "USD",
+            "status": "chargeable"
+          }
+        },
+        "remarks": []
+      }
+    ]
+  },
+  "quote_document": {
+    "document_type": "quotation",
+    "document_version": "1.1",
+    "header": {
+      "currency": "USD",
+      "vessel_name": "M/V WORKFLOW SAMPLE",
+      "date": "2026-05-01",
+      "imo_no": "",
+      "vessel_type": "General Cargo Vessel",
+      "customer_name": "",
+      "service_port": "Singapore",
+      "attention": "",
+      "wk_offer_no": "WK-workflow-sample-001",
+      "your_ref_no": "",
+      "quotation_validity": "30 days",
+      "po_no": "",
+      "pic_of_winkong": "Winkong"
+    },
+    "table_schema": {
+      "columns": [
+        {
+          "key": "item",
+          "label": "Item"
+        },
+        {
+          "key": "description",
+          "label": "Description"
+        },
+        {
+          "key": "unit_price",
+          "label": "Unit Price"
+        },
+        {
+          "key": "unit",
+          "label": "Unit"
+        },
+        {
+          "key": "qty",
+          "label": "Q'ty"
+        },
+        {
+          "key": "discount",
+          "label": "Discount"
+        },
+        {
+          "key": "amount",
+          "label": "Amount"
+        }
+      ]
+    },
+    "quotation_options": [
+      {
+        "option_id": "option-1",
+        "title": "Option 1",
+        "sections": [
+          {
+            "section_id": "option-1-section-service",
+            "section_type": "service",
+            "title": "Service",
+            "groups": [
+              {
+                "group_id": "option-1-group-svc-1",
+                "group_no": "1",
+                "title": "Main air compressor inspection",
+                "description": "服务项标题和范围已基本明确，可进入报价。",
+                "lines": [
+                  {
+                    "line_id": "option-1-line-svc-1",
+                    "item": "1",
+                    "line_no": "1",
+                    "line_type": "priced",
+                    "description": "Main air compressor inspection Routine inspection for main air compressor.",
+                    "pricing_mode": "lump_sum",
+                    "unit_price": 3500.0,
+                    "unit_price_display": "3,500.00",
+                    "unit": "set",
+                    "qty": 1,
+                    "qty_display": "1",
+                    "discount": null,
+                    "amount": 3500.0,
+                    "amount_display": "3,500.00",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "default_rule",
+                    "conditions": [],
+                    "notes": [
+                      "服务项标题和范围已基本明确，可进入报价。",
+                      "Routine inspection for main air compressor."
+                    ]
+                  },
+                  {
+                    "line_id": "option-1-line-svc-1-scope-1",
+                    "item": "",
+                    "line_no": "",
+                    "line_type": "scope_note",
+                    "description": "Inspect compressor running condition",
+                    "pricing_mode": "text_only",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "included_scope",
+                    "conditions": [],
+                    "notes": []
+                  },
+                  {
+                    "line_id": "option-1-line-svc-1-scope-2",
+                    "item": "",
+                    "line_no": "",
+                    "line_type": "scope_note",
+                    "description": "Check leakage and abnormal vibration",
+                    "pricing_mode": "text_only",
+                    "unit_price": null,
+                    "unit_price_display": "",
+                    "unit": "",
+                    "qty": null,
+                    "qty_display": "",
+                    "discount": null,
+                    "amount": null,
+                    "amount_display": "",
+                    "currency": "USD",
+                    "status": "chargeable",
+                    "basis": "included_scope",
+                    "conditions": [],
+                    "notes": []
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "summary": {
+          "service_charge": {
+            "value_type": "amount",
+            "amount": 3500.0,
+            "display": "3,500.00",
+            "currency": "USD",
+            "status": "chargeable"
+          },
+          "spare_parts_fee": {
+            "value_type": "amount",
+            "amount": 0.0,
+            "display": "0.00",
+            "currency": "USD",
+            "status": "chargeable"
+          },
+          "other": {
+            "value_type": "amount",
+            "amount": 0.0,
+            "display": "0.00",
+            "currency": "USD",
+            "status": "chargeable"
+          },
+          "total": {
+            "value_type": "amount",
+            "amount": 3500.0,
+            "display": "3,500.00",
+            "currency": "USD",
+            "status": "chargeable"
+          }
+        },
+        "remarks": []
+      }
+    ],
+    "footer": {
+      "summary": {
+        "service_charge": {
+          "value_type": "amount",
+          "amount": 3500.0,
+          "display": "3,500.00",
+          "currency": "USD",
+          "status": "chargeable"
+        },
+        "spare_parts_fee": {
+          "value_type": "amount",
+          "amount": 0.0,
+          "display": "0.00",
+          "currency": "USD",
+          "status": "chargeable"
+        },
+        "other": {
+          "value_type": "amount",
+          "amount": 0.0,
+          "display": "0.00",
+          "currency": "USD",
+          "status": "chargeable"
+        },
+        "total": {
+          "value_type": "amount",
+          "amount": 3500.0,
+          "display": "3,500.00",
+          "currency": "USD",
+          "status": "chargeable"
+        }
+      },
+      "remark": {
+        "title": "Remark",
+        "items": [
+          {
+            "type": "warranty",
+            "text": "Inspection and troubleshooting items carry no service warranty."
+          },
+          {
+            "type": "compensation",
+            "text": "Warranty Compensate Amount: 5 times of the service cost at max."
+          }
+        ]
+      },
+      "service_payment_terms": {
+        "title": "Service Payment Terms",
+        "content": "Payment within 30 days upon invoice date."
+      }
+    },
+    "review_result": {
+      "review_flags": [],
+      "risk_flags": [],
+      "approval_level": "standard"
+    },
+    "trace": {
+      "historical_references": [],
+      "pricing_basis": [
+        "default_rule",
+        "included_scope",
+        "history_quality:skipped_by_planner"
+      ],
+      "rule_versions": [
+        "quote_pricing_skill:v2",
+        "quote_review_output_skill:v2"
+      ]
+    }
+  },
+  "orchestration_status": "completed",
+  "execution_trace": [
+    {
+      "skill_name": "quote_template_select_skill",
+      "decision_type": "required",
+      "reason": "required stage: template_select"
+    },
+    {
+      "skill_name": "quote_request_prepare_skill",
+      "decision_type": "required",
+      "reason": "required stage: prepare"
+    },
+    {
+      "skill_name": "quote_feasibility_check_skill",
+      "decision_type": "required",
+      "reason": "required stage: feasibility"
+    },
+    {
+      "skill_name": "quote_pricing_skill",
+      "decision_type": "required",
+      "reason": "required stage: pricing"
+    },
+    {
+      "skill_name": "quote_review_output_skill",
+      "decision_type": "required",
+      "reason": "required stage: review_output"
+    }
+  ],
+  "planner_trace": [
+    {
+      "action": "run_skill",
+      "skill_name": "quote_template_select_skill",
+      "reason": "required stage: template_select",
+      "decision_type": "required",
+      "planner_notes": []
+    },
+    {
+      "action": "run_skill",
+      "skill_name": "quote_request_prepare_skill",
+      "reason": "required stage: prepare",
+      "decision_type": "required",
+      "planner_notes": []
+    },
+    {
+      "action": "run_skill",
+      "skill_name": "quote_feasibility_check_skill",
+      "reason": "required stage: feasibility",
+      "decision_type": "required",
+      "planner_notes": []
+    },
+    {
+      "action": "skip",
+      "skill_name": "historical_quote_reference_skill",
+      "reason": "historical reference skipped for fast quote mode with low structural value",
+      "decision_type": "optional",
+      "planner_notes": [
+        "business_context.prefer_fast_quote=true",
+        "query already contains pricing-friendly signals"
+      ]
+    },
+    {
+      "action": "run_skill",
+      "skill_name": "quote_pricing_skill",
+      "reason": "required stage: pricing",
+      "decision_type": "required",
+      "planner_notes": []
+    },
+    {
+      "action": "run_skill",
+      "skill_name": "quote_review_output_skill",
+      "reason": "required stage: review_output",
+      "decision_type": "required",
+      "planner_notes": []
+    },
+    {
+      "action": "finish",
+      "skill_name": null,
+      "reason": "rendering not requested",
+      "decision_type": "optional",
+      "planner_notes": []
+    }
+  ],
+  "skipped_skills": [
+    {
+      "skill_name": "historical_quote_reference_skill",
+      "reason": "historical reference skipped for fast quote mode with low structural value",
+      "decision_type": "optional"
+    }
+  ],
+  "applied_planner_strategies": [
+    {
+      "strategy_type": "historical_reference_strategy",
+      "reason": "historical reference skipped for fast quote mode with low structural value",
+      "payload": {
+        "executed": false,
+        "skill_name": "historical_quote_reference_skill",
+        "decision_type": "optional",
+        "planner_notes": [
+          "business_context.prefer_fast_quote=true",
+          "query already contains pricing-friendly signals"
+        ]
+      }
+    }
+  ]
+}

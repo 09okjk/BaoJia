@@ -1,0 +1,88 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.local/opencode/skills/quote-orchestration-skill/workflow/input.schema.json",
+  "title": "quote_orchestration_skill workflow input",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "assessment_report"
+  ],
+  "properties": {
+    "assessment_report": {
+      "type": "object"
+    },
+    "customer_context": {
+      "type": "object",
+      "properties": {
+        "confirmed_answers": {
+          "type": "object"
+        }
+      }
+    },
+    "business_context": {
+      "type": "object",
+      "properties": {
+        "interactive_mode": {
+          "type": "boolean"
+        },
+        "resume_from": {
+          "type": "string"
+        },
+        "skip_historical_reference": {
+          "type": "boolean"
+        },
+        "prefer_fast_quote": {
+          "type": "boolean"
+        },
+        "force_multi_option": {
+          "type": "boolean"
+        },
+        "option_hints": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "confirmed_answers": {
+          "type": "object"
+        }
+      }
+    },
+    "resume_payload": {
+      "type": "object"
+    },
+    "render_options": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "enabled": {
+          "type": "boolean"
+        },
+        "languages": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": ["zh", "en"]
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "output_dir": {
+          "type": "string"
+        },
+        "template_type": {
+          "type": "string",
+          "enum": [
+            "engineering-service",
+            "digital-product",
+            "laboratory",
+            "man-hour",
+            "product",
+            "supercharger",
+            "valva"
+          ]
+        }
+      }
+    }
+  }
+}

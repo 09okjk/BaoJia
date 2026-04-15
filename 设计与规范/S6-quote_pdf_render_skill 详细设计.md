@@ -166,6 +166,11 @@ Skill 优先自带：
 
 - `.opencode/skills/quote_pdf_render_skill/out`
 
+说明：
+
+- 当单独运行 Skill 时，建议使用 Skill 自己的 `out/` 目录
+- 当由 `quote_orchestrator` 集成调用时，建议输出到 orchestrator 自己的任务目录，便于每次报价的输入、JSON 结果与 HTML/PDF 产物归档在同一路径下
+
 ---
 
 ## 7. 输出详细设计
@@ -260,25 +265,25 @@ Skill 允许两种输入来源：
 - 接收 `EngineeringPdfContext`
 - 输出完整 HTML 文本
 - 使用 Skill 自带图片资源生成本地 `file://` 资源 URI
+- 当前实现以内联 HTML/CSS 方式输出与既有报价模板风格一致的页面结构
 
 ## 8.5 PDF 渲染模块
 
 由 `pdf_renderer.py` 负责：
 
-- 优先使用 Chromium / Edge headless print-to-pdf
-- `wkhtmltopdf` 作为兜底方案
+- 优先使用 `weasyprint`
+- Chromium / Edge headless print-to-pdf 作为回退方案
+- `wkhtmltopdf` 作为最终兜底方案
 
-不依赖 `weasyprint`、`jinja2`、`pydantic` 等三方 Python 包。
+当前实现不依赖 `jinja2`、`pydantic` 等模板或建模三方包；若环境可用，则优先使用 `weasyprint` 提供更稳定的分页与页眉表现。
 
 ## 8.6 资源路径模块
 
 Skill 自带：
 
-- `engineering_pdf.html.j2`
-- `engineering_pdf.css`
 - `assets/`
 
-即使当前简化 HTML 渲染器未完全消费原模板文件，这些模板资源也已作为 Skill 自身资产内聚，后续可继续演进复用。
+当前实现的核心资源是 `assets/` 下的品牌图片与 `html_renderer.py` / `quote_document_mapper.py` / `pdf_renderer.py` 三个内部模块；不再依赖独立模板文件落盘存在。
 
 ## 8.7 输出路径推导模块
 
@@ -330,8 +335,9 @@ Skill 自带：
 
 虽然 Skill 已自包含，但 PDF 输出仍依赖系统可用的 PDF 后端之一：
 
-1. Chrome / Edge headless
-2. `wkhtmltopdf`
+1. `weasyprint`（若当前 Python 环境可导入）
+2. Chrome / Edge headless
+3. `wkhtmltopdf`
 
 这属于系统级运行依赖，不属于仓库内代码依赖。
 
@@ -389,10 +395,12 @@ Skill 自带：
 - 不允许继续渲染
 - 直接报错
 
-## 12.2 Chrome / Edge 与 `wkhtmltopdf` 都不可用
+## 12.2 `weasyprint`、Chrome / Edge 与 `wkhtmltopdf` 都不可用
 
 - 对应语言输出 `status = failed`
 - 返回结构化错误信息
+
+补充：若 `weasyprint` 不可用，Skill 会继续尝试 Chromium / Edge 与 `wkhtmltopdf`，只有三者都不可用时才判定失败。
 
 ## 12.3 HTML 渲染失败
 
@@ -414,7 +422,8 @@ Skill 自带：
 2. 双语输出成功
 3. 真实 orchestrator 输出渲染
 4. 缺失 `quote_document` 的失败路径
-5. Chrome / Edge 与 `wkhtmltopdf` 都不可用时的失败路径
+5. `weasyprint` 不可用时 Chromium / Edge 或 `wkhtmltopdf` 的回退路径
+6. `weasyprint`、Chrome / Edge 与 `wkhtmltopdf` 都不可用时的失败路径
 
 当前已提供：
 
