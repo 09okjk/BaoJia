@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.local/opencode/skills/quote-feedback-rule-review-skill/references/output.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["rule_candidate", "approved_rule", "memory_write_result"],
+  "properties": {
+    "rule_candidate": { "type": "object" },
+    "approved_rule": { "type": "object" },
+    "memory_write_result": { "type": "object" }
+  }
+}

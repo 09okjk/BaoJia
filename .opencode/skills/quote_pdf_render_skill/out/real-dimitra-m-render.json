@@ -1,0 +1,14 @@
+{
+  "render_result": {
+    "document_type": "quotation",
+    "document_version": "1.1",
+    "outputs": [
+      {
+        "language": "zh",
+        "html_path": "E:\\PythonProjects\\BaoJia\\.opencode\\out\\quotes\\报价单-WK-dimitra-m-2026-04-01-zh.html",
+        "pdf_path": "E:\\PythonProjects\\BaoJia\\.opencode\\out\\quotes\\报价单-WK-dimitra-m-2026-04-01-zh.pdf",
+        "status": "success"
+      }
+    ]
+  }
+}

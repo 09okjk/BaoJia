@@ -22,6 +22,7 @@ def build_pricing_result(payload: dict[str, Any]) -> dict[str, Any]:
     quote_request = payload.get("quote_request")
     feasibility_result = payload.get("feasibility_result")
     historical_reference = payload.get("historical_reference") or {}
+    feedback_reference = payload.get("feedback_reference") or {}
     pricing_rules = payload.get("pricing_rules") or {}
 
     if not isinstance(quote_request, dict) or not isinstance(feasibility_result, dict):
@@ -29,11 +30,16 @@ def build_pricing_result(payload: dict[str, Any]) -> dict[str, Any]:
 
     if not isinstance(historical_reference, dict):
         historical_reference = {}
+    if not isinstance(feedback_reference, dict):
+        feedback_reference = {}
     if not isinstance(pricing_rules, dict):
         pricing_rules = {}
 
     feasibility_result = _augment_feasibility_with_history(
-        quote_request, feasibility_result, historical_reference
+        quote_request, feasibility_result, historical_reference, feedback_reference
+    )
+    feasibility_result = _apply_feedback_reference(
+        feasibility_result, feedback_reference
     )
     currency = _pick_currency(quote_request, pricing_rules, historical_reference)
     option_strategies = _build_option_strategies(
@@ -55,6 +61,80 @@ def build_pricing_result(payload: dict[str, Any]) -> dict[str, Any]:
             quotation_options.append(option)
 
     return {"quotation_options": quotation_options}
+
+
+def _apply_feedback_reference(
+    feasibility_result: dict[str, Any], feedback_reference: dict[str, Any]
+) -> dict[str, Any]:
+    forbidden_patterns = (
+        feedback_reference.get("forbidden_patterns")
+        if isinstance(feedback_reference.get("forbidden_patterns"), list)
+        else []
+    )
+    if not forbidden_patterns:
+        return feasibility_result
+
+    quotable_items = _decision_items(feasibility_result, "quotable_items")
+    tbc_items = _decision_items(feasibility_result, "tbc_items")
+    forbidden_keys = {
+        _text(pattern.get("pattern_key")).lower()
+        for pattern in forbidden_patterns
+        if isinstance(pattern, dict)
+    }
+    if not forbidden_keys:
+        return feasibility_result
+
+    remaining_quotable_items: list[dict[str, Any]] = []
+    moved_to_tbc: list[dict[str, Any]] = []
+    for item in quotable_items:
+        if not isinstance(item, dict):
+            continue
+        item_key_candidates = {
+            _text(item.get("item_id")).lower(),
+            _text(item.get("title")).lower(),
+        }
+        if not any(
+            _matches_forbidden_key(candidate, forbidden_keys)
+            for candidate in item_key_candidates
+        ):
+            remaining_quotable_items.append(item)
+            continue
+        updated_item = dict(item)
+        updated_item["decision"] = "tbc"
+        updated_item["reason"] = (
+            "Matched stored feedback memory; keep for manual confirmation before pricing."
+        )
+        updated_item["suggested_status"] = "pending"
+        blocking_fields = updated_item.get("blocking_fields")
+        if not isinstance(blocking_fields, list):
+            blocking_fields = []
+        if "feedback_reference.forbidden_patterns" not in blocking_fields:
+            blocking_fields = [
+                *blocking_fields,
+                "feedback_reference.forbidden_patterns",
+            ]
+        updated_item["blocking_fields"] = blocking_fields
+        moved_to_tbc.append(updated_item)
+
+    updated_result = dict(feasibility_result)
+    updated_result["quotable_items"] = remaining_quotable_items
+    updated_result["tbc_items"] = [*tbc_items, *moved_to_tbc]
+    return updated_result
+
+
+def _matches_forbidden_key(candidate: str, forbidden_keys: set[str]) -> bool:
+    if not candidate:
+        return False
+    return any(
+        key and (candidate == key or key in candidate or candidate in key)
+        for key in forbidden_keys
+    )
+
+
+def _text(value: Any) -> str:
+    if value is None:
+        return ""
+    return str(value).strip()
 
 
 def load_json(path: str | Path) -> dict[str, Any]:
@@ -156,6 +236,7 @@ def _augment_feasibility_with_history(
     quote_request: dict[str, Any],
     feasibility_result: dict[str, Any],
     historical_reference: dict[str, Any],
+    feedback_reference: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
     if not isinstance(feasibility_result, dict):
         return feasibility_result
@@ -183,6 +264,8 @@ def _augment_feasibility_with_history(
 
     auto_items = []
     for hint_type in charge_item_hints:
+        if _feedback_forbids_history_hint(hint_type, feedback_reference):
+            continue
         auto_item = _history_hint_to_other_item(
             hint_type, quote_request, existing_titles
         )
@@ -198,6 +281,27 @@ def _augment_feasibility_with_history(
     return augmented
 
 
+def _feedback_forbids_history_hint(
+    hint_type: str, feedback_reference: dict[str, Any] | None
+) -> bool:
+    if not isinstance(feedback_reference, dict):
+        return False
+    forbidden_patterns = (
+        feedback_reference.get("forbidden_patterns")
+        if isinstance(feedback_reference.get("forbidden_patterns"), list)
+        else []
+    )
+    for pattern in forbidden_patterns:
+        if not isinstance(pattern, dict):
+            continue
+        pattern_key = _text(pattern.get("pattern_key")).lower()
+        if not pattern_key:
+            continue
+        if pattern_key == hint_type.lower() or hint_type.lower() in pattern_key:
+            return True
+    return False
+
+
 def _history_hint_to_other_item(
     hint_type: str, quote_request: dict[str, Any], existing_titles: set[str]
 ) -> dict[str, Any] | None:
@@ -211,6 +315,20 @@ def _history_hint_to_other_item(
         if isinstance(risk_context.get("pending_confirmations"), list)
         else []
     )
+    candidate_lookup = _candidate_item_lookup(quote_request)
+    candidate_texts = [
+        text for item in candidate_lookup.values() for text in _candidate_texts(item)
+    ]
+    query_texts = [
+        *candidate_texts,
+        *[str(text).strip() for text in pending_confirmations if str(text).strip()],
+        *[
+            str(text).strip()
+            for text in (risk_context.get("risks") or [])
+            if str(text).strip()
+        ],
+    ]
+    query_blob = " ".join(query_texts).lower()
     service_context = (
         quote_request.get("service_context")
         if isinstance(quote_request.get("service_context"), dict)
@@ -259,6 +377,16 @@ def _history_hint_to_other_item(
         hint_type == "dockyard_management"
         and "dock" not in service_mode
         and "yard" not in service_mode
+    ):
+        return None
+    if hint_type == "transportation" and not any(
+        keyword in query_blob
+        for keyword in ["travel", "transport", "ticket", "flight", "交通"]
+    ):
+        return None
+    if hint_type == "accommodation" and not any(
+        keyword in query_blob
+        for keyword in ["hotel", "accommodation", "meal", "lodging", "住宿", "食宿"]
     ):
         return None
     if hint_type == "maritime_reporting" and not any(
@@ -1041,6 +1169,8 @@ def _build_option_remarks(
         texts = block.get("texts") if isinstance(block.get("texts"), list) else []
         for text in texts[:2]:
             cleaned = str(text).strip()
+            if _should_skip_historical_option_remark(cleaned, option_strategy):
+                continue
             key = cleaned.lower()
             if not cleaned or key in seen:
                 continue
@@ -1056,6 +1186,8 @@ def _build_option_remarks(
     )
     for text in remark_patterns[:2]:
         cleaned = str(text).strip()
+        if _should_skip_historical_option_remark(cleaned, option_strategy):
+            continue
         key = cleaned.lower()
         if not cleaned or key in seen:
             continue
@@ -1080,6 +1212,28 @@ def _build_option_remarks(
     return remarks
 
 
+def _should_skip_historical_option_remark(
+    text: str, option_strategy: dict[str, Any]
+) -> bool:
+    lowered = text.lower()
+    if option_strategy.get("include_spare_parts") is False and any(
+        keyword in lowered
+        for keyword in ["repair kits", "bearings", "owner supply", "shipside"]
+    ):
+        return True
+    if any(
+        keyword in lowered
+        for keyword in [
+            "including the repair kits",
+            "all bearings",
+            "renewal with the new pump",
+            "price as below",
+        ]
+    ):
+        return True
+    return False
+
+
 def _basis_text(
     item: dict[str, Any],
     candidate_item: dict[str, Any],
@@ -1089,6 +1243,13 @@ def _basis_text(
 ) -> str:
     item_id = str(item.get("item_id") or "")
     item_text = " ".join(_candidate_texts(candidate_item)).lower()
+    suggested_status = str(item.get("suggested_status") or "").strip().lower()
+    if suggested_status == "pending":
+        return "awaiting_confirmation"
+    if suggested_status == "if_needed":
+        return "historical_structural_hint"
+    if suggested_status == "as_actual":
+        return "historical_structural_hint"
     if (
         isinstance(pricing_rules.get("lump_sum_overrides"), dict)
         and item_id in pricing_rules["lump_sum_overrides"]
@@ -1150,14 +1311,13 @@ def _notes_for(
                 normalized_title = _normalize_match_text(item_title)
                 for confirmation in pending_confirmations:
                     lowered_confirmation = _normalize_match_text(confirmation)
-                    if normalized_title and normalized_title == lowered_confirmation:
+                    if normalized_title and (
+                        normalized_title in lowered_confirmation
+                        or lowered_confirmation in normalized_title
+                    ):
                         matched_confirmation = confirmation
                         break
-            notes.extend(
-                [matched_confirmation]
-                if matched_confirmation
-                else pending_confirmations[:1]
-            )
+            notes.extend([matched_confirmation] if matched_confirmation else [])
 
     return _dedupe_strings(notes)
 

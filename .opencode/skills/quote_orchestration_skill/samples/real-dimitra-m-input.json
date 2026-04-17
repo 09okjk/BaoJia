@@ -1,0 +1,139 @@
+{
+  "assessment_report": {
+    "report_id": "dimitra-m-2026-04-01",
+    "vessel_name": "M/V DIMITRA M",
+    "ship_name": "M/V DIMITRA M",
+    "vessel_type": "82,000 mt Kamsarmax Bulk Carrier",
+    "service_port": "China South/Central ports",
+    "service_date": "2025-12 / 2026-01",
+    "remarks": [
+      "Hull No.: YZJ2013-1138",
+      "Built by Jiangsu New Yangzi Shipbuilding Co., Ltd.",
+      "Built in 2015 and delivered in Jan 2017.",
+      "Main engine: MAN B&W 6S60ME-C8.2 Tier II (DALIAN MARINE DIESEL CO.,LTD).",
+      "Running hours: 64,000 hrs.",
+      "Assessment report only; actual scope remains subject to onboard confirmation."
+    ],
+    "service_items": [
+      {
+        "title": "HCU system overhaul",
+        "description": "64k running hours overhaul scope for HCU on MAN B&W 6S60ME-C8.2.",
+        "work_scope": [
+          "Overhaul ELFI valve and multiway valve units.",
+          "Overhaul exhaust valve actuator and fuel oil pressure booster.",
+          "Overhaul cylinder lubricator system.",
+          "Overhaul accumulators and refill with nitrogen.",
+          "Carry out maintenance and overhauling of HPS."
+        ],
+        "labor_hint": [
+          "1 mechanical supervisor",
+          "7 fitters",
+          "8 hours"
+        ],
+        "quantity": 1,
+        "unit": "set",
+        "price_hints": [
+          "mechanical",
+          "overhaul",
+          "HCU",
+          "64k running hours"
+        ]
+      },
+      {
+        "title": "MPC system inspection",
+        "description": "64k running hours inspection scope for MPC on MAN B&W 6S60ME-C8.2.",
+        "work_scope": [
+          "Carry out MPC health check.",
+          "Inspect MPC operating condition and verify inspection findings.",
+          "Replace related consumable parts if required after confirmation."
+        ],
+        "labor_hint": [
+          "1 electrical supervisor",
+          "1 electrical assistant",
+          "8 hours"
+        ],
+        "quantity": 1,
+        "unit": "set",
+        "price_hints": [
+          "electrical",
+          "inspection",
+          "MPC",
+          "64k running hours"
+        ]
+      }
+    ],
+    "spare_parts_items": [
+      {
+        "title": "HPS accumulators repair kit",
+        "description": "Pending confirmation from assessment report.",
+        "quantity": 1,
+        "unit": "lot"
+      },
+      {
+        "title": "HCU accumulators repair kit",
+        "description": "Pending confirmation from assessment report.",
+        "quantity": 1,
+        "unit": "lot"
+      },
+      {
+        "title": "Nitrogen for refilling",
+        "description": "Pending confirmation from assessment report.",
+        "quantity": 1,
+        "unit": "lot"
+      },
+      {
+        "title": "FIVA valves pilot valves",
+        "description": "Pending confirmation from assessment report.",
+        "quantity": 1,
+        "unit": "lot"
+      },
+      {
+        "title": "Fuel booster units top covers and suction valves",
+        "description": "Pending confirmation from assessment report.",
+        "quantity": 1,
+        "unit": "lot"
+      },
+      {
+        "title": "Exhaust valve actuators safety valves",
+        "description": "Pending confirmation from assessment report.",
+        "quantity": 1,
+        "unit": "lot"
+      },
+      {
+        "title": "MPC and UPS batteries",
+        "description": "Pending confirmation from assessment report.",
+        "quantity": 1,
+        "unit": "lot"
+      }
+    ],
+    "spare_parts_needed": true,
+    "risks": [
+      "Shipyard cross-operation may delay schedule and restrict working window.",
+      "Waiting for spare parts may interrupt or delay execution.",
+      "Safety approvals or hot work restrictions may affect site arrangement and schedule."
+    ],
+    "pending_items": [
+      "Confirm HPS/HCU accumulators repair kit scope and quantities.",
+      "Confirm FIVA valves pilot valves supply responsibility.",
+      "Confirm fuel booster unit components supply responsibility.",
+      "Confirm MPC and UPS batteries supply responsibility.",
+      "Confirm whether spare parts are owner supply or company supply.",
+      "Confirm dry dock window in 2025-12 / 2026-01.",
+      "Confirm China South/Central port working window and cross-operation arrangement.",
+      "Confirm hot work permit, confined space permit, and high-pressure safety procedure."
+    ],
+    "assumptions": [
+      "Assessment values are for quotation preparation only.",
+      "Actual execution scope may be adjusted according to onboard condition.",
+      "Final spare parts inclusion depends on customer confirmation."
+    ]
+  },
+  "customer_context": {
+    "currency": "USD"
+  },
+  "business_context": {
+    "service_mode": "dock repair",
+    "interactive_mode": false
+  },
+  "render_options": {}
+}

@@ -1,0 +1,36 @@
+{
+  "quote_context": {
+    "quote_id": "WK-demo-001",
+    "quote_version": "draft-v1",
+    "quote_request": {
+      "header_context": {
+        "customer_name": "ABC Shipping",
+        "vessel_type": "Tanker",
+        "service_port": "Zhapu Port, China"
+      },
+      "service_context": {
+        "service_mode": "dock_repair",
+        "location_type": "shipyard",
+        "template_type": "engineering-service"
+      }
+    }
+  },
+  "user_feedback": [
+    {
+      "target_type": "line",
+      "target_id": "option-1-line-hist-other-dockyard_management",
+      "action_type": "remove",
+      "reason_text": "This charge should not be included for this customer.",
+      "scope_type": "customer",
+      "accepted": true
+    }
+  ],
+  "feedback_actor": {
+    "user_id": "sales_user_a",
+    "role": "sales"
+  },
+  "memory_options": {
+    "persist": false,
+    "memory_dir": ".opencode/memory"
+  }
+}

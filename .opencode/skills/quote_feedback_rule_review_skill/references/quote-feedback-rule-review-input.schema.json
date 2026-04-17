@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.local/opencode/skills/quote-feedback-rule-review-skill/references/input.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["rule_candidate_id", "decision"],
+  "properties": {
+    "rule_candidate_id": { "type": "string" },
+    "decision": { "type": "string", "enum": ["approve", "reject"] },
+    "review_note": { "type": "string" },
+    "memory_dir": { "type": "string" },
+    "reviewer": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "user_id": { "type": "string" },
+        "role": { "type": "string" }
+      }
+    }
+  }
+}

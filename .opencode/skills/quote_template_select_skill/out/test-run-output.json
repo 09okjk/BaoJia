@@ -1,0 +1,173 @@
+{
+  "template_selection_result": {
+    "template_type": "supercharger",
+    "confidence": 0.93,
+    "candidate_templates": [
+      "supercharger"
+    ],
+    "rule_scores": {
+      "engineering-service": 18.0,
+      "digital-product": 0.0,
+      "laboratory": 0.0,
+      "man-hour": 8.0,
+      "product": 0.0,
+      "supercharger": 34.0,
+      "valva": 0.0
+    },
+    "reasons": [
+      "规则命中 supercharger 相关特征词。",
+      "命中信号：\\bturbocharger\\b，来源：assessment_report.service_items[0].title。",
+      "命中信号：\\bturbocharger\\b，来源：assessment_report.service_items[0].description。",
+      "命中信号：\\bvtr\\b|\\btca\\b|\\bmet\\b，来源：assessment_report.service_items[0].description。"
+    ],
+    "matched_signals": [
+      {
+        "signal": "\\bservice\\b",
+        "source": "assessment_report.service_mode",
+        "weight": 2.0,
+        "supports": [
+          "engineering-service"
+        ]
+      },
+      {
+        "signal": "\\bturbocharger\\b",
+        "source": "assessment_report.service_items[0].title",
+        "weight": 6.0,
+        "supports": [
+          "supercharger"
+        ]
+      },
+      {
+        "signal": "\\boverhaul\\b",
+        "source": "assessment_report.service_items[0].title",
+        "weight": 3.0,
+        "supports": [
+          "engineering-service"
+        ]
+      },
+      {
+        "signal": "\\bturbocharger\\b",
+        "source": "assessment_report.service_items[0].description",
+        "weight": 6.0,
+        "supports": [
+          "supercharger"
+        ]
+      },
+      {
+        "signal": "\\bvtr\\b|\\btca\\b|\\bmet\\b",
+        "source": "assessment_report.service_items[0].description",
+        "weight": 4.0,
+        "supports": [
+          "supercharger"
+        ]
+      },
+      {
+        "signal": "\\brunning hours\\b",
+        "source": "assessment_report.service_items[0].description",
+        "weight": 2.0,
+        "supports": [
+          "supercharger"
+        ]
+      },
+      {
+        "signal": "\\bdays\\b|\\bhours\\b",
+        "source": "assessment_report.service_items[0].description",
+        "weight": 2.0,
+        "supports": [
+          "man-hour"
+        ]
+      },
+      {
+        "signal": "\\boverhaul\\b",
+        "source": "assessment_report.service_items[0].description",
+        "weight": 3.0,
+        "supports": [
+          "engineering-service"
+        ]
+      },
+      {
+        "signal": "\\binspection\\b",
+        "source": "assessment_report.service_items[0].description",
+        "weight": 3.0,
+        "supports": [
+          "engineering-service"
+        ]
+      },
+      {
+        "signal": "\\bturbocharger\\b",
+        "source": "assessment_report.service_items[0].work_scope[0]",
+        "weight": 6.0,
+        "supports": [
+          "supercharger"
+        ]
+      },
+      {
+        "signal": "\\brunning hours\\b",
+        "source": "assessment_report.service_items[0].work_scope[1]",
+        "weight": 2.0,
+        "supports": [
+          "supercharger"
+        ]
+      },
+      {
+        "signal": "\\bdays\\b|\\bhours\\b",
+        "source": "assessment_report.service_items[0].work_scope[1]",
+        "weight": 2.0,
+        "supports": [
+          "man-hour"
+        ]
+      },
+      {
+        "signal": "\\binspection\\b",
+        "source": "assessment_report.service_items[0].work_scope[1]",
+        "weight": 3.0,
+        "supports": [
+          "engineering-service"
+        ]
+      },
+      {
+        "signal": "\\boverhaul\\b",
+        "source": "assessment_report.service_items[0].work_scope[2]",
+        "weight": 3.0,
+        "supports": [
+          "engineering-service"
+        ]
+      },
+      {
+        "signal": "\\bdays\\b|\\bhours\\b",
+        "source": "assessment_report.service_items[0].labor_hint[1]",
+        "weight": 2.0,
+        "supports": [
+          "man-hour"
+        ]
+      },
+      {
+        "signal": "\\bturbocharger\\b",
+        "source": "assessment_report.pending_items[0]",
+        "weight": 6.0,
+        "supports": [
+          "supercharger"
+        ]
+      },
+      {
+        "signal": "\\brunning hours\\b",
+        "source": "assessment_report.pending_items[0]",
+        "weight": 2.0,
+        "supports": [
+          "supercharger"
+        ]
+      },
+      {
+        "signal": "\\bdays\\b|\\bhours\\b",
+        "source": "assessment_report.pending_items[0]",
+        "weight": 2.0,
+        "supports": [
+          "man-hour"
+        ]
+      }
+    ],
+    "needs_manual_confirmation": false,
+    "questions_for_user": [],
+    "review_flags": []
+  }
+}

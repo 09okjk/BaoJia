@@ -51,6 +51,10 @@
     "resume_payload": {
       "type": "object"
     },
+    "user_decision": {
+      "type": "string",
+      "enum": ["accept", "revise"]
+    },
     "render_options": {
       "type": "object",
       "additionalProperties": false,

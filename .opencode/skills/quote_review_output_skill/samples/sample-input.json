@@ -64,6 +64,16 @@
       }
     ]
   },
+  "feedback_reference": {
+    "matches": [],
+    "applicable_preferences": [],
+    "forbidden_patterns": [],
+    "recommended_adjustments": [],
+    "review_alerts": [
+      "Past feedback suggests reviewing target 'dockyard_management' before finalizing this draft."
+    ],
+    "confidence": 0.4
+  },
   "pricing_result": {
     "quotation_options": [
       {

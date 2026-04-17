@@ -1,0 +1,5 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.local/opencode/skills/quote_feedback_reference_skill/input.schema.json",
+  "$ref": "../references/quote-feedback-reference-input.schema.json"
+}

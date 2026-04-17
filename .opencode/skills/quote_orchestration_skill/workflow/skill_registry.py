@@ -31,6 +31,13 @@ def load_skill_registry(skills_dir: Path) -> dict[str, SkillRegistryEntry]:
             False,
             False,
         ),
+        "quote_feedback_reference_skill": _load_entry(
+            skills_dir / "quote_feedback_reference_skill" / "SKILL.md",
+            "quote_feedback_reference_skill",
+            "feedback_reference",
+            True,
+            False,
+        ),
         "quote_feasibility_check_skill": _load_entry(
             skills_dir / "quote_feasibility_check_skill" / "SKILL.md",
             "quote_feasibility_check_skill",

@@ -46,6 +46,7 @@
 - 内部复用 `quote_orchestration_skill/workflow/` 下的 workflow 实现
 - 支持完整执行、可选节点判断、暂停与恢复
 - 输出最终 `QuoteDocument` 与完整中间结果
+- 输出 `feedback_reference` 等新增中间结果
 - 输出 `execution_trace`、`planner_trace`、`skipped_skills`、`applied_planner_strategies`
 - 保持与当前 orchestrator 输入输出契约一致
 
@@ -87,6 +88,7 @@
   "assessment_report": {},
   "customer_context": {},
   "business_context": {},
+  "user_decision": "accept | revise",
   "render_options": {},
   "resume_payload": {}
 }
@@ -96,6 +98,8 @@
 
 - `assessment_report` 是主输入
 - `customer_context`、`business_context` 用于补充上下文与策略控制
+- `business_context` 当前还可承载如 `sales_owner` 等 feedback reference 相关上下文
+- `user_decision` 用于在对话式纠错阶段明确表达用户选择继续修改还是确认当前版本
 - `render_options` 用于可选渲染
 - `resume_payload` 用于从暂停状态继续
 
@@ -116,11 +120,14 @@
 {
   "template_selection_result": {},
   "prepare_result": {},
+  "feedback_reference": {},
   "feasibility_result": {},
   "historical_reference": {},
   "pricing_result": {},
   "quote_document": {},
   "orchestration_status": "completed",
+  "draft_status": "awaiting_user_decision",
+  "user_decision": null,
   "execution_trace": [],
   "planner_trace": [],
   "skipped_skills": [],
@@ -258,6 +265,7 @@ Agent 做整单报价时，应直接调用 `quote_orchestration_skill`。
 1. 中间结果层
    - `template_selection_result`
    - `prepare_result`
+   - `feedback_reference`
    - `feasibility_result`
    - `historical_reference`
    - `pricing_result`
@@ -266,6 +274,9 @@ Agent 做整单报价时，应直接调用 `quote_orchestration_skill`。
    - `render_result`
 3. 编排状态层
    - `orchestration_status`
+   - `draft_status`
+   - `user_decision`
+   - `user_decision_prompt`
    - `pause_reason`
    - `clarification_context`
 4. 解释与追踪层
@@ -281,6 +292,27 @@ Agent 做整单报价时，应直接调用 `quote_orchestration_skill`。
 - 不应伪造完整完成状态
 - 应显式返回待确认问题
 - 应保留恢复所需中间结果
+
+补充说明：`paused` 主要用于“事实待确认后再继续”的业务暂停，不等于“用户对草案不满意”。
+
+对于草案纠错闭环，建议调用方在前端额外维护显式用户决策状态：
+
+1. `继续修改`
+2. `确认当前版本`
+
+其中只有用户明确选择 `确认当前版本`，才应视为本轮草案纠错结束。
+
+当前实现中，这一机制已经通过对话式输入落地：
+
+1. 首次生成草案后，workflow 输出：
+   - `draft_status: "awaiting_user_decision"`
+   - `user_decision_prompt`
+2. 下一轮对话时，调用方可直接传入：
+   - `user_decision: "accept"`
+   - `user_decision: "revise"`
+3. 系统会分别进入：
+   - `accepted`
+   - `revising`
 
 恢复时：
 
@@ -373,6 +405,7 @@ Agent 做整单报价时，应直接调用 `quote_orchestration_skill`。
 
 - `quote_template_select_skill`
 - `quote_request_prepare_skill`
+- `quote_feedback_reference_skill`
 - `quote_feasibility_check_skill`
 - `historical_quote_reference_skill`
 - `quote_pricing_skill`
@@ -384,6 +417,10 @@ Agent 做整单报价时，应直接调用 `quote_orchestration_skill`。
 1. 做整单报价时，调用 `quote_orchestration_skill`
 2. 做单阶段调试或研究时，按需调用底层 Skill
 3. 不应让 Agent 在整单场景下自己决定底层 Skill 的顺序
+
+补充说明：当前 workflow 已在 `prepare` 与 `feasibility` 之间接入 `quote_feedback_reference_skill`，用于把 memory 检索结果注入后续 pricing / review。
+
+补充说明：当前 workflow 自身负责“生成草案”和“待确认后恢复”，而“是否接受当前草案”建议由上层产品交互通过显式按钮决定，不建议让 workflow 自行猜测用户满意度。
 
 ---
 

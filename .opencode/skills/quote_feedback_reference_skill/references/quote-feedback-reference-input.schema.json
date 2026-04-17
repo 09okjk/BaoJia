@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.local/opencode/skills/quote-feedback-reference-skill/references/input.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["quote_request"],
+  "properties": {
+    "quote_request": { "type": "object" },
+    "feedback_context": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "customer_name": { "type": "string" },
+        "sales_owner": { "type": "string" },
+        "template_type": { "type": "string" },
+        "memory_dir": { "type": "string" }
+      }
+    }
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "feedback_id": "fb-WK-demo-persist-001-001",
+  "quote_id": "WK-demo-persist-001",
+  "quote_version": "draft-v1",
+  "target": {
+    "target_type": "line",
+    "target_id": "dockyard_management",
+    "stage": "pricing"
+  },
+  "action": {
+    "action_type": "remove",
+    "before_value": null,
+    "after_value": null
+  },
+  "reason": {
+    "reason_code": "customer_preference",
+    "reason_text": "Customer usually rejects dockyard management fee unless explicitly requested."
+  },
+  "scope": {
+    "scope_type": "customer",
+    "scope_key": "customer:abc-shipping"
+  },
+  "context_tags": {
+    "customer_name": "ABC Shipping",
+    "vessel_type": "Tanker",
+    "service_port": "Zhapu Port, China",
+    "service_mode": "dock_repair",
+    "location_type": "shipyard",
+    "template_type": "engineering-service"
+  },
+  "accepted": true,
+  "created_by": "sales_user_a",
+  "created_at": "2026-04-16T01:15:42.996345+00:00",
+  "feedback_signature": "customer:abc-shipping|line|dockyard_management|remove|customer_preference",
+  "evidence_count": 5,
+  "linked_quote_ids": [
+    "WK-demo-persist-001"
+  ],
+  "last_seen_at": "2026-04-16T07:24:58.160589+00:00",
+  "observation_count": 4
+}

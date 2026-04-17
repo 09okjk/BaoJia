@@ -21,9 +21,10 @@ class QuoteDocumentMapper:
         "US$": "$",
         "RMB": "￥",
         "CNY": "￥",
-        "EUR": "EUR ",
+        "EUR": "€",
+        "GBP": "£",
         "SGD": "S$",
-        "JPY": "JPY ",
+        "JPY": "¥",
         "HKD": "HK$",
     }
 
@@ -96,7 +97,9 @@ class QuoteDocumentMapper:
         currency_name = str(header.get("currency", "") or "")
         currency_symbol = self._currency_symbol(currency_name)
 
-        descriptions = self._build_descriptions(quotation_options, currency_name)
+        descriptions = self._build_descriptions(
+            quotation_options, currency_name, currency_symbol
+        )
         remarks = self._build_remarks(quotation_options, footer)
         service_payment_terms = self._build_service_payment_terms(footer)
 
@@ -178,7 +181,7 @@ class QuoteDocumentMapper:
         return False
 
     def _build_descriptions(
-        self, quotation_options: Any, currency_name: str
+        self, quotation_options: Any, currency_name: str, currency_symbol: str
     ) -> list[dict[str, Any]]:
         rows: list[dict[str, Any]] = []
         if not isinstance(quotation_options, list):
@@ -245,6 +248,8 @@ class QuoteDocumentMapper:
                                 group_title=group_title,
                                 seen_pending_scopes=seen_pending_scopes,
                                 section_type=section_type,
+                                currency_name=currency_name,
+                                currency_symbol=currency_symbol,
                             )
                         )
                         continue
@@ -275,6 +280,8 @@ class QuoteDocumentMapper:
                             group_title=group_title,
                             option_prefix=option_prefix,
                             numbered_service_section=should_number_line,
+                            currency_name=currency_name,
+                            currency_symbol=currency_symbol,
                         )
                         if row is None:
                             continue
@@ -335,6 +342,8 @@ class QuoteDocumentMapper:
         group_title: str,
         seen_pending_scopes: set[str],
         section_type: str,
+        currency_name: str,
+        currency_symbol: str,
     ) -> list[dict[str, Any]]:
         rows: list[dict[str, Any]] = []
         visible_lines = [line for line in lines if isinstance(line, dict)]
@@ -375,7 +384,11 @@ class QuoteDocumentMapper:
                 self._description_row(
                     index="",
                     content=merged_title,
-                    price=str(priced_line.get("unit_price_display", "") or ""),
+                    price=self._display_money(
+                        str(priced_line.get("unit_price_display", "") or ""),
+                        str(priced_line.get("currency", "") or currency_name),
+                        currency_symbol,
+                    ),
                     unit=str(priced_line.get("unit", "") or ""),
                     qty=str(priced_line.get("qty_display", "") or ""),
                     discount=str(
@@ -383,7 +396,11 @@ class QuoteDocumentMapper:
                         if isinstance(priced_line.get("discount"), dict)
                         else ""
                     ),
-                    amount=str(priced_line.get("amount_display", "") or ""),
+                    amount=self._display_money(
+                        str(priced_line.get("amount_display", "") or ""),
+                        str(priced_line.get("currency", "") or currency_name),
+                        currency_symbol,
+                    ),
                 )
             )
         elif pending_line is not None:
@@ -414,7 +431,11 @@ class QuoteDocumentMapper:
                     unit="",
                     qty="",
                     discount="",
-                    amount=str(pending_line.get("amount_display", "") or ""),
+                    amount=self._display_money(
+                        str(pending_line.get("amount_display", "") or ""),
+                        str(pending_line.get("currency", "") or currency_name),
+                        currency_symbol,
+                    ),
                 )
             )
         elif group_title:
@@ -468,7 +489,11 @@ class QuoteDocumentMapper:
                         unit="",
                         qty="",
                         discount="",
-                        amount=str(line.get("amount_display", "") or ""),
+                        amount=self._display_money(
+                            str(line.get("amount_display", "") or ""),
+                            str(line.get("currency", "") or currency_name),
+                            currency_symbol,
+                        ),
                     )
                 )
                 continue
@@ -504,6 +529,8 @@ class QuoteDocumentMapper:
         group_title: str,
         option_prefix: str,
         numbered_service_section: bool,
+        currency_name: str,
+        currency_symbol: str,
     ) -> dict[str, Any] | None:
         line_type = str(line.get("line_type", "") or "")
         description = self._customer_facing_description(line, group_title=group_title)
@@ -518,8 +545,16 @@ class QuoteDocumentMapper:
         if numbered_service_section and group_no and child_index == 1:
             row_index = self._compose_index(option_prefix, f"{group_no}.{child_index}")
 
-        amount_text = str(line.get("amount_display", "") or "")
-        unit_price_text = str(line.get("unit_price_display", "") or "")
+        amount_text = self._display_money(
+            str(line.get("amount_display", "") or ""),
+            str(line.get("currency", "") or currency_name),
+            currency_symbol,
+        )
+        unit_price_text = self._display_money(
+            str(line.get("unit_price_display", "") or ""),
+            str(line.get("currency", "") or currency_name),
+            currency_symbol,
+        )
         unit_text = str(line.get("unit", "") or "")
         qty_text = str(line.get("qty_display", "") or "")
 
@@ -579,8 +614,28 @@ class QuoteDocumentMapper:
         display = str(value.get("display", "") or "")
         currency = str(value.get("currency", "") or currency_name)
         if display and currency and value.get("value_type") == "amount":
+            symbol = self._currency_symbol(currency)
+            if symbol:
+                return f"{symbol}{display}"
             return f"{currency} {display}"
         return display
+
+    def _display_money(
+        self, display: str, currency_name: str, default_symbol: str
+    ) -> str:
+        cleaned = display.strip()
+        if not cleaned:
+            return ""
+        if not any(char.isdigit() for char in cleaned):
+            return cleaned
+        if any(symbol in cleaned for symbol in ["$", "￥", "¥", "€", "£"]):
+            return cleaned
+        symbol = self._currency_symbol(currency_name) or default_symbol
+        if symbol:
+            return f"{symbol}{cleaned}"
+        if currency_name:
+            return f"{currency_name} {cleaned}"
+        return cleaned
 
     def _build_remarks(
         self, quotation_options: Any, footer: Mapping[str, Any]

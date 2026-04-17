@@ -1,0 +1,10 @@
+{
+  "rule_candidate_id": "rule-agg-customer-customer-abc-shipping-line_suppression-line-dockyard_management-remove",
+  "decision": "approve",
+  "review_note": "Repeatedly observed for the same customer. Approved as a stable suppression rule.",
+  "memory_dir": ".opencode/memory",
+  "reviewer": {
+    "user_id": "manager_user_a",
+    "role": "manager"
+  }
+}

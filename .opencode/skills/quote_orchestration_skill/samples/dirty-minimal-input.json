@@ -1,0 +1,15 @@
+{
+  "assessment_report": {
+    "report_id": "dirty-min-001",
+    "service_items": [
+      {
+        "title": "Quick inspection"
+      }
+    ]
+  },
+  "customer_context": {
+    "currency": "EUR"
+  },
+  "business_context": {},
+  "render_options": {}
+}

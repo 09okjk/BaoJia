@@ -231,6 +231,48 @@
     },
     "confidence": 0.82
   },
+  "feedback_reference": {
+    "matches": [
+      {
+        "feedback_id": "fb-memory-001",
+        "score": 0.75,
+        "reason": "matched customer-level feedback memory",
+        "target": {
+          "target_type": "line",
+          "target_id": "Transportation and accommodation"
+        },
+        "action": {
+          "action_type": "remove"
+        }
+      }
+    ],
+    "applicable_preferences": [
+      {
+        "preference_id": "pref-memory-001",
+        "scope_type": "customer",
+        "scope_key": "customer:abc-shipping",
+        "preference_type": "negative_pattern",
+        "topic": "line",
+        "pattern_key": "Transportation and accommodation",
+        "preference_value": {
+          "default_action": "suppress",
+          "explanation": "Customer usually confirms travel-related charges separately."
+        }
+      }
+    ],
+    "forbidden_patterns": [
+      {
+        "pattern_type": "line",
+        "pattern_key": "Transportation and accommodation",
+        "reason": "Customer usually confirms travel-related charges separately."
+      }
+    ],
+    "recommended_adjustments": [],
+    "review_alerts": [
+      "Past feedback suggests reviewing target 'Transportation and accommodation' before finalizing this draft."
+    ],
+    "confidence": 0.8
+  },
   "pricing_rules": {
     "currency": "USD",
     "service_rates": {

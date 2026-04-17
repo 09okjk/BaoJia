@@ -8,6 +8,8 @@ def can_run_skill(state: WorkflowState, skill_name: str) -> bool:
         return bool(state.assessment_report)
     if skill_name == "quote_request_prepare_skill":
         return bool(state.assessment_report)
+    if skill_name == "quote_feedback_reference_skill":
+        return bool(state.quote_request)
     if skill_name in {
         "quote_feasibility_check_skill",
         "historical_quote_reference_skill",

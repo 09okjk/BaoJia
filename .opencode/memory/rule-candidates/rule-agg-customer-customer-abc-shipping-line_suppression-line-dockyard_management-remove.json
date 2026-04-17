@@ -1,0 +1,25 @@
+{
+  "rule_candidate_id": "rule-agg-customer-customer-abc-shipping-line_suppression-line-dockyard_management-remove",
+  "candidate_type": "line_suppression",
+  "scope_type": "customer",
+  "scope_key": "customer:abc-shipping",
+  "condition": {
+    "service_mode": "dock_repair",
+    "template_type": "engineering-service"
+  },
+  "proposed_rule": {
+    "target_type": "line",
+    "target_id": "dockyard_management",
+    "action_type": "remove"
+  },
+  "evidence_feedback_ids": [
+    "fb-WK-demo-persist-001-001"
+  ],
+  "confidence": 0.86,
+  "status": "approved",
+  "evidence_count": 1,
+  "observation_count": 4,
+  "reviewed_at": "2026-04-16T07:24:58.391370+00:00",
+  "reviewed_by": "manager_user_a",
+  "review_note": "Repeatedly observed for the same customer. Approved as a stable suppression rule."
+}

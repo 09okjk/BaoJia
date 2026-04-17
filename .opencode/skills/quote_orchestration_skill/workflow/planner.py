@@ -39,6 +39,8 @@ def plan_next_action(
         return _run_required("quote_template_select_skill", registry)
     if not state.prepare_result:
         return _run_required("quote_request_prepare_skill", registry)
+    if not state.feedback_reference:
+        return _run_optional("quote_feedback_reference_skill", registry)
     if not state.feasibility_result:
         return _run_required("quote_feasibility_check_skill", registry)
     if _should_pause_after_feasibility(state):

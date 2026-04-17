@@ -1,0 +1,17 @@
+{
+  "quote_request": {
+    "header_context": {
+      "customer_name": "ABC Shipping",
+      "vessel_type": "Tanker"
+    },
+    "service_context": {
+      "service_mode": "dock_repair",
+      "location_type": "shipyard",
+      "template_type": "engineering-service"
+    }
+  },
+  "feedback_context": {
+    "sales_owner": "sales_user_a",
+    "memory_dir": ".opencode/memory"
+  }
+}

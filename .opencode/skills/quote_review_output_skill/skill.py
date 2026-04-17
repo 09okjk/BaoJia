@@ -26,6 +26,11 @@ def build_quote_document(payload: dict[str, Any]) -> dict[str, Any]:
         if isinstance(payload.get("quote_request"), dict)
         else {}
     )
+    prepare_result = (
+        payload.get("prepare_result")
+        if isinstance(payload.get("prepare_result"), dict)
+        else {}
+    )
     feasibility_result = (
         payload.get("feasibility_result")
         if isinstance(payload.get("feasibility_result"), dict)
@@ -34,6 +39,11 @@ def build_quote_document(payload: dict[str, Any]) -> dict[str, Any]:
     historical_reference = (
         payload.get("historical_reference")
         if isinstance(payload.get("historical_reference"), dict)
+        else {}
+    )
+    feedback_reference = (
+        payload.get("feedback_reference")
+        if isinstance(payload.get("feedback_reference"), dict)
         else {}
     )
     pricing_result = (
@@ -53,7 +63,11 @@ def build_quote_document(payload: dict[str, Any]) -> dict[str, Any]:
     header = _build_header(quote_request)
     footer = _build_footer(quote_request, quotation_options, historical_reference)
     review_result = _build_review_result(
-        feasibility_result, quotation_options, historical_reference
+        feasibility_result,
+        quotation_options,
+        historical_reference,
+        prepare_result,
+        feedback_reference,
     )
     trace = _build_trace(historical_reference, pricing_result)
 
@@ -98,9 +112,16 @@ def _build_header(quote_request: dict[str, Any]) -> dict[str, str]:
         else {}
     )
 
-    service_date = str(header_context.get("service_date") or "")
-    if not service_date:
-        service_date = date.today().isoformat()
+    service_date = _string_or_blank(header_context.get("service_date"))
+    quote_date = date.today().isoformat()
+    date_value = service_date if _looks_like_iso_date(service_date) else quote_date
+    your_ref_no = _string_or_blank(header_context.get("customer_ref_no"))
+    if service_date and not _looks_like_iso_date(service_date):
+        your_ref_no = (
+            f"{your_ref_no} | Service window: {service_date}"
+            if your_ref_no
+            else f"Service window: {service_date}"
+        )
 
     return {
         "currency": _string_or_blank(
@@ -108,14 +129,14 @@ def _build_header(quote_request: dict[str, Any]) -> dict[str, str]:
             or commercial_context.get("preferred_currency")
         ),
         "vessel_name": _string_or_blank(header_context.get("vessel_name")),
-        "date": service_date,
+        "date": date_value,
         "imo_no": _string_or_blank(header_context.get("imo_no")),
         "vessel_type": _string_or_blank(header_context.get("vessel_type")),
         "customer_name": _string_or_blank(header_context.get("customer_name")),
         "service_port": _string_or_blank(header_context.get("service_port")),
         "attention": _string_or_blank(header_context.get("attention")),
         "wk_offer_no": _build_offer_no(quote_request),
-        "your_ref_no": _string_or_blank(header_context.get("customer_ref_no")),
+        "your_ref_no": your_ref_no,
         "quotation_validity": _quotation_validity(quote_request),
         "po_no": "",
         "pic_of_winkong": _pic_of_winkong(quote_request),
@@ -235,7 +256,7 @@ def _build_footer_remarks(
             if _should_skip_historical_footer_remark(cleaned, quote_request):
                 continue
             normalized_type = _remark_type(remark_type, cleaned)
-            key = (normalized_type, cleaned)
+            key = _remark_identity(normalized_type, cleaned)
             if key in seen:
                 continue
             seen.add(key)
@@ -256,7 +277,7 @@ def _build_footer_remarks(
                 continue
             if _should_skip_historical_footer_remark(text, quote_request):
                 continue
-            key = (remark_type, text)
+            key = _remark_identity(remark_type, text)
             if key in seen:
                 continue
             seen.add(key)
@@ -279,17 +300,25 @@ def _build_footer_remarks(
         if _should_skip_historical_footer_remark(text, quote_request):
             continue
         remark_type = _remark_type("commercial", text)
-        key = (remark_type, text)
+        key = _remark_identity(remark_type, text)
         if key in seen:
             continue
         seen.add(key)
         items.append({"type": remark_type, "text": text})
 
+    draft_remarks = _draft_footer_remarks(quote_request, quotation_options)
+    for item in draft_remarks:
+        key = _remark_identity(item["type"], item["text"])
+        if key in seen:
+            continue
+        seen.add(key)
+        items.append(item)
+
     default_remarks = _default_footer_remarks(quotation_options)
     for item in default_remarks:
         if _should_skip_historical_footer_remark(item["text"], quote_request):
             continue
-        key = (item["type"], item["text"])
+        key = _remark_identity(item["type"], item["text"])
         if key in seen:
             continue
         seen.add(key)
@@ -377,20 +406,49 @@ def _default_footer_remarks(quotation_options: list[Any]) -> list[dict[str, str]
     return remarks
 
 
+def _draft_footer_remarks(
+    quote_request: dict[str, Any], quotation_options: list[Any]
+) -> list[dict[str, str]]:
+    if not _is_internal_draft(quote_request, quotation_options):
+        return []
+    return [
+        {
+            "type": "tbc",
+            "text": "Internal draft only. This quotation still contains pending confirmations and is not ready for final external release.",
+        }
+    ]
+
+
 def _build_review_result(
     feasibility_result: dict[str, Any],
     quotation_options: list[Any],
     historical_reference: dict[str, Any],
+    prepare_result: dict[str, Any] | None = None,
+    feedback_reference: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
     review_flags = (
         feasibility_result.get("review_flags")
         if isinstance(feasibility_result.get("review_flags"), list)
         else []
     )
-    missing_fields = (
+    missing_fields = []
+    feasibility_missing_fields = (
         feasibility_result.get("missing_fields")
         if isinstance(feasibility_result.get("missing_fields"), list)
         else []
+    )
+    prepare_missing_fields = []
+    if isinstance(prepare_result, dict):
+        prepare_missing_fields = (
+            prepare_result.get("missing_fields")
+            if isinstance(prepare_result.get("missing_fields"), list)
+            else []
+        )
+    missing_fields.extend(
+        item for item in feasibility_missing_fields if isinstance(item, dict)
+    )
+    missing_fields.extend(
+        item for item in prepare_missing_fields if isinstance(item, dict)
     )
 
     review_flag_texts = []
@@ -445,6 +503,17 @@ def _build_review_result(
         review_flag_texts.append(message)
         if flag in {"weak_top_match", "weak_item_overlap", "context_only_match"}:
             risk_flag_texts.append(message)
+
+    if isinstance(feedback_reference, dict):
+        review_alerts = (
+            feedback_reference.get("review_alerts")
+            if isinstance(feedback_reference.get("review_alerts"), list)
+            else []
+        )
+        for alert in review_alerts:
+            text = _string_or_blank(alert)
+            if text:
+                review_flag_texts.append(text)
 
     if multi_option:
         review_flag_texts.append("当前报价包含多方案，提交审核时需确认推荐方案。")
@@ -630,6 +699,8 @@ def _footer_currency(
 
 
 def _quotation_validity(quote_request: dict[str, Any]) -> str:
+    if _is_internal_draft(quote_request):
+        return "Internal draft - pending confirmation"
     commercial_context = (
         quote_request.get("commercial_context")
         if isinstance(quote_request.get("commercial_context"), dict)
@@ -648,6 +719,8 @@ def _quotation_validity(quote_request: dict[str, Any]) -> str:
 
 
 def _service_payment_terms(quote_request: dict[str, Any]) -> str:
+    if _is_internal_draft(quote_request):
+        return "Draft only. Final payment terms shall be confirmed after pending scope and supply responsibility are closed."
     commercial_context = (
         quote_request.get("commercial_context")
         if isinstance(quote_request.get("commercial_context"), dict)
@@ -710,6 +783,17 @@ def _should_skip_historical_footer_remark(
     text: str, quote_request: dict[str, Any]
 ) -> bool:
     lowered = text.lower()
+    if _is_internal_draft(quote_request) and any(
+        keyword in lowered
+        for keyword in [
+            "including the repair kits",
+            "all bearings",
+            "renewal with the new pump",
+            "price as below",
+            "repair kits",
+        ]
+    ):
+        return True
     if not any(
         keyword in lowered
         for keyword in ["shipside", "owner supply", "owner supplied", "船东提供"]
@@ -744,3 +828,51 @@ def _dedupe_strings(values: list[str]) -> list[str]:
         seen.add(key)
         result.append(cleaned)
     return result
+
+
+def _normalize_remark_text(value: str) -> str:
+    normalized = value.strip().lower()
+    normalized = normalized.replace("5times", "5 times")
+    normalized = " ".join(normalized.split())
+    return normalized
+
+
+def _remark_identity(remark_type: str, text: str) -> tuple[str, str]:
+    normalized_text = _normalize_remark_text(text)
+    normalized_type = _remark_type(remark_type, normalized_text)
+    return (normalized_type, normalized_text)
+
+
+def _looks_like_iso_date(value: str) -> bool:
+    if not value:
+        return False
+    return len(value) == 10 and value[4] == "-" and value[7] == "-"
+
+
+def _is_internal_draft(
+    quote_request: dict[str, Any], quotation_options: list[Any] | None = None
+) -> bool:
+    risk_context = (
+        quote_request.get("risk_context")
+        if isinstance(quote_request.get("risk_context"), dict)
+        else {}
+    )
+    pending_confirmations = risk_context.get("pending_confirmations")
+    if isinstance(pending_confirmations, list) and pending_confirmations:
+        return True
+
+    if not isinstance(quotation_options, list):
+        return False
+    for option in quotation_options:
+        if not isinstance(option, dict):
+            continue
+        summary = option.get("summary")
+        if not isinstance(summary, dict):
+            continue
+        total = summary.get("total")
+        if (
+            isinstance(total, dict)
+            and _string_or_blank(total.get("status")) == "pending"
+        ):
+            return True
+    return False

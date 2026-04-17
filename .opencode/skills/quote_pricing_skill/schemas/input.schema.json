@@ -8,6 +8,7 @@
     "quote_request",
     "feasibility_result",
     "historical_reference",
+    "feedback_reference",
     "pricing_rules"
   ],
   "properties": {
@@ -19,6 +20,9 @@
     },
     "historical_reference": {
       "$ref": "#/$defs/historicalReference"
+    },
+    "feedback_reference": {
+      "type": "object"
     },
     "pricing_rules": {
       "$ref": "#/$defs/pricingRules"

@@ -196,7 +196,7 @@ def prepare_quote_request(payload: dict[str, Any]) -> dict[str, Any]:
         service_context["service_category"] = "service"
 
     quote_request["spare_parts_context"] = _extract_spare_parts_context(
-        payload, normalization_flags
+        payload, normalization_flags, candidate_items
     )
     quote_request["risk_context"] = _extract_risk_context(payload)
     quote_request["commercial_context"] = _extract_commercial_context(
@@ -511,6 +511,7 @@ def _build_candidate_item(
 def _extract_spare_parts_context(
     payload: dict[str, Any],
     normalization_flags: list[dict[str, Any]],
+    candidate_items: list[dict[str, Any]],
 ) -> dict[str, Any]:
     assessment_report = (
         payload.get("assessment_report")
@@ -528,18 +529,24 @@ def _extract_spare_parts_context(
         else {}
     )
 
-    raw_items = (
-        assessment_report.get("spare_parts_items")
-        or assessment_report.get("spare_parts")
-        or customer_context.get("spare_parts_items")
-        or []
-    )
-    spare_parts_items = []
-    if isinstance(raw_items, list):
-        for idx, item in enumerate(raw_items, start=1):
-            built = _build_candidate_item(item, "spare_parts", idx)
-            if built:
-                spare_parts_items.append(built)
+    spare_parts_items = [
+        dict(item)
+        for item in candidate_items
+        if isinstance(item, dict) and item.get("item_type") == "spare_parts"
+    ]
+
+    if not spare_parts_items:
+        raw_items = (
+            assessment_report.get("spare_parts_items")
+            or assessment_report.get("spare_parts")
+            or customer_context.get("spare_parts_items")
+            or []
+        )
+        if isinstance(raw_items, list):
+            for idx, item in enumerate(raw_items, start=1):
+                built = _build_candidate_item(item, "spare_parts", idx)
+                if built:
+                    spare_parts_items.append(built)
 
     supply_mode_raw = _first_value(
         business_context,

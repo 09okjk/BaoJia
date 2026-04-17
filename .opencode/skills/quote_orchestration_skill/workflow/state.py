@@ -12,12 +12,15 @@ class WorkflowState:
     render_options: dict[str, Any]
     template_selection_result: dict[str, Any] = field(default_factory=dict)
     prepare_result: dict[str, Any] = field(default_factory=dict)
+    feedback_reference: dict[str, Any] = field(default_factory=dict)
     feasibility_result: dict[str, Any] = field(default_factory=dict)
     historical_reference: dict[str, Any] = field(default_factory=dict)
     pricing_result: dict[str, Any] = field(default_factory=dict)
     quote_document: dict[str, Any] = field(default_factory=dict)
     render_result: dict[str, Any] = field(default_factory=dict)
     orchestration_status: str = "running"
+    draft_status: str = "drafting"
+    user_decision: str | None = None
     pause_reason: str | None = None
     execution_trace: list[dict[str, Any]] = field(default_factory=list)
     planner_trace: list[dict[str, Any]] = field(default_factory=list)
@@ -38,16 +41,28 @@ class WorkflowState:
         result = {
             "template_selection_result": self.template_selection_result,
             "prepare_result": self.prepare_result,
+            "feedback_reference": self.feedback_reference,
             "feasibility_result": self.feasibility_result,
             "historical_reference": self.historical_reference,
             "pricing_result": self.pricing_result,
             "quote_document": self.quote_document,
             "orchestration_status": self.orchestration_status,
+            "draft_status": self.draft_status,
+            "user_decision": self.user_decision,
             "execution_trace": self.execution_trace,
             "planner_trace": self.planner_trace,
             "skipped_skills": self.skipped_skills,
             "applied_planner_strategies": self.applied_planner_strategies,
         }
+        if self.quote_document and self.draft_status in {
+            "awaiting_user_decision",
+            "revising",
+            "accepted",
+        }:
+            result["user_decision_prompt"] = {
+                "message": "Please choose whether to continue revising this draft or confirm the current version.",
+                "options": ["continue_revising", "confirm_current_version"],
+            }
         if self.pause_reason:
             result["pause_reason"] = self.pause_reason
         if self.render_result:

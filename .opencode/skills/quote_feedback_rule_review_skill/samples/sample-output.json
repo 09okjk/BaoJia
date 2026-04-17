@@ -1,0 +1,39 @@
+{
+  "rule_candidate": {
+    "rule_candidate_id": "rule-agg-customer-customer-abc-shipping-line_suppression-line-dockyard_management-remove",
+    "status": "approved",
+    "reviewed_by": "manager_user_a",
+    "review_note": "Repeatedly observed for the same customer. Approved as a stable suppression rule."
+  },
+  "approved_rule": {
+    "approved_rule_id": "approved-rule-agg-customer-customer-abc-shipping-line_suppression-line-dockyard_management-remove",
+    "source_rule_candidate_id": "rule-agg-customer-customer-abc-shipping-line_suppression-line-dockyard_management-remove",
+    "candidate_type": "line_suppression",
+    "scope_type": "customer",
+    "scope_key": "customer:abc-shipping",
+    "condition": {
+      "service_mode": "dock_repair",
+      "template_type": "engineering-service"
+    },
+    "rule_action": {
+      "target_type": "line",
+      "target_id": "dockyard_management",
+      "action_type": "remove"
+    },
+    "evidence_feedback_ids": [
+      "fb-WK-demo-persist-001-001"
+    ],
+    "observation_count": 3,
+    "confidence": 0.74,
+    "approved_by": "manager_user_a",
+    "approved_at": "2026-01-01T00:00:00+00:00",
+    "review_note": "Repeatedly observed for the same customer. Approved as a stable suppression rule.",
+    "status": "active"
+  },
+  "memory_write_result": {
+    "memory_dir": "E:\\PythonProjects\\BaoJia\\.opencode\\memory",
+    "candidate_path": "E:\\PythonProjects\\BaoJia\\.opencode\\memory\\rule-candidates\\rule-agg-customer-customer-abc-shipping-line_suppression-line-dockyard_management-remove.json",
+    "approved_rule_path": "E:\\PythonProjects\\BaoJia\\.opencode\\memory\\approved-rules\\approved-rule-agg-customer-customer-abc-shipping-line_suppression-line-dockyard_management-remove.json",
+    "decision": "approve"
+  }
+}

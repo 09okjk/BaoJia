@@ -1,0 +1,19 @@
+{
+  "preference_id": "pref-agg-customer-customer-abc-shipping-negative_pattern-line-dockyard_management",
+  "scope_type": "customer",
+  "scope_key": "customer:abc-shipping",
+  "preference_type": "negative_pattern",
+  "topic": "line",
+  "pattern_key": "dockyard_management",
+  "preference_value": {
+    "default_action": "remove",
+    "explanation": "Customer usually rejects dockyard management fee unless explicitly requested."
+  },
+  "evidence_feedback_ids": [
+    "fb-WK-demo-persist-001-001"
+  ],
+  "confidence": 0.85,
+  "status": "active",
+  "evidence_count": 1,
+  "observation_count": 4
+}

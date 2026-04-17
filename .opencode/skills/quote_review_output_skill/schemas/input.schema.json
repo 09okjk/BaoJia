@@ -8,12 +8,14 @@
     "quote_request",
     "feasibility_result",
     "historical_reference",
+    "feedback_reference",
     "pricing_result"
   ],
   "properties": {
     "quote_request": { "type": "object" },
     "feasibility_result": { "type": "object" },
     "historical_reference": { "type": "object" },
+    "feedback_reference": { "type": "object" },
     "pricing_result": { "type": "object" }
   }
 }

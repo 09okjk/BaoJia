@@ -1,0 +1,103 @@
+{
+  "matches": [
+    {
+      "feedback_id": "fb-memory-001",
+      "score": 0.75,
+      "reason": "matched customer-level feedback memory",
+      "target": {
+        "target_type": "line",
+        "target_id": "dockyard_management"
+      },
+      "action": {
+        "action_type": "remove"
+      },
+      "scope": {
+        "scope_type": "customer",
+        "scope_key": "customer:abc-shipping"
+      },
+      "reason_detail": {
+        "reason_code": "customer_preference",
+        "reason_text": "Customer usually rejects dockyard management fee unless explicitly requested."
+      }
+    }
+  ],
+  "applicable_preferences": [
+    {
+      "preference_id": "pref-memory-001",
+      "scope_type": "customer",
+      "scope_key": "customer:abc-shipping",
+      "preference_type": "negative_pattern",
+      "topic": "line",
+      "pattern_key": "dockyard_management",
+      "preference_value": {
+        "default_action": "suppress",
+        "explanation": "Customer usually rejects dockyard management fee unless explicitly requested."
+      },
+      "evidence_feedback_ids": [
+        "fb-memory-001"
+      ],
+      "confidence": 0.82,
+      "status": "active"
+    }
+  ],
+  "applicable_rules": [
+    {
+      "approved_rule_id": "approved-rule-agg-customer-customer-abc-shipping-line_suppression-line-dockyard_management-remove",
+      "source_rule_candidate_id": "rule-agg-customer-customer-abc-shipping-line_suppression-line-dockyard_management-remove",
+      "candidate_type": "line_suppression",
+      "scope_type": "customer",
+      "scope_key": "customer:abc-shipping",
+      "condition": {
+        "service_mode": "dock_repair",
+        "template_type": "engineering-service"
+      },
+      "rule_action": {
+        "target_type": "line",
+        "target_id": "dockyard_management",
+        "action_type": "remove"
+      },
+      "evidence_feedback_ids": [
+        "fb-WK-demo-persist-001-001"
+      ],
+      "observation_count": 3,
+      "confidence": 0.74,
+      "approved_by": "manager_user_a",
+      "approved_at": "2026-01-01T00:00:00+00:00",
+      "review_note": "Repeatedly observed for the same customer. Approved as a stable suppression rule.",
+      "status": "active"
+    }
+  ],
+  "forbidden_patterns": [
+    {
+      "pattern_type": "line",
+      "pattern_key": "dockyard_management",
+      "reason": "Customer usually rejects dockyard management fee unless explicitly requested."
+    }
+  ],
+  "recommended_adjustments": [
+    {
+      "adjustment_type": "remove",
+      "target_type": "line",
+      "target_id": "dockyard_management",
+      "reason": "matched customer-level feedback memory"
+    },
+    {
+      "adjustment_type": "suppress",
+      "target_type": "line",
+      "target_id": "dockyard_management",
+      "reason": "Customer usually rejects dockyard management fee unless explicitly requested."
+    },
+    {
+      "adjustment_type": "remove",
+      "target_type": "line",
+      "target_id": "dockyard_management",
+      "reason": "matched approved rule"
+    }
+  ],
+  "review_alerts": [
+    "Past feedback suggests reviewing target 'dockyard_management' before finalizing this draft.",
+    "Matched stored preference on 'line' for the current quote context.",
+    "Matched approved rule for target 'dockyard_management' in the current quote context."
+  ],
+  "confidence": 1.0
+}

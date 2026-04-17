@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.local/opencode/skills/quote-feedback-capture-skill/references/input.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["quote_context", "user_feedback", "feedback_actor"],
+  "properties": {
+    "quote_context": { "type": "object" },
+    "user_feedback": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": true,
+        "required": ["target_type", "target_id", "action_type", "reason_text"],
+        "properties": {
+          "target_type": { "type": "string" },
+          "target_id": { "type": "string" },
+          "stage": { "type": "string" },
+          "action_type": { "type": "string" },
+          "before_value": {},
+          "after_value": {},
+          "reason_code": { "type": "string" },
+          "reason_text": { "type": "string" },
+          "scope_type": { "type": "string" },
+          "accepted": { "type": "boolean" }
+        }
+      }
+    },
+    "feedback_actor": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "user_id": { "type": "string" },
+        "role": { "type": "string" }
+      }
+    },
+    "memory_options": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "persist": { "type": "boolean" },
+        "memory_dir": { "type": "string" }
+      }
+    }
+  }
+}

@@ -1,0 +1,98 @@
+{
+  "feedback_events": [
+    {
+      "feedback_id": "fb-WK-demo-001-001",
+      "quote_id": "WK-demo-001",
+      "quote_version": "draft-v1",
+      "target": {
+        "target_type": "line",
+        "target_id": "option-1-line-hist-other-dockyard_management",
+        "stage": "pricing"
+      },
+      "action": {
+        "action_type": "remove",
+        "before_value": null,
+        "after_value": null
+      },
+      "reason": {
+        "reason_code": "customer_preference",
+        "reason_text": "This charge should not be included for this customer."
+      },
+      "scope": {
+        "scope_type": "customer",
+        "scope_key": "customer:abc-shipping"
+      },
+      "context_tags": {
+        "customer_name": "ABC Shipping",
+        "vessel_type": "Tanker",
+        "service_port": "Zhapu Port, China",
+        "service_mode": "dock_repair",
+        "location_type": "shipyard",
+        "template_type": "engineering-service"
+      },
+      "accepted": true,
+      "created_by": "sales_user_a",
+      "created_at": "2026-01-01T00:00:00+00:00"
+    }
+  ],
+  "case_memory_patch": {
+    "quote_id": "WK-demo-001",
+    "quote_version": "draft-v1",
+    "feedback_ids": [
+      "fb-WK-demo-001-001"
+    ],
+    "feedback_count": 1,
+    "latest_feedback_at": "2026-01-01T00:00:00+00:00"
+  },
+  "preference_candidates": [
+    {
+      "preference_id": "pref-fb-WK-demo-001-001",
+      "scope_type": "customer",
+      "scope_key": "customer:abc-shipping",
+      "preference_type": "negative_pattern",
+      "topic": "line",
+      "pattern_key": "option-1-line-hist-other-dockyard_management",
+      "preference_value": {
+        "default_action": "remove",
+        "explanation": "This charge should not be included for this customer."
+      },
+      "evidence_feedback_ids": [
+        "fb-WK-demo-001-001"
+      ],
+      "confidence": 0.6,
+      "status": "candidate"
+    }
+  ],
+  "rule_candidates": [
+    {
+      "rule_candidate_id": "rule-fb-WK-demo-001-001",
+      "candidate_type": "line_suppression",
+      "scope_type": "customer",
+      "scope_key": "customer:abc-shipping",
+      "condition": {
+        "service_mode": "dock_repair",
+        "template_type": "engineering-service"
+      },
+      "proposed_rule": {
+        "target_type": "line",
+        "target_id": "option-1-line-hist-other-dockyard_management",
+        "action_type": "remove"
+      },
+      "evidence_feedback_ids": [
+        "fb-WK-demo-001-001"
+      ],
+      "confidence": 0.55,
+      "status": "pending_review"
+    }
+  ],
+  "review_flags": [],
+  "memory_write_result": {
+    "enabled": false,
+    "memory_dir": null,
+    "written_files": [],
+    "feedback_events_written": 0,
+    "preference_candidates_written": 0,
+    "rule_candidates_written": 0,
+    "case_memory_written": false
+  }
+}

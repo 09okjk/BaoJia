@@ -10,6 +10,9 @@
   "properties": {
     "quote_request": {
       "$ref": "#/$defs/quoteRequest"
+    },
+    "feedback_reference": {
+      "type": "object"
     }
   },
   "$defs": {

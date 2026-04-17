@@ -137,6 +137,7 @@ def _default_pricing_rules(payload: dict[str, Any]) -> dict[str, Any]:
 def orchestrate_quote(payload: dict[str, Any]) -> dict[str, Any]:
     state = build_initial_state(payload)
     _hydrate_resume_state(state, payload)
+    _apply_user_decision(state, payload)
     _apply_user_confirmations(state)
     registry = load_skill_registry(SKILLS_DIR)
     modules = {
@@ -145,6 +146,9 @@ def orchestrate_quote(payload: dict[str, Any]) -> dict[str, Any]:
         ),
         "quote_request_prepare_skill": _load_skill_module(
             "quote_request_prepare_skill"
+        ),
+        "quote_feedback_reference_skill": _load_skill_module(
+            "quote_feedback_reference_skill"
         ),
         "quote_feasibility_check_skill": _load_skill_module(
             "quote_feasibility_check_skill"
@@ -163,6 +167,7 @@ def orchestrate_quote(payload: dict[str, Any]) -> dict[str, Any]:
         if decision.action == "finish":
             if state.orchestration_status != "paused":
                 state.orchestration_status = "completed"
+            _finalize_draft_status(state)
             return state.to_result()
         if decision.action == "pause":
             state.orchestration_status = "paused"
@@ -215,9 +220,23 @@ def _run_skill(
             }
         )
         state.prepare_result = result
+    elif skill_name == "quote_feedback_reference_skill":
+        state.feedback_reference = module.build_feedback_reference_result(
+            {
+                "quote_request": state.quote_request,
+                "feedback_context": {
+                    "customer_name": state.customer_context.get("customer_name"),
+                    "sales_owner": state.business_context.get("sales_owner"),
+                    "template_type": state.selected_template_type,
+                },
+            }
+        )
     elif skill_name == "quote_feasibility_check_skill":
         state.feasibility_result = module.check_quote_feasibility(
-            {"quote_request": state.quote_request}
+            {
+                "quote_request": state.quote_request,
+                "feedback_reference": state.feedback_reference,
+            }
         )
     elif skill_name == "historical_quote_reference_skill":
         state.historical_reference = module.build_historical_reference(
@@ -232,6 +251,7 @@ def _run_skill(
                 "quote_request": state.quote_request,
                 "feasibility_result": state.feasibility_result,
                 "historical_reference": state.historical_reference,
+                "feedback_reference": state.feedback_reference,
                 "pricing_rules": _pricing_rules_for_state(state, original_payload),
             }
         )
@@ -239,8 +259,10 @@ def _run_skill(
         review_output = module.build_quote_document(
             {
                 "quote_request": state.quote_request,
+                "prepare_result": state.prepare_result,
                 "feasibility_result": state.feasibility_result,
                 "historical_reference": state.historical_reference,
+                "feedback_reference": state.feedback_reference,
                 "pricing_result": state.pricing_result,
             }
         )
@@ -352,6 +374,7 @@ def _hydrate_resume_state(state: WorkflowState, payload: dict[str, Any]) -> None
     for field_name in [
         "template_selection_result",
         "prepare_result",
+        "feedback_reference",
         "feasibility_result",
         "historical_reference",
         "pricing_result",
@@ -383,6 +406,52 @@ def _hydrate_resume_state(state: WorkflowState, payload: dict[str, Any]) -> None
         state.applied_planner_strategies = [
             item for item in applied_strategies if isinstance(item, dict)
         ]
+
+    draft_status = resume_payload.get("draft_status")
+    if isinstance(draft_status, str) and draft_status.strip():
+        state.draft_status = draft_status.strip()
+    user_decision = resume_payload.get("user_decision")
+    if isinstance(user_decision, str) and user_decision.strip():
+        state.user_decision = user_decision.strip()
+
+
+def _apply_user_decision(state: WorkflowState, payload: dict[str, Any]) -> None:
+    raw_decision = payload.get("user_decision")
+    if not isinstance(raw_decision, str) or not raw_decision.strip():
+        return
+    normalized = raw_decision.strip().lower()
+    if normalized not in {"accept", "revise"}:
+        return
+    state.user_decision = normalized
+    if normalized == "accept":
+        state.draft_status = "accepted"
+        _record_planner_strategy(
+            state,
+            strategy_type="user_decision_applied",
+            reason="user confirmed current draft version",
+            payload={"user_decision": normalized},
+        )
+        return
+    state.draft_status = "revising"
+    _record_planner_strategy(
+        state,
+        strategy_type="user_decision_applied",
+        reason="user requested another revision cycle",
+        payload={"user_decision": normalized},
+    )
+
+
+def _finalize_draft_status(state: WorkflowState) -> None:
+    if not state.quote_document:
+        state.draft_status = "drafting"
+        return
+    if state.user_decision == "accept":
+        state.draft_status = "accepted"
+        return
+    if state.user_decision == "revise":
+        state.draft_status = "revising"
+        return
+    state.draft_status = "awaiting_user_decision"
 
 
 def _apply_user_confirmations(state: WorkflowState) -> None:

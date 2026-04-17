@@ -7,11 +7,13 @@
   "required": [
     "template_selection_result",
     "prepare_result",
+    "feedback_reference",
     "feasibility_result",
     "historical_reference",
     "pricing_result",
     "quote_document",
     "orchestration_status",
+    "draft_status",
     "execution_trace",
     "planner_trace",
     "skipped_skills",
@@ -22,6 +24,9 @@
       "type": "object"
     },
     "prepare_result": {
+      "type": "object"
+    },
+    "feedback_reference": {
       "type": "object"
     },
     "feasibility_result": {
@@ -39,6 +44,17 @@
     "orchestration_status": {
       "type": "string",
       "enum": ["completed", "paused", "running"]
+    },
+    "draft_status": {
+      "type": "string",
+      "enum": ["drafting", "awaiting_user_decision", "revising", "accepted"]
+    },
+    "user_decision": {
+      "type": ["string", "null"],
+      "enum": ["accept", "revise", null]
+    },
+    "user_decision_prompt": {
+      "type": "object"
     },
     "pause_reason": {
       "type": "string"

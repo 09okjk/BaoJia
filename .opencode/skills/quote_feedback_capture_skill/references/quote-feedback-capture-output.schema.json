@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.local/opencode/skills/quote-feedback-capture-skill/references/output.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["feedback_events", "case_memory_patch", "preference_candidates", "rule_candidates", "review_flags", "memory_write_result"],
+  "properties": {
+    "feedback_events": { "type": "array", "items": { "type": "object" } },
+    "case_memory_patch": { "type": "object" },
+    "preference_candidates": { "type": "array", "items": { "type": "object" } },
+    "rule_candidates": { "type": "array", "items": { "type": "object" } },
+    "review_flags": { "type": "array", "items": { "type": "string" } },
+    "memory_write_result": { "type": "object" }
+  }
+}

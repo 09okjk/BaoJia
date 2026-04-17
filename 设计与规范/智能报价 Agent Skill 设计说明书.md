@@ -78,6 +78,13 @@
 7. 输出表尾 Summary、Remark 与 Service Payment Terms
 8. 最终输出 `QuoteDocument JSON`
 
+补充说明：在当前版本中，系统已经开始支持“报价草案反馈飞轮”能力，即：
+
+1. 用户对草案的修改意见可结构化采集
+2. 反馈可写入本地 memory
+3. memory 可被后续报价检索消费
+4. 高频反馈可聚合为 rule candidate，并经审核后升级为 approved rule
+
 ---
 
 ## 4. 设计范围
@@ -93,6 +100,13 @@
 - 表尾结果生成
 - 审核提示与追溯信息输出
 - 标准 `QuoteDocument JSON` 输出
+
+补充说明：当前仓库实现还额外包含以下反馈飞轮相关能力：
+
+- `quote_feedback_capture_skill`
+- `quote_feedback_reference_skill`
+- `quote_feedback_rule_review_skill`
+- `.opencode/memory/` 本地记忆目录
 
 ## 4.2 本期不纳入范围
 以下内容不属于本期核心范围：
@@ -184,6 +198,8 @@ Skill 设计应遵循“高内聚、低耦合”的原则。
 智能评估单
   +
 历史报价数据库
+  +
+反馈记忆 / approved rules
   +
 报价规则配置
   +
@@ -742,7 +758,7 @@ Summary 需要支持的不仅是数值，还要支持待定、按实际、文本
 
 ## 15. Skill 设计
 
-本方案建议使用 5 个核心 Skill + 1 个编排层。
+本方案当前已形成 5 个核心报价 Skill + 1 个编排层 + 3 个反馈飞轮 Skill。
 
 ---
 
@@ -928,12 +944,44 @@ quote_orchestration_skill
   └─ 内部调用 Hybrid workflow
       ├─ quote_template_select_skill（可选）
       ├─ quote_request_prepare_skill
+      ├─ quote_feedback_reference_skill
       ├─ quote_feasibility_check_skill
       ├─ historical_quote_reference_skill（可选）
       ├─ quote_pricing_skill
       ├─ quote_review_output_skill
       └─ quote_pdf_render_skill（可选）
 ```
+
+## 15.7 `quote_feedback_capture_skill`
+
+### 目标
+将用户对报价草案的修改意见转为结构化反馈事件，并写入本地 memory。
+
+### 当前作用
+- 生成 `feedback_event`
+- 生成 `preference_candidate`
+- 生成 `rule_candidate`
+- 写入 `.opencode/memory/`
+
+## 15.8 `quote_feedback_reference_skill`
+
+### 目标
+在生成新报价前检索 feedback memory、preference memory 与 approved rules，并输出结构化建议。
+
+### 当前作用
+- 输出 `forbidden_patterns`
+- 输出 `review_alerts`
+- 输出 `applicable_rules`
+
+## 15.9 `quote_feedback_rule_review_skill`
+
+### 目标
+审核已达到稳定阈值的 rule candidate，并决定是否写入 approved rules。
+
+### 当前作用
+- 读取 `.opencode/memory/rule-candidates/`
+- 执行 `approve / reject`
+- 写入 `.opencode/memory/approved-rules/`
 
 ---
 
@@ -992,6 +1040,30 @@ quote_orchestration_skill
 - `quote_pricing_skill`
 - `quote_review_output_skill`
 
+补充说明：当前实际仓库实现中，反馈飞轮 MVP 也已经落地，包括：
+
+- `quote_feedback_capture_skill`
+- `quote_feedback_reference_skill`
+- `quote_feedback_rule_review_skill`
+
+补充说明：针对草案纠错流程，当前推荐的结束机制不是由系统自动猜测用户是否满意，而是由用户显式在以下两个动作中二选一：
+
+1. `继续修改`
+2. `确认当前版本`
+
+只有当用户明确选择 `确认当前版本` 时，才视为本轮纠错流程结束。
+
+当前实现补充：该机制已经通过 `quote_orchestration_skill` 落地为对话式契约，系统可输出：
+
+1. `draft_status`
+2. `user_decision`
+3. `user_decision_prompt`
+
+并支持在下一轮输入中接收：
+
+1. `user_decision: "accept"`
+2. `user_decision: "revise"`
+
 ### MVP 暂不纳入
 - 自动发客户邮件
 - 自动审批流
@@ -1012,6 +1084,11 @@ quote_orchestration_skill
 6. 能生成固定表头、固定表尾和固定明细列
 7. 能生成审核提示和追溯信息
 8. 能将输出结果稳定渲染为现有报价单模板
+
+补充说明：若纳入反馈闭环视角，当前版本还应满足：
+
+9. 用户能在 `继续修改 / 确认当前版本` 之间显式决策
+10. 系统不会仅凭沉默、导出 PDF 或修改次数减少来猜测用户已经满意
 
 ---
 
